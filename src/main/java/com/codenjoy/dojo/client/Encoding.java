@@ -4,7 +4,7 @@ package com.codenjoy.dojo.client;
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2018 Codenjoy
+ * Copyright (C) 2018 - 2020 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -25,24 +25,21 @@ package com.codenjoy.dojo.client;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class CodenjoyContext {
+public class Encoding {
+    
+    public static final String UTF8 = "UTF-8";
 
-    private static String CONTEXT = "codenjoy-contest";
-    private static int PORT = 8080;
-
-    public static String getContext() {
-        return CONTEXT;
+    public static String replaceN(String value) {
+        return value.replace("\\n", "\n")
+                .replace("\\r", "\r")
+                .replace("\r\n", "\n")
+                .replace("\n\r", "\n")
+                .replace("\r", "\n");
     }
 
-    public static void setContext(String context) {
-        CONTEXT = context;
+    public static String removeN(String value) {
+        return value.replaceAll("\n|\r", "");
     }
 
-    public static int getPort() {
-        return PORT;
-    }
 
-    public static void setPort(int port) {
-        PORT = port;
-    }
 }
