@@ -26,6 +26,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class UrlParser {
+
     public static final String WSS_PROTOCOL = "wss";
     public static final String WS_PROTOCOL = "ws";
     public static final String HTTPS_PROTOCOL = "https";

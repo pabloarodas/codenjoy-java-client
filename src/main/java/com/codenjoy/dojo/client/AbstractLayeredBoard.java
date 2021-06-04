@@ -24,8 +24,6 @@ package com.codenjoy.dojo.client;
 
 
 import com.codenjoy.dojo.client.services.Point;
-import com.codenjoy.dojo.client.services.LevelsType;
-import com.codenjoy.dojo.client.services.CharElements;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -35,16 +33,19 @@ import java.util.function.Function;
 
 import static com.codenjoy.dojo.client.services.PointImpl.pt;
 
-public abstract class AbstractLayeredBoard<E extends CharElements> implements ClientBoard {
+public abstract class AbstractLayeredBoard<E> implements ClientBoard {
+
+    public static final String LAYERS = "layers";
+
     protected int size;
     protected char[][][] field;
     protected JSONObject source;
     protected List<String> layersString = new LinkedList<>();
 
     public ClientBoard forString(String boardString) {
-        if (boardString.contains(LevelsType.LAYERS)) {
+        if (boardString.contains(LAYERS)) {
             source = new JSONObject(boardString);
-            JSONArray layers = source.getJSONArray(LevelsType.LAYERS);
+            JSONArray layers = source.getJSONArray(LAYERS);
             return forString(layers.toList().toArray(new String[0]));
         }
 

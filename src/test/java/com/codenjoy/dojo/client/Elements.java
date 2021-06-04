@@ -22,10 +22,7 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
-
-import com.codenjoy.dojo.client.services.CharElements;
-
-enum Elements implements CharElements {
+enum Elements {
 
     ONE('1'), TWO('2'), THREE('3'), FOUR('4'), FIVE('5'), SIX('6'), NONE(' ');
 
@@ -35,7 +32,6 @@ enum Elements implements CharElements {
         this.ch = ch;
     }
 
-    @Override
     public char ch() {
         return ch;
     }
