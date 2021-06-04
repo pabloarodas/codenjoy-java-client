@@ -33,7 +33,7 @@ public class Utils {
     }
 
     public static String prettyPrint(String jsonString) {
-        return clean(new SortedJSONObject(jsonString).toString(4));
+        return clean(new SortedJSONObject(jsonString).toString(2));
     }
 
     public static String unescapeJava(String data) {
