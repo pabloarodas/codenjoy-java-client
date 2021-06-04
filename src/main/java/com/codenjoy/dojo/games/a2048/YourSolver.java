@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client;
+package com.codenjoy.dojo.games.a2048;
 
 /*-
  * #%L
@@ -10,12 +10,12 @@ package com.codenjoy.dojo.client;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -23,17 +23,28 @@ package com.codenjoy.dojo.client;
  */
 
 
-/**
- * Любая реализация AI должна реализовать этот интерфейс.
- * @param <B> реализация {@see AbstractBoard} для текущей игры
- */
-@FunctionalInterface
-public interface Solver<B extends ClientBoard> {
+import com.codenjoy.dojo.client.Solver;
+import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.Direction;
 
-    /**
-     * Каждую секунду сервер будет приганять сюда актуальное состояние доски.
-     * @param board объект инкапсулирующий доску
-     * @return команда, что делать серверу
-     */
-    String get(B board);
+/**
+ * User: your name
+ */
+public class YourSolver implements Solver<Board> {
+
+    private Dice dice;
+    private Board board;
+
+    public YourSolver(Dice dice) {
+        this.dice = dice;
+    }
+
+    @Override
+    public String get(Board board) {
+        this.board = board;
+
+        // write your code here
+
+        return Direction.UP.toString();
+    }
 }
