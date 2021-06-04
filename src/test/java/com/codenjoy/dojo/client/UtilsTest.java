@@ -64,4 +64,56 @@ public class UtilsTest {
                     "}",
                 Utils.prettyPrint("{\"total\":1,\"scores\":true,\"current\":0,\"lastPassed\":-1,\"multiple\":false}"));
     }
+
+    @Test
+    public void testInject() {
+        assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUVW^*XYZ",
+                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ", 4, "^*"));
+
+        assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUVW^*",
+                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUVW", 4, "^*"));
+
+        assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUV",
+                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUV", 4, "^*"));
+    }
+
+    @Test
+    public void testInjectN() {
+        assertEquals("12345\n" +
+                        "67890\n" +
+                        "ABCDE\n" +
+                        "FHIJK\n" +
+                        "LMNOP\n" +
+                        "QRSTU\n" +
+                        "VWXYZ\n",
+                Utils.injectN("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ"));
+
+        assertEquals("1234\n" +
+                        "5678\n" +
+                        "90AB\n" +
+                        "CDEF\n" +
+                        "HIJK\n" +
+                        "LMNO\n",
+                Utils.injectN("1234567890ABCDEFHIJKLMNO"));
+    }
+
+    @Test
+    public void testInjectNN() {
+        assertEquals("12345\n" +
+                    "67890\n" +
+                    "ABCDE\n" +
+                    "FHIJK\n" +
+                    "LMNOP\n" +
+                    "QRSTU\n" +
+                    "VWXYZ\n",
+                Utils.injectNN("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ"));
+
+        assertEquals("1234\n" +
+                    "5678\n" +
+                    "90AB\n" +
+                    "CDEF\n" +
+                    "HIJK\n" +
+                    "LMNO\n",
+                Utils.injectNN("1234567890ABCDEFHIJKLMNO1234567890ABCDEFHIJKLMNO1234567890ABCDEFHIJKLMNO"));
+    }
 }

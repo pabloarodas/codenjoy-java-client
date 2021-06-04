@@ -28,16 +28,44 @@ import org.json.SortedJSONObject;
 
 public class Utils {
 
+    public static final int COUNT_NUMBERS = 3;
+
     public static String clean(String json) {
         return json.replace('\"', '\'').replaceAll("\\r\\n", "\n");
     }
 
-    public static String prettyPrint(String jsonString) {
-        return clean(new SortedJSONObject(jsonString).toString(2));
+    public static String prettyPrint(Object object) {
+        return clean(new SortedJSONObject(object).toString(2));
+    }
+
+    public static String prettyPrint(String json) {
+        return prettyPrint(json);
     }
 
     public static String unescapeJava(String data) {
         return StringEscapeUtils.unescapeJava(data.replaceAll("\\\\u", "\\u"));
+    }
+
+    // TODO дублирование с TestUtils.injectN
+    public static String injectN(String expected) {
+        int size = (int) Math.sqrt(expected.length());
+        return inject(expected, size, "\n");
+    }
+
+    // TODO дублирование с TestUtils.injectNN
+    public static String injectNN(String expected) {
+        int size = (int) Math.sqrt(expected.length()/COUNT_NUMBERS)*COUNT_NUMBERS;
+        return inject(expected, size, "\n");
+    }
+
+    // TODO дублирование с TestUtils.inject
+    public static String inject(String string, int position, String substring) {
+        StringBuilder result = new StringBuilder();
+        for (int index = 1; index < string.length() / position + 1; index++) {
+            result.append(string, (index - 1)*position, index*position).append(substring);
+        }
+        result.append(string.substring((string.length() / position) * position));
+        return result.toString();
     }
 
 }
