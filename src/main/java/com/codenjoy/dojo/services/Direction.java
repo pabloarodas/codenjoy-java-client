@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.services;
+package com.codenjoy.dojo.services;
 
 /*-
  * #%L
@@ -25,8 +25,9 @@ package com.codenjoy.dojo.client.services;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
-import static com.codenjoy.dojo.client.services.PointImpl.pt;
+import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
  * Имплементит возможные направления движения чего либо
@@ -120,6 +121,21 @@ public enum Direction {
             case RIGHT : return LEFT;
         }
         throw new IllegalArgumentException("Cant invert for: " + this);
+    }
+
+    /**
+     * @return Random direction.
+     */
+    public static Direction random() {
+        return random(new RandomDice());
+    }
+
+    /**
+     * @param dice Given dice.
+     * @return Random direction for given dice.
+     */
+    public static Direction random(Dice dice) {
+        return Direction.valueOf(dice.next(4));
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.services;
+package com.codenjoy.dojo.services.printer;
 
 /*-
  * #%L
@@ -23,24 +23,13 @@ package com.codenjoy.dojo.client.services;
  */
 
 
-import static com.codenjoy.dojo.client.services.PointImpl.pt;
-
-public class LengthToXY {
-
-    private int size;
-
-    public LengthToXY(int size) {
-        this.size = size;
-    }
-
-    public Point getXY(int length) {
-        if (length == -1) {
-            return null;
-        }
-        return pt(length % size, size - 1 - length / size);
-    }
-
-    public int getLength(int x, int y) {
-        return (size - 1 - y) * size + x;
-    }
+/**
+ * Этот интерфейс расширяют все енумы, содержащие перечень символов кодирующих
+ * живность на поле.
+ */
+public interface CharElements {
+    
+    char ch();
+    
+    String name();
 }

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.services;
+package com.codenjoy.dojo.services;
 
 /*-
  * #%L
@@ -23,13 +23,11 @@ package com.codenjoy.dojo.client.services;
  */
 
 
-import com.codenjoy.dojo.client.services.Direction;
-import com.codenjoy.dojo.client.services.Point;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.codenjoy.dojo.client.services.PointImpl.pt;
+import static com.codenjoy.dojo.services.PointImpl.pt;
 import static org.junit.Assert.*;
 
 public class DirectionTest {
@@ -155,6 +153,19 @@ public class DirectionTest {
         } catch (IllegalArgumentException exception) {
             assertEquals("Cant invert for: ACT", exception.getMessage());
         }
+    }
+
+    @Test
+    public void test_random() {
+        int[] c = new int[4];
+        for (int count = 0; count < 1200; count ++) {
+            c[Direction.random().value()]++;
+        }
+        String message = Arrays.toString(c);
+        assertTrue(message, c[0] > 250);
+        assertTrue(message, c[1] > 250);
+        assertTrue(message, c[2] > 250);
+        assertTrue(message, c[3] > 250);
     }
 
     @Test

@@ -23,13 +23,14 @@ package com.codenjoy.dojo.client;
  */
 
 
-import com.codenjoy.dojo.client.services.Point;
+import com.codenjoy.dojo.services.Point;
+import com.codenjoy.dojo.services.printer.CharElements;
 
 import java.util.*;
 
-import static com.codenjoy.dojo.client.services.PointImpl.pt;
+import static com.codenjoy.dojo.services.PointImpl.pt;
 
-public abstract class AbstractBoard<E> extends AbstractLayeredBoard<E> {
+public abstract class AbstractBoard<E extends CharElements> extends AbstractLayeredBoard<E> {
 
     public abstract E valueOf(char ch);
 

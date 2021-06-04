@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client;
+package com.codenjoy.dojo.services;
 
 /*-
  * #%L
@@ -10,12 +10,12 @@ package com.codenjoy.dojo.client;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -23,27 +23,21 @@ package com.codenjoy.dojo.client;
  */
 
 
-import com.codenjoy.dojo.client.services.LengthToXY;
-import org.junit.Test;
+import java.security.SecureRandom;
 
-import static org.junit.Assert.assertEquals;
+public class RandomDice implements Dice {
 
-public class LengthToXYTest {
+    private static final SecureRandom random = new SecureRandom(String.valueOf(System.nanoTime()).getBytes());
 
-    @Test
-    public void test() {
-        LengthToXY xy = new LengthToXY(5);
-
-        assertEquals(5*5 - 5, xy.getLength(0, 0));
-        assertEquals(0, xy.getLength(0, 4));
-
-        assertEquals(5*5 - 1, xy.getLength(4, 0));
-        assertEquals(4, xy.getLength(4, 4));
-
-        assertEquals("[0,0]", xy.getXY(xy.getLength(0, 0)).toString());
-        assertEquals("[0,4]", xy.getXY(xy.getLength(0, 4)).toString());
-
-        assertEquals("[4,0]", xy.getXY(xy.getLength(4, 0)).toString());
-        assertEquals("[4,4]", xy.getXY(xy.getLength(4, 4)).toString());
+    /**
+     * Simulates a dice throwing.
+     *
+     * @param n number of dice faces
+     * @return integer between 0 (inclusively) and n (exclusively)
+     */
+    @Override
+    public int next(int n) {
+        if (n <= 0) throw new IllegalArgumentException("Dice should have a positive number of faces");
+        return random.nextInt(n);
     }
 }

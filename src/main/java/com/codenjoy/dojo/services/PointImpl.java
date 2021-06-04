@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.services;
+package com.codenjoy.dojo.services;
 
 /*-
  * #%L
@@ -22,9 +22,12 @@ package com.codenjoy.dojo.client.services;
  * #L%
  */
 
-
 import org.json.JSONObject;
 
+/**
+ * Каждый объект на поле имеет свои координаты. Этот класс обычно используется дял указания координат или как родитель.
+ * Может использоваться в коллекциях.
+ */
 public class PointImpl implements Point, Comparable<Point> {
 
     protected int x;
@@ -78,6 +81,14 @@ public class PointImpl implements Point, Comparable<Point> {
         return x*1000 + y;
     }
 
+    public int parentHashCode() {
+        return super.hashCode();
+    }
+
+    public boolean parentEquals(Object o) {
+        return super.equals(o);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s,%s]", x, y);
@@ -107,6 +118,16 @@ public class PointImpl implements Point, Comparable<Point> {
     }
 
     @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    @Override
     public void move(int x, int y) {
         this.x = x;
         this.y = y;
@@ -121,16 +142,6 @@ public class PointImpl implements Point, Comparable<Point> {
     @Override
     public Point copy() {
         return new PointImpl(this);
-    }
-
-    @Override
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public void setY(int y) {
-        this.y = y;
     }
 
     @Override
@@ -172,5 +183,9 @@ public class PointImpl implements Point, Comparable<Point> {
                 .filter(direction -> direction.change(this).itsMe(to))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public static Point random(Dice dice, int size) {
+        return pt(dice.next(size), dice.next(size));
     }
 }

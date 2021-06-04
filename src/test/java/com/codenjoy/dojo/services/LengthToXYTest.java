@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client;
+package com.codenjoy.dojo.services;
 
 /*-
  * #%L
@@ -22,34 +22,28 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
-import com.codenjoy.dojo.services.printer.CharElements;
 
-enum Elements implements CharElements {
+import com.codenjoy.dojo.services.LengthToXY;
+import org.junit.Test;
 
-    ONE('1'), TWO('2'), THREE('3'), FOUR('4'), FIVE('5'), SIX('6'), NONE(' ');
+import static org.junit.Assert.assertEquals;
 
-    final char ch;
+public class LengthToXYTest {
 
-    Elements(char ch) {
-        this.ch = ch;
-    }
+    @Test
+    public void test() {
+        LengthToXY xy = new LengthToXY(5);
 
-    @Override
-    public char ch() {
-        return ch;
-    }
+        assertEquals(5*5 - 5, xy.getLength(0, 0));
+        assertEquals(0, xy.getLength(0, 4));
 
-    @Override
-    public String toString() {
-        return String.valueOf(ch);
-    }
+        assertEquals(5*5 - 1, xy.getLength(4, 0));
+        assertEquals(4, xy.getLength(4, 4));
 
-    public static Elements valueOf(char ch) {
-        for (Elements el : Elements.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
+        assertEquals("[0,0]", xy.getXY(xy.getLength(0, 0)).toString());
+        assertEquals("[0,4]", xy.getXY(xy.getLength(0, 4)).toString());
+
+        assertEquals("[4,0]", xy.getXY(xy.getLength(4, 0)).toString());
+        assertEquals("[4,4]", xy.getXY(xy.getLength(4, 4)).toString());
     }
 }

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client;
+package com.codenjoy.dojo.services;
 
 /*-
  * #%L
@@ -22,34 +22,10 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
-import com.codenjoy.dojo.services.printer.CharElements;
 
-enum Elements implements CharElements {
-
-    ONE('1'), TWO('2'), THREE('3'), FOUR('4'), FIVE('5'), SIX('6'), NONE(' ');
-
-    final char ch;
-
-    Elements(char ch) {
-        this.ch = ch;
-    }
-
-    @Override
-    public char ch() {
-        return ch;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(ch);
-    }
-
-    public static Elements valueOf(char ch) {
-        for (Elements el : Elements.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
-    }
+/**
+ * Реализация этого интерфейса скрывает Random с целью тестирования.
+ */
+public interface Dice {
+    int next(int n);
 }
