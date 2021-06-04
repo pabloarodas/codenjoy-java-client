@@ -45,16 +45,8 @@ public class YourSolver implements Solver<Board> {
         this.board = board;
         if (board.isGameOver()) return "";
 
+        // TODO put your logic here
+
         return Direction.UP.toString();
     }
-
-    public static void main(String[] args) {
-        WebSocketRunner.runClient(args,
-                // paste here board page url from browser after registration
-                // or put it as command line parameter
-                "http://codenjoy.com:80/codenjoy-contest/board/player/3edq63tw0bq4w4iem7nb?code=1234567890123456789",
-                new YourSolver(new RandomDice()),
-                new Board());
-    }
-
 }
