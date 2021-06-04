@@ -79,4 +79,41 @@ public class UtilsTest {
                     "LMNO\n",
                 Utils.injectN("1234567890ABCDEFHIJKLMNO"));
     }
+
+    @Test
+    public void testPrettyPrintString() {
+        assertEquals("{\n" +
+                    "    'field1': 'string1',\n" +
+                    "    'field2': [\n" +
+                    "        'string2',\n" +
+                    "        'string3'\n" +
+                    "    ]\n" +
+                    "}",
+                Utils.prettyPrint("{'field1':'string1','field2':['string2','string3']}"));
+    }
+
+    @Test
+    public void testPrettyPrintString_withSubObjects(){
+        assertEquals("{\n" +
+                    "    'field1': 'string1',\n" +
+                    "    'field2': {\n" +
+                    "        'string1': true,\n" +
+                    "        'string2': 2,\n" +
+                    "        'string3': 'data'\n" +
+                    "    }\n" +
+                    "}",
+                Utils.prettyPrint("{'field2':{'string2':2,'string1':true,'string3':'data'},'field1':'string1'}"));
+    }
+
+    @Test
+    public void testPrettyPrintStringWithString() {
+        assertEquals("{\n" +
+                    "    'current': 0,\n" +
+                    "    'lastPassed': -1,\n" +
+                    "    'multiple': false,\n" +
+                    "    'scores': true,\n" +
+                    "    'total': 1\n" +
+                    "}",
+                Utils.prettyPrint("{\"total\":1,\"scores\":true,\"current\":0,\"lastPassed\":-1,\"multiple\":false}"));
+    }
 }

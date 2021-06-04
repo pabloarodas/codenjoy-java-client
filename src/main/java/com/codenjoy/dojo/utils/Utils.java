@@ -23,8 +23,7 @@ package com.codenjoy.dojo.utils;
  */
 
 
-import com.cedarsoftware.util.io.JsonWriter;
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.SortedJSONObject;
 
@@ -61,12 +60,7 @@ public class Utils {
 
     // TODO почему-то этот малый слетает в MVN при билде из консоли для символов борды expansion
     public static String prettyPrint(String jsonString) {
-        String json = toStringSorted(jsonString);
-        return clean(JsonWriter.formatJson(json));
-    }
-
-    public static String toStringSorted(String jsonString) {
-        return new SortedJSONObject(jsonString).toString();
+        return clean(new SortedJSONObject(jsonString).toString(4));
     }
 
     public static String unescapeJava(String data) {
