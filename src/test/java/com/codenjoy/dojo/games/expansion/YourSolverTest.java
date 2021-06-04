@@ -31,7 +31,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 public class YourSolverTest {
@@ -82,8 +82,8 @@ public class YourSolverTest {
                 "-------" +
                 "-------" +
                 "-------",
-                Command.increase(new Forces(pt(1, 5), 10))
-                        .move(new ForcesMoves(pt(1, 5), 5, QDirection.RIGHT))
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
                         .build());
 
         assertL("{'myBase':{'x':1,'y':5}," +
@@ -116,8 +116,8 @@ public class YourSolverTest {
                 "-------" +
                 "-------" +
                 "-------",
-                Command.increase(new Forces(pt(2, 5), 10))
-                        .move(new ForcesMoves(pt(2, 5), 5, QDirection.RIGHT))
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
                         .build());
 
         assertL("{'myBase':{'x':1,'y':5}," +
@@ -150,8 +150,8 @@ public class YourSolverTest {
                 "-------" +
                 "-------" +
                 "-------",
-                Command.increase(new Forces(pt(3, 5), 10))
-                        .move(new ForcesMoves(pt(3, 5), 5, QDirection.RIGHT))
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
                         .build());
 
         assertL("{'myBase':{'x':1,'y':5}," +
@@ -184,8 +184,8 @@ public class YourSolverTest {
                 "-------" +
                 "-------" +
                 "-------",
-                Command.increase(new Forces(pt(4, 5), 10))
-                        .move(new ForcesMoves(pt(4, 5), 5, QDirection.RIGHT))
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
                         .build());
 
         assertL("{'myBase':{'x':1,'y':5}," +
@@ -218,8 +218,8 @@ public class YourSolverTest {
                 "-------" +
                 "-------" +
                 "-------",
-                Command.increase(new Forces(pt(5, 5), 10))
-                        .move(new ForcesMoves(pt(5, 5), 5, QDirection.DOWN))
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
                         .build());
 
         assertL("{'myBase':{'x':1,'y':5}," +
@@ -252,8 +252,8 @@ public class YourSolverTest {
                 "-------" +
                 "-------" +
                 "-------",
-                Command.increase(new Forces(pt(5, 4), 10))
-                        .move(new ForcesMoves(pt(5, 4), 5, QDirection.DOWN))
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
                         .build());
 
         assertL("{'myBase':{'x':1,'y':5}," +
@@ -286,8 +286,8 @@ public class YourSolverTest {
                 "-------" +
                 "-------" +
                 "-------",
-                Command.increase(new Forces(pt(5, 3), 10))
-                        .move(new ForcesMoves(pt(5, 3), 5, QDirection.DOWN))
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
                         .build());
 
         assertL("{'myBase':{'x':1,'y':5}," +
@@ -320,8 +320,8 @@ public class YourSolverTest {
                 "-----♥-" +
                 "-------" +
                 "-------",
-                Command.increase(new Forces(pt(5, 2), 10))
-                        .move(new ForcesMoves(pt(5, 2), 5, QDirection.DOWN))
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
                         .build());
 
         assertL("{'myBase':{'x':1,'y':5}," +
@@ -355,7 +355,9 @@ public class YourSolverTest {
                 "-----♥-" +
                 "-----♥-" +
                 "-------",
-                Command.doNothing());
+                Command.increase(new Forces(pt(12, 13), 10))
+                        .move(new ForcesMoves(pt(14, 15), 5, QDirection.DOWN))
+                        .build());
     }
 
     private void assertL(String json, String layer1, String layer2, Command expected) {

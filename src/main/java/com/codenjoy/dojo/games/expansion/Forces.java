@@ -55,7 +55,7 @@ public class Forces {
     }
 
     public String json() {
-        return Utils.prettyPrint(this);
+        return Utils.prettyPrintObject(this);
     }
 
     @Override

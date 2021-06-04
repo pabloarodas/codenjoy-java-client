@@ -214,7 +214,7 @@ public class BoardTest {
 
     @Test
     public void shouldNotBeGameOver() {
-        assertEquals(true, board.isGameOver());
+        assertEquals(false, board.isGameOver());
     }
 
     @Test
@@ -249,6 +249,6 @@ public class BoardTest {
                 "------");
 
         // when then
-        assertEquals(false, board.isGameOver());
+        assertEquals(true, board.isGameOver());
     }
 }

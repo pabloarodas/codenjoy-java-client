@@ -99,21 +99,21 @@ public class UtilsTest {
 
     @Test
     public void testInjectNN() {
-        assertEquals("12345\n" +
-                    "67890\n" +
-                    "ABCDE\n" +
-                    "FHIJK\n" +
-                    "LMNOP\n" +
-                    "QRSTU\n" +
-                    "VWXYZ\n",
+        assertEquals("1234567890ABCDE\n" +
+                    "FHIJKLMNOPQRSTU\n" +
+                    "VWXYZ1234567890\n" +
+                    "ABCDEFHIJKLMNOP\n" +
+                    "QRSTUVWXYZ12345\n" +
+                    "67890ABCDEFHIJK\n" +
+                    "LMNOPQRSTUVWXYZ\n",
                 Utils.injectNN("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ"));
 
-        assertEquals("1234\n" +
-                    "5678\n" +
-                    "90AB\n" +
-                    "CDEF\n" +
-                    "HIJK\n" +
-                    "LMNO\n",
+        assertEquals("1234567890AB\n" +
+                    "CDEFHIJKLMNO\n" +
+                    "1234567890AB\n" +
+                    "CDEFHIJKLMNO\n" +
+                    "1234567890AB\n" +
+                    "CDEFHIJKLMNO\n",
                 Utils.injectNN("1234567890ABCDEFHIJKLMNO1234567890ABCDEFHIJKLMNO1234567890ABCDEFHIJKLMNO"));
     }
 }

@@ -34,12 +34,12 @@ public class Utils {
         return json.replace('\"', '\'').replaceAll("\\r\\n", "\n");
     }
 
-    public static String prettyPrint(Object object) {
+    public static String prettyPrintObject(Object object) {
         return clean(new SortedJSONObject(object).toString(2));
     }
 
     public static String prettyPrint(String json) {
-        return prettyPrint(json);
+        return clean(new SortedJSONObject(json).toString(2));
     }
 
     public static String unescapeJava(String data) {
@@ -54,7 +54,7 @@ public class Utils {
 
     // TODO дублирование с TestUtils.injectNN
     public static String injectNN(String expected) {
-        int size = (int) Math.sqrt(expected.length()/COUNT_NUMBERS)*COUNT_NUMBERS;
+        int size = (int) Math.sqrt(expected.length() / COUNT_NUMBERS) * COUNT_NUMBERS;
         return inject(expected, size, "\n");
     }
 
