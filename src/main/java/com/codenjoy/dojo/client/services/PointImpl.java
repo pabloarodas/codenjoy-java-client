@@ -25,10 +25,6 @@ package com.codenjoy.dojo.client.services;
 
 import org.json.JSONObject;
 
-/**
- * Каждый объект на поле имеет свои координаты. Этот класс обычно используется дял указания координат или как родитель.
- * Может использоваться в коллекциях.
- */
 public class PointImpl implements Point, Comparable<Point> {
 
     protected int x;

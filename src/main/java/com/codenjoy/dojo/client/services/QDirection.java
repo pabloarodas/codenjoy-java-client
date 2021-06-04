@@ -30,10 +30,11 @@ import java.util.Random;
 import static com.codenjoy.dojo.client.services.PointImpl.pt;
 
 /**
- * Имплементит возможные направления движения чего либо
- * во все 4 стороны включая 4 диагональные
+ * Implements possible directions of movement
+ * in all 8 directions, including 4 diagonal.
  */
 public enum QDirection {
+
     LEFT(0, -1, 0), RIGHT(1, 1, 0), UP(2, 0, -1), DOWN(3, 0, 1),
     LEFT_UP(4, -1, -1), RIGHT_UP(5, 1, -1), LEFT_DOWN(6, -1, 1), RIGHT_DOWN(7, 1, 1),
     NONE(8, 0, 0);

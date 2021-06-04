@@ -26,6 +26,7 @@ package com.codenjoy.dojo.client.services;
 import static com.codenjoy.dojo.client.services.PointImpl.pt;
 
 public class LengthToXY {
+
     private int size;
 
     public LengthToXY(int size) {
