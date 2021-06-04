@@ -185,8 +185,4 @@ public class PointImpl implements Point, Comparable<Point> {
                 .findFirst()
                 .orElse(null);
     }
-
-    public static Point random(Dice dice, int size) {
-        return pt(dice.next(size), dice.next(size));
-    }
 }

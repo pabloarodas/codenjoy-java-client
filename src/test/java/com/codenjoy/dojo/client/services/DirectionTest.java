@@ -158,19 +158,6 @@ public class DirectionTest {
     }
 
     @Test
-    public void test_random() {
-        int[] c = new int[4];
-        for (int count = 0; count < 1200; count ++) {
-            c[Direction.random().value()]++;
-        }
-        String message = Arrays.toString(c);
-        assertTrue(message, c[0] > 250);
-        assertTrue(message, c[1] > 250);
-        assertTrue(message, c[2] > 250);
-        assertTrue(message, c[3] > 250);
-    }
-
-    @Test
     public void test_change() {
         check(pt(0, -1), Direction.DOWN, pt(0, 0));
         check(pt(-1, 0), Direction.LEFT, pt(0, 0));

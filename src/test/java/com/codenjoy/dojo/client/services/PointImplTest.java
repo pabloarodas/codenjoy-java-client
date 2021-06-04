@@ -326,22 +326,11 @@ public class PointImplTest {
     }
 
     @Test
-    public void shouldGenerateRandom() {
-        Dice dice = mock(Dice.class);
-        when(dice.next(anyInt())).thenReturn(100, 101);
-
-        int size = 24;
-        Point pt = random(dice, size);
-
-        verify(dice, times(2)).next(size);
-        assertEquals("[100,101]", pt.toString());
-    }
-
-    @Test
     public void equalsPerformanceTest() {
         int size = 1000;
         int count = 10000;
-        List<Point> points = Stream.generate(() -> random(new RandomDice(), size))
+        final int[] index = {0};
+        List<Point> points = Stream.generate(() -> pt(index[0]++, index[0]++))
                 .limit(count).collect(toList());
 
         for (int i = 0; i < count; i++) {

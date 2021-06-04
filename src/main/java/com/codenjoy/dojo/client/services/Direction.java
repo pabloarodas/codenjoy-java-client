@@ -123,21 +123,6 @@ public enum Direction {
     }
 
     /**
-     * @return Random direction.
-     */
-    public static Direction random() {
-        return random(new RandomDice());
-    }
-
-    /**
-     * @param dice Given dice.
-     * @return Random direction for given dice.
-     */
-    public static Direction random(Dice dice) {
-        return Direction.valueOf(dice.next(4));
-    }
-
-    /**
      * @return Next clockwise direction. LEFT -> UP -> RIGHT -> DOWN -> LEFT.
      */
     public Direction clockwise() {
