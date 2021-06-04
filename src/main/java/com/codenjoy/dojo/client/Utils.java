@@ -24,7 +24,7 @@ package com.codenjoy.dojo.client;
 
 
 import org.apache.commons.text.StringEscapeUtils;
-import org.json.JSONObject;
+import org.json.SortedJSONObject;
 
 public class Utils {
 
@@ -33,7 +33,7 @@ public class Utils {
     }
 
     public static String prettyPrint(String jsonString) {
-        return clean(new JSONObject(jsonString).toString(4));
+        return clean(new SortedJSONObject(jsonString).toString(4));
     }
 
     public static String unescapeJava(String data) {
