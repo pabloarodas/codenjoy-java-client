@@ -23,7 +23,6 @@ package com.codenjoy.dojo.services;
  */
 
 
-import com.codenjoy.dojo.client.local.LocalGameRunner;
 import org.junit.Test;
 
 import java.util.List;
@@ -339,13 +338,9 @@ public class PointImplTest {
 
     @Test
     public void equalsPerformanceTest() {
-        Dice dice = LocalGameRunner.getDice("435874345435874365843564398", 100, 20000);
-        LocalGameRunner.printConversions = false;
-        LocalGameRunner.printDice = false;
-
         int size = 1000;
         int count = 10000;
-        List<Point> points = Stream.generate(() -> random(dice, size))
+        List<Point> points = Stream.generate(() -> random(new RandomDice(), size))
                 .limit(count).collect(toList());
 
         for (int i = 0; i < count; i++) {
