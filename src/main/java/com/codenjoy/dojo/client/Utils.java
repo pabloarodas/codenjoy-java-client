@@ -24,43 +24,16 @@ package com.codenjoy.dojo.client;
 
 
 import org.apache.commons.text.StringEscapeUtils;
-import org.json.JSONArray;
-import org.json.SortedJSONObject;
-
-import java.util.LinkedList;
-import java.util.List;
+import org.json.JSONObject;
 
 public class Utils {
-
-    public static String injectN(String expected) {
-        int size = (int) Math.sqrt(expected.length());
-        return inject(expected, size, "\n");
-    }
-
-    public static String inject(String string, int position, String substring) {
-        StringBuilder result = new StringBuilder();
-        for (int index = 1; index < string.length() / position + 1; index++) {
-            result.append(string, (index - 1)*position, index*position).append(substring);
-        }
-        result.append(string.substring((string.length() / position) * position));
-        return result.toString();
-    }
-
-    public static List<String> getStrings(JSONArray array) {
-        List<String> result = new LinkedList<>();
-        for (Object object : array.toList()) {
-            result.add((String)object);
-        }
-        return result;
-    }
 
     public static String clean(String json) {
         return json.replace('\"', '\'').replaceAll("\\r\\n", "\n");
     }
 
-    // TODO почему-то этот малый слетает в MVN при билде из консоли для символов борды expansion
     public static String prettyPrint(String jsonString) {
-        return clean(new SortedJSONObject(jsonString).toString(4));
+        return clean(new JSONObject(jsonString).toString(4));
     }
 
     public static String unescapeJava(String data) {

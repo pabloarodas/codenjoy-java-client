@@ -32,54 +32,6 @@ import static org.junit.Assert.assertEquals;
 public class UtilsTest {
 
     @Test
-    public void testGetStrings() {
-        assertGetStrings("['string1', 'string2', 'string3']",
-                "[string1, string2, string3]");
-
-        assertGetStrings("['string']",
-                "[string]");
-
-        assertGetStrings("[]",
-                "[]");
-    }
-
-    private void assertGetStrings(String source, String expected) {
-        assertEquals(expected, Utils.getStrings(new JSONArray(source)).toString());
-    }
-
-    @Test
-    public void testInject() {
-        assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUVW^*XYZ",
-                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ", 4, "^*"));
-
-        assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUVW^*",
-                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUVW", 4, "^*"));
-
-        assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUV",
-                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUV", 4, "^*"));
-    }
-
-    @Test
-    public void testInjectN() {
-        assertEquals("12345\n" +
-                    "67890\n" +
-                    "ABCDE\n" +
-                    "FHIJK\n" +
-                    "LMNOP\n" +
-                    "QRSTU\n" +
-                    "VWXYZ\n",
-                Utils.injectN("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ"));
-
-        assertEquals("1234\n" +
-                    "5678\n" +
-                    "90AB\n" +
-                    "CDEF\n" +
-                    "HIJK\n" +
-                    "LMNO\n",
-                Utils.injectN("1234567890ABCDEFHIJKLMNO"));
-    }
-
-    @Test
     public void testPrettyPrintString() {
         assertEquals("{\n" +
                     "    'field1': 'string1',\n" +
@@ -92,26 +44,26 @@ public class UtilsTest {
     }
 
     @Test
-    public void testPrettyPrintString_withSubObjects(){
+    public void testPrettyPrintString_withSubObject(){
         assertEquals("{\n" +
                     "    'field1': 'string1',\n" +
                     "    'field2': {\n" +
+                    "        'string3': 'data',\n" +
                     "        'string1': true,\n" +
-                    "        'string2': 2,\n" +
-                    "        'string3': 'data'\n" +
+                    "        'string2': 2\n" +
                     "    }\n" +
                     "}",
                 Utils.prettyPrint("{'field2':{'string2':2,'string1':true,'string3':'data'},'field1':'string1'}"));
     }
 
     @Test
-    public void testPrettyPrintStringWithString() {
+    public void testPrettyPrintString_caseDoubleQuotes() {
         assertEquals("{\n" +
+                    "    'total': 1,\n" +
                     "    'current': 0,\n" +
                     "    'lastPassed': -1,\n" +
-                    "    'multiple': false,\n" +
                     "    'scores': true,\n" +
-                    "    'total': 1\n" +
+                    "    'multiple': false\n" +
                     "}",
                 Utils.prettyPrint("{\"total\":1,\"scores\":true,\"current\":0,\"lastPassed\":-1,\"multiple\":false}"));
     }
