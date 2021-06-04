@@ -22,8 +22,6 @@ package com.codenjoy.dojo.games.battlecity;
  * #L%
  */
 
-import com.codenjoy.dojo.games.battlecity.Board;
-import com.codenjoy.dojo.games.battlecity.Element;
 import org.junit.Before;
 import org.junit.Test;
 

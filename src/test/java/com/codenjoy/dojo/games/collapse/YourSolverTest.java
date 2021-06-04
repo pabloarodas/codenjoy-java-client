@@ -23,11 +23,9 @@ package com.codenjoy.dojo.games.collapse;
  */
 
 
-import com.codenjoy.dojo.games.collapse.Board;
-import com.codenjoy.dojo.games.collapse.YourSolver;
-import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;
 import org.junit.Test;
 

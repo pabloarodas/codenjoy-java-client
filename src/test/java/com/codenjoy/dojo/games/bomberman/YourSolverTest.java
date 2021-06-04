@@ -23,10 +23,8 @@ package com.codenjoy.dojo.games.bomberman;
  */
 
 
-import com.codenjoy.dojo.games.bomberman.Board;
-import com.codenjoy.dojo.games.bomberman.YourSolver;
-import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.Direction;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -22,8 +22,6 @@ package com.codenjoy.dojo.games.chess;
  * #L%
  */
 
-import com.codenjoy.dojo.games.chess.Board;
-import com.codenjoy.dojo.games.chess.YourSolver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Test;
