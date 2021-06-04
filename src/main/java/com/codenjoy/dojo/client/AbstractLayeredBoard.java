@@ -23,9 +23,9 @@ package com.codenjoy.dojo.client;
  */
 
 
-import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.multiplayer.types.LevelsType;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.client.services.Point;
+import com.codenjoy.dojo.client.services.LevelsType;
+import com.codenjoy.dojo.client.services.CharElements;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,7 +33,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
+import static com.codenjoy.dojo.client.services.PointImpl.pt;
 
 public abstract class AbstractLayeredBoard<E extends CharElements> implements ClientBoard {
     protected int size;

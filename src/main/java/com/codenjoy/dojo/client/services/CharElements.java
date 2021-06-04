@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client;
+package com.codenjoy.dojo.client.services;
 
 /*-
  * #%L
@@ -23,28 +23,13 @@ package com.codenjoy.dojo.client;
  */
 
 
-import org.apache.commons.lang3.StringUtils;
-
-public abstract class AbstractTextBoard implements ClientBoard {
-
-    protected String data;
-
-    @Override
-    public ClientBoard forString(String data) {
-        this.data = Utils.unescapeJava(data);
-        return this;
-    }
-
-    public boolean isGameOver() {
-        return StringUtils.isEmpty(data);
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    @Override
-    public String toString() {
-        return "BoardData " + Utils.prettyPrint(data);
-    }
+/**
+ * Этот интерфейс расширяют все енумы, содержащие перечень символов кодирующих
+ * живность на поле.
+ */
+public interface CharElements {
+    
+    char ch();
+    
+    String name();
 }

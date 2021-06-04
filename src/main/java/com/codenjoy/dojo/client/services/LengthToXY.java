@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.services;
+package com.codenjoy.dojo.client.services;
 
 /*-
  * #%L
@@ -23,7 +23,7 @@ package com.codenjoy.dojo.services;
  */
 
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
+import static com.codenjoy.dojo.client.services.PointImpl.pt;
 
 public class LengthToXY { // TODO есть точно такой же в com.codenjoy.dojo.client; только вертикально зеркальный
     private int size;

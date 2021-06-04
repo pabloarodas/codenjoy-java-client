@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.services;
+package com.codenjoy.dojo.client.services;
 
 /*-
  * #%L
@@ -25,9 +25,8 @@ package com.codenjoy.dojo.services;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
+import static com.codenjoy.dojo.client.services.PointImpl.pt;
 
 /**
  * Имплементит возможные направления движения чего либо

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.utils;
+package com.codenjoy.dojo.client.services;
 
 /*-
  * #%L
@@ -23,10 +23,9 @@ package com.codenjoy.dojo.utils;
  */
 
 
+import com.codenjoy.dojo.client.Utils;
 import org.json.JSONArray;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 

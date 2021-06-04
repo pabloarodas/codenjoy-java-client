@@ -23,15 +23,14 @@ package com.codenjoy.dojo.client;
  */
 
 
-import com.codenjoy.dojo.services.Point;
-import org.json.JSONObject;
+import com.codenjoy.dojo.client.services.Point;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
+import static com.codenjoy.dojo.client.services.PointImpl.pt;
 import static org.junit.Assert.assertEquals;
 
 public class AbstractLayeredBoardTest {

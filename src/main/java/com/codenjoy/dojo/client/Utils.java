@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.utils;
+package com.codenjoy.dojo.client;
 
 /*-
  * #%L

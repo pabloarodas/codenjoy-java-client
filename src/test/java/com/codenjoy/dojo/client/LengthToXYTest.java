@@ -23,7 +23,7 @@ package com.codenjoy.dojo.client;
  */
 
 
-import com.codenjoy.dojo.services.LengthToXY;
+import com.codenjoy.dojo.client.services.LengthToXY;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

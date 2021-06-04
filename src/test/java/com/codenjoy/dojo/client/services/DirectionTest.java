@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.services;
+package com.codenjoy.dojo.client.services;
 
 /*-
  * #%L
@@ -23,11 +23,13 @@ package com.codenjoy.dojo.services;
  */
 
 
+import com.codenjoy.dojo.client.services.Direction;
+import com.codenjoy.dojo.client.services.Point;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
+import static com.codenjoy.dojo.client.services.PointImpl.pt;
 import static org.junit.Assert.*;
 
 public class DirectionTest {

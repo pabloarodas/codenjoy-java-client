@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.services;
+package com.codenjoy.dojo.client.services;
 
 /*-
  * #%L
@@ -23,15 +23,16 @@ package com.codenjoy.dojo.services;
  */
 
 
+import com.codenjoy.dojo.client.services.*;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.codenjoy.dojo.services.Direction.*;
+import static com.codenjoy.dojo.client.services.Direction.*;
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
-import static com.codenjoy.dojo.services.PointImpl.*;
+import static com.codenjoy.dojo.client.services.PointImpl.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
