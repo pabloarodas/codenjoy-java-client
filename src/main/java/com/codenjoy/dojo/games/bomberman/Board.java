@@ -99,7 +99,7 @@ public class Board extends AbstractBoard<Element> {
                 Element.OTHER_DEAD_BOMBERMAN);
     }
 
-    public boolean isMyBombermanDead() {
+    public boolean isGameOver() {
         return !get(Element.DEAD_BOMBERMAN).isEmpty();
     }
 

@@ -23,8 +23,6 @@ package com.codenjoy.dojo.games.bomberman;
  */
 
 
-import com.codenjoy.dojo.games.bomberman.Element;
-import com.codenjoy.dojo.games.bomberman.Board;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -249,8 +247,8 @@ public class BoardTest {
 
     @Test
     public void shouldWork_isMyBombermanDead() {
-        assertEquals(false, board.isMyBombermanDead());
-        assertEquals(true, board("Ѡ").isMyBombermanDead());
+        assertEquals(false, board.isGameOver());
+        assertEquals(true, board("Ѡ").isGameOver());
     }
     
 }

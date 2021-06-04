@@ -24,9 +24,7 @@ package com.codenjoy.dojo.games.bomberman;
 
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.client.WebSocketRunner;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.RandomDice;
 
 /**
  * User: your name
@@ -40,29 +38,13 @@ public class YourSolver implements Solver<Board> {
         this.dice = dice;
     }
 
-    // the method which should be implemented
     @Override
     public String get(Board board) {
         this.board = board;
-        if (board.isMyBombermanDead()) return "";
+        if (board.isGameOver()) return "";
 
-        // put your logic here
+        // TODO put your logic here
+
         return Direction.ACT.toString();
     }
-
-    /**
-     * To connect to the game server:
-     * 1. Sign up on the game server. If you did everything right, you'll get to the main game board.
-     * 2. Click on your name on the right hand side panel
-     * 3. Copy the whole link from the browser, paste it inside below method, now you're good to go!
-     */
-    public static void main(String[] args) {
-        WebSocketRunner.runClient(args,
-                // paste here board page url from browser after registration
-                // or put it as command line parameter
-                "http://codenjoy.com:80/codenjoy-contest/board/player/3edq63tw0bq4w4iem7nb?code=1234567890123456789",
-                new YourSolver(new RandomDice()),
-                new Board());
-    }
-
 }
