@@ -23,8 +23,7 @@ package com.codenjoy.dojo.client;
  */
 
 
-import com.codenjoy.dojo.utils.JsonUtils;
-import com.codenjoy.dojo.utils.UnicodeUtils;
+import com.codenjoy.dojo.utils.Utils;
 import org.apache.commons.lang3.StringUtils;
 
 public abstract class AbstractTextBoard implements ClientBoard {
@@ -33,7 +32,7 @@ public abstract class AbstractTextBoard implements ClientBoard {
 
     @Override
     public ClientBoard forString(String data) {
-        this.data = UnicodeUtils.unescapeJava(data);
+        this.data = Utils.unescapeJava(data);
         return this;
     }
 
@@ -47,6 +46,6 @@ public abstract class AbstractTextBoard implements ClientBoard {
 
     @Override
     public String toString() {
-        return "BoardData " + JsonUtils.prettyPrint(data);
+        return "BoardData " + Utils.prettyPrint(data);
     }
 }

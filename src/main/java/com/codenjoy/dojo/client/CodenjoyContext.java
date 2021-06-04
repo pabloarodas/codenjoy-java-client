@@ -22,9 +22,6 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
-import lombok.experimental.UtilityClass;
-
-@UtilityClass
 public class CodenjoyContext {
 
     private static String CONTEXT = "codenjoy-contest";
@@ -34,15 +31,8 @@ public class CodenjoyContext {
         return CONTEXT;
     }
 
-    public static void setContext(String context) {
-        CONTEXT = context;
-    }
-
     public static int getPort() {
         return PORT;
     }
 
-    public static void setPort(int port) {
-        PORT = port;
-    }
 }

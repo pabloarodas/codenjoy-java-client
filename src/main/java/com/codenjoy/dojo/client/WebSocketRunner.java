@@ -23,7 +23,6 @@ package com.codenjoy.dojo.client;
  */
 
 
-import lombok.SneakyThrows;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.api.*;
 import org.eclipse.jetty.websocket.api.annotations.*;
@@ -103,9 +102,12 @@ public class WebSocketRunner implements Closeable {
         return run(getUri(protocol, server, context, id, code), solver, board, countAttempts);
     }
 
-    @SneakyThrows
     private static URI getUri(String protocol, String server, String context, String id, String code) {
-        return new URI(String.format(WS_URI_PATTERN, protocol, server, context, id, code));
+        try {
+            return new URI(String.format(WS_URI_PATTERN, protocol, server, context, id, code));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static WebSocketRunner run(URI uri, Solver solver, ClientBoard board, int countAttempts) {
@@ -120,23 +122,26 @@ public class WebSocketRunner implements Closeable {
         return client;
     }
 
-    @SneakyThrows
     private void start(URI uri, int countAttempts) {
-        this.uri = uri;
+        try {
+            this.uri = uri;
 
-        client = createClient();
-        client.start();
+            client = createClient();
+            client.start();
 
-        onClose = () -> {
-            if (forceClose || solver instanceof OneCommandSolver) {
-                return;
-            }
+            onClose = () -> {
+                if (forceClose || solver instanceof OneCommandSolver) {
+                    return;
+                }
 
-            printReconnect();
+                printReconnect();
+                connectLoop(countAttempts);
+            };
+
             connectLoop(countAttempts);
-        };
-
-        connectLoop(countAttempts);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private WebSocketClient createClient() {

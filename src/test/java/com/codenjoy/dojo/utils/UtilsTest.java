@@ -23,22 +23,41 @@ package com.codenjoy.dojo.utils;
  */
 
 
+import org.json.JSONArray;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestUtilsTest {
+public class UtilsTest {
+
+    @Test
+    public void testGetStrings() {
+        assertGetStrings("['string1', 'string2', 'string3']",
+                "[string1, string2, string3]");
+
+        assertGetStrings("['string']",
+                "[string]");
+
+        assertGetStrings("[]",
+                "[]");
+    }
+
+    private void assertGetStrings(String source, String expected) {
+        assertEquals(expected, Utils.getStrings(new JSONArray(source)).toString());
+    }
 
     @Test
     public void testInject() {
         assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUVW^*XYZ",
-                TestUtils.inject("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ", 4, "^*"));
+                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ", 4, "^*"));
 
         assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUVW^*",
-                TestUtils.inject("1234567890ABCDEFHIJKLMNOPQRSTUVW", 4, "^*"));
+                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUVW", 4, "^*"));
 
         assertEquals("1234^*5678^*90AB^*CDEF^*HIJK^*LMNO^*PQRS^*TUV",
-                TestUtils.inject("1234567890ABCDEFHIJKLMNOPQRSTUV", 4, "^*"));
+                Utils.inject("1234567890ABCDEFHIJKLMNOPQRSTUV", 4, "^*"));
     }
 
     @Test
@@ -50,7 +69,7 @@ public class TestUtilsTest {
                     "LMNOP\n" +
                     "QRSTU\n" +
                     "VWXYZ\n",
-                TestUtils.injectN("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ"));
+                Utils.injectN("1234567890ABCDEFHIJKLMNOPQRSTUVWXYZ"));
 
         assertEquals("1234\n" +
                     "5678\n" +
@@ -58,6 +77,6 @@ public class TestUtilsTest {
                     "CDEF\n" +
                     "HIJK\n" +
                     "LMNO\n",
-                TestUtils.injectN("1234567890ABCDEFHIJKLMNO"));
+                Utils.injectN("1234567890ABCDEFHIJKLMNO"));
     }
 }

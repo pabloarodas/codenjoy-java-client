@@ -22,20 +22,8 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
-import lombok.experimental.UtilityClass;
-
-@UtilityClass
 public class Encoding {
     
     public static final String UTF8 = "UTF-8";
-
-    // TODO есть класс LevelUtils метод clear похож, может туда перенести?
-    public static String replaceN(String value) {
-        return value.replace("\\n", "\n")
-                .replace("\\r", "\r")
-                .replace("\r\n", "\n")
-                .replace("\n\r", "\n")
-                .replace("\r", "\n");
-    }
 
 }

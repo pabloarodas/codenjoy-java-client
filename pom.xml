@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.codenjoy</groupId>
-    <artifactId>engine</artifactId>
+    <artifactId>java-client</artifactId>
     <version>1.1.1</version>
 
     <properties>
@@ -30,17 +30,10 @@
         <!-- Maven -->
         <maven-compiler.version>3.8.1</maven-compiler.version>
         <maven-resources.version>3.2.0</maven-resources.version>
-        <maven-antrun.version>3.0.0</maven-antrun.version>
         <maven-license.version>2.0.0</maven-license.version>
         <maven-source-plugin.version>3.2.0</maven-source-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-        <maven-buildnumber-plugin.version>1.4</maven-buildnumber-plugin.version>
-        <maven-scm-jgit.version>1.11.2</maven-scm-jgit.version>
-
-        <user.resources>src/main/webapp/resources/user</user.resources>
-        <engine.libs>${user.resources}/engine-libs.zip</engine.libs>
-        <engine.packs>${project.build.directory}/libs</engine.packs>
     </properties>
 
     <repositories>
@@ -77,11 +70,6 @@
             <artifactId>websocket-client</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
@@ -165,43 +153,6 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>${maven-buildnumber-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <revisionOnScmFailure>no.scm.config.in.pom</revisionOnScmFailure>
-                    <doCheck>false</doCheck>
-                    <doUpdate>false</doUpdate>
-                    <providerImplementations>
-                        <git>jgit</git>
-                    </providerImplementations>
-                    <scmConnectionUrl>scm:git:</scmConnectionUrl>
-                    <scmDirectory>${project.basedir}/../../../</scmDirectory>
-                    <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
-                    <shortRevisionLength>8</shortRevisionLength>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-api</artifactId>
-                        <version>${maven-scm-jgit.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-jgit</artifactId>
-                        <version>${maven-scm-jgit.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler.version}</version>
@@ -226,17 +177,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>${maven-clean-plugin.version}</version>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>${user.resources}</directory>
-                            <includes>
-                                <include>**/engine-libs.zip</include>
-                            </includes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                    </filesets>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -247,54 +187,6 @@
                         <exclude>**/logback.xml</exclude>
                     </excludes>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>${maven-antrun.version}</version>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <configuration>
-                            <target>
-                                <mkdir dir="${engine.packs}" />
-                                <copy todir="${engine.packs}">
-                                    <resources>
-                                        <file file="setup.bat"/>
-                                        <file file="setup.sh"/>
-                                        <file file="mvnw"/>
-                                        <file file="mvnw.cmd"/>
-                                        <file file="${project.build.directory}/engine-${project.version}.jar"/>
-                                        <file file="${project.build.directory}/engine-${project.version}-sources.jar"/>
-                                    </resources>
-                                </copy>
-                                <copy todir="${engine.packs}/.mvn" >
-                                    <fileset dir=".mvn" includes="**"/>
-                                </copy>
-                                <copy file="pom.xml"
-                                      tofile="${engine.packs}/engine-${project.version}-pom.xml"/>
-                                <copy file="../pom.xml"
-                                      tofile="${engine.packs}/games-${project.version}-pom.xml"/>
-
-                                <delete file="${engine.libs}" />
-                                <zip destfile="${engine.libs}"
-                                     basedir="${engine.packs}"
-                                     includes="**"
-                                     excludes=""
-                                     update="true"/>
-
-                                <zip destfile="${project.build.directory}/engine-${project.version}.jar"
-                                     basedir="src/main/webapp"
-                                     includes="**"
-                                     excludes=""
-                                     update="true"/>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -335,5 +227,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
