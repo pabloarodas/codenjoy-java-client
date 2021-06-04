@@ -31,6 +31,12 @@ import java.util.LinkedList;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
+/**
+ * The class is a wrapper over the board string
+ * coming from the server. Contains a number of
+ * inherited methods {@see AbstractBoard},
+ * but you can add any methods based on them here.
+ */
 public class Board extends AbstractBoard<Element> {
 
     public static final char ANY_CHAR = '?';
