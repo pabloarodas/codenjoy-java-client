@@ -130,7 +130,7 @@ public class WebSocketRunner implements Closeable {
             client.start();
 
             onClose = () -> {
-                if (forceClose || solver instanceof OneCommandSolver) {
+                if (forceClose || solver.getClass().getSimpleName().equals("OneCommandSolver")) {
                     return;
                 }
 
