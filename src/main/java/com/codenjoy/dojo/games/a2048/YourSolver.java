@@ -43,7 +43,7 @@ public class YourSolver implements Solver<Board> {
     public String get(Board board) {
         this.board = board;
 
-        // write your code here
+        // TODO put your logic here
 
         return Direction.UP.toString();
     }
