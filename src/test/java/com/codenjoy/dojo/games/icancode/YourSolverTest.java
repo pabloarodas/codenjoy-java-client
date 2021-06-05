@@ -47,6 +47,9 @@ public class YourSolverTest {
 
     @Test
     public void should() {
+
+        // TODO these asserts are here for an example, delete it and write your own
+
         assertL("╔═════┐" +
                 "║S...$│" +
                 "║.....│" +

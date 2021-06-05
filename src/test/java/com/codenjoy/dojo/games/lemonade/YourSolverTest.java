@@ -52,15 +52,47 @@ public class YourSolverTest {
     }
 
     @Test
-    @Ignore
     public void should() {
-        asertAI("{'nextQuestion':'question1'}", "message('your answer')");
-        asertAI("{'nextQuestion':'question2'}", "message('your answer')");
+
+        // TODO these asserts are here for an example, delete it and write your own
+
+        asertAI("{" +
+                "    history : [" +
+                "        {" +
+                "            day : 1," +
+                "            lemonadeSold : 2," +
+                "            lemonadePrice : 0.34," +
+                "            income : 0.00," +
+                "            lemonadeMade : 4," +
+                "            signsMade : 3," +
+                "            expenses : 4.3," +
+                "            profit : -0.45," +
+                "            assetsAfter : 2.55" +
+                "        }," +
+                "        {" +
+                "            day : 2," +
+                "            lemonadeSold : 5," +
+                "            lemonadePrice : 0.34," +
+                "            income : 0.60," +
+                "            lemonadeMade : 3," +
+                "            signsMade : 3," +
+                "            expenses : 4.3," +
+                "            profit : -0.45," +
+                "            assetsAfter : 2.55" +
+                "        }" +
+                "    ]," +
+                "    day : 3," +
+                "    lemonadeCost : 0.02," +
+                "    assets : 1.55," +
+                "    weatherForecast : \"SUNNY\"," +
+                "    messages : \"my test message\"," +
+                "    isBankrupt : true" +
+                "}",
+                "message('go reset')");
     }
 
     private void asertAI(String board, String expected) {
-        String actual = ai.get(board(board));
-        assertEquals(expected, actual);
+        assertEquals(expected, ai.get(board(board)));
     }
 
     private void dice(Direction direction) {

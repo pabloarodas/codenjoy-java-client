@@ -48,6 +48,9 @@ public class YourSolverTest {
 
     @Test
     public void test() {
+
+        // TODO these asserts are here for an example, delete it and write your own
+
         asertAI("******" +
                 "*abcd*" +
                 "*efgh*" +

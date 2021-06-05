@@ -34,7 +34,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class SolverTest {
+public class YourSolverTest {
 
     private Dice dice;
     private Solver ai;
@@ -51,6 +51,9 @@ public class SolverTest {
 
     @Test
     public void should() {
+
+        // TODO these asserts are here for an example, delete it and write your own
+
         asertAI("........" +
                 "....1.1." +
                 "...01100" +

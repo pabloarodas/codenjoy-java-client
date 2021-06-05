@@ -41,6 +41,9 @@ public class YourSolverTest {
 
     @Test
     public void should_when() {
+
+        // TODO these asserts are here for an example, delete it and write your own
+
         assertB("rkbqwbkr\n" +
                 "pppppppp\n" +
                 "........\n" +
