@@ -22,11 +22,28 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
+import org.json.JSONArray;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class UtilsTest {
+
+    @Test
+    public void testGetStrings() {
+        assertGetStrings("['string1', 'string2', 'string3']",
+                "[string1, string2, string3]");
+
+        assertGetStrings("['string']",
+                "[string]");
+
+        assertGetStrings("[]",
+                "[]");
+    }
+
+    private void assertGetStrings(String source, String expected) {
+        assertEquals(expected, Utils.getStrings(new JSONArray(source)).toString());
+    }
 
     @Test
     public void testPrettyPrintString() {

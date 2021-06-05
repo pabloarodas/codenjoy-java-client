@@ -25,11 +25,10 @@ package com.codenjoy.dojo.client;
 
 import com.codenjoy.dojo.services.printer.CharElements;
 import org.apache.commons.text.StringEscapeUtils;
+import org.json.JSONArray;
 import org.json.SortedJSONObject;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.stream.Collectors.toMap;
 
@@ -82,6 +81,12 @@ public class Utils {
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
                         (value1, value2) -> value2,
                         LinkedHashMap::new));
+    }
+
+    public static List<String> getStrings(JSONArray array) {
+        return new LinkedList<>(){{
+            array.toList().forEach(it -> add((String)it));
+        }};
     }
 
 }
