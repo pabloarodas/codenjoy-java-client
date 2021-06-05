@@ -36,7 +36,7 @@ public class BoardTest {
 
     @Test
     public void test() {
-        Board board = getBoard(
+        Board board = Board.getBoard(
                 "......." +
                 "......I" +
                 "..LL..I" +
@@ -116,27 +116,6 @@ public class BoardTest {
                 "[5,3], [5,4], [5,5], [5,6], " +
                 "[6,6]]", glass.getFreeSpace().toString());
 
-    }
-
-    public static Board getBoard(String glass, String figureType,
-                                 Point point, String[] futureFigures)
-    {
-        JSONObject result = getJson(glass, figureType, point, futureFigures);
-        return (Board) new Board().forString(result.toString());
-    }
-
-    public static JSONObject getJson(final String glass, final String figureType, final Point point, final String[] futureFigures) {
-        return new JSONObject(){{
-                put("layers", new JSONArray(){{
-                    put(glass);
-                }});
-                put("currentFigureType", figureType);
-                put("currentFigurePoint", new JSONObject(point));
-                put("futureFigures", new JSONArray(){{
-                    Arrays.stream(futureFigures)
-                            .forEach(s -> this.put(s));
-                }});
-            }};
     }
 
 }

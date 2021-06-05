@@ -24,7 +24,6 @@ package com.codenjoy.dojo.games.reversi;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.reversi.Board;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.LengthToXY;

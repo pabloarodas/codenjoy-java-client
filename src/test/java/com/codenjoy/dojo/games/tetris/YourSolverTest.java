@@ -69,7 +69,7 @@ public class YourSolverTest {
                          Point point, String[] futureFigures,
                          Direction expected)
     {
-        String actual = ai.get(BoardTest.getBoard(glass, figureType, point, futureFigures));
+        String actual = ai.get(Board.getBoard(glass, figureType, point, futureFigures));
         assertEquals(expected.toString(), actual);
     }
 
