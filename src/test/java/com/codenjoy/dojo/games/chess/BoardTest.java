@@ -24,7 +24,6 @@ package com.codenjoy.dojo.games.chess;
 
 import com.codenjoy.dojo.client.Utils;
 import com.codenjoy.dojo.services.Point;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -33,7 +32,6 @@ import java.util.Set;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class BoardTest {
 
@@ -102,7 +100,7 @@ public class BoardTest {
         );
 
         // then
-        Assert.assertEquals(barriers, newHashSet(board.getBarriers().toArray(new Point[0])));
+        assertEquals(barriers, newHashSet(board.getBarriers().toArray(new Point[0])));
     }
 
     private Set<Point> newHashSet(Point... points) {
@@ -116,8 +114,8 @@ public class BoardTest {
         given(classicFFABoard());
 
         // then
-        assertTrue(board.isBarrier(11, 11));
-        assertTrue(board.isBarrier(pt(0, 0)));
+        assertEquals(true, board.isBarrier(11, 11));
+        assertEquals(true, board.isBarrier(pt(0, 0)));
     }
 
     @Test
@@ -159,7 +157,7 @@ public class BoardTest {
         );
 
         // then
-        Assert.assertEquals(whitePieces, newHashSet(board.getPieces(Color.WHITE).toArray(Point[]::new)));
+        assertEquals(whitePieces, newHashSet(board.getPieces(Color.WHITE).toArray(Point[]::new)));
     }
             
     protected void given(String board) {

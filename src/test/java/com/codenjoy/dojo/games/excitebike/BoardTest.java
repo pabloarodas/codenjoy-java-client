@@ -33,212 +33,155 @@ import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
 
+    private Board board;
+
+    private void givenBr(String board) {
+        this.board = (Board) new Board().forString(board);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void valueOf__shouldThrowIllegalArgumentException__ifElementWithGivenCharDoesntExist() {
-        //given
+        // given
         char givenChar = '%';
         Board board = new Board();
 
-        //when
+        // when
         board.valueOf(givenChar);
-
-        //then
-        //exception
     }
 
     @Test
     public void getMe__shouldReturnPointWithBikeElement() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 " B > " +
                 "  Ḃ |" +
                 " ḃ ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        Point result = board.getMe();
-
-        //then
-        assertThat(result.getX(), is(1));
-        assertThat(result.getY(), is(1));
+        // when then
+        assertEquals("[1,1]", board.getMe().toString());
     }
 
     @Test
     public void getMe__shouldReturnPointWithBikeFallenElement() {
-        //given
-        Board board = toBoard("b■■■■" +
+        givenBr("b■■■■" +
                 "   > " +
                 "  Ḃ |" +
                 " Ā ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        Point result = board.getMe();
-
-        //then
-        assertThat(result.getX(), is(0));
-        assertThat(result.getY(), is(0));
+        // when then
+        assertEquals("[0,0]", board.getMe().toString());
     }
 
     @Test
     public void isGameOver__shouldReturnTrueIfThereIsBikeFallenElement() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 "   > " +
                 "  Ḃ |" +
                 " Ā ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.isGameOver();
-
-        //then
-        assertThat(result, is(true));
+        // when then
+        assertEquals(true, board.isGameOver());
     }
 
     @Test
     public void isGameOver__shouldReturnFalseIfThereIsNoBikeFallenElement() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 " B >I" +
                 "A Ḃ |" +
                 " Ā ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.isGameOver();
-
-        //then
-        assertThat(result, is(false));
+        // when then
+        assertEquals(false, board.isGameOver());
     }
 
     @Test
     public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtRightDirection() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 " B>  " +
                 "  Ḃ |" +
                 " Ā ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.checkNearMe(Direction.RIGHT, GameElement.ACCELERATOR);
-
-        //then
-        assertThat(result, is(true));
+        // when then
+        assertEquals(true, board.checkNearMe(Direction.RIGHT, GameElement.ACCELERATOR));
     }
 
     @Test
     public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtDownDirection() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 " Ā   " +
                 " Ḃ | " +
                 " B ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.checkNearMe(Direction.UP, BikeElement.OTHER_BIKE);
-
-        //then
-        assertThat(result, is(false));
+        // when then
+        assertEquals(false, board.checkNearMe(Direction.UP, BikeElement.OTHER_BIKE));
     }
 
     @Test
     public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtLeftDirection() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 "╝B>  " +
                 " Ḃ | " +
                 " Ā ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.checkNearMe(Direction.LEFT, SpringboardElement.SPRINGBOARD_RIGHT_DOWN);
-
-        //then
-        assertThat(result, is(true));
+        // when then
+        assertEquals(true, board.checkNearMe(Direction.LEFT, SpringboardElement.SPRINGBOARD_RIGHT_DOWN));
     }
 
     @Test
     public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtUpDirection() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 "╝Ī>  " +
                 " Ḃ | " +
                 " B ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.checkNearMe(Direction.DOWN, GameElement.FENCE);
-
-        //then
-        assertThat(result, is(false));
+        // when then
+        assertEquals(false, board.checkNearMe(Direction.DOWN, GameElement.FENCE));
     }
 
     @Test
     public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtRightRightUpDirection() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 " B   " +
                 "  Ḃ>|" +
                 " Ā ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.checkNearMe(Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.UP), GameElement.ACCELERATOR);
-
-        //then
-        assertThat(result, is(true));
+        // when then
+        assertEquals(true, board.checkNearMe(Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.UP), GameElement.ACCELERATOR));
     }
 
     @Test
     public void checkAtMe__shouldReturnTrue__ifAtMeIsGivenElement() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 "╝Ī>  " +
                 " Ḃ | " +
                 " A ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.checkAtMe(BikeElement.BIKE_AT_ACCELERATOR);
-
-        //then
-        assertThat(result, is(true));
+        // when then
+        assertEquals(true, board.checkAtMe(BikeElement.BIKE_AT_ACCELERATOR));
     }
 
     @Test
     public void checkAtMe__shouldReturnFalse__ifAtMeIsNotGivenElement() {
-        //given
-        Board board = toBoard("■■■■■" +
+        givenBr("■■■■■" +
                 "╝Ī>  " +
                 " Ḃ | " +
                 " B ▼ " +
-                "■■■■■"
-        );
+                "■■■■■");
 
-        //when
-        boolean result = board.checkAtMe(BikeElement.BIKE_AT_ACCELERATOR);
-
-        //then
-        assertThat(result, is(false));
-    }
-
-    private Board toBoard(String board) {
-        return (Board) new Board().forString(board);
+        // when then
+        assertEquals(false, board.checkAtMe(BikeElement.BIKE_AT_ACCELERATOR));
     }
 }

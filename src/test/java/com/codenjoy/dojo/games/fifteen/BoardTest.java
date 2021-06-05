@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.fifteen;
  */
 
 
+import com.codenjoy.dojo.client.Utils;
 import com.codenjoy.dojo.games.fifteen.Board;
 import com.codenjoy.dojo.games.fifteen.Element;
 import org.junit.Before;
@@ -84,12 +85,7 @@ public class BoardTest {
                         "o=[[3,4]],\n" +
                         "+=[[3,3]],\n" +
                         "*=[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [1,0], [1,5], [2,0], [2,5], [3,0], [3,5], [4,0], [4,5], [5,0], [5,1], [5,2], [5,3], [5,4], [5,5]]}",
-                Arrays.stream(Element.values())
-                    .map(element -> Map.entry(element, board.get(element).toString()))
-                    .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
-                                    (value1, value2) -> value2,
-                                    LinkedHashMap::new))
-                    .toString()
+                Utils.elementsMap(board, Element.values()).toString()
                     .replace("]], ", "]],\n"));
     }
 
@@ -106,7 +102,7 @@ public class BoardTest {
 
     @Test
     public void shouldIsAt() {
-        assertFalse(board.isAt(5, 2, Element.A));
-        assertFalse(board.isAt(2, 5, Element.B));
+        assertEquals(false, board.isAt(5, 2, Element.A));
+        assertEquals(true,  board.isAt(4, 2, Element.H));
     }
 }

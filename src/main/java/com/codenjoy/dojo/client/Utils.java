@@ -23,8 +23,15 @@ package com.codenjoy.dojo.client;
  */
 
 
+import com.codenjoy.dojo.services.printer.CharElements;
 import org.apache.commons.text.StringEscapeUtils;
 import org.json.SortedJSONObject;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static java.util.stream.Collectors.toMap;
 
 public class Utils {
 
@@ -66,6 +73,15 @@ public class Utils {
         }
         result.append(string.substring((string.length() / position) * position));
         return result.toString();
+    }
+
+    // TODO подумать как и унести в AbstractLayeredBoard
+    public static Map<CharElements, String> elementsMap(AbstractBoard board, CharElements[] elements) {
+        return Arrays.stream(elements)
+                .map(element -> Map.entry(element, board.get(element).toString()))
+                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (value1, value2) -> value2,
+                        LinkedHashMap::new));
     }
 
 }

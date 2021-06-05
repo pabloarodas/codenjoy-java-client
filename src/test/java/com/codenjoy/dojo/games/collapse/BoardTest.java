@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.collapse;
  */
 
 
+import com.codenjoy.dojo.client.Utils;
 import com.codenjoy.dojo.games.collapse.Element;
 import com.codenjoy.dojo.games.collapse.Board;
 import org.junit.Before;
@@ -66,20 +67,20 @@ public class BoardTest {
 
     @Test
     public void shouldGetElements() {
-        assertElementAt(Element.ONE,   "[[1,1], [4,4], [5,2]]");
-        assertElementAt(Element.TWO,   "[[1,3], [2,1], [5,4]]");
-        assertElementAt(Element.THREE, "[[1,5], [2,3], [3,1]]");
-        assertElementAt(Element.FOUR,  "[[2,5], [3,3], [4,1]]");
-        assertElementAt(Element.FIVE,  "[[3,5], [4,3], [5,1]]");
-        assertElementAt(Element.SIX,   "[[1,2], [4,5], [5,3]]");
-        assertElementAt(Element.SEVEN, "[[1,4], [2,2]]");
-        assertElementAt(Element.EIGHT, "[[2,4], [3,2]]");
-        assertElementAt(Element.NINE,  "[[3,4], [4,2]]");
-        assertElementAt(Element.NONE,  "[[5,5]]");
-    }
-
-    private void assertElementAt(Element element, String expected) {
-        assertEquals(expected, board.get(element).toString());
+        assertEquals("{ =[[5,5]],\n" +
+                    "☼=[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [1,0], [1,6], [2,0], [2,6], [3,0], [3,6], [4,0], [4,6], [5,0], [5,6], [6,0], [6,1], [6,2], [6,3], [6,4], [6,5], [6,6]],\n" +
+                    "1=[[1,1], [4,4], [5,2]],\n" +
+                    "2=[[1,3], [2,1], [5,4]],\n" +
+                    "3=[[1,5], [2,3], [3,1]],\n" +
+                    "4=[[2,5], [3,3], [4,1]],\n" +
+                    "5=[[3,5], [4,3], [5,1]],\n" +
+                    "6=[[1,2], [4,5], [5,3]],\n" +
+                    "7=[[1,4], [2,2]],\n" +
+                    "8=[[2,4], [3,2]],\n" +
+                    "9=[[3,4], [4,2]]}",
+                Utils.elementsMap(board, Element.values()).toString()
+                        .replace("]], ", "]],\n")
+                        .replace("[], ", "[],\n"));
     }
 
     @Test
@@ -95,7 +96,7 @@ public class BoardTest {
 
     @Test
     public void shouldIsAt() {
-        assertTrue(board.isAt(5, 2, Element.ONE));
-        assertFalse(board.isAt(2, 5, Element.ONE));
+        assertEquals(false, board.isAt(2, 5, Element.ONE));
+        assertEquals(true,  board.isAt(5, 2, Element.ONE));
     }
 }
