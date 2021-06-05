@@ -29,9 +29,14 @@
         <maven-compiler.version>3.8.1</maven-compiler.version>
         <maven-resources.version>3.2.0</maven-resources.version>
         <maven-license.version>2.0.0</maven-license.version>
+        <maven-antrun.version>3.0.0</maven-antrun.version>
         <maven-source-plugin.version>3.2.0</maven-source-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+
+        <user.resources>src/main/webapp/resources/user</user.resources>
+        <client.sources.file>java-client.zip</client.sources.file>
+        <client.sources>${user.resources}/${client.sources.file}</client.sources>
     </properties>
 
     <repositories>
@@ -144,6 +149,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>${maven-clean-plugin.version}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${user.resources}</directory>
+                            <includes>
+                                <include>**/${client.sources.file}</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -165,6 +181,37 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${maven-antrun.version}</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <zip destfile="${client.sources}"
+                                     basedir="."
+                                     includes="src/main/java/**,
+                                               src/main/resources/**,
+                                               src/test/**,
+                                               README.*,
+                                               mvnw,
+                                               mvnw.cmd,
+                                               pom.xml"
+                                     excludes="target/**"
+                                     update="true"/>
+
+                                <copy file="${client.sources}"
+                                      todir="target/classes/resources/user"/>
+                            </target>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
