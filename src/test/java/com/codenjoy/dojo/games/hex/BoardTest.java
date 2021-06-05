@@ -87,7 +87,7 @@ public class BoardTest {
         assertEquals("◙", board.getAt(3, 3).toString());
         assertEquals("♀", board.getAt(4, 2).toString());
         assertEquals("○", board.getAt(3, 5).toString());
-        assertEquals("♂", board.getAt(3,1).toString());
+        assertEquals("♂", board.getAt(3, 1).toString());
     }
 
     @Test
