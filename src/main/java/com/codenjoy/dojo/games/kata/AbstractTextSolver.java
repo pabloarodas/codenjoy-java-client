@@ -32,12 +32,6 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * User: your name
- * Это твой алгоритм AI для игры. Реализуй его на свое усмотрение.
- * Обрати внимание на {@see YourSolverTest} - там приготовлен тестовый
- * фреймворк для тебя.
- */
 public abstract class AbstractTextSolver<T> implements Solver<AbstractTextBoard> {
 
     private AbstractTextBoard board;
