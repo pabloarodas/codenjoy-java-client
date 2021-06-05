@@ -24,14 +24,10 @@ package com.codenjoy.dojo.games.collapse;
 
 
 import com.codenjoy.dojo.client.Utils;
-import com.codenjoy.dojo.games.collapse.Element;
-import com.codenjoy.dojo.games.collapse.Board;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class BoardTest {
 

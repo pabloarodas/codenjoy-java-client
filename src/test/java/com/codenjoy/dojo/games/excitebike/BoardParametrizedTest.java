@@ -22,8 +22,8 @@ package com.codenjoy.dojo.games.excitebike;
  * #L%
  */
 
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.BikeElement;
+import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.printer.CharElements;
 import org.junit.Test;

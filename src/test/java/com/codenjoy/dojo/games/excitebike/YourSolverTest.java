@@ -24,8 +24,6 @@ package com.codenjoy.dojo.games.excitebike;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.excitebike.Board;
-import com.codenjoy.dojo.games.excitebike.YourSolver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;

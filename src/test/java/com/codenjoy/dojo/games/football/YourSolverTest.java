@@ -22,12 +22,9 @@ package com.codenjoy.dojo.games.football;
  * #L%
  */
 
-import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.football.Board;
-import com.codenjoy.dojo.games.football.YourSolver;
 import com.codenjoy.dojo.services.Dice;
-
+import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -23,14 +23,9 @@ package com.codenjoy.dojo.games.expansion;
  */
 
 
-import com.codenjoy.dojo.services.Direction;
-import com.codenjoy.dojo.services.Point;
 import org.json.JSONObject;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 

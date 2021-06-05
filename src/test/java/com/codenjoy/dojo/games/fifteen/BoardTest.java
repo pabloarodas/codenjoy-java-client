@@ -24,17 +24,10 @@ package com.codenjoy.dojo.games.fifteen;
 
 
 import com.codenjoy.dojo.client.Utils;
-import com.codenjoy.dojo.games.fifteen.Board;
-import com.codenjoy.dojo.games.fifteen.Element;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import static java.util.stream.Collectors.toMap;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
 

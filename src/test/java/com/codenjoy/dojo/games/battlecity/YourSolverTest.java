@@ -22,11 +22,9 @@ package com.codenjoy.dojo.games.battlecity;
  * #L%
  */
 
-import com.codenjoy.dojo.games.battlecity.Board;
-import com.codenjoy.dojo.games.battlecity.YourSolver;
-import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;
 import org.junit.Test;
 
