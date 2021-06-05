@@ -1,31 +1,30 @@
-package com.codenjoy.dojo.games.sokoban;
+package com.codenjoy.dojo.games.puzzlebox;
 
 /*-
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2016 Codenjoy
+ * Copyright (C) 2018 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
 
-
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.sokoban.Board;
-import com.codenjoy.dojo.games.sokoban.YourSolver;
+import com.codenjoy.dojo.games.quake2d.Board;
+import com.codenjoy.dojo.games.quake2d.YourSolver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;
@@ -56,37 +55,45 @@ public class YourSolverTest {
 
         // TODO these asserts are here for an example, delete it and write your own
 
-        asertAI("☼☼☼☼☼☼☼\n" +
-                "☼ ■   ☼\n" +
-                "☼ ☺■  ☼\n" +
-                "☼■    ☼\n" +
-                "☼  ■  ☼\n" +
-                "☼     ☼\n" +
-                "☼☼☼☼☼☼☼\n", Direction.UP);
+        asertAI("☼☼☼☼☼☼☼" +
+                "☼     ☼" +
+                "☼     ☼" +
+                "☼     ☼" +
+                "☼     ☼" +
+                "☼  ☻  ☼" +
+                "☼☼☼☼☼☼☼", Direction.UP);
 
-        asertAI("☼☼☼☼☼☼☼\n" +
-                "☼ ■   ☼\n" +
-                "☼ ☺■  ☼\n" +
-                "☼■    ☼\n" +
-                "☼  ■  ☼\n" +
-                "☼     ☼\n" +
-                "☼☼☼☼☼☼☼\n", Direction.UP);
+//        asertAI("☼☼☼☼☼☼☼" +
+//                "☼  X  ☼" +
+//                "☼     ☼" +
+//                "☼     ☼" +
+//                "☼ ☺   ☼" +
+//                "☼  ☻  ☼" +
+//                "☼☼☼☼☼☼☼", Direction.UP);
 
-        asertAI("☼☼☼☼☼☼☼\n" +
-                "☼ ■   ☼\n" +
-                "☼ ☺■  ☼\n" +
-                "☼■    ☼\n" +
-                "☼  ■  ☼\n" +
-                "☼     ☼\n" +
-                "☼☼☼☼☼☼☼\n", Direction.UP);
-
-        asertAI("☼☼☼☼☼☼☼\n" +
-                "☼ ■   ☼\n" +
-                "☼ ☺■  ☼\n" +
-                "☼■    ☼\n" +
-                "☼  ■  ☼\n" +
-                "☼     ☼\n" +
-                "☼☼☼☼☼☼☼\n", Direction.UP);
+//        asertAI("☼☼☼☼☼☼☼" +
+//                "☼  x  ☼" +
+//                "☼ $   ☼" +
+//                "☼ ☺   ☼" +
+//                "☼   $ ☼" +
+//                "☼  ☻  ☼" +
+//                "☼☼☼☼☼☼☼", Direction.UP);
+//
+//        asertAI("☼☼☼☼☼☼☼" +
+//                "☼  x  ☼" +
+//                "☼ ☺   ☼" +
+//                "☼     ☼" +
+//                "☼   $ ☼" +
+//                "☼$ ☻  ☼" +
+//                "☼☼☼☼☼☼☼", Direction.UP);
+//
+//        asertAI("☼☼☼☼☼☼☼" +
+//                "☼ ☺x  ☼" +
+//                "☼     ☼" +
+//                "☼     ☼" +
+//                "☼   $ ☼" +
+//                "☼$ ☻  ☼" +
+//                "☼☼☼☼☼☼☼", Direction.UP);
     }
 
     private void asertAI(String board, Direction expected) {

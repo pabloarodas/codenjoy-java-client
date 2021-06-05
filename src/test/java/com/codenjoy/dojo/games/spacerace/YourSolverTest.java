@@ -50,46 +50,34 @@ public class YourSolverTest {
         return (Board) new Board().forString(board);
     }
 
-    // TODO these asserts are here for an example, delete it and write your own
-
     @Test
-    public void shouldUP() {
+    public void should() {
+
+        // TODO these asserts are here for an example, delete it and write your own
+
         assertA("☼   ☼" +
                 "☼ 7 ☼" +
                 "☼   ☼" +
                 "☼ ☺ ☼" +
-                "☼   ☼"
-                , Direction.STOP);
-    }
+                "☼   ☼", Direction.STOP);
 
-    @Test
-    public void shouldRight() {
         assertA("☼   ☼" +
                 "☼☺ 7☼" +
                 "☼   ☼" +
                 "☼   ☼" +
-                "☼   ☼"
-                , Direction.STOP);
-    }
+                "☼   ☼", Direction.STOP);
 
-    @Test
-    public void shouldLeft() {
         assertA("☼   ☼" +
                 "☼7 ☺☼" +
                 "☼   ☼" +
                 "☼   ☼" +
-                "☼   ☼"
-                , Direction.STOP);
-    }
+                "☼   ☼", Direction.STOP);
 
-    @Test
-    public void shouldDown() {
         assertA("☼   ☼" +
                 "☼  ☺☼" +
                 "☼   ☼" +
                 "☼  7☼" +
-                "☼   ☼"
-                , Direction.STOP);
+                "☼   ☼", Direction.STOP);
     }
 
     private void assertA(String board, Direction expected) {

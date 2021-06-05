@@ -35,11 +35,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * User: sanja
- * Date: 05.10.13
- * Time: 11:56
- */
 public class YourSolverTest {
 
     private Dice dice;
@@ -60,50 +55,37 @@ public class YourSolverTest {
 
         // TODO these asserts are here for an example, delete it and write your own
 
-        asertAI("☼☼☼☼☼☼☼" +
-                "☼     ☼" +
-                "☼     ☼" +
-                "☼     ☼" +
-                "☼     ☼" +
-                "☼  ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
+        asertAI("☼☼☼☼☼☼\n" +
+                "☼ ☻  ☼\n" +
+                "☼ * +☼\n" +
+                "☼ ☺  ☼\n" +
+                "☼X  Š☼\n" +
+                "☼☼☼☼☼☼\n", "");
 
-//        asertAI("☼☼☼☼☼☼☼" +
-//                "☼  X  ☼" +
-//                "☼     ☼" +
-//                "☼     ☼" +
-//                "☼ ☺   ☼" +
-//                "☼  ☻  ☼" +
-//                "☼☼☼☼☼☼☼", Direction.UP);
+        asertAI("☼☼☼☼☼☼\n" +
+                "☼ ☻  ☼\n" +
+                "☼ * +☼\n" +
+                "☼ ☺  ☼\n" +
+                "☼X  Š☼\n" +
+                "☼☼☼☼☼☼\n", "");
 
-//        asertAI("☼☼☼☼☼☼☼" +
-//                "☼  x  ☼" +
-//                "☼ $   ☼" +
-//                "☼ ☺   ☼" +
-//                "☼   $ ☼" +
-//                "☼  ☻  ☼" +
-//                "☼☼☼☼☼☼☼", Direction.UP);
-//
-//        asertAI("☼☼☼☼☼☼☼" +
-//                "☼  x  ☼" +
-//                "☼ ☺   ☼" +
-//                "☼     ☼" +
-//                "☼   $ ☼" +
-//                "☼$ ☻  ☼" +
-//                "☼☼☼☼☼☼☼", Direction.UP);
-//
-//        asertAI("☼☼☼☼☼☼☼" +
-//                "☼ ☺x  ☼" +
-//                "☼     ☼" +
-//                "☼     ☼" +
-//                "☼   $ ☼" +
-//                "☼$ ☻  ☼" +
-//                "☼☼☼☼☼☼☼", Direction.UP);
+        asertAI("☼☼☼☼☼☼\n" +
+                "☼ ☻  ☼\n" +
+                "☼ * +☼\n" +
+                "☼ ☺  ☼\n" +
+                "☼X  Š☼\n" +
+                "☼☼☼☼☼☼\n", "");
+
+        asertAI("☼☼☼☼☼☼\n" +
+                "☼ ☻  ☼\n" +
+                "☼ * +☼\n" +
+                "☼ ☺  ☼\n" +
+                "☼X  Š☼\n" +
+                "☼☼☼☼☼☼\n", "");
     }
 
-    private void asertAI(String board, Direction expected) {
-        String actual = ai.get(board(board));
-        assertEquals(expected.toString(), actual);
+    private void asertAI(String board, String expected) {
+        assertEquals(expected, ai.get(board(board)));
     }
 
     private void dice(Direction direction) {

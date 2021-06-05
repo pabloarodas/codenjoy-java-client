@@ -22,9 +22,6 @@ package com.codenjoy.dojo.games.tetris;
  * #L%
  */
 
-import com.codenjoy.dojo.games.tetris.Board;
-import com.codenjoy.dojo.games.tetris.Element;
-import com.codenjoy.dojo.games.tetris.GlassBoard;
 import com.codenjoy.dojo.services.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,9 +32,6 @@ import java.util.Arrays;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by indigo on 2018-11-09.
- */
 public class BoardTest {
 
     @Test

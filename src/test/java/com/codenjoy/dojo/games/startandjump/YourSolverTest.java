@@ -56,37 +56,37 @@ public class YourSolverTest {
 
         // TODO these asserts are here for an example, delete it and write your own
 
-        asertAI("☼☼☼☼☼☼☼" +
-                "☼  x  ☼" +
-                "☼ $   ☼" +
-                "☼     ☼" +
-                "☼ ☺ $ ☼" +
-                "☼  ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
+        asertAI("#######\n" +
+                "       \n" +
+                "       \n" +
+                "☺      \n" +
+                "=      \n" +
+                "       \n" +
+                "#######\n", Direction.UP);
 
-        asertAI("☼☼☼☼☼☼☼" +
-                "☼  x  ☼" +
-                "☼ $   ☼" +
-                "☼ ☺   ☼" +
-                "☼   $ ☼" +
-                "☼  ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
+        asertAI("#######\n" +
+                "       \n" +
+                "       \n" +
+                "☺      \n" +
+                "=      \n" +
+                "       \n" +
+                "#######\n", Direction.UP);
 
-        asertAI("☼☼☼☼☼☼☼" +
-                "☼  x  ☼" +
-                "☼ ☺   ☼" +
-                "☼     ☼" +
-                "☼   $ ☼" +
-                "☼$ ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
+        asertAI("#######\n" +
+                "       \n" +
+                "       \n" +
+                "☺      \n" +
+                "=      \n" +
+                "       \n" +
+                "#######\n", Direction.UP);
 
-        asertAI("☼☼☼☼☼☼☼" +
-                "☼ ☺x  ☼" +
-                "☼     ☼" +
-                "☼     ☼" +
-                "☼   $ ☼" +
-                "☼$ ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
+        asertAI("#######\n" +
+                "       \n" +
+                "       \n" +
+                "☺      \n" +
+                "=      \n" +
+                "       \n" +
+                "#######\n", Direction.UP);
     }
 
     private void asertAI(String board, Direction expected) {
