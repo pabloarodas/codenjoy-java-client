@@ -39,8 +39,6 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  */
 public class Board extends AbstractBoard<Element> {
 
-    public static final char ANY_CHAR = '?';
-
     @Override
     public Element valueOf(char ch) {
         return Element.valueOf(ch);
