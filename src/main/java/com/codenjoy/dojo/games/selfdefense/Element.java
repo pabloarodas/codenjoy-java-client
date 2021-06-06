@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.selfdefense;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),
 

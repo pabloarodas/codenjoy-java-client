@@ -58,7 +58,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldGetElements() {
+    public void shouldGetElement() {
         assertEquals("{╝=[[1,3], [4,4]],\n" +
                     "╚=[[0,4], [1,2]],\n" +
                     "╔=[[0,0], [1,1]],\n" +

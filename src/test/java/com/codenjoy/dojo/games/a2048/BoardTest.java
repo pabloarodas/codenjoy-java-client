@@ -60,7 +60,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldGetElements() {
+    public void shouldGetElement() {
         assertEquals("{x=[],\n" +
                         "2=[[0,0], [2,5], [3,1], [3,2], [3,5]],\n" +
                         "4=[[2,4], [4,5]],\n" +

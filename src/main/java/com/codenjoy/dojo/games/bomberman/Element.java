@@ -23,12 +23,12 @@ package com.codenjoy.dojo.games.bomberman;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
 import java.util.List;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
     /// This is your Bomberman
     BOMBERMAN('☺'),             // this is what he usually looks like
     BOMB_BOMBERMAN('☻'),        // this is if he is sitting on own bomb

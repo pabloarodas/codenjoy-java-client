@@ -22,9 +22,9 @@ package com.codenjoy.dojo.games.football;
  * #L%
  */
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),                // это пустое место, куда можно перейти герою
     WALL('☼'),                // а это внешняя разметка поля, через которую я хочу чтобы проходить нельзя было

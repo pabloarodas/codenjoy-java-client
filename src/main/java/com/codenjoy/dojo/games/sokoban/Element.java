@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.sokoban;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),             // например это пустое место, куда можно перейти герою
     NONSE('`'),            // TODO добавить описание

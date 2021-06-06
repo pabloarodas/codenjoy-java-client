@@ -23,14 +23,14 @@ package com.codenjoy.dojo.games.sudoku;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),   // отгадай, что тут за цифра
     BORDER('☼'), // граница, проигнорь ее ;) она не учитывается в координатах

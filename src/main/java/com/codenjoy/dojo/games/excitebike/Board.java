@@ -29,7 +29,7 @@ import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
-public class Board extends AbstractBoard<CharElements> {
+public class Board extends AbstractBoard<CharElement> {
 
     private static final String OTHER_BIKE_PREFIX = "OTHER";
     private static final String FALLEN_BIKE_SUFFIX = "FALLEN";
@@ -52,10 +52,10 @@ public class Board extends AbstractBoard<CharElements> {
             .toArray(new BikeElement[]{});
 
     // optimized for performance
-    // TODO заменить символы в Elements и укоротить этот массив до 255
-    public static CharElements[] ALL_ELEMENTS; static {
+    // TODO заменить символы в Element и укоротить этот массив до 255
+    public static CharElement[] ALL_ELEMENTS; static {
         if (ALL_ELEMENTS == null) {
-            ALL_ELEMENTS = new CharElements[10000];
+            ALL_ELEMENTS = new CharElement[10000];
             Arrays.stream(GameElement.values())
                     .forEach(el -> ALL_ELEMENTS[el.ch()] = el);
             Arrays.stream(SpringboardElement.values())
@@ -66,8 +66,8 @@ public class Board extends AbstractBoard<CharElements> {
     }
 
     @Override
-    public CharElements valueOf(char ch) {
-        CharElements result = ALL_ELEMENTS[ch];
+    public CharElement valueOf(char ch) {
+        CharElement result = ALL_ELEMENTS[ch];
         if (result == null) {
             throw new IllegalArgumentException("No such element for " + ch);
         }
@@ -85,7 +85,7 @@ public class Board extends AbstractBoard<CharElements> {
                 .anyMatch(v -> isAt(me, v));
     }
 
-    public boolean checkNearMe(List<Direction> directions, CharElements... elements) {
+    public boolean checkNearMe(List<Direction> directions, CharElement... elements) {
         Point point = getMe();
         if (point == null) {
             return false;
@@ -96,7 +96,7 @@ public class Board extends AbstractBoard<CharElements> {
         return isAt(point.getX(), point.getY(), elements);
     }
 
-    public boolean checkNearMe(Direction direction, CharElements... elements) {
+    public boolean checkNearMe(Direction direction, CharElement... elements) {
         Point me = getMe();
         if (me == null) {
             return false;
@@ -105,7 +105,7 @@ public class Board extends AbstractBoard<CharElements> {
         return isAt(atDirection.getX(), atDirection.getY(), elements);
     }
 
-    public boolean checkAtMe(CharElements... elements) {
+    public boolean checkAtMe(CharElement... elements) {
         Point me = getMe();
         return me != null && isAt(me, elements);
     }

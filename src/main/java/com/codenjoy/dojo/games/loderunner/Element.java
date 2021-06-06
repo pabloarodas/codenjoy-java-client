@@ -23,12 +23,12 @@ package com.codenjoy.dojo.games.loderunner;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
 import java.util.List;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),                    // Пустое место – по которому может двигаться герой
 

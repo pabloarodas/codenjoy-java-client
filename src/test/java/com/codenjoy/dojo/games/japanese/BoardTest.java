@@ -64,7 +64,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldGetElements() {
+    public void shouldGetElement() {
         assertEquals("{-=[[3,3], [3,4], [4,3], [5,3], [5,4], [6,3], [7,3], [7,4]],\n" +
                     "*=[[4,4], [4,6], [5,6], [6,4], [6,6]],\n" +
                     " =[[3,5], [3,6], [3,7], [4,5], [4,7], [5,5], [5,7], [6,5], [6,7], [7,5], [7,6], [7,7]],\n" +

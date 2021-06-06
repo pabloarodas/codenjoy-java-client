@@ -30,7 +30,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.codenjoy.dojo.client.Elements.*;
+import static com.codenjoy.dojo.client.Element.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 import static org.junit.Assert.assertEquals;
 
@@ -38,10 +38,10 @@ public class AbstractBoardWithSeveralLayersTest {
     private AbstractBoard board;
 
     public static AbstractBoard board(String ...boardString) {
-        return (AbstractBoard)new AbstractBoard<Elements>(){
+        return (AbstractBoard)new AbstractBoard<Element>(){
             @Override
-            public Elements valueOf(char ch) {
-                return Elements.valueOf(ch);
+            public Element valueOf(char ch) {
+                return Element.valueOf(ch);
             }
         }.forString(boardString);
     }

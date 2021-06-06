@@ -22,9 +22,9 @@ package com.codenjoy.dojo.games.lemonade;
  * #L%
  */
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum WeatherForecast implements CharElements {
+public enum WeatherForecast implements CharElement {
     
     SUNNY,
     CLOUDY,

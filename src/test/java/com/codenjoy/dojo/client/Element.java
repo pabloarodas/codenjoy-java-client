@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.services.printer;
+package com.codenjoy.dojo.client;
 
 /*-
  * #%L
@@ -22,14 +22,34 @@ package com.codenjoy.dojo.services.printer;
  * #L%
  */
 
+import com.codenjoy.dojo.services.printer.CharElement;
 
-/**
- * Этот интерфейс расширяют все енумы, содержащие перечень символов кодирующих
- * живность на поле.
- */
-public interface CharElements {
-    
-    char ch();
-    
-    String name();
+enum Element implements CharElement {
+
+    ONE('1'), TWO('2'), THREE('3'), FOUR('4'), FIVE('5'), SIX('6'), NONE(' ');
+
+    final char ch;
+
+    Element(char ch) {
+        this.ch = ch;
+    }
+
+    @Override
+    public char ch() {
+        return ch;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(ch);
+    }
+
+    public static Element valueOf(char ch) {
+        for (Element el : Element.values()) {
+            if (el.ch == ch) {
+                return el;
+            }
+        }
+        throw new IllegalArgumentException("No such element for " + ch);
+    }
 }

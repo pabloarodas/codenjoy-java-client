@@ -23,7 +23,7 @@ package com.codenjoy.dojo.games.battlecity;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,7 +31,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),
     BATTLE_WALL('☼'),

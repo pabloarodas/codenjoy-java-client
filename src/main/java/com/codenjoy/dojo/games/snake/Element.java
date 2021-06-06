@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.snake;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     BAD_APPLE('☻'),
     GOOD_APPLE('☺'),

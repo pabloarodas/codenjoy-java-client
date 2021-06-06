@@ -23,7 +23,7 @@ package com.codenjoy.dojo.client;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import org.apache.commons.text.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.SortedJSONObject;
@@ -75,7 +75,7 @@ public class Utils {
     }
 
     // TODO подумать как и унести в AbstractLayeredBoard
-    public static Map<CharElements, String> elementsMap(AbstractBoard board, CharElements[] elements) {
+    public static Map<CharElement, String> elementsMap(AbstractBoard board, CharElement[] elements) {
         return Arrays.stream(elements)
                 .map(element -> Map.entry(element, board.get(element).toString()))
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,

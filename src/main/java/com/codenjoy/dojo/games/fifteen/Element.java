@@ -22,9 +22,9 @@ package com.codenjoy.dojo.games.fifteen;
  * #L%
  */
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     A('a'),
     B('b'),

@@ -74,7 +74,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldGetElements() {
+    public void shouldGetElement() {
         assertElementAt(Element.ONE, "[[5,2], [6,10], [11,6]]");
         assertElementAt(Element.TWO, "[[6,7], [9,9]]");
         assertElementAt(Element.THREE, "[[2,1], [7,6], [11,5]]");

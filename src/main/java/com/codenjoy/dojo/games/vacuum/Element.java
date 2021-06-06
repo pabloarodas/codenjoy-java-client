@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.vacuum;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),                          // Чистая клетка локации. Проезд облагается штрафом.
                                             // Эффективный пылесос должен меньше гулять по чистым местам и больше убираться.

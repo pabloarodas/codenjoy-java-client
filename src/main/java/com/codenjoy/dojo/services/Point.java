@@ -24,7 +24,7 @@ package com.codenjoy.dojo.services;
 
 
 /**
- * Encapsulates coordinate of Element at the Board. All Board Elements must extends from PointImpl,
+ * Encapsulates coordinate of Element at the Board. All Board elements must extends from PointImpl,
  * realized from of this interface.
  */
 public interface Point extends Comparable<Point> {

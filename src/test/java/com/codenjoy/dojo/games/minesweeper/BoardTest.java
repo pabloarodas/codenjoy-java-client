@@ -62,7 +62,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldGetElements() {
+    public void shouldGetElement() {
         assertEquals("{Ѡ=[],\n" +
                     "☻=[],\n" +
                     "☺=[[2,2]],\n" +

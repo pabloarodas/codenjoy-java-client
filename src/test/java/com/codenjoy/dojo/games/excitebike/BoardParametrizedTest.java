@@ -25,7 +25,7 @@ package com.codenjoy.dojo.games.excitebike;
 import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -46,7 +46,7 @@ public class BoardParametrizedTest {
     private String elementName;
     private Class elementClass;
 
-    public <T extends Enum & CharElements> BoardParametrizedTest(T element) {
+    public <T extends Enum & CharElement> BoardParametrizedTest(T element) {
         elementChar = element.ch();
         elementName = element.name();
         elementClass = element.getClass();
@@ -67,7 +67,7 @@ public class BoardParametrizedTest {
         Board board = new Board();
 
         //when
-        CharElements result = board.valueOf(elementChar);
+        CharElement result = board.valueOf(elementChar);
 
         //then
         assertThat(result, is(Enum.valueOf(elementClass, elementName)));

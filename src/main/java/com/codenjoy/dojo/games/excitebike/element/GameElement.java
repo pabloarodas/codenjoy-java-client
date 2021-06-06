@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.excitebike.element;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum GameElement implements CharElements {
+public enum GameElement implements CharElement {
 
     NONE(' '),
     FENCE('■'),

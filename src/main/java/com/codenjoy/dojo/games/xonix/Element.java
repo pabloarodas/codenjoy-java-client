@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.xonix;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     SEA('.'),           // Море, которое нужно осушать. Тут плавают морские враги
     LAND('X'),          // Ничейная суша. Тут бегают сухопутные враги.

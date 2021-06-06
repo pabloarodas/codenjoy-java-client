@@ -22,9 +22,9 @@ package com.codenjoy.dojo.games.excitebike.element;
  * #L%
  */
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum BikeElement implements CharElements {
+public enum BikeElement implements CharElement {
     BIKE('B'),
     BIKE_AT_ACCELERATOR('A'),
     BIKE_AT_INHIBITOR('I'),

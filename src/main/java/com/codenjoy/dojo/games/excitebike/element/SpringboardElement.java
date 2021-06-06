@@ -22,9 +22,9 @@ package com.codenjoy.dojo.games.excitebike.element;
  * #L%
  */
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum SpringboardElement implements CharElements {
+public enum SpringboardElement implements CharElement {
 
     SPRINGBOARD_LEFT_UP('╔'),
     SPRINGBOARD_LEFT('ˊ'),

@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.rubicscube;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),     // это то, на что не стоит обращать внимание
     RED('R'),      // а дальше идут цвета

@@ -22,13 +22,13 @@ package com.codenjoy.dojo.games.spacerace;
  * #L%
  */
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 /**
  * Тут указана легенда всех возможных объектов на поле и их состояний.
  * Важно помнить, что для каждой енумной константы надо создать спрайт в папке \src\main\webapp\resources\sprite.
  */
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),       // например это пустое место, куда можно перейти герою
     EXPLOSION('x'),     // взрыв

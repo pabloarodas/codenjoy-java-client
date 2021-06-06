@@ -23,7 +23,7 @@ package com.codenjoy.dojo.games.expansion;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
 import java.util.Dictionary;
@@ -32,7 +32,7 @@ import java.util.Hashtable;
 import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER1;
 import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER2;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     // empty space where player can go
     EMPTY(LAYER2, '-'),

@@ -179,7 +179,7 @@ public class Board extends AbstractBoard<Element> {
 //     * @param direction
 //     * @return
 //     */
-//    public Elements inFrontOf(Point from, Direction direction) {
+//    public Element inFrontOf(Point from, Direction direction) {
 //        Point change = direction.change(from);
 //        return getAt(change.getX(), change.getY());
 //    }

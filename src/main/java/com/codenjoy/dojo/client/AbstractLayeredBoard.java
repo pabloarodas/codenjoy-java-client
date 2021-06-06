@@ -24,7 +24,7 @@ package com.codenjoy.dojo.client;
 
 
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -34,7 +34,7 @@ import java.util.function.Function;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
-public abstract class AbstractLayeredBoard<E extends CharElements> implements ClientBoard {
+public abstract class AbstractLayeredBoard<E extends CharElement> implements ClientBoard {
 
     public static final String LAYERS = "layers";
 
@@ -140,7 +140,7 @@ public abstract class AbstractLayeredBoard<E extends CharElements> implements Cl
      * @param numLayer Layer number (from 0).
      * @param x        X coordinate.
      * @param y        Y coordinate.
-     * @param element  Elements that we try to detect on this point.
+     * @param element  Element that we try to detect on this point.
      * @return true is element was found.
      */
     protected boolean isAt(int numLayer, int x, int y, E element) {

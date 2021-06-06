@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.minesweeper;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     BANG('Ѡ', -7),
     HERE_IS_BOMB('☻', -6),

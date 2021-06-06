@@ -23,13 +23,13 @@ package com.codenjoy.dojo.games.moebius;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Point;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     LEFT_UP('╝', pt(-1, 0), pt(0, 1)),
     UP_RIGHT('╚', pt(0, 1), pt(1, 0)),

@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.reversi;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),          // пустое место для фишки
     BREAK('☼'),         // препятствие на котором ставить фишку нельзя

@@ -23,14 +23,14 @@ package com.codenjoy.dojo.games.tetris;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     BLUE('I', 2),
     CYAN('J', 3),

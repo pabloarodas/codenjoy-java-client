@@ -23,14 +23,14 @@ package com.codenjoy.dojo.games.japanese;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     WHITE('-', 1),      // игрок утверждает, что пиксель белый
     BLACK('*', 0),      // игрок утверждает, что пиксель черный

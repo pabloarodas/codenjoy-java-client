@@ -62,7 +62,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldGetElements() {
+    public void shouldGetElement() {
         assertEquals("{ =[[1,3], [1,4], [1,5], [2,2], [2,3], [3,2], [3,3], [3,5], [4,2], [4,3], [4,5]],\n" +
                     "#=[[1,1], [2,1], [2,4], [3,1], [3,4], [4,1], [4,4], [5,1]],\n" +
                     "1=[],\n" +

@@ -23,11 +23,11 @@ package com.codenjoy.dojo.games.hex;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.*;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     NONE(' '),
     WALL('☼'),
@@ -60,7 +60,7 @@ public enum Element implements CharElements {
         return String.valueOf(ch);
     }
 
-    public static List<Element> heroesElements() {
+    public static List<Element> heroes() {
         return new LinkedList<>(Arrays.asList(Element.values())) {{
             remove(Element.NONE);
             remove(Element.WALL);

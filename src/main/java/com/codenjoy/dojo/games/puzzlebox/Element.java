@@ -23,9 +23,9 @@ package com.codenjoy.dojo.games.puzzlebox;
  */
 
 
-import com.codenjoy.dojo.services.printer.CharElements;
+import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum Element implements CharElements {
+public enum Element implements CharElement {
 
     // TODO
     NONE(' '),       // например это пустое место, куда можно перейти герою

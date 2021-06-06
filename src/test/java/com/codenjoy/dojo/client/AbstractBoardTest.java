@@ -37,10 +37,10 @@ public class AbstractBoardTest {
     private AbstractBoard board;
 
     public static AbstractBoard board(String boardString) {
-        return (AbstractBoard)new AbstractBoard<Elements>(){
+        return (AbstractBoard)new AbstractBoard<Element>(){
             @Override
-            public Elements valueOf(char ch) {
-                return Elements.valueOf(ch);
+            public Element valueOf(char ch) {
+                return Element.valueOf(ch);
             }
         }.forString(boardString);
     }
@@ -76,33 +76,33 @@ public class AbstractBoardTest {
 
     @Test
     public void shouldWork_getAllAt() {
-        assertEquals(Arrays.asList(Elements.ONE), board.getAllAt(0, 0));
-        assertEquals(Arrays.asList(Elements.TWO), board.getAllAt(2, 1));
-        assertEquals(Arrays.asList(Elements.THREE), board.getAllAt(2, 2));
+        assertEquals(Arrays.asList(Element.ONE), board.getAllAt(0, 0));
+        assertEquals(Arrays.asList(Element.TWO), board.getAllAt(2, 1));
+        assertEquals(Arrays.asList(Element.THREE), board.getAllAt(2, 2));
     }
 
     @Test
     public void shouldWork_getAt() {
-        assertEquals(Elements.ONE, board.getAt(0, 0));
-        assertEquals(Elements.TWO, board.getAt(2, 1));
-        assertEquals(Elements.THREE, board.getAt(2, 2));
+        assertEquals(Element.ONE, board.getAt(0, 0));
+        assertEquals(Element.TWO, board.getAt(2, 1));
+        assertEquals(Element.THREE, board.getAt(2, 2));
     }
 
     @Test
     public void shouldWork_isAt() {
-        assertEquals(true, board.isAt(0, 0, Elements.ONE));
-        assertEquals(false, board.isAt(1, 1, Elements.ONE));
-        assertEquals(false, board.isAt(2, 2, Elements.ONE));
+        assertEquals(true, board.isAt(0, 0, Element.ONE));
+        assertEquals(false, board.isAt(1, 1, Element.ONE));
+        assertEquals(false, board.isAt(2, 2, Element.ONE));
 
-        assertEquals(true, board.isAt(1, 1, Elements.TWO, Elements.THREE));
-        assertEquals(true, board.isAt(2, 2, Elements.TWO, Elements.THREE));
-        assertEquals(false, board.isAt(2, 2, Elements.TWO, Elements.ONE));
+        assertEquals(true, board.isAt(1, 1, Element.TWO, Element.THREE));
+        assertEquals(true, board.isAt(2, 2, Element.TWO, Element.THREE));
+        assertEquals(false, board.isAt(2, 2, Element.TWO, Element.ONE));
     }
 
     @Test
     public void shouldWork_isNear() {
-        assertEquals(true, board.isNear(1, 1, Elements.ONE));
-        assertEquals(false, board.isNear(5, 5, Elements.TWO));
+        assertEquals(true, board.isNear(1, 1, Element.ONE));
+        assertEquals(false, board.isNear(5, 5, Element.TWO));
     }
 
     @Test
@@ -129,36 +129,36 @@ public class AbstractBoardTest {
 
     @Test
     public void shouldWork_countNear() {
-        assertEquals(2, board.countNear(0, 0, Elements.ONE));
-        assertEquals(1, board.countNear(0, 0, Elements.TWO));
-        assertEquals(0, board.countNear(0, 0, Elements.THREE));
+        assertEquals(2, board.countNear(0, 0, Element.ONE));
+        assertEquals(1, board.countNear(0, 0, Element.TWO));
+        assertEquals(0, board.countNear(0, 0, Element.THREE));
 
-        assertEquals(5, board.countNear(1, 1, Elements.ONE));
-        assertEquals(1, board.countNear(1, 1, Elements.TWO));
-        assertEquals(2, board.countNear(1, 1, Elements.THREE));
+        assertEquals(5, board.countNear(1, 1, Element.ONE));
+        assertEquals(1, board.countNear(1, 1, Element.TWO));
+        assertEquals(2, board.countNear(1, 1, Element.THREE));
 
-        assertEquals(5, board.countNear(2, 2, Elements.ONE));
-        assertEquals(2, board.countNear(2, 2, Elements.TWO));
-        assertEquals(1, board.countNear(2, 2, Elements.THREE));
+        assertEquals(5, board.countNear(2, 2, Element.ONE));
+        assertEquals(2, board.countNear(2, 2, Element.TWO));
+        assertEquals(1, board.countNear(2, 2, Element.THREE));
 
-        assertEquals(2, board.countNear(3, 3, Elements.ONE));
-        assertEquals(0, board.countNear(3, 3, Elements.TWO));
-        assertEquals(1, board.countNear(3, 3, Elements.THREE));
+        assertEquals(2, board.countNear(3, 3, Element.ONE));
+        assertEquals(0, board.countNear(3, 3, Element.TWO));
+        assertEquals(1, board.countNear(3, 3, Element.THREE));
 
-        assertEquals(0, board.countNear(-1, -1, Elements.THREE));
+        assertEquals(0, board.countNear(-1, -1, Element.THREE));
     }
 
     @Test
     public void shouldWork_oneElement_get() {
         assertEquals("[[0,0], [0,1], [0,2], [0,3], [1,0], [1,3], " +
                         "[2,0], [2,3], [3,0], [3,1], [3,2], [3,3]]",
-                board.get(Elements.ONE).toString());
+                board.get(Element.ONE).toString());
 
         assertEquals("[[1,1], [2,1]]",
-                board.get(Elements.TWO).toString());
+                board.get(Element.TWO).toString());
 
         assertEquals("[[1,2], [2,2]]",
-                board.get(Elements.THREE).toString());
+                board.get(Element.THREE).toString());
     }
 
     @Test
@@ -166,25 +166,25 @@ public class AbstractBoardTest {
         assertEquals("[[0,0], [0,1], [0,2], [0,3], [1,0], [1,1], [1,2], " +
                         "[1,3], [2,0], [2,1], [2,2], [2,3], [3,0], [3,1], " +
                         "[3,2], [3,3]]",
-                board.get(Elements.ONE, Elements.TWO, Elements.THREE).toString());
+                board.get(Element.ONE, Element.TWO, Element.THREE).toString());
     }
 
     @Test
     public void shouldWork_oneElement_getFirst() {
         assertEquals("[0,0]",
-                board.getFirst(Elements.ONE).toString());
+                board.getFirst(Element.ONE).toString());
 
         assertEquals("[1,1]",
-                board.getFirst(Elements.TWO).toString());
+                board.getFirst(Element.TWO).toString());
 
         assertEquals("[1,2]",
-                board.getFirst(Elements.THREE).toString());
+                board.getFirst(Element.THREE).toString());
     }
 
     @Test
     public void shouldWork_severalElements_getFirst() {
         assertEquals("[0,0]",
-                board.getFirst(Elements.ONE, Elements.TWO, Elements.THREE).toString());
+                board.getFirst(Element.ONE, Element.TWO, Element.THREE).toString());
     }
 
     @Test
@@ -196,14 +196,14 @@ public class AbstractBoardTest {
     public void shouldWork_set() {
         // given
         assertEquals("[[1,2], [2,2]]",
-                board.get(Elements.THREE).toString());
+                board.get(Element.THREE).toString());
 
         // when
-        board.set(1, 1, Elements.THREE.ch());
+        board.set(1, 1, Element.THREE.ch());
 
         // then
         assertEquals("[[1,1], [1,2], [2,2]]",
-                board.get(Elements.THREE).toString());
+                board.get(Element.THREE).toString());
     }
 
     @Test
