@@ -76,7 +76,7 @@ public class WebSocketRunner implements Closeable {
      * @return
      */
     public static <T extends ClientBoard> WebSocketRunner runClient(String[] args, String url, Solver<T> solver, T board) {
-        if (args == null || args.length != 1) {
+        if (args == null || args.length == 0) {
             return runClient(url, solver, board);
         } else {
             return runClient(args[0], solver, board);

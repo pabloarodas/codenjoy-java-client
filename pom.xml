@@ -21,6 +21,7 @@
         <commons-text.version>1.9</commons-text.version>
         <json.version>20180813</json.version> <!-- do not update -->
         <java-web-socket.version>1.5.1</java-web-socket.version>
+        <reflections.version>0.9.11</reflections.version> <!-- do not update -->
         <fest-reflect.version>1.4.1</fest-reflect.version>
         <fest-assert.version>1.4</fest-assert.version>
         <!-- end -->
@@ -85,6 +86,11 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflections.version}</version>
         </dependency>
 
         <!-- TESTING -->

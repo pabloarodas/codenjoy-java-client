@@ -16,7 +16,7 @@ IF "%DEBUG%"=="true" (
 chcp %CODE_PAGE%
 cls
 
-call mvnw exec:java -Dfile.encoding=UTF-8 -D"exec.mainClass"="com.codenjoy.dojo.Runner" -D"exec.args"="%BOARD_URL%"
+call mvnw exec:java -Dfile.encoding=UTF-8 -D"exec.mainClass"="com.codenjoy.dojo.Runner" -D"exec.args"="%GAME_TO_RUN% %BOARD_URL%"
 
 echo Press any key to exit
 pause >nul
