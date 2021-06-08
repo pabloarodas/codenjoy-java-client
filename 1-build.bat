@@ -10,7 +10,7 @@ echo        +-------------------------------------------------------------------
 echo [0m
 echo on
 
-call mvnw clean install -DskipTests=%SKIP_TESTS%
+call %MVNW% clean install -DskipTests=%SKIP_TESTS%
 
 call :ask
 
