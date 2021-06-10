@@ -42,6 +42,7 @@ public class Runner {
             URL = args[1];
         }
 
-        WebSocketRunner.runClient(URL, loadSolver(GAME), loadBoard(GAME));
+        String packageName = String.format("com.codenjoy.dojo.games.%s", GAME);
+        WebSocketRunner.runClient(URL, loadSolver(packageName), loadBoard(packageName));
     }
 }

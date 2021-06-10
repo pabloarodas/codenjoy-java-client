@@ -30,30 +30,29 @@ import java.lang.reflect.Modifier;
 
 public class ReflectLoader {
 
-    public static Solver loadSolver(String game) {
+    public static Solver loadSolver(String packageName) {
         try {
-            return (Solver) load(Solver.class, game)
+            return (Solver) load(Solver.class, packageName)
                     .getDeclaredConstructor(Dice.class)
                     .newInstance(new RandomDice());
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error loading Solver for game: " + game);
+            throw new RuntimeException("Error loading Solver for: " + packageName);
         }
     }
 
-    public static ClientBoard loadBoard(String game) {
+    public static ClientBoard loadBoard(String packageName) {
         try {
-            return (ClientBoard) load(ClientBoard.class, game)
+            return (ClientBoard) load(ClientBoard.class, packageName)
                     .getDeclaredConstructor()
                     .newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error loading Solver for game: " + game);
+            throw new RuntimeException("Error loading Solver for: " + packageName);
         }
     }
 
-    private static Class<?> load(Class<?> type, String game) {
-        String packageName = String.format("com.codenjoy.dojo.games.%s", game);
+    private static Class<?> load(Class<?> type, String packageName) {
         return new Reflections(packageName)
                 .getSubTypesOf(type)
                 .stream()
@@ -61,6 +60,6 @@ public class ReflectLoader {
                 .filter(clazz -> !Modifier.isInterface(clazz.getModifiers()))
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException(type.getSimpleName() + " not found for game: " + game));
+                .orElseThrow(() -> new RuntimeException(type.getSimpleName() + " not found for: " + packageName));
     }
 }
