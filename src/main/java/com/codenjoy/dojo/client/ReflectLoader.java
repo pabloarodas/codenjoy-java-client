@@ -22,63 +22,62 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
+import com.codenjoy.dojo.annotation.RunnerComponent;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.RandomDice;
 import org.reflections.Reflections;
 
-import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class ReflectLoader {
 
-    private static final String JAVA_PACKAGE_FORMAT = "com.codenjoy.dojo.games.%s";
-    private static final String SCALA_PACKAGE_FORMAT = "com.codenjoy.dojo.games.%s.scala";
-
     public static Solver loadJavaSolver(String game) {
-        return loadSolver(String.format(JAVA_PACKAGE_FORMAT, game));
+        return loadSolver(game, "java");
     }
 
     public static Solver loadScalaSolver(String game) {
-        return loadSolver(String.format(SCALA_PACKAGE_FORMAT, game));
+        return loadSolver(game, "scala");
     }
 
-    private static Solver loadSolver(String packageName) {
+    private static Solver loadSolver(String game, String language) {
         try {
-            return (Solver) load(Solver.class, packageName)
+            return (Solver) load(Solver.class, game, language)
                     .getDeclaredConstructor(Dice.class)
                     .newInstance(new RandomDice());
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error loading Solver for: " + packageName);
+            String message = "Error loading Solver for: " + game;
+            throw new RuntimeException(message, e);
         }
     }
 
     public static ClientBoard loadJavaBoard(String game) {
-        return loadBoard(String.format(JAVA_PACKAGE_FORMAT, game));
+        return loadBoard(game, "java");
     }
 
     public static ClientBoard loadScalaBoard(String game) {
-        return loadBoard(String.format(SCALA_PACKAGE_FORMAT, game));
+        return loadBoard(game, "scala");
     }
 
-    private static ClientBoard loadBoard(String packageName) {
+    private static ClientBoard loadBoard(String game, String language) {
         try {
-            return (ClientBoard) load(ClientBoard.class, packageName)
+            return (ClientBoard) load(ClientBoard.class, game, language)
                     .getDeclaredConstructor()
                     .newInstance();
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error loading Solver for: " + packageName);
+            String message = "Error loading Board for: " + game;
+            throw new RuntimeException(message, e);
         }
     }
 
-    private static Class<?> load(Class<?> type, String packageName) {
-        return new Reflections(packageName)
-                .getSubTypesOf(type)
-                .stream()
-                .filter(clazz -> !Modifier.isAbstract(clazz.getModifiers()))
-                .filter(clazz -> !Modifier.isInterface(clazz.getModifiers()))
-                .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
+    private static Class<?> load(Class<?> type, String game, String language) {
+        String packageName = String.format("com.codenjoy.dojo.games.%s", game);
+        return new Reflections(packageName).getSubTypesOf(type).stream()
+                .filter(clazz -> Arrays.stream(clazz.getDeclaredAnnotations())
+                        .filter(a -> a.annotationType().equals(RunnerComponent.class))
+                        .map(a -> (RunnerComponent) a)
+                        .anyMatch(a -> a.game().equals(game) && a.language().equals(language)))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException(type.getSimpleName() + " not found for: " + packageName));
+                .orElseThrow(() -> new NoSuchElementException(type.getSimpleName() + " not found for: " + game));
     }
 }
