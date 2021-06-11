@@ -23,7 +23,7 @@ package com.codenjoy.dojo.games.icancode;
  */
 
 
-import com.codenjoy.dojo.annotation.RunnerComponent;
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Point;
 
@@ -37,7 +37,7 @@ import java.util.List;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
-@RunnerComponent(game = "icancode")
+@Language
 public class YourSolver extends AbstractSolver {
 
     /**

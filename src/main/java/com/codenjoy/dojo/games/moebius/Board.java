@@ -23,12 +23,12 @@ package com.codenjoy.dojo.games.moebius;
  */
 
 
-import com.codenjoy.dojo.annotation.RunnerComponent;
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
 
 import static com.codenjoy.dojo.games.moebius.Element.EMPTY;
 
-@RunnerComponent(game = "moebius")
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

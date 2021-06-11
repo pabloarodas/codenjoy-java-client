@@ -23,7 +23,7 @@ package com.codenjoy.dojo.games.sudoku;
  */
 
 
-import com.codenjoy.dojo.annotation.RunnerComponent;
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
@@ -32,7 +32,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-@RunnerComponent(game = "sudoku")
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

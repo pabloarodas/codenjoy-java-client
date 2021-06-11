@@ -23,7 +23,7 @@ package com.codenjoy.dojo.games.sudoku;
  */
 
 
-import com.codenjoy.dojo.annotation.RunnerComponent;
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
 
@@ -35,7 +35,7 @@ import com.codenjoy.dojo.services.Dice;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
-@RunnerComponent(game = "sudoku")
+@Language
 public class YourSolver implements Solver<Board> {
 
     private Dice dice;

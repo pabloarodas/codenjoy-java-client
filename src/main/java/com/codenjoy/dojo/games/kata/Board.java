@@ -23,7 +23,7 @@ package com.codenjoy.dojo.games.kata;
  */
 
 
-import com.codenjoy.dojo.annotation.RunnerComponent;
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractTextBoard;
 
 /**
@@ -32,7 +32,7 @@ import com.codenjoy.dojo.client.AbstractTextBoard;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
-@RunnerComponent(game = "kata")
+@Language
 public class Board extends AbstractTextBoard {
 
     public String getData() {

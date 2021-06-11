@@ -23,7 +23,7 @@ package com.codenjoy.dojo.games.excitebike;
  */
 
 
-import com.codenjoy.dojo.annotation.RunnerComponent;
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
-@RunnerComponent(game = "excitebike")
+@Language
 public class Board extends AbstractBoard<CharElement> {
 
     private static final String OTHER_BIKE_PREFIX = "OTHER";

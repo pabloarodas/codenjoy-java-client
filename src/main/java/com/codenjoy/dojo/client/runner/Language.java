@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.annotation;
+package com.codenjoy.dojo.client.runner;
 
 /*-
  * #%L
@@ -26,17 +26,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface RunnerComponent {
-
-    /**
-     * Indicates to a certain game.
-     * @return name of game
-     */
-    String game();
+public @interface Language {
 
     /**
      * Indicates to a desirable JVM language
      * @return name of language
      */
-    String language() default "java";
+    String value() default "java";
 }

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client;
+package com.codenjoy.dojo.client.runner;
 
 /*-
  * #%L
@@ -22,7 +22,8 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
-import com.codenjoy.dojo.annotation.RunnerComponent;
+import com.codenjoy.dojo.client.ClientBoard;
+import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.RandomDice;
 import org.reflections.Reflections;
@@ -73,11 +74,16 @@ public class ReflectLoader {
     private static Class<?> load(Class<?> type, String game, String language) {
         String packageName = String.format("com.codenjoy.dojo.games.%s", game);
         return new Reflections(packageName).getSubTypesOf(type).stream()
-                .filter(clazz -> Arrays.stream(clazz.getDeclaredAnnotations())
-                        .filter(a -> a.annotationType().equals(RunnerComponent.class))
-                        .map(a -> (RunnerComponent) a)
-                        .anyMatch(a -> a.game().equals(game) && a.language().equals(language)))
+                .filter(clazz -> filterClazz(clazz, language))
+                .filter(clazz -> clazz.getCanonicalName().contains(game))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException(type.getSimpleName() + " not found for: " + game));
+    }
+
+    private static boolean filterClazz(Class<?> clazz, String language) {
+        return Arrays.stream(clazz.getDeclaredAnnotations())
+                .filter(a -> a.annotationType().equals(Language.class))
+                .map(a -> (Language) a)
+                .anyMatch(a -> a.value().equals(language));
     }
 }

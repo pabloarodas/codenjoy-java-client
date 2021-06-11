@@ -23,7 +23,7 @@ package com.codenjoy.dojo.games.tetris;
  */
 
 
-import com.codenjoy.dojo.annotation.RunnerComponent;
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractTextBoard;
 import com.codenjoy.dojo.services.Point;
 import org.json.JSONArray;
@@ -40,7 +40,7 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  * Содержит ряд унаследованных методов {@see AbstractTextBoard},
  * но ты можешь добавить сюда любые свои методы на их основе.
  */
-@RunnerComponent(game = "tetris")
+@Language
 public class Board extends AbstractTextBoard {
 
     public Point getCurrentFigurePoint() {
