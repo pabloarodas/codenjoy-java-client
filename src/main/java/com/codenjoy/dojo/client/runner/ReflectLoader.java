@@ -74,13 +74,13 @@ public class ReflectLoader {
     private static Class<?> load(Class<?> type, String game, String language) {
         String packageName = String.format("com.codenjoy.dojo.games.%s", game);
         return new Reflections(packageName).getSubTypesOf(type).stream()
-                .filter(clazz -> filterClazz(clazz, language))
+                .filter(clazz -> filterClazzByJvmLanguage(clazz, language))
                 .filter(clazz -> clazz.getCanonicalName().contains(game))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException(type.getSimpleName() + " not found for: " + game));
     }
 
-    private static boolean filterClazz(Class<?> clazz, String language) {
+    private static boolean filterClazzByJvmLanguage(Class<?> clazz, String language) {
         return Arrays.stream(clazz.getDeclaredAnnotations())
                 .filter(a -> a.annotationType().equals(Language.class))
                 .map(a -> (Language) a)
