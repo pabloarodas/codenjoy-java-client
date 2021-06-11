@@ -24,18 +24,18 @@ package com.codenjoy.dojo;
 
 import com.codenjoy.dojo.client.WebSocketRunner;
 
-import static com.codenjoy.dojo.client.ReflectLoader.loadJavaBoard;
-import static com.codenjoy.dojo.client.ReflectLoader.loadJavaSolver;
+import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaBoard;
+import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaSolver;
 
 public class Runner {
 
     // Select your game
-    public static String GAME = "bomberman";
+    public static String GAME = "tetris";
 
     // Paste here board page url from browser after registration,
     // or put it as command line parameter.
     public static String URL =
-            "http://codenjoy.com:80/codenjoy-contest/board/player/3edq63tw0bq4w4iem7nb?code=1234567890123456789";
+            "http://localhost:8080/codenjoy-contest/board/player/0?code=000000000000";
 
     public static void main(String[] args) {
         if (args != null && args.length == 2) {

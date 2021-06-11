@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.tetris;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractJsonSolver;
 import com.codenjoy.dojo.services.Dice;
 
@@ -34,6 +35,7 @@ import com.codenjoy.dojo.services.Dice;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
+@Language
 public class YourSolver extends AbstractJsonSolver<Board> {
 
     private Dice dice;
