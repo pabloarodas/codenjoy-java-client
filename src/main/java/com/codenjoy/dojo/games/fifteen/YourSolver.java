@@ -22,6 +22,7 @@ package com.codenjoy.dojo.games.fifteen;
  * #L%
  */
 
+import com.codenjoy.dojo.annotation.RunnerComponent;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.client.WebSocketRunner;
 import com.codenjoy.dojo.services.Dice;
@@ -36,6 +37,7 @@ import com.codenjoy.dojo.services.RandomDice;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
+@RunnerComponent(game = "fifteen")
 public class YourSolver implements Solver<Board> {
 
     private Dice dice;

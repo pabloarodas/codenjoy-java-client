@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.sampletext;
  */
 
 
+import com.codenjoy.dojo.annotation.RunnerComponent;
 import com.codenjoy.dojo.client.AbstractTextSolver;
 import com.codenjoy.dojo.client.WebSocketRunner;
 import com.codenjoy.dojo.services.Dice;
@@ -36,6 +37,7 @@ import com.codenjoy.dojo.services.RandomDice;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
+@RunnerComponent(game = "sampletext")
 public class YourSolver extends AbstractTextSolver {
 
     private Dice dice;

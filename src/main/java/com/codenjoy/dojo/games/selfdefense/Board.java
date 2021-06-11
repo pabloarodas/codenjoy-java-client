@@ -23,8 +23,10 @@ package com.codenjoy.dojo.games.selfdefense;
  */
 
 
+import com.codenjoy.dojo.annotation.RunnerComponent;
 import com.codenjoy.dojo.client.AbstractBoard;
 
+@RunnerComponent(game = "selfdefense")
 public class Board extends AbstractBoard<Element> {
 
     @Override

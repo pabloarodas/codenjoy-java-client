@@ -22,11 +22,13 @@ package com.codenjoy.dojo.games.quake2d;
  * #L%
  */
 
+import com.codenjoy.dojo.annotation.RunnerComponent;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
 import static com.codenjoy.dojo.games.quake2d.Element.*;
 
+@RunnerComponent(game = "quake2d")
 public class Board extends AbstractBoard<Element> {
 
     @Override

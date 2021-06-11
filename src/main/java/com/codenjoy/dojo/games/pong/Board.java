@@ -22,6 +22,7 @@ package com.codenjoy.dojo.games.pong;
  * #L%
  */
 
+import com.codenjoy.dojo.annotation.RunnerComponent;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
@@ -30,6 +31,7 @@ import java.util.List;
 import static com.codenjoy.dojo.games.pong.Element.BALL;
 import static com.codenjoy.dojo.games.pong.Element.HERO;
 
+@RunnerComponent(game = "pong")
 public class Board extends AbstractBoard<Element> {
 
     @Override

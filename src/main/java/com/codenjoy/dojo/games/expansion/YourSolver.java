@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.expansion;
  */
 
 
+import com.codenjoy.dojo.annotation.RunnerComponent;
 import com.codenjoy.dojo.services.*;
 
 import static com.codenjoy.dojo.games.expansion.Command.*;
@@ -36,6 +37,7 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
+@RunnerComponent(game = "expansion")
 public class YourSolver extends AbstractSolver {
 
     private Dice dice;

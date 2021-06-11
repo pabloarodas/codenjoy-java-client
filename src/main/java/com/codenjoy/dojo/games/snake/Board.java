@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.snake;
  */
 
 
+import com.codenjoy.dojo.annotation.RunnerComponent;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
@@ -33,6 +34,7 @@ import java.util.List;
 import static com.codenjoy.dojo.services.Direction.*;
 import static com.codenjoy.dojo.games.snake.Element.*;
 
+@RunnerComponent(game = "snake")
 public class Board extends AbstractBoard<Element> {
 
     @Override
