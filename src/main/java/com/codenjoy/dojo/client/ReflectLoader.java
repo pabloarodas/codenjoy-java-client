@@ -10,12 +10,12 @@ package com.codenjoy.dojo.client;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -30,30 +30,48 @@ import java.lang.reflect.Modifier;
 
 public class ReflectLoader {
 
-    public static Solver loadSolver(String game) {
+    private static final String JAVA_PACKAGE_FORMAT = "com.codenjoy.dojo.games.%s";
+    private static final String SCALA_PACKAGE_FORMAT = "com.codenjoy.dojo.games.%s.scala";
+
+    public static Solver loadJavaSolver(String game) {
+        return loadSolver(String.format(JAVA_PACKAGE_FORMAT, game));
+    }
+
+    public static Solver loadScalaSolver(String game) {
+        return loadSolver(String.format(SCALA_PACKAGE_FORMAT, game));
+    }
+
+    private static Solver loadSolver(String packageName) {
         try {
-            return (Solver) load(Solver.class, game)
+            return (Solver) load(Solver.class, packageName)
                     .getDeclaredConstructor(Dice.class)
                     .newInstance(new RandomDice());
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error loading Solver for game: " + game);
+            throw new RuntimeException("Error loading Solver for: " + packageName);
         }
     }
 
-    public static ClientBoard loadBoard(String game) {
+    public static ClientBoard loadJavaBoard(String game) {
+        return loadBoard(String.format(JAVA_PACKAGE_FORMAT, game));
+    }
+
+    public static ClientBoard loadScalaBoard(String game) {
+        return loadBoard(String.format(SCALA_PACKAGE_FORMAT, game));
+    }
+
+    private static ClientBoard loadBoard(String packageName) {
         try {
-            return (ClientBoard) load(ClientBoard.class, game)
+            return (ClientBoard) load(ClientBoard.class, packageName)
                     .getDeclaredConstructor()
                     .newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error loading Solver for game: " + game);
+            throw new RuntimeException("Error loading Solver for: " + packageName);
         }
     }
 
-    private static Class<?> load(Class<?> type, String game) {
-        String packageName = String.format("com.codenjoy.dojo.games.%s", game);
+    private static Class<?> load(Class<?> type, String packageName) {
         return new Reflections(packageName)
                 .getSubTypesOf(type)
                 .stream()
@@ -61,6 +79,6 @@ public class ReflectLoader {
                 .filter(clazz -> !Modifier.isInterface(clazz.getModifiers()))
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException(type.getSimpleName() + " not found for game: " + game));
+                .orElseThrow(() -> new RuntimeException(type.getSimpleName() + " not found for: " + packageName));
     }
 }
