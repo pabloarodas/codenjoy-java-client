@@ -2,3 +2,6 @@
 *.iml
 target
 /**/java-client.zip
+
+# macOS
+.DS_Store
