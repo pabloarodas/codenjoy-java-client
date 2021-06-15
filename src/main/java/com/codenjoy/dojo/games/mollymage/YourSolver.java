@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.bomberman;
+package com.codenjoy.dojo.games.mollymage;
 
 /*-
  * #%L

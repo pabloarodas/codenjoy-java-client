@@ -29,7 +29,7 @@ import static com.codenjoy.dojo.client.ReflectLoader.loadSolver;
 public class Runner {
 
     // Select your game
-    public static String GAME = "bomberman";
+    public static String GAME = "mollymage";
 
     // Paste here board page url from browser after registration,
     // or put it as command line parameter.

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.bomberman;
+package com.codenjoy.dojo.games.mollymage;
 
 /*-
  * #%L
@@ -62,11 +62,11 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Collection<Point> getBarriers() {
-        Collection<Point> all = getMeatChoppers();
+        Collection<Point> all = getGhosts();
         all.addAll(getWalls());
-        all.addAll(getBombs());
-        all.addAll(getDestroyableWalls());
-        all.addAll(getOtherBombermans());
+        all.addAll(getPotions());
+        all.addAll(getTreasureBoxes());
+        all.addAll(getOtherHeroes());
 
         return removeDuplicates(all);
     }
@@ -74,66 +74,66 @@ public class Board extends AbstractBoard<Element> {
     @Override
     public String toString() {
         return String.format("%s\n" +
-            "Bomberman at: %s\n" +
-            "Other bombermans at: %s\n" +
-            "Meat choppers at: %s\n" +
-            "Destroy walls at: %s\n" +
-            "Bombs at: %s\n" +
+            "Hero at: %s\n" +
+            "Other heroes at: %s\n" +
+            "Ghosts at: %s\n" +
+            "Treasure boxes at: %s\n" +
+            "Potions at: %s\n" +
             "Blasts: %s\n" +
             "Expected blasts at: %s",
                 boardAsString(),
-                getBomberman(),
-                getOtherBombermans(),
-                getMeatChoppers(),
-                getDestroyableWalls(),
-                getBombs(),
+                getHero(),
+                getOtherHeroes(),
+                getGhosts(),
+                getTreasureBoxes(),
+                getPotions(),
                 getBlasts(),
                 getFutureBlasts());
     }
 
-    public Point getBomberman() {
-        return get(Element.BOMBERMAN,
-                Element.BOMB_BOMBERMAN,
-                Element.DEAD_BOMBERMAN).get(0);
+    public Point getHero() {
+        return get(Element.HERO,
+                Element.POTION_HERO,
+                Element.DEAD_HERO).get(0);
     }
 
-    public Collection<Point> getOtherBombermans() {
-        return get(Element.OTHER_BOMBERMAN,
-                Element.OTHER_BOMB_BOMBERMAN,
-                Element.OTHER_DEAD_BOMBERMAN);
+    public Collection<Point> getOtherHeroes() {
+        return get(Element.OTHER_HERO,
+                Element.OTHER_POTION_HERO,
+                Element.OTHER_DEAD_HERO);
     }
 
     public boolean isGameOver() {
-        return !get(Element.DEAD_BOMBERMAN).isEmpty();
+        return !get(Element.DEAD_HERO).isEmpty();
     }
 
-    public Collection<Point> getMeatChoppers() {
-        return get(Element.MEAT_CHOPPER);
+    public Collection<Point> getGhosts() {
+        return get(Element.GHOST);
     }
 
     public Collection<Point> getWalls() {
         return get(Element.WALL);
     }
 
-    public Collection<Point> getDestroyableWalls() {
-        return get(Element.DESTROYABLE_WALL);
+    public Collection<Point> getTreasureBoxes() {
+        return get(Element.TREASURE_BOX);
     }
 
-    public Collection<Point> getBombs() {
-        return get(Element.BOMB_TIMER_1,
-                Element.BOMB_TIMER_2,
-                Element.BOMB_TIMER_3,
-                Element.BOMB_TIMER_4,
-                Element.BOMB_TIMER_5,
-                Element.BOMB_BOMBERMAN,
-                Element.OTHER_BOMB_BOMBERMAN);
+    public Collection<Point> getPotions() {
+        return get(Element.POTION_TIMER_1,
+                Element.POTION_TIMER_2,
+                Element.POTION_TIMER_3,
+                Element.POTION_TIMER_4,
+                Element.POTION_TIMER_5,
+                Element.POTION_HERO,
+                Element.OTHER_POTION_HERO);
     }
 
     public Collection<Point> getPerks() {
-        return get(Element.BOMB_COUNT_INCREASE,
-                Element.BOMB_REMOTE_CONTROL,
-                Element.BOMB_IMMUNE,
-                Element.BOMB_BLAST_RADIUS_INCREASE);
+        return get(Element.POTION_COUNT_INCREASE,
+                Element.POTION_REMOTE_CONTROL,
+                Element.POTION_IMMUNE,
+                Element.POTION_BLAST_RADIUS_INCREASE);
     }
 
     public Collection<Point> getBlasts() {
@@ -141,15 +141,15 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Collection<Point> getFutureBlasts() {        
-        Collection<Point> bombs = getBombs();
+        Collection<Point> potions = getPotions();
         Collection<Point> result = new LinkedList<>();
-        for (Point bomb : bombs) {
-            result.add(bomb);
+        for (Point potion : potions) {
+            result.add(potion);
             // TODO remove duplicate (check same logic inside parent isNear for example)
-            result.add(pt(bomb.getX() - 1, bomb.getY()));
-            result.add(pt(bomb.getX() + 1, bomb.getY()));
-            result.add(pt(bomb.getX(), bomb.getY() - 1));
-            result.add(pt(bomb.getX(), bomb.getY() + 1));
+            result.add(pt(potion.getX() - 1, potion.getY()));
+            result.add(pt(potion.getX() + 1, potion.getY()));
+            result.add(pt(potion.getX(), potion.getY() - 1));
+            result.add(pt(potion.getX(), potion.getY() + 1));
         }
         Collection<Point> result2 = new LinkedList<>();
         for (Point blast : result) {
