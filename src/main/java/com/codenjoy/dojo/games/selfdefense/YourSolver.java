@@ -23,12 +23,12 @@ package com.codenjoy.dojo.games.selfdefense;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.client.WebSocketRunner;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.RandomDice;
 
+@Language
 public class YourSolver implements Solver<Board> {
 
     private Dice dice;
@@ -45,14 +45,4 @@ public class YourSolver implements Solver<Board> {
 
         return Direction.UP.toString();
     }
-
-    public static void main(String[] args) {
-        WebSocketRunner.runClient(args,
-                // paste here board page url from browser after registration
-                // or put it as command line parameter
-                "http://codenjoy.com:80/codenjoy-contest/board/player/3edq63tw0bq4w4iem7nb?code=1234567890123456789",
-                new YourSolver(new RandomDice()),
-                new Board());
-    }
-
 }

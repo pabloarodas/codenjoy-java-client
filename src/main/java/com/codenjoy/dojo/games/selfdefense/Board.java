@@ -23,8 +23,10 @@ package com.codenjoy.dojo.games.selfdefense;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
 
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

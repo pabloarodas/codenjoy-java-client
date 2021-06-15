@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.hex;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
@@ -36,6 +37,7 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

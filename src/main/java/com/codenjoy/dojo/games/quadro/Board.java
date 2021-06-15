@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.quadro;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
 
 import static com.codenjoy.dojo.games.quadro.Element.RED;
@@ -32,6 +33,7 @@ import static com.codenjoy.dojo.games.quadro.Element.YELLOW;
  * Класс, обрабатывающий строковое представление доски.
  * Содержит ряд унаследованных методов {@see AbstractBoard}.
  */
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

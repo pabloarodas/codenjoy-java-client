@@ -1,10 +1,10 @@
-package com.codenjoy.dojo.games.sampletext;
+package com.codenjoy.dojo.client.runner;
 
 /*-
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2018 Codenjoy
+ * Copyright (C) 2018 - 2021 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,14 +22,18 @@ package com.codenjoy.dojo.games.sampletext;
  * #L%
  */
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import com.codenjoy.dojo.client.runner.Language;
-import com.codenjoy.dojo.client.AbstractTextBoard;
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Language {
 
-@Language
-public class Board extends AbstractTextBoard {
-
-    public String getData() {
-        return data;
-    }
+    /**
+     * Indicates to a desirable JVM language
+     * @return name of language
+     */
+    String value() default "java";
 }

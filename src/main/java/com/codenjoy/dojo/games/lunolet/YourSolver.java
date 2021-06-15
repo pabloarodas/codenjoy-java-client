@@ -23,11 +23,10 @@ package com.codenjoy.dojo.games.lunolet;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.client.WebSocketRunner;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.RandomDice;
 
 import java.awt.geom.Point2D;
 
@@ -39,6 +38,7 @@ import java.awt.geom.Point2D;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
+@Language
 public class YourSolver implements Solver<Board> {
 
     private Dice dice;
