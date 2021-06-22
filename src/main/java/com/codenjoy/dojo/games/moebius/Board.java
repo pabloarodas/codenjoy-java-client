@@ -23,12 +23,10 @@ package com.codenjoy.dojo.games.moebius;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
 
 import static com.codenjoy.dojo.games.moebius.Element.EMPTY;
 
-@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override
@@ -39,5 +37,4 @@ public class Board extends AbstractBoard<Element> {
     public boolean isGameOver() {
         return get(EMPTY).isEmpty();
     }
-
 }

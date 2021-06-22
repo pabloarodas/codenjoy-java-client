@@ -24,7 +24,6 @@ package com.codenjoy.dojo.games.kata;
 
 
 import com.codenjoy.dojo.Runner;
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.OneCommandSolver;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.client.WebSocketRunner;
@@ -37,7 +36,6 @@ import com.codenjoy.dojo.client.WebSocketRunner;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
-@Language
 public class YourSolver extends AbstractTextSolver {
 
     @Override

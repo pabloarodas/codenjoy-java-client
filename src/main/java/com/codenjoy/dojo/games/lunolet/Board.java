@@ -23,7 +23,6 @@ package com.codenjoy.dojo.games.lunolet;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractTextBoard;
 import com.codenjoy.dojo.client.ClientBoard;
 import org.json.JSONArray;
@@ -39,7 +38,6 @@ import java.util.List;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
-@Language
 public class Board extends AbstractTextBoard {
 
     protected JSONObject source;

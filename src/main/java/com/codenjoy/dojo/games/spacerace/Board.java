@@ -22,21 +22,19 @@ package com.codenjoy.dojo.games.spacerace;
  * #L%
  */
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.List;
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
 import static com.codenjoy.dojo.games.spacerace.Element.*;
+import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
  * Класс, обрабатывающий строковое представление доски.
  * Содержит ряд унаследованных методов {@see AbstractBoard},
  * но ты можешь добавить сюда любые свои методы на их основе.
  */
-@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

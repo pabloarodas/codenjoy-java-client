@@ -23,12 +23,10 @@ package com.codenjoy.dojo.games.selfdefense;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
-import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.Direction;
 
-@Language
 public class YourSolver implements Solver<Board> {
 
     private Dice dice;

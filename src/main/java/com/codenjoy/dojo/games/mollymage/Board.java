@@ -38,7 +38,6 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
-@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

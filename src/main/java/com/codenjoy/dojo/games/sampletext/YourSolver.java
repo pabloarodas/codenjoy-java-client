@@ -23,7 +23,6 @@ package com.codenjoy.dojo.games.sampletext;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractTextSolver;
 import com.codenjoy.dojo.services.Dice;
 
@@ -35,7 +34,6 @@ import com.codenjoy.dojo.services.Dice;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
-@Language
 public class YourSolver extends AbstractTextSolver {
 
     private Dice dice;

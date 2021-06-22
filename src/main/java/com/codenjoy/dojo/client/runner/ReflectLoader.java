@@ -28,10 +28,14 @@ import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.RandomDice;
 import org.reflections.Reflections;
 
-import java.util.Arrays;
-import java.util.NoSuchElementException;
+import java.lang.reflect.Modifier;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ReflectLoader {
+
+    private static final String PRIMARY_SOLVER_NAME = "YourSolver";
+    private static final String PRIMARY_BOARD_NAME = "Board";
 
     public static Solver loadJavaSolver(String game) {
         return loadSolver(game, "java");
@@ -43,7 +47,7 @@ public class ReflectLoader {
 
     private static Solver loadSolver(String game, String language) {
         try {
-            return (Solver) load(Solver.class, game, language)
+            return (Solver) load(Solver.class, game, language, PRIMARY_SOLVER_NAME)
                     .getDeclaredConstructor(Dice.class)
                     .newInstance(new RandomDice());
         } catch (Exception e) {
@@ -62,7 +66,7 @@ public class ReflectLoader {
 
     private static ClientBoard loadBoard(String game, String language) {
         try {
-            return (ClientBoard) load(ClientBoard.class, game, language)
+            return (ClientBoard) load(ClientBoard.class, game, language, PRIMARY_BOARD_NAME)
                     .getDeclaredConstructor()
                     .newInstance();
         } catch (Exception e) {
@@ -71,19 +75,32 @@ public class ReflectLoader {
         }
     }
 
-    private static Class<?> load(Class<?> type, String game, String language) {
+    private static Class<?> load(Class<?> type, String game, String language, String primarySimpleName) {
         String packageName = String.format("com.codenjoy.dojo.games.%s", game);
-        return new Reflections(packageName).getSubTypesOf(type).stream()
-                .filter(clazz -> filterClazzByJvmLanguage(clazz, language))
+        List<Class<?>> candidates = new Reflections(packageName).getSubTypesOf(type).stream()
+                .filter(clazz -> !Modifier.isAbstract(clazz.getModifiers()))
+                .filter(clazz -> !Modifier.isInterface(clazz.getModifiers()))
+                .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
                 .filter(clazz -> clazz.getCanonicalName().contains(game))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException(type.getSimpleName() + " not found for: " + game));
+                .filter(clazz -> filterClazzByJvmLanguage(clazz, language))
+                .sorted(Comparator.comparing(Class::getSimpleName))
+                .collect(Collectors.toList());
+        if (candidates.isEmpty()) {
+            throw new NoSuchElementException(type.getSimpleName() + " not found for: " + game);
+        }
+        return candidates.stream()
+                .filter(clazz -> clazz.getSimpleName().equals(primarySimpleName))
+                .findFirst().orElseGet(() -> candidates.get(0));
     }
 
     private static boolean filterClazzByJvmLanguage(Class<?> clazz, String language) {
-        return Arrays.stream(clazz.getDeclaredAnnotations())
+        Optional<Language> langAnnotation = Arrays.stream(clazz.getDeclaredAnnotations())
                 .filter(a -> a.annotationType().equals(Language.class))
                 .map(a -> (Language) a)
-                .anyMatch(a -> a.value().equals(language));
+                .findFirst();
+        if ("java".equals(language) && langAnnotation.isEmpty()) {
+            return true;
+        }
+        return langAnnotation.isPresent() && langAnnotation.get().value().equals(language);
     }
 }

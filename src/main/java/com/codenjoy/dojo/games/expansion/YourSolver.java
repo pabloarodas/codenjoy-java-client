@@ -23,10 +23,10 @@ package com.codenjoy.dojo.games.expansion;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
-import com.codenjoy.dojo.services.*;
+import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.QDirection;
 
-import static com.codenjoy.dojo.games.expansion.Command.*;
+import static com.codenjoy.dojo.games.expansion.Command.doNothing;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
@@ -37,7 +37,6 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  * Pay attention to {@see YourSolverTest} - there is
  * a test framework for you.
  */
-@Language
 public class YourSolver extends AbstractSolver {
 
     private Dice dice;
