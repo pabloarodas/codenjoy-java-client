@@ -23,8 +23,8 @@ package com.codenjoy.dojo.games.excitebike;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
+import com.codenjoy.dojo.client.runner.GameBoard;
 import com.codenjoy.dojo.games.excitebike.element.BikeElement;
 import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
@@ -32,7 +32,8 @@ import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -41,7 +42,7 @@ import java.util.stream.Collectors;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
-@Language
+@GameBoard
 public class Board extends AbstractBoard<CharElement> {
 
     private static final String OTHER_BIKE_PREFIX = "OTHER";

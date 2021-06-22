@@ -23,8 +23,8 @@ package com.codenjoy.dojo.games.mollymage;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
+import com.codenjoy.dojo.client.runner.GameBoard;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.Collection;
@@ -38,7 +38,7 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
-@Language
+@GameBoard
 public class Board extends AbstractBoard<Element> {
 
     @Override

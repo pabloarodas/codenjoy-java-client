@@ -29,11 +29,10 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Language {
-
+public @interface GameBoard {
     /**
      * Indicates to a desirable JVM language
      * @return name of language
      */
-    String value() default "java";
+    String lang() default "java";
 }

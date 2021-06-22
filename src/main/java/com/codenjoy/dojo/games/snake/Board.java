@@ -23,18 +23,18 @@ package com.codenjoy.dojo.games.snake;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
+import com.codenjoy.dojo.client.runner.GameBoard;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.codenjoy.dojo.services.Direction.*;
 import static com.codenjoy.dojo.games.snake.Element.*;
+import static com.codenjoy.dojo.services.Direction.*;
 
-@Language
+@GameBoard
 public class Board extends AbstractBoard<Element> {
 
     @Override

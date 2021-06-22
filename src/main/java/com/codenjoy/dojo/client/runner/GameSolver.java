@@ -1,10 +1,10 @@
-package com.codenjoy.dojo.games.rubicscube;
+package com.codenjoy.dojo.client.runner;
 
 /*-
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2018 Codenjoy
+ * Copyright (C) 2018 - 2021 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,30 +22,17 @@ package com.codenjoy.dojo.games.rubicscube;
  * #L%
  */
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.client.runner.GameBoard;
-
-@GameBoard
-public class Board extends AbstractBoard<Element> {
-
-    private static final int LAYER1 = 0;
-
-    @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
-    }
-
-    @Override
-    public String toString() {
-        StringBuffer result = new StringBuffer();
-        for (int y = 0; y < size - 3; y++) {
-            for (int x = 0; x < size; x++) {
-                result.append(field[LAYER1][x][y]);
-            }
-            result.append("\n");
-        }
-        return result.toString();
-    }
-
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface GameSolver {
+    /**
+     * Indicates to a desirable JVM language
+     * @return name of language
+     */
+    String lang() default "java";
 }

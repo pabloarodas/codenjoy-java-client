@@ -23,15 +23,15 @@ package com.codenjoy.dojo.games.startandjump;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
+import com.codenjoy.dojo.client.runner.GameBoard;
 
 /**
  * Класс, обрабатывающий строковое представление доски.
  * Содержит ряд унаследованных методов {@see AbstractBoard},
  * но ты можешь добавить сюда любые свои методы на их основе.
  */
-@Language
+@GameBoard
 public class Board extends AbstractBoard<Element> {
 
     @Override

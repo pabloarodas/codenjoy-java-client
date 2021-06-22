@@ -23,10 +23,10 @@ package com.codenjoy.dojo.games.sampletext;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractTextBoard;
+import com.codenjoy.dojo.client.runner.GameBoard;
 
-@Language
+@GameBoard
 public class Board extends AbstractTextBoard {
 
     public String getData() {
