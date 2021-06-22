@@ -23,8 +23,8 @@ package com.codenjoy.dojo.games.icancode;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.client.runner.GameBoard;
 import com.codenjoy.dojo.services.Point;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
@@ -42,7 +42,7 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  * inherited methods {@see AbstractBoard},
  * but you can add any methods based on them here.
  */
-@GameBoard
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

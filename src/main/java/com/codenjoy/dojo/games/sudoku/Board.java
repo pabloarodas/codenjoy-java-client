@@ -23,8 +23,8 @@ package com.codenjoy.dojo.games.sudoku;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.client.runner.GameBoard;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.Arrays;
@@ -32,7 +32,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-@GameBoard
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

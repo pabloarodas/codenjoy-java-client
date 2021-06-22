@@ -22,12 +22,12 @@ package com.codenjoy.dojo.games.pong;
  * #L%
  */
 
-import com.codenjoy.dojo.client.runner.GameSolver;
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
 
-@GameSolver
+@Language
 public class YourSolver implements Solver<Board> {
 
     private Dice dice;

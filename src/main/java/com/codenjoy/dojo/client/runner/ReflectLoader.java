@@ -10,12 +10,12 @@ package com.codenjoy.dojo.client.runner;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -28,14 +28,10 @@ import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.RandomDice;
 import org.reflections.Reflections;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.function.UnaryOperator;
 
 public class ReflectLoader {
-
-    private static final UnaryOperator<String> GAME_PACKAGE_RESOLVER =
-            game -> String.format("com.codenjoy.dojo.games.%s", game);
 
     public static Solver loadJavaSolver(String game) {
         return loadSolver(game, "java");
@@ -47,13 +43,8 @@ public class ReflectLoader {
 
     private static Solver loadSolver(String game, String language) {
         try {
-            String gamePackage = GAME_PACKAGE_RESOLVER.apply(game);
-            Class<?> solver = new Reflections(gamePackage).getSubTypesOf(Solver.class).stream()
-                    .filter(clazz -> clazz.getCanonicalName().contains(game))
-                    .filter(clazz -> Objects.nonNull(clazz.getAnnotation(GameSolver.class)))
-                    .filter(clazz -> language.equals(clazz.getAnnotation(GameSolver.class).lang()))
-                    .findFirst().orElseThrow(NoSuchElementException::new);
-            return (Solver) solver.getDeclaredConstructor(Dice.class)
+            return (Solver) load(Solver.class, game, language)
+                    .getDeclaredConstructor(Dice.class)
                     .newInstance(new RandomDice());
         } catch (Exception e) {
             String message = "Error loading Solver for: " + game;
@@ -71,17 +62,28 @@ public class ReflectLoader {
 
     private static ClientBoard loadBoard(String game, String language) {
         try {
-            String gamePackage = GAME_PACKAGE_RESOLVER.apply(game);
-            Class<?> board = new Reflections(gamePackage).getSubTypesOf(ClientBoard.class).stream()
-                    .filter(clazz -> clazz.getCanonicalName().contains(game))
-                    .filter(clazz -> Objects.nonNull(clazz.getAnnotation(GameBoard.class)))
-                    .filter(clazz -> language.equals(clazz.getAnnotation(GameBoard.class).lang()))
-                    .findFirst().orElseThrow(NoSuchElementException::new);
-            return (ClientBoard) board.getDeclaredConstructor()
+            return (ClientBoard) load(ClientBoard.class, game, language)
+                    .getDeclaredConstructor()
                     .newInstance();
         } catch (Exception e) {
             String message = "Error loading Board for: " + game;
             throw new RuntimeException(message, e);
         }
+    }
+
+    private static Class<?> load(Class<?> type, String game, String language) {
+        String packageName = String.format("com.codenjoy.dojo.games.%s", game);
+        return new Reflections(packageName).getSubTypesOf(type).stream()
+                .filter(clazz -> filterClazzByJvmLanguage(clazz, language))
+                .filter(clazz -> clazz.getCanonicalName().contains(game))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException(type.getSimpleName() + " not found for: " + game));
+    }
+
+    private static boolean filterClazzByJvmLanguage(Class<?> clazz, String language) {
+        return Arrays.stream(clazz.getDeclaredAnnotations())
+                .filter(a -> a.annotationType().equals(Language.class))
+                .map(a -> (Language) a)
+                .anyMatch(a -> a.value().equals(language));
     }
 }

@@ -23,8 +23,8 @@ package com.codenjoy.dojo.games.puzzlebox;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.client.runner.GameBoard;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.List;
@@ -32,7 +32,7 @@ import java.util.List;
 import static com.codenjoy.dojo.games.puzzlebox.Element.BOX;
 import static com.codenjoy.dojo.games.puzzlebox.Element.WALL;
 
-@GameBoard
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

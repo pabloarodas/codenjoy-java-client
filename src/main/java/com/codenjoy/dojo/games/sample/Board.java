@@ -23,8 +23,8 @@ package com.codenjoy.dojo.games.sample;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.client.runner.GameBoard;
 import com.codenjoy.dojo.services.Point;
 
 import static com.codenjoy.dojo.games.sample.Element.*;
@@ -34,7 +34,7 @@ import static com.codenjoy.dojo.games.sample.Element.*;
  * Содержит ряд унаследованных методов {@see AbstractBoard},
  * но ты можешь добавить сюда любые свои методы на их основе.
  */
-@GameBoard
+@Language
 public class Board extends AbstractBoard<Element> {
 
     @Override

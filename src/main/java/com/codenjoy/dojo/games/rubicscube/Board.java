@@ -23,10 +23,10 @@ package com.codenjoy.dojo.games.rubicscube;
  */
 
 
+import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.client.runner.GameBoard;
 
-@GameBoard
+@Language
 public class Board extends AbstractBoard<Element> {
 
     private static final int LAYER1 = 0;
