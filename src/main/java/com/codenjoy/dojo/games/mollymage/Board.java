@@ -68,6 +68,7 @@ public class Board extends AbstractBoard<Element> {
         all.addAll(getPotions());
         all.addAll(getTreasureBoxes());
         all.addAll(getOtherHeroes());
+        all.addAll(getEnemyHeroes());
 
         return removeDuplicates(all);
     }
@@ -77,6 +78,7 @@ public class Board extends AbstractBoard<Element> {
         return String.format("%s\n" +
             "Hero at: %s\n" +
             "Other heroes at: %s\n" +
+            "Enemy heroes at: %s\n" +
             "Ghosts at: %s\n" +
             "Treasure boxes at: %s\n" +
             "Potions at: %s\n" +
@@ -85,6 +87,7 @@ public class Board extends AbstractBoard<Element> {
                 boardAsString(),
                 getHero(),
                 getOtherHeroes(),
+                getEnemyHeroes(),
                 getGhosts(),
                 getTreasureBoxes(),
                 getPotions(),
@@ -102,6 +105,12 @@ public class Board extends AbstractBoard<Element> {
         return get(Element.OTHER_HERO,
                 Element.OTHER_POTION_HERO,
                 Element.OTHER_DEAD_HERO);
+    }
+
+    public Collection<Point> getEnemyHeroes() {
+        return get(Element.ENEMY_HERO,
+                Element.ENEMY_POTION_HERO,
+                Element.ENEMY_DEAD_HERO);
     }
 
     public boolean isGameOver() {
@@ -127,7 +136,8 @@ public class Board extends AbstractBoard<Element> {
                 Element.POTION_TIMER_4,
                 Element.POTION_TIMER_5,
                 Element.POTION_HERO,
-                Element.OTHER_POTION_HERO);
+                Element.OTHER_POTION_HERO,
+                Element.ENEMY_POTION_HERO);
     }
 
     public Collection<Point> getPerks() {
