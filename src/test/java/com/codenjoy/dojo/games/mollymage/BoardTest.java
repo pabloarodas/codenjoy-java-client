@@ -72,10 +72,7 @@ public class BoardTest {
                 "Treasure boxes at: [[1,5], [1,6]]\n" +
                 "Potions at: [[1,7], [2,6], [3,5], [4,4], [7,3], [7,5], [7,7]]\n" +
                 "Blasts: [[5,2], [6,2], [7,2]]\n" +
-                "Expected blasts at: [[1,6], [1,7], [2,5], [2,6], " +
-                        "[2,7], [3,4], [3,5], [3,6], [4,3], [4,4], [4,5], " +
-                        "[5,4], [6,3], [6,5], [6,7], [7,2], [7,3], [7,4], " +
-                        "[7,5], [7,6], [7,7]]", board.toString());
+                "Expected blasts at: [[2,7]]", board.toString());
     }
 
     @Test
@@ -177,9 +174,7 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getFutureBlasts() {
-        assertEquals("[[1,6], [1,7], [2,5], [2,6], [2,7], [3,4], [3,5], [3,6], " +
-                "[4,3], [4,4], [4,5], [5,4], [6,3], [6,5], [6,7], [7,2], [7,3], " +
-                "[7,4], [7,5], [7,6], [7,7]]", board.getFutureBlasts().toString());
+        assertEquals("[[2,7]]", board.getFutureBlasts().toString());
     }
 
     @Test

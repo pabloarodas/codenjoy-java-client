@@ -23,12 +23,13 @@ package com.codenjoy.dojo.games.mollymage;
  */
 
 
-import com.codenjoy.dojo.client.runner.Language;
 import com.codenjoy.dojo.client.AbstractBoard;
+import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
@@ -39,6 +40,8 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  * but you can add any methods based on them here.
  */
 public class Board extends AbstractBoard<Element> {
+
+    private static final int BLAST_RANGE = 3;
 
     @Override
     public Element valueOf(char ch) {
@@ -151,25 +154,32 @@ public class Board extends AbstractBoard<Element> {
         return get(Element.BOOM);
     }
 
-    public Collection<Point> getFutureBlasts() {        
-        Collection<Point> potions = getPotions();
-        Collection<Point> result = new LinkedList<>();
-        for (Point potion : potions) {
-            result.add(potion);
-            // TODO remove duplicate (check same logic inside parent isNear for example)
-            result.add(pt(potion.getX() - 1, potion.getY()));
-            result.add(pt(potion.getX() + 1, potion.getY()));
-            result.add(pt(potion.getX(), potion.getY() - 1));
-            result.add(pt(potion.getX(), potion.getY() + 1));
+    public Collection<Point> getFutureBlasts() {
+        List<Point> blasts = new ArrayList<>();
+        for (Point point : get(Element.POTION_TIMER_1)) {
+            blasts.addAll(getFutureBlasts(point, Direction.RIGHT));
+            blasts.addAll(getFutureBlasts(point, Direction.LEFT));
+            blasts.addAll(getFutureBlasts(point, Direction.UP));
+            blasts.addAll(getFutureBlasts(point, Direction.DOWN));
         }
-        Collection<Point> result2 = new LinkedList<>();
-        for (Point blast : result) {
-            if (blast.isOutOf(size) || getWalls().contains(blast)) {
-                continue;
+        return blasts;
+    }
+
+    private Collection<Point> getFutureBlasts(Point pt, Direction direction) {
+        Collection<Point> barriers = getBarriers();
+
+        Collection<Point> points = new ArrayList<>();
+        for (int i = 1; i < BLAST_RANGE; i++) {
+            pt = direction.change(pt);
+            if (pt.isOutOf(size)) {
+                break;
             }
-            result2.add(blast);
+            if (barriers.contains(pt)) {
+                break;
+            }
+            points.add(pt);
         }
-        return removeDuplicates(result2);
+        return points;
     }
 
     public boolean isBarrierAt(int x, int y) { // TODO remove this method
@@ -179,5 +189,5 @@ public class Board extends AbstractBoard<Element> {
     public boolean isBarrierAt(Point point) {
         return isBarrierAt(point.getX(), point.getY());
     }
-    
+
 }
