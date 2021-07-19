@@ -169,7 +169,7 @@ public class Board extends AbstractBoard<Element> {
         Collection<Point> barriers = getBarriers();
 
         Collection<Point> points = new ArrayList<>();
-        for (int i = 1; i < BLAST_RANGE; i++) {
+        for (int i = 1; i <= BLAST_RANGE; i++) {
             pt = direction.change(pt);
             if (pt.isOutOf(size)) {
                 break;
