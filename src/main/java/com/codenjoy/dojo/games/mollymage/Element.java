@@ -98,6 +98,10 @@ public enum Element implements CharElement {
     // (own potion and others as well). Temporary.
     POTION_IMMUNE('i'),
 
+    // Hero can shoot by poison cloud
+    // Temporary.
+    POISON_THROWER('T'),
+
 /// a void
 
     // This is the only place where you can move your Molly.
@@ -154,7 +158,8 @@ public enum Element implements CharElement {
                 POTION_BLAST_RADIUS_INCREASE,
                 POTION_COUNT_INCREASE,
                 POTION_IMMUNE,
-                POTION_REMOTE_CONTROL
+                POTION_REMOTE_CONTROL,
+                POISON_THROWER
         );
     }
 
