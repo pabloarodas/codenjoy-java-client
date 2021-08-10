@@ -251,5 +251,10 @@ public class BoardTest {
         assertEquals(false, board.isGameOver());
         assertEquals(true, board("Ѡ").isGameOver());
     }
-    
+
+    @Test
+    public void shouldWork_getAllPerks() {
+        board.forString("#cr" + "#i+" + "#T#");
+        assertEquals("[[1,0], [1,1], [1,2], [2,1], [2,2]]", board.getPerks().toString());
+    }
 }
