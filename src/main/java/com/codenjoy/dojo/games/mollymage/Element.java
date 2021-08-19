@@ -99,10 +99,12 @@ public enum Element implements CharElement {
     POTION_IMMUNE('i'),
 
     // Hero can shoot by poison cloud
+    // Using: ACT(1)
     // Temporary.
     POISON_THROWER('T'),
 
     // Hero can explode all potions on the field
+    // Using: ACT(2)
     // Temporary.
     POTION_EXPLODER('A'),
 
@@ -163,7 +165,8 @@ public enum Element implements CharElement {
                 POTION_COUNT_INCREASE,
                 POTION_IMMUNE,
                 POTION_REMOTE_CONTROL,
-                POISON_THROWER
+                POISON_THROWER,
+                POTION_EXPLODER
         );
     }
 

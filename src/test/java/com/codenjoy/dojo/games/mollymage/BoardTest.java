@@ -254,7 +254,7 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getAllPerks() {
-        board.forString("#cr" + "#i+" + "#T#");
-        assertEquals("[[1,0], [1,1], [1,2], [2,1], [2,2]]", board.getPerks().toString());
+        board.forString("#cr" + "#i+" + "#TA");
+        assertEquals("[[1,0], [1,1], [1,2], [2,0], [2,1], [2,2]]", board.getPerks().toString());
     }
 }

@@ -148,7 +148,8 @@ public class Board extends AbstractBoard<Element> {
                 Element.POTION_REMOTE_CONTROL,
                 Element.POTION_IMMUNE,
                 Element.POTION_BLAST_RADIUS_INCREASE,
-                Element.POISON_THROWER);
+                Element.POISON_THROWER,
+                Element.POTION_EXPLODER);
     }
 
     public Collection<Point> getBlasts() {
