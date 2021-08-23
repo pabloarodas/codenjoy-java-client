@@ -24,11 +24,15 @@ package com.codenjoy.dojo.services;
 
 import org.json.JSONObject;
 
+import java.util.function.BiConsumer;
+
 /**
  * Каждый объект на поле имеет свои координаты. Этот класс обычно используется дял указания координат или как родитель.
  * Может использоваться в коллекциях.
  */
 public class PointImpl implements Point, Comparable<Point> {
+
+    private BiConsumer<Point, Point> onChange;
 
     protected int x;
     protected int y;
@@ -48,6 +52,17 @@ public class PointImpl implements Point, Comparable<Point> {
 
     public PointImpl(JSONObject json) {
         this(json.getInt("x"), json.getInt("y"));
+    }
+
+    public void onChange(BiConsumer<Point, Point> onChange) {
+        this.onChange = onChange;
+    }
+
+
+    private void fireOnChange(Point from) {
+        if (onChange != null) {
+            onChange.accept(from, this);
+        }
     }
 
     @Override
@@ -119,24 +134,35 @@ public class PointImpl implements Point, Comparable<Point> {
 
     @Override
     public void setX(int x) {
+        Point old = this.copy();
+
         this.x = x;
+
+        fireOnChange(old);
     }
 
     @Override
     public void setY(int y) {
+        Point old = this.copy();
+
         this.y = y;
+
+        fireOnChange(old);
     }
 
     @Override
     public void move(int x, int y) {
+        Point from = this.copy();
+
         this.x = x;
         this.y = y;
+
+        fireOnChange(from);
     }
 
     @Override
     public void move(Point pt) {
-        this.x = pt.getX();
-        this.y = pt.getY();
+        move(pt.getX(), pt.getY());
     }
 
     @Override
@@ -146,8 +172,8 @@ public class PointImpl implements Point, Comparable<Point> {
 
     @Override
     public void moveDelta(Point delta) {
-        x += delta.getX();
-        y += delta.getY();
+        move(x + delta.getX(),
+            y + delta.getY());
     }
 
     @Override

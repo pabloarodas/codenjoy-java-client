@@ -23,6 +23,8 @@ package com.codenjoy.dojo.services;
  */
 
 
+import java.util.function.BiConsumer;
+
 /**
  * Encapsulates coordinate of Element at the Board. All Board elements must extends from PointImpl,
  * realized from of this interface.
@@ -117,4 +119,6 @@ public interface Point extends Comparable<Point> {
      * Returns Null if points are not neighbours.
      */
     Direction direction(Point to);
+
+    void onChange(BiConsumer<Point, Point> onChange);
 }

@@ -26,6 +26,7 @@ package com.codenjoy.dojo.services;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 
 import static com.codenjoy.dojo.services.Direction.*;
@@ -61,7 +62,7 @@ public class PointImplTest {
     }
 
     @Test
-     public void shouldCopyConstructor() {
+    public void shouldCopyConstructor() {
         Point pt = new PointImpl(pt(10, 12));
 
         assertEquals("[10,12]", pt.toString());
@@ -194,6 +195,44 @@ public class PointImplTest {
     }
 
     @Test
+    public void shouldMove_onChange() {
+        AtomicBoolean changed = new AtomicBoolean(false);
+        Point pt = pt(10, 15);
+
+        pt.onChange((from, to) -> {
+            assertEquals("[10,15]", from.toString());
+            assertEquals("[20,23]", to.toString());
+            changed.set(true);
+        });
+
+        pt.move(pt(20, 23));
+
+        assertEquals(true, changed.get());
+    }
+
+    @Test
+    public void shouldOnlyLastOnChangeWillProcessed() {
+        AtomicBoolean changed1 = new AtomicBoolean(false);
+        AtomicBoolean changed2 = new AtomicBoolean(false);
+        Point pt = pt(10, 15);
+
+        pt.onChange((from, to) -> {
+            changed1.set(true);
+        });
+
+        pt.onChange((from, to) -> {
+            assertEquals("[10,15]", from.toString());
+            assertEquals("[20,23]", to.toString());
+            changed2.set(true);
+        });
+
+        pt.move(pt(20, 23));
+
+        assertEquals(false, changed1.get());
+        assertEquals(true, changed2.get());
+    }
+
+    @Test
     public void shouldMoveDirection() {
         Point pt = pt(10, 15);
 
@@ -212,6 +251,22 @@ public class PointImplTest {
         pt.move(RIGHT);
 
         assertEquals("[10,15]", pt.toString());
+    }
+
+    @Test
+    public void shouldMoveDirection_onChange() {
+        AtomicBoolean changed = new AtomicBoolean(false);
+        Point pt = pt(10, 15);
+
+        pt.onChange((from, to) -> {
+            assertEquals("[10,15]", from.toString());
+            assertEquals("[10,16]", to.toString());
+            changed.set(true);
+        });
+
+        pt.move(UP);
+
+        assertEquals(true, changed.get());
     }
 
     @Test
@@ -252,6 +307,22 @@ public class PointImplTest {
     }
 
     @Test
+    public void shouldMoveQDirection_onChange() {
+        AtomicBoolean changed = new AtomicBoolean(false);
+        Point pt = pt(10, 15);
+
+        pt.onChange((from, to) -> {
+            assertEquals("[10,15]", from.toString());
+            assertEquals("[9,14]", to.toString());
+            changed.set(true);
+        });
+
+        pt.move(QDirection.LEFT_DOWN);
+
+        assertEquals(true, changed.get());
+    }
+
+    @Test
     public void shouldDefaultConstructor() {
         Point pt = new PointImpl();
 
@@ -274,6 +345,38 @@ public class PointImplTest {
     }
 
     @Test
+    public void shouldSetX_onChange() {
+        AtomicBoolean changed = new AtomicBoolean(false);
+        Point pt = pt(10, 15);
+
+        pt.onChange((from, to) -> {
+            assertEquals("[10,15]", from.toString());
+            assertEquals("[20,15]", to.toString());
+            changed.set(true);
+        });
+
+        pt.setX(20);
+
+        assertEquals(true, changed.get());
+    }
+
+    @Test
+    public void shouldSetY_onChange() {
+        AtomicBoolean changed = new AtomicBoolean(false);
+        Point pt = pt(10, 15);
+
+        pt.onChange((from, to) -> {
+            assertEquals("[10,15]", from.toString());
+            assertEquals("[10,20]", to.toString());
+            changed.set(true);
+        });
+
+        pt.setY(20);
+
+        assertEquals(true, changed.get());
+    }
+
+    @Test
     public void shouldCopy() {
         Point pt = pt(10, 15);
 
@@ -291,6 +394,22 @@ public class PointImplTest {
         pt.moveDelta(pt(12, -23));
 
         assertEquals("[22,-8]", pt.toString());
+    }
+
+    @Test
+    public void shouldMoveDelta_onChange() {
+        AtomicBoolean changed = new AtomicBoolean(false);
+        Point pt = pt(10, 15);
+
+        pt.onChange((from, to) -> {
+            assertEquals("[10,15]", from.toString());
+            assertEquals("[22,-8]", to.toString());
+            changed.set(true);
+        });
+
+        pt.moveDelta(pt(12, -23));
+
+        assertEquals(true, changed.get());
     }
 
     @Test
