@@ -24,6 +24,7 @@ package com.codenjoy.dojo.services;
 
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /**
  * Encapsulates coordinate of Element at the Board. All Board elements must extends from PointImpl,
@@ -58,6 +59,8 @@ public interface Point extends Comparable<Point> {
     void setX(int x);
 
     void setY(int y);
+
+    void beforeChange(Consumer<Point> beforeChange);
 
     /**
      * @return true if points has equals X and Y coordinates.

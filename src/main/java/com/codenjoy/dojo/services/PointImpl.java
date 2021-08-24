@@ -25,6 +25,7 @@ package com.codenjoy.dojo.services;
 import org.json.JSONObject;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /**
  * Каждый объект на поле имеет свои координаты. Этот класс обычно используется дял указания координат или как родитель.
@@ -32,6 +33,7 @@ import java.util.function.BiConsumer;
  */
 public class PointImpl implements Point, Comparable<Point> {
 
+    private Consumer<Point> beforeChange;
     private BiConsumer<Point, Point> onChange;
 
     protected int x;
@@ -54,10 +56,21 @@ public class PointImpl implements Point, Comparable<Point> {
         this(json.getInt("x"), json.getInt("y"));
     }
 
+    @Override
     public void onChange(BiConsumer<Point, Point> onChange) {
         this.onChange = onChange;
     }
 
+    @Override
+    public void beforeChange(Consumer<Point> beforeChange) {
+        this.beforeChange = beforeChange;
+    }
+
+    private void fireBeforeChange() {
+        if (beforeChange != null) {
+            beforeChange.accept(this);
+        }
+    }
 
     private void fireOnChange(Point from) {
         if (onChange != null) {
@@ -136,6 +149,8 @@ public class PointImpl implements Point, Comparable<Point> {
     public void setX(int x) {
         Point old = this.copy();
 
+        fireBeforeChange();
+
         this.x = x;
 
         fireOnChange(old);
@@ -145,6 +160,8 @@ public class PointImpl implements Point, Comparable<Point> {
     public void setY(int y) {
         Point old = this.copy();
 
+        fireBeforeChange();
+
         this.y = y;
 
         fireOnChange(old);
@@ -153,6 +170,8 @@ public class PointImpl implements Point, Comparable<Point> {
     @Override
     public void move(int x, int y) {
         Point from = this.copy();
+
+        fireBeforeChange();
 
         this.x = x;
         this.y = y;
