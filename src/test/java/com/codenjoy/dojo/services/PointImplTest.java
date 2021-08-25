@@ -169,6 +169,46 @@ public class PointImplTest {
     }
 
     @Test
+    public void shouldIsOutOfDelta_from0_staticMethod() {
+        int x = 1;
+        int y = 5;
+
+        assertFalse(Point.isOutOf(x, y, 0, 0, 20));
+        assertFalse(Point.isOutOf(x, y, 1, 0, 20));
+        assertTrue(Point.isOutOf(x, y, 2, 0, 20));
+        assertTrue(Point.isOutOf(x, y, 3, 0, 20));
+
+        assertFalse(Point.isOutOf(x, y, 0, 0, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 1, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 2, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 3, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 4, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 5, 20));
+        assertTrue(Point.isOutOf(x, y, 0, 6, 20));
+        assertTrue(Point.isOutOf(x, y, 0, 7, 20));
+    }
+
+    @Test
+    public void shouldIsOutOfDelta_fromSize_staticMethod() {
+        int x = 10;
+        int y = 15;
+
+        assertFalse(Point.isOutOf(x, y, 0, 0, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 1, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 2, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 3, 20));
+        assertFalse(Point.isOutOf(x, y, 0, 4, 20));
+        assertTrue(Point.isOutOf(x, y, 0, 5, 20));
+        assertTrue(Point.isOutOf(x, y, 0, 6, 20));
+        assertTrue(Point.isOutOf(x, y, 0, 7, 20));
+
+        assertFalse(Point.isOutOf(x, y, 8, 0, 20));
+        assertFalse(Point.isOutOf(x, y, 9, 0, 20));
+        assertTrue(Point.isOutOf(x, y, 10, 0, 20));
+        assertTrue(Point.isOutOf(x, y, 11, 0, 20));
+    }
+
+    @Test
     public void shouldDistance() {
         Point pt = pt(10, 15);
 

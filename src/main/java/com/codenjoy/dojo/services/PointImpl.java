@@ -89,12 +89,12 @@ public class PointImpl implements Point, Comparable<Point> {
 
     @Override
     public boolean isOutOf(int size) {
-        return isOutOf(0, 0, size);
+        return Point.isOutOf(x, y, 0, 0, size);
     }
 
     @Override
     public boolean isOutOf(int dw, int dh, int size) {
-        return x < dw || y < dh || y > size - 1 - dh || x > size - 1 - dw;
+        return Point.isOutOf(x, y, dw, dh, size);
     }
 
     @Override

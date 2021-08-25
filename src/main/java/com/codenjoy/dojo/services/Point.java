@@ -86,6 +86,10 @@ public interface Point extends Comparable<Point> {
      */
     boolean isOutOf(int dw, int dh, int size);
 
+    static boolean isOutOf(int x, int y, int dw, int dh, int size) {
+        return x < dw || y < dh || y > size - 1 - dh || x > size - 1 - dw;
+    }
+
     /**
      * @param point2 Another point.
      * @return Distance between two points.
