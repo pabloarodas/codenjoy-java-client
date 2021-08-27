@@ -28,7 +28,6 @@ import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 
 import static com.codenjoy.dojo.services.Direction.*;
@@ -45,7 +44,6 @@ public class PointImplTest {
 
     @Before
     public void setup() {
-
         status = new LinkedList<>();
     }
 
@@ -247,51 +245,48 @@ public class PointImplTest {
 
     @Test
     public void shouldMove_onChange() {
+        // given
         Point pt = pt(10, 15);
 
-        setupOnChange(pt);
+        setupOnChange(pt, 1);
 
+        // when
         pt.move(pt(20, 23));
 
+        // then
         assertStatus(
-                "before: [10,15]\n" +
-                "after:  [10,15] -> [20,23]");
+                "before(1): [10,15]\n" +
+                "after(1):  [10,15] -> [20,23]");
     }
 
     private void assertStatus(String expected) {
         assertEquals(expected, status.stream().collect(joining("\n")));
     }
 
-    private void setupOnChange(Point pt) {
-        pt.onChange((from, to) -> {
-            status.add(String.format("after:  %s -> %s", from, to));
-        });
+    private void setupOnChange(Point pt, int id) {
+        pt.onChange((from, to) ->
+                status.add(String.format("after(%s):  %s -> %s", id, from, to)));
 
-        pt.beforeChange(from -> {
-            status.add(String.format("before: %s", from));
-        });
+        pt.beforeChange(from ->
+                status.add(String.format("before(%s): %s", id, from)));
     }
 
     @Test
     public void shouldOnlyLastOnChangeWillProcessed() {
-        AtomicBoolean changed1 = new AtomicBoolean(false);
-        AtomicBoolean changed2 = new AtomicBoolean(false);
+        // given
         Point pt = pt(10, 15);
 
-        pt.onChange((from, to) -> {
-            changed1.set(true);
-        });
+        setupOnChange(pt, 1); // ignored
+        setupOnChange(pt, 2); // ignored
+        setupOnChange(pt, 3); // active
 
-        pt.onChange((from, to) -> {
-            assertEquals("[10,15]", from.toString());
-            assertEquals("[20,23]", to.toString());
-            changed2.set(true);
-        });
-
+        // when
         pt.move(pt(20, 23));
 
-        assertEquals(false, changed1.get());
-        assertEquals(true, changed2.get());
+        // then
+        assertStatus(
+                "before(3): [10,15]\n" +
+                "after(3):  [10,15] -> [20,23]");
     }
 
     @Test
@@ -317,15 +312,18 @@ public class PointImplTest {
 
     @Test
     public void shouldMoveDirection_onChange() {
+        // given
         Point pt = pt(10, 15);
 
-        setupOnChange(pt);
+        setupOnChange(pt, 1);
 
+        // when
         pt.move(UP);
 
+        // then
         assertStatus(
-                "before: [10,15]\n" +
-                "after:  [10,15] -> [10,16]");
+                "before(1): [10,15]\n" +
+                "after(1):  [10,15] -> [10,16]");
     }
 
     @Test
@@ -367,15 +365,18 @@ public class PointImplTest {
 
     @Test
     public void shouldMoveQDirection_onChange() {
+        // given
         Point pt = pt(10, 15);
 
-        setupOnChange(pt);
+        setupOnChange(pt, 1);
 
+        // when
         pt.move(QDirection.LEFT_DOWN);
 
+        // then
         assertStatus(
-                "before: [10,15]\n" +
-                "after:  [10,15] -> [9,14]");
+                "before(1): [10,15]\n" +
+                "after(1):  [10,15] -> [9,14]");
     }
 
     @Test
@@ -402,28 +403,34 @@ public class PointImplTest {
 
     @Test
     public void shouldSetX_onChange() {
+        // given
         Point pt = pt(10, 15);
 
-        setupOnChange(pt);
+        setupOnChange(pt, 1);
 
+        // when
         pt.setX(20);
 
+        // then
         assertStatus(
-                "before: [10,15]\n" +
-                "after:  [10,15] -> [20,15]");
+                "before(1): [10,15]\n" +
+                "after(1):  [10,15] -> [20,15]");
     }
 
     @Test
     public void shouldSetY_onChange() {
+        // given
         Point pt = pt(10, 15);
 
-        setupOnChange(pt);
+        setupOnChange(pt, 1);
 
+        // when
         pt.setY(20);
 
+        // then
         assertStatus(
-                "before: [10,15]\n" +
-                "after:  [10,15] -> [10,20]");
+                "before(1): [10,15]\n" +
+                "after(1):  [10,15] -> [10,20]");
     }
 
     @Test
@@ -448,15 +455,18 @@ public class PointImplTest {
 
     @Test
     public void shouldMoveDelta_onChange() {
+        // given
         Point pt = pt(10, 15);
 
-        setupOnChange(pt);
+        setupOnChange(pt, 1);
 
+        // when
         pt.moveDelta(pt(12, -23));
 
+        // then
         assertStatus(
-                "before: [10,15]\n" +
-                "after:  [10,15] -> [22,-8]");
+                "before(1): [10,15]\n" +
+                "after(1):  [10,15] -> [22,-8]");
     }
 
     @Test
