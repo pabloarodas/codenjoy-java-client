@@ -23,6 +23,9 @@ package com.codenjoy.dojo.services;
  */
 
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 /**
  * Encapsulates coordinate of Element at the Board. All Board elements must extends from PointImpl,
  * realized from of this interface.
@@ -57,6 +60,8 @@ public interface Point extends Comparable<Point> {
 
     void setY(int y);
 
+    void beforeChange(Consumer<Point> beforeChange);
+
     /**
      * @return true if points has equals X and Y coordinates.
      */
@@ -80,6 +85,10 @@ public interface Point extends Comparable<Point> {
      * @return true if point is out of rectangle inside board.
      */
     boolean isOutOf(int dw, int dh, int size);
+
+    static boolean isOutOf(int x, int y, int dw, int dh, int size) {
+        return x < dw || y < dh || y > size - 1 - dh || x > size - 1 - dw;
+    }
 
     /**
      * @param point2 Another point.
@@ -117,4 +126,6 @@ public interface Point extends Comparable<Point> {
      * Returns Null if points are not neighbours.
      */
     Direction direction(Point to);
+
+    void onChange(BiConsumer<Point, Point> onChange);
 }

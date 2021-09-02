@@ -24,11 +24,17 @@ package com.codenjoy.dojo.services;
 
 import org.json.JSONObject;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 /**
  * Каждый объект на поле имеет свои координаты. Этот класс обычно используется дял указания координат или как родитель.
  * Может использоваться в коллекциях.
  */
 public class PointImpl implements Point, Comparable<Point> {
+
+    private Consumer<Point> beforeChange;
+    private BiConsumer<Point, Point> onChange;
 
     protected int x;
     protected int y;
@@ -51,6 +57,28 @@ public class PointImpl implements Point, Comparable<Point> {
     }
 
     @Override
+    public void onChange(BiConsumer<Point, Point> onChange) {
+        this.onChange = onChange;
+    }
+
+    @Override
+    public void beforeChange(Consumer<Point> beforeChange) {
+        this.beforeChange = beforeChange;
+    }
+
+    private void fireBeforeChange() {
+        if (beforeChange != null) {
+            beforeChange.accept(this);
+        }
+    }
+
+    private void fireOnChange(Point from) {
+        if (onChange != null) {
+            onChange.accept(from, this);
+        }
+    }
+
+    @Override
     public boolean itsMe(Point pt) {
         return itsMe(pt.getX(), pt.getY());
     }
@@ -61,12 +89,12 @@ public class PointImpl implements Point, Comparable<Point> {
 
     @Override
     public boolean isOutOf(int size) {
-        return isOutOf(0, 0, size);
+        return Point.isOutOf(x, y, 0, 0, size);
     }
 
     @Override
     public boolean isOutOf(int dw, int dh, int size) {
-        return x < dw || y < dh || y > size - 1 - dh || x > size - 1 - dw;
+        return Point.isOutOf(x, y, dw, dh, size);
     }
 
     @Override
@@ -119,24 +147,41 @@ public class PointImpl implements Point, Comparable<Point> {
 
     @Override
     public void setX(int x) {
+        Point old = this.copy();
+
+        fireBeforeChange();
+
         this.x = x;
+
+        fireOnChange(old);
     }
 
     @Override
     public void setY(int y) {
+        Point old = this.copy();
+
+        fireBeforeChange();
+
         this.y = y;
+
+        fireOnChange(old);
     }
 
     @Override
     public void move(int x, int y) {
+        Point from = this.copy();
+
+        fireBeforeChange();
+
         this.x = x;
         this.y = y;
+
+        fireOnChange(from);
     }
 
     @Override
     public void move(Point pt) {
-        this.x = pt.getX();
-        this.y = pt.getY();
+        move(pt.getX(), pt.getY());
     }
 
     @Override
@@ -146,8 +191,8 @@ public class PointImpl implements Point, Comparable<Point> {
 
     @Override
     public void moveDelta(Point delta) {
-        x += delta.getX();
-        y += delta.getY();
+        move(x + delta.getX(),
+            y + delta.getY());
     }
 
     @Override
