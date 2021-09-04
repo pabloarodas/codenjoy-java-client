@@ -2,6 +2,7 @@
 *.iml
 target
 /**/java-client.zip
+/**/pitest/**
 
 # macOS
 .DS_Store
