@@ -40,7 +40,7 @@ public enum Element implements CharElement {
     PIT_FILL_3('3'),
     PIT_FILL_4('4'),
 
-    UNDESTROYABLE_WALL('☼'),      // Неразрушаемая стена - в ней ничего просверлить не получится
+    STONE('☼'),                   // Неразрушаемая стена - в ней ничего просверлить не получится
 
     DRILL_PIT('*'),               // В момент сверления мы видим процесс так
 
@@ -131,7 +131,7 @@ public enum Element implements CharElement {
 
     public static List<Element> walls() {
         return Arrays.asList(BRICK,
-                UNDESTROYABLE_WALL);
+                STONE);
     }
 
     public static List<Element> heroes() {
