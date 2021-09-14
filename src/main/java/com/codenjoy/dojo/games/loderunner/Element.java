@@ -45,7 +45,7 @@ public enum Element implements CharElement {
     CRACK_PIT('*'),               // В момент выстрела мы видим процесс так
 
     KNIFE_CLUE('$'),              // Улика нож
-    GREEN_GOLD('&'),              // Зелёная горстка золота
+    GLOVE_CLUE('&'),              // Улика перчатка
     RED_GOLD('@'),                // Золото красного цвета
 
     // Твой герой в зависимости от того, чем он сейчас занят отображается следующими символами
@@ -116,7 +116,7 @@ public enum Element implements CharElement {
     public static List<Element> gold() {
         return Arrays.asList(
                 KNIFE_CLUE,
-                GREEN_GOLD,
+                GLOVE_CLUE,
                 RED_GOLD);
     }
 
