@@ -60,17 +60,17 @@ public enum Element implements CharElement {
     HERO_PIPE_LEFT('{'),          // Герой ползёт по трубе влево
     HERO_PIPE_RIGHT('}'),         // Герой ползёт по трубе вправо
 
-    // Тоже твой герой, но под таблеткой тени:
-    HERO_SHADOW_DIE('x'),         // Герой-тень переживает процесс умирания // TODO test me
-    HERO_SHADOW_DRILL_LEFT('⊰'),  // Герой-тень сверлит слева от себя
-    HERO_SHADOW_DRILL_RIGHT('⊱'), // Герой-тень сверлит справа от себя
-    HERO_SHADOW_LADDER('⍬'),      // Герой-тень находится на лестнице
-    HERO_SHADOW_LEFT('⊲'),        // Герой-тень бежит влево
-    HERO_SHADOW_RIGHT('⊳'),       // Герой-тень бежит вправо
-    HERO_SHADOW_FALL_LEFT('⊅'),   // Герой-тень падает, смотря влево
-    HERO_SHADOW_FALL_RIGHT('⊄'),  // Герой-тень падает, смотря вправо
-    HERO_SHADOW_PIPE_LEFT('⋜'),   // Герой-тень ползёт по трубе влево
-    HERO_SHADOW_PIPE_RIGHT('⋝'),  // Герой-тень ползёт по трубе вправо
+    // Тоже твой герой, но под маскировкой:
+    HERO_MASK_DIE('x'),         // Герой-маскировка переживает процесс умирания // TODO test me
+    HERO_MASK_DRILL_LEFT('⊰'),  // Герой-маскировка сверлит слева от себя
+    HERO_MASK_DRILL_RIGHT('⊱'), // Герой-маскировка сверлит справа от себя
+    HERO_MASK_LADDER('⍬'),      // Герой-маскировка находится на лестнице
+    HERO_MASK_LEFT('⊲'),        // Герой-маскировка бежит влево
+    HERO_MASK_RIGHT('⊳'),       // Герой-маскировка бежит вправо
+    HERO_MASK_FALL_LEFT('⊅'),   // Герой-маскировка падает, смотря влево
+    HERO_MASK_FALL_RIGHT('⊄'),  // Герой-маскировка падает, смотря вправо
+    HERO_MASK_PIPE_LEFT('⋜'),   // Герой-маскировка ползёт по трубе влево
+    HERO_MASK_PIPE_RIGHT('⋝'),  // Герой-маскировка ползёт по трубе вправо
 
     // Герои других игроков отображаются так
     OTHER_HERO_DIE('Z'),          // Герой переживает процесс умирания
@@ -84,17 +84,17 @@ public enum Element implements CharElement {
     OTHER_HERO_PIPE_LEFT('Э'),    // Герой ползёт по трубе влево
     OTHER_HERO_PIPE_RIGHT('Є'),   // Герой ползёт по трубе вправо
 
-    // А если герои других игроков под таблеткой тени, то так
-    OTHER_HERO_SHADOW_DIE('⋈'),         // Другой герой-тень переживает процесс умирания
-    OTHER_HERO_SHADOW_DRILL_LEFT('⋰'),  // Другой герой-тень сверлит слева от себя       // TODO test me
-    OTHER_HERO_SHADOW_DRILL_RIGHT('⋱'), // Другой герой-тень сверлит справа от себя      // TODO test me
-    OTHER_HERO_SHADOW_LEFT('⋊'),        // Другой герой-тень находится на лестнице
-    OTHER_HERO_SHADOW_RIGHT('⋉'),       // Другой герой-тень бежит влево
-    OTHER_HERO_SHADOW_LADDER('⋕'),      // Другой герой-тень бежит вправо
-    OTHER_HERO_SHADOW_FALL_LEFT('⋣'),   // Другой герой-тень падает, смотря влево        // TODO test me
-    OTHER_HERO_SHADOW_FALL_RIGHT('⋢'),  // Другой герой-тень падает, смотря вправо       // TODO test me
-    OTHER_HERO_SHADOW_PIPE_LEFT('⊣'),   // Другой герой-тень ползёт по трубе влево
-    OTHER_HERO_SHADOW_PIPE_RIGHT('⊢'),  // Другой герой-тень ползёт по трубе вправо
+    // А если герои других игроков под маскировкой, то так
+    OTHER_HERO_MASK_DIE('⋈'),         // Другой герой-маскировка переживает процесс умирания
+    OTHER_HERO_MASK_DRILL_LEFT('⋰'),  // Другой герой-маскировка сверлит слева от себя       // TODO test me
+    OTHER_HERO_MASK_DRILL_RIGHT('⋱'), // Другой герой-маскировка сверлит справа от себя      // TODO test me
+    OTHER_HERO_MASK_LEFT('⋊'),        // Другой герой-маскировка находится на лестнице
+    OTHER_HERO_MASK_RIGHT('⋉'),       // Другой герой-маскировка бежит влево
+    OTHER_HERO_MASK_LADDER('⋕'),      // Другой герой-маскировка бежит вправо
+    OTHER_HERO_MASK_FALL_LEFT('⋣'),   // Другой герой-маскировка падает, смотря влево        // TODO test me
+    OTHER_HERO_MASK_FALL_RIGHT('⋢'),  // Другой герой-маскировка падает, смотря вправо       // TODO test me
+    OTHER_HERO_MASK_PIPE_LEFT('⊣'),   // Другой герой-маскировка ползёт по трубе влево
+    OTHER_HERO_MASK_PIPE_RIGHT('⊢'),  // Другой герой-маскировка ползёт по трубе вправо
 
     // Боты-воры
     ROBBER_LADDER('Q'),
@@ -109,7 +109,7 @@ public enum Element implements CharElement {
 
     BACKWAY('⊛'),              // Черный ход - позволяет скрыто перемещаться в иное место на карте
 
-    SHADOW_PILL('S');         // Таблетка тени - наделяют героя дополнительными способностями
+    MASK_POTION('S');         // Маскировочное зелье - наделяют детектива дополнительными способностями
 
     final char ch;
 
@@ -123,9 +123,9 @@ public enum Element implements CharElement {
     public static List<Element> ladders() {
         return Arrays.asList(LADDER,
                 HERO_LADDER,
-                HERO_SHADOW_LADDER,
+                HERO_MASK_LADDER,
                 OTHER_HERO_LADDER,
-                OTHER_HERO_SHADOW_LADDER,
+                OTHER_HERO_MASK_LADDER,
                 ROBBER_LADDER);
     }
 
@@ -146,16 +146,16 @@ public enum Element implements CharElement {
                 HERO_PIPE_LEFT,
                 HERO_PIPE_RIGHT,
 
-                HERO_SHADOW_DIE,
-                HERO_SHADOW_DRILL_LEFT,
-                HERO_SHADOW_DRILL_RIGHT,
-                HERO_SHADOW_LADDER,
-                HERO_SHADOW_LEFT,
-                HERO_SHADOW_RIGHT,
-                HERO_SHADOW_FALL_LEFT,
-                HERO_SHADOW_FALL_RIGHT,
-                HERO_SHADOW_PIPE_LEFT,
-                HERO_SHADOW_PIPE_RIGHT);
+                HERO_MASK_DIE,
+                HERO_MASK_DRILL_LEFT,
+                HERO_MASK_DRILL_RIGHT,
+                HERO_MASK_LADDER,
+                HERO_MASK_LEFT,
+                HERO_MASK_RIGHT,
+                HERO_MASK_FALL_LEFT,
+                HERO_MASK_FALL_RIGHT,
+                HERO_MASK_PIPE_LEFT,
+                HERO_MASK_PIPE_RIGHT);
     }
 
     public static List<Element> robbers() {
@@ -179,28 +179,28 @@ public enum Element implements CharElement {
                 OTHER_HERO_PIPE_LEFT,
                 OTHER_HERO_PIPE_RIGHT,
 
-                OTHER_HERO_SHADOW_DIE,
-                OTHER_HERO_SHADOW_DRILL_LEFT,
-                OTHER_HERO_SHADOW_DRILL_RIGHT,
-                OTHER_HERO_SHADOW_LEFT,
-                OTHER_HERO_SHADOW_RIGHT,
-                OTHER_HERO_SHADOW_LADDER,
-                OTHER_HERO_SHADOW_FALL_LEFT,
-                OTHER_HERO_SHADOW_FALL_RIGHT,
-                OTHER_HERO_SHADOW_PIPE_LEFT,
-                OTHER_HERO_SHADOW_PIPE_RIGHT);
+                OTHER_HERO_MASK_DIE,
+                OTHER_HERO_MASK_DRILL_LEFT,
+                OTHER_HERO_MASK_DRILL_RIGHT,
+                OTHER_HERO_MASK_LEFT,
+                OTHER_HERO_MASK_RIGHT,
+                OTHER_HERO_MASK_LADDER,
+                OTHER_HERO_MASK_FALL_LEFT,
+                OTHER_HERO_MASK_FALL_RIGHT,
+                OTHER_HERO_MASK_PIPE_LEFT,
+                OTHER_HERO_MASK_PIPE_RIGHT);
     }
 
     public static List<Element> pipes() {
         return Arrays.asList(PIPE,
                 HERO_PIPE_LEFT,
                 HERO_PIPE_RIGHT,
-                HERO_SHADOW_PIPE_LEFT,
-                HERO_SHADOW_PIPE_RIGHT,
+                HERO_MASK_PIPE_LEFT,
+                HERO_MASK_PIPE_RIGHT,
                 OTHER_HERO_PIPE_LEFT,
                 OTHER_HERO_PIPE_RIGHT,
-                OTHER_HERO_SHADOW_PIPE_LEFT,
-                OTHER_HERO_SHADOW_PIPE_RIGHT);
+                OTHER_HERO_MASK_PIPE_LEFT,
+                OTHER_HERO_MASK_PIPE_RIGHT);
     }
 
     @Override
@@ -221,29 +221,29 @@ public enum Element implements CharElement {
         return String.valueOf(ch);
     }
 
-    public Element shadow() {
+    public Element mask() {
         switch (this) {
-            case HERO_DIE: return HERO_SHADOW_DIE;
-            case HERO_DRILL_LEFT: return HERO_SHADOW_DRILL_LEFT;
-            case HERO_DRILL_RIGHT: return HERO_SHADOW_DRILL_RIGHT;
-            case HERO_LADDER: return HERO_SHADOW_LADDER;
-            case HERO_LEFT: return HERO_SHADOW_LEFT;
-            case HERO_RIGHT: return HERO_SHADOW_RIGHT;
-            case HERO_FALL_LEFT: return HERO_SHADOW_FALL_LEFT;
-            case HERO_FALL_RIGHT: return HERO_SHADOW_FALL_RIGHT;
-            case HERO_PIPE_LEFT: return HERO_SHADOW_PIPE_LEFT;
-            case HERO_PIPE_RIGHT: return HERO_SHADOW_PIPE_RIGHT;
+            case HERO_DIE: return HERO_MASK_DIE;
+            case HERO_DRILL_LEFT: return HERO_MASK_DRILL_LEFT;
+            case HERO_DRILL_RIGHT: return HERO_MASK_DRILL_RIGHT;
+            case HERO_LADDER: return HERO_MASK_LADDER;
+            case HERO_LEFT: return HERO_MASK_LEFT;
+            case HERO_RIGHT: return HERO_MASK_RIGHT;
+            case HERO_FALL_LEFT: return HERO_MASK_FALL_LEFT;
+            case HERO_FALL_RIGHT: return HERO_MASK_FALL_RIGHT;
+            case HERO_PIPE_LEFT: return HERO_MASK_PIPE_LEFT;
+            case HERO_PIPE_RIGHT: return HERO_MASK_PIPE_RIGHT;
 
-            case OTHER_HERO_DIE: return OTHER_HERO_SHADOW_DIE;
-            case OTHER_HERO_DRILL_LEFT: return OTHER_HERO_SHADOW_DRILL_LEFT;
-            case OTHER_HERO_DRILL_RIGHT: return OTHER_HERO_SHADOW_DRILL_RIGHT;
-            case OTHER_HERO_LADDER: return OTHER_HERO_SHADOW_LADDER;
-            case OTHER_HERO_LEFT: return OTHER_HERO_SHADOW_LEFT;
-            case OTHER_HERO_RIGHT: return OTHER_HERO_SHADOW_RIGHT;
-            case OTHER_HERO_FALL_LEFT: return OTHER_HERO_SHADOW_FALL_LEFT;
-            case OTHER_HERO_FALL_RIGHT: return OTHER_HERO_SHADOW_FALL_RIGHT;
-            case OTHER_HERO_PIPE_LEFT: return OTHER_HERO_SHADOW_PIPE_LEFT;
-            case OTHER_HERO_PIPE_RIGHT: return OTHER_HERO_SHADOW_PIPE_RIGHT;
+            case OTHER_HERO_DIE: return OTHER_HERO_MASK_DIE;
+            case OTHER_HERO_DRILL_LEFT: return OTHER_HERO_MASK_DRILL_LEFT;
+            case OTHER_HERO_DRILL_RIGHT: return OTHER_HERO_MASK_DRILL_RIGHT;
+            case OTHER_HERO_LADDER: return OTHER_HERO_MASK_LADDER;
+            case OTHER_HERO_LEFT: return OTHER_HERO_MASK_LEFT;
+            case OTHER_HERO_RIGHT: return OTHER_HERO_MASK_RIGHT;
+            case OTHER_HERO_FALL_LEFT: return OTHER_HERO_MASK_FALL_LEFT;
+            case OTHER_HERO_FALL_RIGHT: return OTHER_HERO_MASK_FALL_RIGHT;
+            case OTHER_HERO_PIPE_LEFT: return OTHER_HERO_MASK_PIPE_LEFT;
+            case OTHER_HERO_PIPE_RIGHT: return OTHER_HERO_MASK_PIPE_RIGHT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
@@ -261,16 +261,16 @@ public enum Element implements CharElement {
             case HERO_PIPE_LEFT: return OTHER_HERO_PIPE_LEFT;
             case HERO_PIPE_RIGHT: return OTHER_HERO_PIPE_RIGHT;
 
-            case HERO_SHADOW_DIE: return OTHER_HERO_SHADOW_DIE;
-            case HERO_SHADOW_DRILL_LEFT: return OTHER_HERO_SHADOW_DRILL_LEFT;
-            case HERO_SHADOW_DRILL_RIGHT: return OTHER_HERO_SHADOW_DRILL_RIGHT;
-            case HERO_SHADOW_LADDER: return OTHER_HERO_SHADOW_LADDER;
-            case HERO_SHADOW_LEFT: return OTHER_HERO_SHADOW_LEFT;
-            case HERO_SHADOW_RIGHT: return OTHER_HERO_SHADOW_RIGHT;
-            case HERO_SHADOW_FALL_LEFT: return OTHER_HERO_SHADOW_FALL_LEFT;
-            case HERO_SHADOW_FALL_RIGHT: return OTHER_HERO_SHADOW_FALL_RIGHT;
-            case HERO_SHADOW_PIPE_LEFT: return OTHER_HERO_SHADOW_PIPE_LEFT;
-            case HERO_SHADOW_PIPE_RIGHT: return OTHER_HERO_SHADOW_PIPE_RIGHT;
+            case HERO_MASK_DIE: return OTHER_HERO_MASK_DIE;
+            case HERO_MASK_DRILL_LEFT: return OTHER_HERO_MASK_DRILL_LEFT;
+            case HERO_MASK_DRILL_RIGHT: return OTHER_HERO_MASK_DRILL_RIGHT;
+            case HERO_MASK_LADDER: return OTHER_HERO_MASK_LADDER;
+            case HERO_MASK_LEFT: return OTHER_HERO_MASK_LEFT;
+            case HERO_MASK_RIGHT: return OTHER_HERO_MASK_RIGHT;
+            case HERO_MASK_FALL_LEFT: return OTHER_HERO_MASK_FALL_LEFT;
+            case HERO_MASK_FALL_RIGHT: return OTHER_HERO_MASK_FALL_RIGHT;
+            case HERO_MASK_PIPE_LEFT: return OTHER_HERO_MASK_PIPE_LEFT;
+            case HERO_MASK_PIPE_RIGHT: return OTHER_HERO_MASK_PIPE_RIGHT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
