@@ -141,7 +141,7 @@ public class BoardTest {
 
     @Test
     public void shouldIsAt() {
-        assertEquals(false, board.isAt(2, 4, Element.DRILL_PIT));
+        assertEquals(false, board.isAt(2, 4, Element.CRACK_PIT));
         assertEquals(true,  board.isAt(2, 4, Element.BRICK));
     }
 }

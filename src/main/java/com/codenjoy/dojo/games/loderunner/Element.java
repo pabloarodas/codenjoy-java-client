@@ -32,7 +32,7 @@ public enum Element implements CharElement {
 
     NONE(' '),                    // Пустое место – по которому может двигаться герой
 
-    BRICK('#'),                   // Cтена в которой можно просверлить дырочку слева или справа от героя
+    BRICK('#'),                   // Cтена в которой можно прострелить дырочку слева или справа от героя
                                   // (в зависимости от того, куда он сейчас смотрит)
 
     PIT_FILL_1('1'),              // Стена со временем зарастает. Когда процес начинается - мы видим таймер
@@ -40,9 +40,9 @@ public enum Element implements CharElement {
     PIT_FILL_3('3'),
     PIT_FILL_4('4'),
 
-    STONE('☼'),                   // Неразрушаемая стена - в ней ничего просверлить не получится
+    STONE('☼'),                   // Неразрушаемая стена - в ней ничего прострелить не получится
 
-    DRILL_PIT('*'),               // В момент сверления мы видим процесс так
+    CRACK_PIT('*'),               // В момент выстрела мы видим процесс так
 
     YELLOW_GOLD('$'),             // Горстка золота жёлтого цвета
     GREEN_GOLD('&'),              // Зелёная горстка золота
@@ -50,8 +50,8 @@ public enum Element implements CharElement {
 
     // Твой герой в зависимости от того, чем он сейчас занят отображается следующими символами
     HERO_DIE('Ѡ'),                // Герой переживает процесс умирания
-    HERO_DRILL_LEFT('Я'),         // Герой сверлит слева от себя
-    HERO_DRILL_RIGHT('R'),        // Герой сверлит справа от себя
+    HERO_CRACK_LEFT('Я'),         // Герой простреливает слева от себя
+    HERO_CRACK_RIGHT('R'),        // Герой простреливает справа от себя
     HERO_LADDER('Y'),             // Герой находится на лестнице
     HERO_LEFT('◄'),               // Герой бежит влево
     HERO_RIGHT('►'),              // Герой бежит вправо
@@ -62,8 +62,8 @@ public enum Element implements CharElement {
 
     // Тоже твой герой, но под маскировкой:
     HERO_MASK_DIE('x'),         // Герой-маскировка переживает процесс умирания // TODO test me
-    HERO_MASK_DRILL_LEFT('⊰'),  // Герой-маскировка сверлит слева от себя
-    HERO_MASK_DRILL_RIGHT('⊱'), // Герой-маскировка сверлит справа от себя
+    HERO_MASK_CRACK_LEFT('⊰'),  // Герой-маскировка простреливает слева от себя
+    HERO_MASK_CRACK_RIGHT('⊱'), // Герой-маскировка простреливает справа от себя
     HERO_MASK_LADDER('⍬'),      // Герой-маскировка находится на лестнице
     HERO_MASK_LEFT('⊲'),        // Герой-маскировка бежит влево
     HERO_MASK_RIGHT('⊳'),       // Герой-маскировка бежит вправо
@@ -74,8 +74,8 @@ public enum Element implements CharElement {
 
     // Герои других игроков отображаются так
     OTHER_HERO_DIE('Z'),          // Герой переживает процесс умирания
-    OTHER_HERO_DRILL_LEFT('⌋'),   // Герой сверлит слева от себя       // TODO test me
-    OTHER_HERO_DRILL_RIGHT('⌊'),  // Герой сверлит справа от себя      // TODO test me
+    OTHER_HERO_CRACK_LEFT('⌋'),   // Герой простреливает слева от себя       // TODO test me
+    OTHER_HERO_CRACK_RIGHT('⌊'),  // Герой простреливает справа от себя      // TODO test me
     OTHER_HERO_LADDER('U'),       // Герой находится на лестнице
     OTHER_HERO_LEFT(')'),         // Герой бежит влево
     OTHER_HERO_RIGHT('('),        // Герой бежит вправо
@@ -86,8 +86,8 @@ public enum Element implements CharElement {
 
     // А если герои других игроков под маскировкой, то так
     OTHER_HERO_MASK_DIE('⋈'),         // Другой герой-маскировка переживает процесс умирания
-    OTHER_HERO_MASK_DRILL_LEFT('⋰'),  // Другой герой-маскировка сверлит слева от себя       // TODO test me
-    OTHER_HERO_MASK_DRILL_RIGHT('⋱'), // Другой герой-маскировка сверлит справа от себя      // TODO test me
+    OTHER_HERO_MASK_CRACK_LEFT('⋰'),  // Другой герой-маскировка простреливает слева от себя       // TODO test me
+    OTHER_HERO_MASK_CRACK_RIGHT('⋱'), // Другой герой-маскировка простреливает справа от себя      // TODO test me
     OTHER_HERO_MASK_LEFT('⋊'),        // Другой герой-маскировка находится на лестнице
     OTHER_HERO_MASK_RIGHT('⋉'),       // Другой герой-маскировка бежит влево
     OTHER_HERO_MASK_LADDER('⋕'),      // Другой герой-маскировка бежит вправо
@@ -136,8 +136,8 @@ public enum Element implements CharElement {
 
     public static List<Element> heroes() {
         return Arrays.asList(HERO_DIE,
-                HERO_DRILL_LEFT,
-                HERO_DRILL_RIGHT,
+                HERO_CRACK_LEFT,
+                HERO_CRACK_RIGHT,
                 HERO_LADDER,
                 HERO_LEFT,
                 HERO_RIGHT,
@@ -147,8 +147,8 @@ public enum Element implements CharElement {
                 HERO_PIPE_RIGHT,
 
                 HERO_MASK_DIE,
-                HERO_MASK_DRILL_LEFT,
-                HERO_MASK_DRILL_RIGHT,
+                HERO_MASK_CRACK_LEFT,
+                HERO_MASK_CRACK_RIGHT,
                 HERO_MASK_LADDER,
                 HERO_MASK_LEFT,
                 HERO_MASK_RIGHT,
@@ -169,8 +169,8 @@ public enum Element implements CharElement {
 
     public static List<Element> otherHeroes() {
         return Arrays.asList(OTHER_HERO_DIE,
-                OTHER_HERO_DRILL_LEFT,
-                OTHER_HERO_DRILL_RIGHT,
+                OTHER_HERO_CRACK_LEFT,
+                OTHER_HERO_CRACK_RIGHT,
                 OTHER_HERO_LADDER,
                 OTHER_HERO_LEFT,
                 OTHER_HERO_RIGHT,
@@ -180,8 +180,8 @@ public enum Element implements CharElement {
                 OTHER_HERO_PIPE_RIGHT,
 
                 OTHER_HERO_MASK_DIE,
-                OTHER_HERO_MASK_DRILL_LEFT,
-                OTHER_HERO_MASK_DRILL_RIGHT,
+                OTHER_HERO_MASK_CRACK_LEFT,
+                OTHER_HERO_MASK_CRACK_RIGHT,
                 OTHER_HERO_MASK_LEFT,
                 OTHER_HERO_MASK_RIGHT,
                 OTHER_HERO_MASK_LADDER,
@@ -224,8 +224,8 @@ public enum Element implements CharElement {
     public Element mask() {
         switch (this) {
             case HERO_DIE: return HERO_MASK_DIE;
-            case HERO_DRILL_LEFT: return HERO_MASK_DRILL_LEFT;
-            case HERO_DRILL_RIGHT: return HERO_MASK_DRILL_RIGHT;
+            case HERO_CRACK_LEFT: return HERO_MASK_CRACK_LEFT;
+            case HERO_CRACK_RIGHT: return HERO_MASK_CRACK_RIGHT;
             case HERO_LADDER: return HERO_MASK_LADDER;
             case HERO_LEFT: return HERO_MASK_LEFT;
             case HERO_RIGHT: return HERO_MASK_RIGHT;
@@ -235,8 +235,8 @@ public enum Element implements CharElement {
             case HERO_PIPE_RIGHT: return HERO_MASK_PIPE_RIGHT;
 
             case OTHER_HERO_DIE: return OTHER_HERO_MASK_DIE;
-            case OTHER_HERO_DRILL_LEFT: return OTHER_HERO_MASK_DRILL_LEFT;
-            case OTHER_HERO_DRILL_RIGHT: return OTHER_HERO_MASK_DRILL_RIGHT;
+            case OTHER_HERO_CRACK_LEFT: return OTHER_HERO_MASK_CRACK_LEFT;
+            case OTHER_HERO_CRACK_RIGHT: return OTHER_HERO_MASK_CRACK_RIGHT;
             case OTHER_HERO_LADDER: return OTHER_HERO_MASK_LADDER;
             case OTHER_HERO_LEFT: return OTHER_HERO_MASK_LEFT;
             case OTHER_HERO_RIGHT: return OTHER_HERO_MASK_RIGHT;
@@ -251,8 +251,8 @@ public enum Element implements CharElement {
     public Element otherHero() {
         switch (this) {
             case HERO_DIE: return OTHER_HERO_DIE;
-            case HERO_DRILL_LEFT: return OTHER_HERO_DRILL_LEFT;
-            case HERO_DRILL_RIGHT: return OTHER_HERO_DRILL_RIGHT;
+            case HERO_CRACK_LEFT: return OTHER_HERO_CRACK_LEFT;
+            case HERO_CRACK_RIGHT: return OTHER_HERO_CRACK_RIGHT;
             case HERO_LADDER: return OTHER_HERO_LADDER;
             case HERO_LEFT: return OTHER_HERO_LEFT;
             case HERO_RIGHT: return OTHER_HERO_RIGHT;
@@ -262,8 +262,8 @@ public enum Element implements CharElement {
             case HERO_PIPE_RIGHT: return OTHER_HERO_PIPE_RIGHT;
 
             case HERO_MASK_DIE: return OTHER_HERO_MASK_DIE;
-            case HERO_MASK_DRILL_LEFT: return OTHER_HERO_MASK_DRILL_LEFT;
-            case HERO_MASK_DRILL_RIGHT: return OTHER_HERO_MASK_DRILL_RIGHT;
+            case HERO_MASK_CRACK_LEFT: return OTHER_HERO_MASK_CRACK_LEFT;
+            case HERO_MASK_CRACK_RIGHT: return OTHER_HERO_MASK_CRACK_RIGHT;
             case HERO_MASK_LADDER: return OTHER_HERO_MASK_LADDER;
             case HERO_MASK_LEFT: return OTHER_HERO_MASK_LEFT;
             case HERO_MASK_RIGHT: return OTHER_HERO_MASK_RIGHT;
