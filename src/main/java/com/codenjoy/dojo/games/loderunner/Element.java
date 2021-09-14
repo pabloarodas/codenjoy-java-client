@@ -46,7 +46,7 @@ public enum Element implements CharElement {
 
     KNIFE_CLUE('$'),              // Улика нож
     GLOVE_CLUE('&'),              // Улика перчатка
-    RED_GOLD('@'),                // Золото красного цвета
+    RING_CLUE('@'),               // Улика кольцо
 
     // Твой герой в зависимости от того, чем он сейчас занят отображается следующими символами
     HERO_DIE('Ѡ'),                // Герой переживает процесс умирания
@@ -117,7 +117,7 @@ public enum Element implements CharElement {
         return Arrays.asList(
                 KNIFE_CLUE,
                 GLOVE_CLUE,
-                RED_GOLD);
+                RING_CLUE);
     }
 
     public static List<Element> ladders() {
