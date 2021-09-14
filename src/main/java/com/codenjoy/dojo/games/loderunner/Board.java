@@ -73,8 +73,8 @@ public class Board extends AbstractBoard<Element> {
         return !get(HERO_DIE).isEmpty();
     }
 
-    public boolean isEnemyAt(Point pt) {
-        return is(pt, enemies());
+    public boolean isRobberAt(Point pt) {
+        return is(pt, robbers());
     }
 
     public boolean is(Point pt, List<Element> enemies) {

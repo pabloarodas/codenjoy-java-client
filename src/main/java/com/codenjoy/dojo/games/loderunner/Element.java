@@ -96,13 +96,13 @@ public enum Element implements CharElement {
     OTHER_HERO_SHADOW_PIPE_LEFT('⊣'),   // Другой герой-тень ползёт по трубе влево
     OTHER_HERO_SHADOW_PIPE_RIGHT('⊢'),  // Другой герой-тень ползёт по трубе вправо
 
-    // Боты-охотники
-    ENEMY_LADDER('Q'),
-    ENEMY_LEFT('«'),
-    ENEMY_RIGHT('»'),
-    ENEMY_PIPE_LEFT('<'),
-    ENEMY_PIPE_RIGHT('>'),
-    ENEMY_PIT('X'),
+    // Боты-воры
+    ROBBER_LADDER('Q'),
+    ROBBER_LEFT('«'),
+    ROBBER_RIGHT('»'),
+    ROBBER_PIPE_LEFT('<'),
+    ROBBER_PIPE_RIGHT('>'),
+    ROBBER_MASK('X'),
 
     LADDER('H'),              // Лестница - по ней можно перемещаться по уровню
     PIPE('~'),                // Труба - по ней так же можно перемещаться по уровню, но только горизонтально
@@ -126,7 +126,7 @@ public enum Element implements CharElement {
                 HERO_SHADOW_LADDER,
                 OTHER_HERO_LADDER,
                 OTHER_HERO_SHADOW_LADDER,
-                ENEMY_LADDER);
+                ROBBER_LADDER);
     }
 
     public static List<Element> walls() {
@@ -158,13 +158,13 @@ public enum Element implements CharElement {
                 HERO_SHADOW_PIPE_RIGHT);
     }
 
-    public static List<Element> enemies() {
-        return Arrays.asList(ENEMY_LADDER,
-                ENEMY_LEFT,
-                ENEMY_PIPE_LEFT,
-                ENEMY_PIPE_RIGHT,
-                ENEMY_RIGHT,
-                ENEMY_PIT);
+    public static List<Element> robbers() {
+        return Arrays.asList(ROBBER_LADDER,
+                ROBBER_LEFT,
+                ROBBER_PIPE_LEFT,
+                ROBBER_PIPE_RIGHT,
+                ROBBER_RIGHT,
+                ROBBER_MASK);
     }
 
     public static List<Element> otherHeroes() {
