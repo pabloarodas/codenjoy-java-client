@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.loderunner;
+package com.codenjoy.dojo.games.clifford;
 
 /*-
  * #%L
@@ -29,7 +29,7 @@ import com.codenjoy.dojo.services.Point;
 import java.util.Collection;
 import java.util.List;
 
-import static com.codenjoy.dojo.games.loderunner.Element.*;
+import static com.codenjoy.dojo.games.clifford.Element.*;
 
 /**
  * The class is a wrapper over the board string
