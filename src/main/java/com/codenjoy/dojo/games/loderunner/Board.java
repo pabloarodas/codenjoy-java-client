@@ -86,6 +86,10 @@ public class Board extends AbstractBoard<Element> {
         return is(pt, otherHeroes());
     }
 
+    public boolean isEnemyHeroAt(Point pt) {
+        return is(pt, enemyHeroes());
+    }
+
     public boolean isWall(Point pt) {
         return is(pt, walls());
     }

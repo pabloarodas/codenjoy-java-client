@@ -96,6 +96,30 @@ public enum Element implements CharElement {
     OTHER_HERO_MASK_PIPE_LEFT('⊣'),   // Другой детектив-маскировка ползёт по трубе влево
     OTHER_HERO_MASK_PIPE_RIGHT('⊢'),  // Другой детектив-маскировка ползёт по трубе вправо
 
+    // Детективы других игроков отображаются так
+    ENEMY_HERO_DIE('Ž'),          // Вражеский детектив переживает процесс умирания
+    ENEMY_HERO_CRACK_LEFT('⟧'),   // Вражеский детектив простреливает слева от себя       // TODO test me
+    ENEMY_HERO_CRACK_RIGHT('⟦'),  // Вражеский детектив простреливает справа от себя      // TODO test me
+    ENEMY_HERO_LADDER('Ǔ'),       // Вражеский детектив находится на лестнице
+    ENEMY_HERO_LEFT('❫'),         // Вражеский детектив бежит влево
+    ENEMY_HERO_RIGHT('❪'),        // Вражеский детектив бежит вправо
+    ENEMY_HERO_FALL_LEFT('⋥'),    // Вражеский детектив падает, смотря влево        // TODO test me
+    ENEMY_HERO_FALL_RIGHT('⋤'),   // Вражеский детектив падает, смотря вправо       // TODO test me
+    ENEMY_HERO_PIPE_LEFT('Ǯ'),    // Вражеский детектив ползёт по трубе влево
+    ENEMY_HERO_PIPE_RIGHT('Ě'),   // Вражеский детектив ползёт по трубе вправо
+
+    // А если детективы других игроков под маскировкой, то так
+    ENEMY_HERO_MASK_DIE('⧓'),         // Вражеский детектив-маскировка переживает процесс умирания
+    ENEMY_HERO_MASK_CRACK_LEFT('⇢'),  // Вражеский детектив-маскировка простреливает слева от себя       // TODO test me
+    ENEMY_HERO_MASK_CRACK_RIGHT('⇠'), // Вражеский детектив-маскировка простреливает справа от себя      // TODO test me
+    ENEMY_HERO_MASK_LEFT('⧒'),        // Вражеский детектив-маскировка находится на лестнице
+    ENEMY_HERO_MASK_RIGHT('⧑'),       // Вражеский детектив-маскировка бежит влево
+    ENEMY_HERO_MASK_LADDER('≠'),      // Вражеский детектив-маскировка бежит вправо
+    ENEMY_HERO_MASK_FALL_LEFT('⌫'),   // Вражеский детектив-маскировка падает, смотря влево        // TODO test me
+    ENEMY_HERO_MASK_FALL_RIGHT('⌦'),  // Вражеский детектив-маскировка падает, смотря вправо       // TODO test me
+    ENEMY_HERO_MASK_PIPE_LEFT('❵'),   // Вражеский детектив-маскировка ползёт по трубе влево
+    ENEMY_HERO_MASK_PIPE_RIGHT('❴'),  // Вражеский детектив-маскировка ползёт по трубе вправо
+
     // Боты-воры
     ROBBER_LADDER('Q'),
     ROBBER_LEFT('«'),
@@ -189,6 +213,30 @@ public enum Element implements CharElement {
                 OTHER_HERO_MASK_FALL_RIGHT,
                 OTHER_HERO_MASK_PIPE_LEFT,
                 OTHER_HERO_MASK_PIPE_RIGHT);
+    }
+
+    public static List<Element> enemyHeroes() {
+        return Arrays.asList(ENEMY_HERO_DIE,
+                ENEMY_HERO_CRACK_LEFT,
+                ENEMY_HERO_CRACK_RIGHT,
+                ENEMY_HERO_LADDER,
+                ENEMY_HERO_LEFT,
+                ENEMY_HERO_RIGHT,
+                ENEMY_HERO_FALL_LEFT,
+                ENEMY_HERO_FALL_RIGHT,
+                ENEMY_HERO_PIPE_LEFT,
+                ENEMY_HERO_PIPE_RIGHT,
+
+                ENEMY_HERO_MASK_DIE,
+                ENEMY_HERO_MASK_CRACK_LEFT,
+                ENEMY_HERO_MASK_CRACK_RIGHT,
+                ENEMY_HERO_MASK_LEFT,
+                ENEMY_HERO_MASK_RIGHT,
+                ENEMY_HERO_MASK_LADDER,
+                ENEMY_HERO_MASK_FALL_LEFT,
+                ENEMY_HERO_MASK_FALL_RIGHT,
+                ENEMY_HERO_MASK_PIPE_LEFT,
+                ENEMY_HERO_MASK_PIPE_RIGHT);
     }
 
     public static List<Element> pipes() {
