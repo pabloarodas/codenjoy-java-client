@@ -126,7 +126,7 @@ public enum Element implements CharElement {
     ROBBER_RIGHT('»'),
     ROBBER_PIPE_LEFT('<'),
     ROBBER_PIPE_RIGHT('>'),
-    ROBBER_MASK('X'),
+    ROBBER_PIT('X'),
 
     LADDER('H'),              // Лестница - по ней можно перемещаться по уровню
     PIPE('~'),                // Труба - по ней так же можно перемещаться по уровню, но только горизонтально
@@ -188,7 +188,7 @@ public enum Element implements CharElement {
                 ROBBER_PIPE_LEFT,
                 ROBBER_PIPE_RIGHT,
                 ROBBER_RIGHT,
-                ROBBER_MASK);
+                ROBBER_PIT);
     }
 
     public static List<Element> otherHeroes() {
