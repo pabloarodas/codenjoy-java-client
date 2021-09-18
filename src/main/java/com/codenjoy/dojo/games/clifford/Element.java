@@ -138,7 +138,7 @@ public enum Element implements CharElement {
 
     final char ch;
 
-    public static List<Element> gold() {
+    public static List<Element> clues() {
         return Arrays.asList(
                 CLUE_KNIFE,
                 CLUE_GLOVE,

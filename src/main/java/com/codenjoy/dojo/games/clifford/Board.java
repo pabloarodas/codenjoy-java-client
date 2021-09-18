@@ -95,7 +95,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isGold(Point pt) {
-        return is(pt, gold());
+        return is(pt, clues());
     }
 
     public boolean isLadder(Point pt) {
