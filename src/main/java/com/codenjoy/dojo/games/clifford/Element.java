@@ -44,9 +44,9 @@ public enum Element implements CharElement {
 
     CRACK_PIT('*'),               // В момент выстрела мы видим процесс так
 
-    KNIFE_CLUE('$'),              // Улика нож
-    GLOVE_CLUE('&'),              // Улика перчатка
-    RING_CLUE('@'),               // Улика кольцо
+    CLUE_KNIFE('$'),              // Улика нож
+    CLUE_GLOVE('&'),              // Улика перчатка
+    CLUE_RING('@'),               // Улика кольцо
 
     // Твой детектив в зависимости от того, чем он сейчас занят отображается следующими символами
     HERO_DIE('Ѡ'),                // Детектив переживает процесс умирания
@@ -140,9 +140,9 @@ public enum Element implements CharElement {
 
     public static List<Element> gold() {
         return Arrays.asList(
-                KNIFE_CLUE,
-                GLOVE_CLUE,
-                RING_CLUE);
+                CLUE_KNIFE,
+                CLUE_GLOVE,
+                CLUE_RING);
     }
 
     public static List<Element> ladders() {
