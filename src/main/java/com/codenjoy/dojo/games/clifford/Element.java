@@ -136,6 +136,8 @@ public enum Element implements CharElement {
     ROBBER_LADDER('Q'),
     ROBBER_LEFT('«'),
     ROBBER_RIGHT('»'),
+    ROBBER_FALL_LEFT('‹'),
+    ROBBER_FALL_RIGHT('›'),
     ROBBER_PIPE_LEFT('<'),
     ROBBER_PIPE_RIGHT('>'),
     ROBBER_PIT_LEFT('⍇'),
@@ -202,9 +204,11 @@ public enum Element implements CharElement {
     public static List<Element> robbers() {
         return Arrays.asList(ROBBER_LADDER,
                 ROBBER_LEFT,
+                ROBBER_RIGHT,
+                ROBBER_FALL_LEFT,
+                ROBBER_FALL_RIGHT,
                 ROBBER_PIPE_LEFT,
                 ROBBER_PIPE_RIGHT,
-                ROBBER_RIGHT,
                 ROBBER_PIT_LEFT,
                 ROBBER_PIT_RIGHT);
     }
