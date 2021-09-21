@@ -59,6 +59,8 @@ public enum Element implements CharElement {
     HERO_FALL_RIGHT('['),         // Детектив падает, смотря вправо
     HERO_PIPE_LEFT('{'),          // Детектив ползёт по трубе влево
     HERO_PIPE_RIGHT('}'),         // Детектив ползёт по трубе вправо
+    HERO_PIT_LEFT('⍃'),           // Детектив в яме смотрит влево
+    HERO_PIT_RIGHT('⍄'),          // Детектив в яме смотрит вправо
 
     // Тоже твой детектив, но под маскировкой:
     HERO_MASK_DIE('x'),         // Детектив-маскировка переживает процесс умирания // TODO test me
@@ -71,6 +73,8 @@ public enum Element implements CharElement {
     HERO_MASK_FALL_RIGHT('⊄'),  // Детектив-маскировка падает, смотря вправо
     HERO_MASK_PIPE_LEFT('⋜'),   // Детектив-маскировка ползёт по трубе влево
     HERO_MASK_PIPE_RIGHT('⋝'),  // Детектив-маскировка ползёт по трубе вправо
+    HERO_MASK_PIT_LEFT('ᐊ'),    // Детектив-маскировка в яме смотрит влево
+    HERO_MASK_PIT_RIGHT('ᐅ'),   // Детектив-маскировка в яме смотрит вправо
 
     // Детективы других игроков отображаются так
     OTHER_HERO_DIE('Z'),          // Другой детектив переживает процесс умирания
@@ -83,6 +87,8 @@ public enum Element implements CharElement {
     OTHER_HERO_FALL_RIGHT('⊏'),   // Другой детектив падает, смотря вправо       // TODO test me
     OTHER_HERO_PIPE_LEFT('Э'),    // Другой детектив ползёт по трубе влево
     OTHER_HERO_PIPE_RIGHT('Є'),   // Другой детектив ползёт по трубе вправо
+    OTHER_HERO_PIT_LEFT('ᗉ'),     // Другой детектив в яме смотрит влево
+    OTHER_HERO_PIT_RIGHT('ᗆ'),    // Другой детектив в яме смотрит вправо
 
     // А если детективы других игроков под маскировкой, то так
     OTHER_HERO_MASK_DIE('⋈'),         // Другой детектив-маскировка переживает процесс умирания
@@ -95,6 +101,8 @@ public enum Element implements CharElement {
     OTHER_HERO_MASK_FALL_RIGHT('⋢'),  // Другой детектив-маскировка падает, смотря вправо       // TODO test me
     OTHER_HERO_MASK_PIPE_LEFT('⊣'),   // Другой детектив-маскировка ползёт по трубе влево
     OTHER_HERO_MASK_PIPE_RIGHT('⊢'),  // Другой детектив-маскировка ползёт по трубе вправо
+    OTHER_HERO_MASK_PIT_LEFT('ᗏ'),     // Другой детектив-маскировка в яме смотрит влево
+    OTHER_HERO_MASK_PIT_RIGHT('ᗌ'),    // Другой детектив-маскировка в яме смотрит вправо
 
     // Вражеские детективы других игроков отображаются так
     ENEMY_HERO_DIE('Ž'),          // Вражеский детектив переживает процесс умирания       // TODO test me
@@ -107,6 +115,8 @@ public enum Element implements CharElement {
     ENEMY_HERO_FALL_RIGHT('⋤'),   // Вражеский детектив падает, смотря вправо       // TODO test me
     ENEMY_HERO_PIPE_LEFT('Ǯ'),    // Вражеский детектив ползёт по трубе влево       // TODO test me
     ENEMY_HERO_PIPE_RIGHT('Ě'),   // Вражеский детектив ползёт по трубе вправо       // TODO test me
+    ENEMY_HERO_PIT_LEFT('⇇'),     // Вражеский детектив в яме смотрит влево
+    ENEMY_HERO_PIT_RIGHT('⇉'),    // Вражеский детектив в яме смотрит вправо
 
     // А если вражеские детективы других игроков под маскировкой, то так
     ENEMY_HERO_MASK_DIE('⧓'),         // Вражеский детектив-маскировка переживает процесс умирания       // TODO test me
@@ -119,6 +129,8 @@ public enum Element implements CharElement {
     ENEMY_HERO_MASK_FALL_RIGHT('⌦'),  // Вражеский детектив-маскировка падает, смотря вправо       // TODO test me
     ENEMY_HERO_MASK_PIPE_LEFT('❵'),   // Вражеский детектив-маскировка ползёт по трубе влево       // TODO test me
     ENEMY_HERO_MASK_PIPE_RIGHT('❴'),  // Вражеский детектив-маскировка ползёт по трубе вправо       // TODO test me
+    ENEMY_HERO_MASK_PIT_LEFT('⬱'),    // Вражеский детектив-маскировка в яме смотрит влево
+    ENEMY_HERO_MASK_PIT_RIGHT('⇶'),   // Вражеский детектив-маскировка в яме смотрит вправо
 
     // Боты-воры
     ROBBER_LADDER('Q'),
@@ -170,6 +182,8 @@ public enum Element implements CharElement {
                 HERO_FALL_RIGHT,
                 HERO_PIPE_LEFT,
                 HERO_PIPE_RIGHT,
+                HERO_PIT_LEFT,
+                HERO_PIT_RIGHT,
 
                 HERO_MASK_DIE,
                 HERO_MASK_CRACK_LEFT,
@@ -180,7 +194,9 @@ public enum Element implements CharElement {
                 HERO_MASK_FALL_LEFT,
                 HERO_MASK_FALL_RIGHT,
                 HERO_MASK_PIPE_LEFT,
-                HERO_MASK_PIPE_RIGHT);
+                HERO_MASK_PIPE_RIGHT,
+                HERO_MASK_PIT_LEFT,
+                HERO_MASK_PIT_RIGHT);
     }
 
     public static List<Element> robbers() {
@@ -204,6 +220,8 @@ public enum Element implements CharElement {
                 OTHER_HERO_FALL_RIGHT,
                 OTHER_HERO_PIPE_LEFT,
                 OTHER_HERO_PIPE_RIGHT,
+                OTHER_HERO_PIT_LEFT,
+                OTHER_HERO_PIT_RIGHT,
 
                 OTHER_HERO_MASK_DIE,
                 OTHER_HERO_MASK_CRACK_LEFT,
@@ -214,7 +232,9 @@ public enum Element implements CharElement {
                 OTHER_HERO_MASK_FALL_LEFT,
                 OTHER_HERO_MASK_FALL_RIGHT,
                 OTHER_HERO_MASK_PIPE_LEFT,
-                OTHER_HERO_MASK_PIPE_RIGHT);
+                OTHER_HERO_MASK_PIPE_RIGHT,
+                OTHER_HERO_MASK_PIT_LEFT,
+                OTHER_HERO_MASK_PIT_RIGHT);
     }
 
     public static List<Element> enemyHeroes() {
@@ -228,6 +248,8 @@ public enum Element implements CharElement {
                 ENEMY_HERO_FALL_RIGHT,
                 ENEMY_HERO_PIPE_LEFT,
                 ENEMY_HERO_PIPE_RIGHT,
+                ENEMY_HERO_PIT_LEFT,
+                ENEMY_HERO_PIT_RIGHT,
 
                 ENEMY_HERO_MASK_DIE,
                 ENEMY_HERO_MASK_CRACK_LEFT,
@@ -238,7 +260,9 @@ public enum Element implements CharElement {
                 ENEMY_HERO_MASK_FALL_LEFT,
                 ENEMY_HERO_MASK_FALL_RIGHT,
                 ENEMY_HERO_MASK_PIPE_LEFT,
-                ENEMY_HERO_MASK_PIPE_RIGHT);
+                ENEMY_HERO_MASK_PIPE_RIGHT,
+                ENEMY_HERO_MASK_PIT_LEFT,
+                ENEMY_HERO_MASK_PIT_RIGHT);
     }
 
     public static List<Element> pipes() {
@@ -283,6 +307,8 @@ public enum Element implements CharElement {
             case HERO_FALL_RIGHT: return HERO_MASK_FALL_RIGHT;
             case HERO_PIPE_LEFT: return HERO_MASK_PIPE_LEFT;
             case HERO_PIPE_RIGHT: return HERO_MASK_PIPE_RIGHT;
+            case HERO_PIT_LEFT: return HERO_MASK_PIT_LEFT;
+            case HERO_PIT_RIGHT: return HERO_MASK_PIT_RIGHT;
 
             case OTHER_HERO_DIE: return OTHER_HERO_MASK_DIE;
             case OTHER_HERO_CRACK_LEFT: return OTHER_HERO_MASK_CRACK_LEFT;
@@ -294,6 +320,8 @@ public enum Element implements CharElement {
             case OTHER_HERO_FALL_RIGHT: return OTHER_HERO_MASK_FALL_RIGHT;
             case OTHER_HERO_PIPE_LEFT: return OTHER_HERO_MASK_PIPE_LEFT;
             case OTHER_HERO_PIPE_RIGHT: return OTHER_HERO_MASK_PIPE_RIGHT;
+            case OTHER_HERO_PIT_LEFT: return OTHER_HERO_MASK_PIT_LEFT;
+            case OTHER_HERO_PIT_RIGHT: return OTHER_HERO_MASK_PIT_RIGHT;
 
             case ENEMY_HERO_DIE: return ENEMY_HERO_MASK_DIE;
             case ENEMY_HERO_CRACK_LEFT: return ENEMY_HERO_MASK_CRACK_LEFT;
@@ -305,6 +333,8 @@ public enum Element implements CharElement {
             case ENEMY_HERO_FALL_RIGHT: return ENEMY_HERO_MASK_FALL_RIGHT;
             case ENEMY_HERO_PIPE_LEFT: return ENEMY_HERO_MASK_PIPE_LEFT;
             case ENEMY_HERO_PIPE_RIGHT: return ENEMY_HERO_MASK_PIPE_RIGHT;
+            case ENEMY_HERO_PIT_LEFT: return ENEMY_HERO_MASK_PIT_LEFT;
+            case ENEMY_HERO_PIT_RIGHT: return ENEMY_HERO_MASK_PIT_RIGHT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
@@ -321,6 +351,8 @@ public enum Element implements CharElement {
             case HERO_FALL_RIGHT: return OTHER_HERO_FALL_RIGHT;
             case HERO_PIPE_LEFT: return OTHER_HERO_PIPE_LEFT;
             case HERO_PIPE_RIGHT: return OTHER_HERO_PIPE_RIGHT;
+            case HERO_PIT_LEFT: return OTHER_HERO_PIT_LEFT;
+            case HERO_PIT_RIGHT: return OTHER_HERO_PIT_RIGHT;
 
             case HERO_MASK_DIE: return OTHER_HERO_MASK_DIE;
             case HERO_MASK_CRACK_LEFT: return OTHER_HERO_MASK_CRACK_LEFT;
@@ -332,6 +364,8 @@ public enum Element implements CharElement {
             case HERO_MASK_FALL_RIGHT: return OTHER_HERO_MASK_FALL_RIGHT;
             case HERO_MASK_PIPE_LEFT: return OTHER_HERO_MASK_PIPE_LEFT;
             case HERO_MASK_PIPE_RIGHT: return OTHER_HERO_MASK_PIPE_RIGHT;
+            case HERO_MASK_PIT_LEFT: return OTHER_HERO_MASK_PIT_LEFT;
+            case HERO_MASK_PIT_RIGHT: return OTHER_HERO_MASK_PIT_RIGHT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
@@ -348,6 +382,8 @@ public enum Element implements CharElement {
             case HERO_FALL_RIGHT: return ENEMY_HERO_FALL_RIGHT;
             case HERO_PIPE_LEFT: return ENEMY_HERO_PIPE_LEFT;
             case HERO_PIPE_RIGHT: return ENEMY_HERO_PIPE_RIGHT;
+            case HERO_PIT_LEFT: return ENEMY_HERO_PIT_LEFT;
+            case HERO_PIT_RIGHT: return ENEMY_HERO_PIT_RIGHT;
 
             case HERO_MASK_DIE: return ENEMY_HERO_MASK_DIE;
             case HERO_MASK_CRACK_LEFT: return ENEMY_HERO_MASK_CRACK_LEFT;
@@ -359,6 +395,8 @@ public enum Element implements CharElement {
             case HERO_MASK_FALL_RIGHT: return ENEMY_HERO_MASK_FALL_RIGHT;
             case HERO_MASK_PIPE_LEFT: return ENEMY_HERO_MASK_PIPE_LEFT;
             case HERO_MASK_PIPE_RIGHT: return ENEMY_HERO_MASK_PIPE_RIGHT;
+            case HERO_MASK_PIT_LEFT: return ENEMY_HERO_PIT_LEFT;
+            case HERO_MASK_PIT_RIGHT: return ENEMY_HERO_PIT_RIGHT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
