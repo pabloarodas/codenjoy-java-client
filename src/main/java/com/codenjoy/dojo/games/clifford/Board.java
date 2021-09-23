@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.loderunner;
+package com.codenjoy.dojo.games.clifford;
 
 /*-
  * #%L
@@ -29,7 +29,7 @@ import com.codenjoy.dojo.services.Point;
 import java.util.Collection;
 import java.util.List;
 
-import static com.codenjoy.dojo.games.loderunner.Element.*;
+import static com.codenjoy.dojo.games.clifford.Element.*;
 
 /**
  * The class is a wrapper over the board string
@@ -73,8 +73,8 @@ public class Board extends AbstractBoard<Element> {
         return !get(HERO_DIE).isEmpty();
     }
 
-    public boolean isEnemyAt(Point pt) {
-        return is(pt, enemies());
+    public boolean isRobberAt(Point pt) {
+        return is(pt, robbers());
     }
 
     public boolean is(Point pt, List<Element> enemies) {
@@ -86,12 +86,16 @@ public class Board extends AbstractBoard<Element> {
         return is(pt, otherHeroes());
     }
 
+    public boolean isEnemyHeroAt(Point pt) {
+        return is(pt, enemyHeroes());
+    }
+
     public boolean isWall(Point pt) {
         return is(pt, walls());
     }
 
     public boolean isGold(Point pt) {
-        return is(pt, gold());
+        return is(pt, clues());
     }
 
     public boolean isLadder(Point pt) {

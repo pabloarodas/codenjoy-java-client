@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.loderunner;
+package com.codenjoy.dojo.games.clifford;
 
 /*-
  * #%L

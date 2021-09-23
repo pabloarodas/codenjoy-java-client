@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.loderunner;
+package com.codenjoy.dojo.games.clifford;
 
 /*-
  * #%L
@@ -114,12 +114,33 @@ public class BoardTest {
                     "⋢=[],\n" +
                     "⊣=[],\n" +
                     "⊢=[],\n" +
+                    "Ž=[],\n" +
+                    "⟧=[],\n" +
+                    "⟦=[],\n" +
+                    "Ǔ=[],\n" +
+                    "❫=[],\n" +
+                    "❪=[],\n" +
+                    "⋥=[],\n" +
+                    "⋤=[],\n" +
+                    "Ǯ=[],\n" +
+                    "Ě=[],\n" +
+                    "⧓=[],\n" +
+                    "⇢=[],\n" +
+                    "⇠=[],\n" +
+                    "⧒=[],\n" +
+                    "⧑=[],\n" +
+                    "≠=[],\n" +
+                    "⌫=[],\n" +
+                    "⌦=[],\n" +
+                    "❵=[],\n" +
+                    "❴=[],\n" +
                     "Q=[],\n" +
                     "«=[],\n" +
                     "»=[],\n" +
                     "<=[],\n" +
                     ">=[],\n" +
-                    "X=[],\n" +
+                    "⍇=[],\n" +
+                    "⍈=[],\n" +
                     "H=[[5,2], [5,3], [5,4], [5,5]],\n" +
                     "~=[],\n" +
                     "⊛=[],\n" +
@@ -141,7 +162,7 @@ public class BoardTest {
 
     @Test
     public void shouldIsAt() {
-        assertEquals(false, board.isAt(2, 4, Element.DRILL_PIT));
+        assertEquals(false, board.isAt(2, 4, Element.CRACK_PIT));
         assertEquals(true,  board.isAt(2, 4, Element.BRICK));
     }
 }
