@@ -37,12 +37,12 @@ public class BoardTest {
     public void setup() {
         board = (Board) new Board().forString(
                 "☼☼☼☼☼☼☼\n" +
-                        "☼ $  H☼\n" +
-                        "☼ ###H☼\n" +
-                        "☼    H☼\n" +
-                        "☼►   H☼\n" +
-                        "☼#####☼\n" +
-                        "☼☼☼☼☼☼☼\n");
+                "☼ $  H☼\n" +
+                "☼ ###H☼\n" +
+                "☼    H☼\n" +
+                "☼►   H☼\n" +
+                "☼#####☼\n" +
+                "☼☼☼☼☼☼☼\n");
     }
 
     @Test
@@ -164,6 +164,7 @@ public class BoardTest {
                         "✦=[],\n" +
                         "✼=[],\n" +
                         "⍟=[],\n" +
+                        "•=[],\n" +
                         "H=[[5,2], [5,3], [5,4], [5,5]],\n" +
                         "~=[],\n" +
                         "⊛=[],\n" +
