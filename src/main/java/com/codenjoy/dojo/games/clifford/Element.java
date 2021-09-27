@@ -156,6 +156,8 @@ public enum Element implements CharElement {
     KEY_SILVER('✼'),
     KEY_BRONZE('⍟'),
 
+    BULLET('•'),
+
     LADDER('H'),              // Лестница - по ней можно перемещаться по уровню
     PIPE('~'),                // Труба - по ней так же можно перемещаться по уровню, но только горизонтально
 
