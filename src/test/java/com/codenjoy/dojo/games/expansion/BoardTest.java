@@ -178,7 +178,38 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldBeBarriers() {
+    public void shouldIsHoleAt() {
+        assertEquals(false, board.isHoleAt(0, 0));
+        assertEquals(false, board.isHoleAt(1, 0));
+        assertEquals(false, board.isHoleAt(0, 1));
+
+        assertEquals(false, board.isHoleAt(4, 4));
+        assertEquals(false, board.isHoleAt(5, 4));
+        assertEquals(false, board.isHoleAt(4, 5));
+
+        assertEquals(false, board.isHoleAt(5, 8));
+        assertEquals(false, board.isHoleAt(6, 8));
+        assertEquals(false, board.isHoleAt(6, 7));
+
+        assertEquals(false, board.isHoleAt(10, 10));
+        assertEquals(false, board.isHoleAt(9, 10));
+        assertEquals(false, board.isHoleAt(10, 9));
+
+        assertEquals(false, board.isHoleAt(5, 5));
+
+        assertEquals(false, board.isHoleAt(2, 2)); //there is my forces
+
+        assertEquals(true, board.isHoleAt(1, 1)); // hole
+        assertEquals(true, board.isHoleAt(9, 3)); // hole
+        assertEquals(false, board.isHoleAt(9, 9));
+
+        assertEquals(false, board.isHoleAt(1, 9));
+        assertEquals(false, board.isHoleAt(2, 1));
+        assertEquals(false, board.isHoleAt(3, 9));
+    }
+
+    @Test
+    public void shouldIsBarrierAt() {
         assertEquals(true, board.isBarrierAt(0, 0));
         assertEquals(true, board.isBarrierAt(1, 0));
         assertEquals(true, board.isBarrierAt(0, 1));
@@ -199,7 +230,8 @@ public class BoardTest {
 
         assertEquals(false, board.isBarrierAt(2, 2)); //there is my forces
 
-        assertEquals(false, board.isBarrierAt(1, 1));
+        assertEquals(false, board.isBarrierAt(1, 1)); // hole
+        assertEquals(false, board.isBarrierAt(9, 3)); // hole
         assertEquals(false, board.isBarrierAt(9, 9));
 
         assertEquals(false, board.isBarrierAt(1, 9));

@@ -77,6 +77,14 @@ public class Board extends AbstractBoard<Element> {
     }
 
     /**
+     * @return All barriers on the map.
+     */
+    public List<Point> holes() {
+        return get(Element.Layers.LAYER1,
+                Element.HOLE);
+    }
+
+    /**
      * @param x X coordinate.
      * @param y Y coordinate.
      * @return Is Hole on the way?
