@@ -306,7 +306,6 @@ public class Board extends AbstractBoard<Element> {
                 "    0    1    2    3    4    5    6    7    8    9" +
                 "    0    1    2    3    4    5    6    7    8    9    0";
 
-        StringBuilder builder = new StringBuilder();
         String[] layer1 = boardAsString(Element.Layers.LAYER1).split("\n");
         String[] layer2 = boardAsString(Element.Layers.LAYER2).split("\n");
         String[] layer3 = Utils.injectNN(getForcesString()).split("\n");
@@ -329,6 +328,9 @@ public class Board extends AbstractBoard<Element> {
         String numbersLine = "  " + numbers + "   " + numbers +  "   " + numbers2;
         String firstPart = " Layer1 " + space + " Layer1 " + space + " Layer3\n" + numbersLine;
 
+        StringBuilder builder = new StringBuilder();
+        builder.append(firstPart)
+                .append('\n');
         for (int i = 0; i < size; ++i) {
             int ii = size - 1 - i;
             String index = (ii < 10 ? " " : "") + ii;
@@ -363,7 +365,12 @@ public class Board extends AbstractBoard<Element> {
             }
         }
 
-        return firstPart + "\n" + builder.toString() + "\n" + numbersLine + " Tick#" + getTick();
+        builder.append('\n')
+                .append(numbersLine)
+                .append(" Tick#")
+                .append(getTick());
+
+        return builder.toString();
     }
 
     private String listToString(List<? extends Object> list) {
