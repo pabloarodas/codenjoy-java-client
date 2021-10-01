@@ -39,7 +39,7 @@ public class BoardTest {
                  "☼☼☼☼☼☼☼\n" +
                  "☼  x  ☼\n" +
                  "☼ $   ☼\n" +
-                 "☼     ☼\n" +
+                 "☼X   Y☼\n" +
                  "☼ ☺ $ ☼\n" +
                  "☼  ☻  ☼\n" +
                  "☼☼☼☼☼☼☼\n");
@@ -51,7 +51,7 @@ public class BoardTest {
                 "☼☼☼☼☼☼☼\n" +
                 "☼  x  ☼\n" +
                 "☼ $   ☼\n" +
-                "☼     ☼\n" +
+                "☼X   Y☼\n" +
                 "☼ ☺ $ ☼\n" +
                 "☼  ☻  ☼\n" +
                 "☼☼☼☼☼☼☼\n");
@@ -63,11 +63,12 @@ public class BoardTest {
 
     @Test
     public void shouldGetElement() {
-        assertEquals("{ =[[1,1], [1,2], [1,3], [1,4], [1,5], [2,1], [2,3], [2,5], [3,2], [3,3], [3,4], [4,1], [4,3], [4,4], [4,5], [5,1], [5,2], [5,3], [5,4], [5,5]],\n" +
+        assertEquals("{ =[[1,1], [1,2], [1,4], [1,5], [2,1], [2,3], [2,5], [3,2], [3,3], [3,4], [4,1], [4,3], [4,4], [4,5], [5,1], [5,2], [5,4], [5,5]],\n" +
                     "☼=[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [1,0], [1,6], [2,0], [2,6], [3,0], [3,6], [4,0], [4,6], [5,0], [5,6], [6,0], [6,1], [6,2], [6,3], [6,4], [6,5], [6,6]],\n" +
                     "☺=[[2,2]],\n" +
                     "☻=[[3,1]],\n" +
-                    "X=[],\n" +
+                    "X=[[1,3]],\n" +
+                    "Y=[[5,3]],\n" +
                     "$=[[2,4], [4,2]],\n" +
                     "x=[[3,5]]}",
                 Utils.elementsMap(board, Element.values()).toString()
@@ -79,6 +80,8 @@ public class BoardTest {
         assertEquals("☼", board.getAt(0, 0).toString());
         assertEquals("☺", board.getAt(2, 2).toString());
         assertEquals("☻", board.getAt(3, 1).toString());
+        assertEquals("X", board.getAt(1, 3).toString());
+        assertEquals("Y", board.getAt(5, 3).toString());
         assertEquals("$", board.getAt(2, 4).toString());
         assertEquals("$", board.getAt(4, 2).toString());
         assertEquals("x", board.getAt(3, 5).toString());
