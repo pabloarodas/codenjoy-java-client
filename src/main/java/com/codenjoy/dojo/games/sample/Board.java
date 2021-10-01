@@ -30,7 +30,7 @@ import static com.codenjoy.dojo.games.sample.Element.*;
 
 /**
  * Класс, обрабатывающий строковое представление доски.
- * Содержит ряд унаследованных методов {@see AbstractBoard},
+ * Содержит ряд унаследованных методов {@link AbstractBoard},
  * но ты можешь добавить сюда любые свои методы на их основе.
  */
 public class Board extends AbstractBoard<Element> {

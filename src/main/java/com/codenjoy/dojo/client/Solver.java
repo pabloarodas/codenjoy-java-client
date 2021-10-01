@@ -25,7 +25,7 @@ package com.codenjoy.dojo.client;
 
 /**
  * Любая реализация AI должна реализовать этот интерфейс.
- * @param <B> реализация {@see AbstractBoard} для текущей игры
+ * @param <B> реализация {@link AbstractBoard} для текущей игры
  */
 @FunctionalInterface
 public interface Solver<B extends ClientBoard> {

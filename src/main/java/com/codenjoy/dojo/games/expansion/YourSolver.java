@@ -34,7 +34,7 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  *
  * This is your AI algorithm for the game.
  * Implement it at your own discretion.
- * Pay attention to {@see YourSolverTest} - there is
+ * Pay attention to {@link YourSolverTest} - there is
  * a test framework for you.
  */
 public class YourSolver extends AbstractSolver {

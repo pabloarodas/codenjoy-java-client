@@ -28,7 +28,7 @@ import com.codenjoy.dojo.services.Point;
 /**
  * The class is a wrapper over the board string
  * coming from the server. Contains a number of
- * inherited methods {@see AbstractBoard},
+ * inherited methods {@link AbstractBoard},
  * but you can add any methods based on them here.
  */
 public class Board extends AbstractBoard<Element> {

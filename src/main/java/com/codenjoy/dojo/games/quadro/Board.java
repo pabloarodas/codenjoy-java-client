@@ -30,7 +30,7 @@ import static com.codenjoy.dojo.games.quadro.Element.YELLOW;
 
 /**
  * Класс, обрабатывающий строковое представление доски.
- * Содержит ряд унаследованных методов {@see AbstractBoard}.
+ * Содержит ряд унаследованных методов {@link AbstractBoard}.
  */
 public class Board extends AbstractBoard<Element> {
 

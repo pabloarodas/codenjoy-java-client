@@ -36,7 +36,7 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
  * Класс, обрабатывающий строковое представление доски в виде JSON.
- * Содержит ряд унаследованных методов {@see AbstractTextBoard},
+ * Содержит ряд унаследованных методов {@link AbstractTextBoard},
  * но ты можешь добавить сюда любые свои методы на их основе.
  */
 public class Board extends AbstractTextBoard {
