@@ -38,12 +38,6 @@ public class Board extends AbstractBoard<Element> {
         return Element.valueOf(ch);
     }
 
-    public List<Point> get(Element... elements) {
-        List<Point> result = super.get(elements);
-        Collections.sort(result);
-        return result;
-    }
-
     @Override
     public String toString() {
        return boardAsString();

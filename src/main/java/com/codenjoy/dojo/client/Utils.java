@@ -74,13 +74,29 @@ public class Utils {
         return result.toString();
     }
 
+    public static <E extends CharElement> String elements(AbstractBoard<E> board, E[] elements) {
+        return split(elementsMap(board, elements),
+                "]], \n",
+                "[], \n");
+    }
+
     // TODO подумать как и унести в AbstractLayeredBoard
-    public static Map<CharElement, String> elementsMap(AbstractBoard board, CharElement[] elements) {
+    public static <E extends CharElement> Map<E, String> elementsMap(AbstractBoard<E> board, E[] elements) {
         return Arrays.stream(elements)
                 .map(element -> Map.entry(element, board.get(element).toString()))
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
                         (value1, value2) -> value2,
                         LinkedHashMap::new));
+    }
+
+    public static String split(Object object, String... splits) {
+        String result = object.toString();
+        for (String split : splits) {
+            result = result.replace(
+                    split.replaceAll("[\n\0\t]", ""),
+                    split.replace("\0", " ").replace("\t", "    "));
+        }
+        return result;
     }
 
     public static List<String> getStrings(JSONArray array) {
