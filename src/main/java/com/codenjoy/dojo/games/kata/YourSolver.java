@@ -73,18 +73,14 @@ public class YourSolver extends AbstractTextSolver {
     // Use this command to start next level
     public static class StartNextLevel {
         public static void main(String[] args) {
-            run(new OneCommandSolver<Board>("message('" + Element.START_NEXT_LEVEL + "')"), null);
+            new Runner().send("message('" + Element.START_NEXT_LEVEL + "')", new Board());
         }
     }
 
     // Use this command to skip this level
     public static class SkipThisLevel extends YourSolver {
         public static void main(String[] args) {
-            run(new OneCommandSolver<Board>("message('" + Element.SKIP_THIS_LEVEL + "')"), null);
+            new Runner().send("message('" + Element.SKIP_THIS_LEVEL + "')", new Board());
         }
-    }
-
-    private static void run(Solver solver, String[] args) {
-        WebSocketRunner.runClient(args, Runner.URL, solver, new Board());
     }
 }

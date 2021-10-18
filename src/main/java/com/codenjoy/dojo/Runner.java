@@ -22,26 +22,49 @@ package com.codenjoy.dojo;
  * #L%
  */
 
+import com.codenjoy.dojo.client.ClientBoard;
+import com.codenjoy.dojo.client.OneCommandSolver;
 import com.codenjoy.dojo.client.WebSocketRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaBoard;
 import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaSolver;
 
 public class Runner {
 
+    private static Logger log = LoggerFactory.getLogger(Runner.class);
+
     // Select your game
-    public static String GAME = "mollymage";
+    private String game = "mollymage";
 
     // Paste here board page url from browser after registration,
     // or put it as command line parameter.
-    public static String URL =
+    private String url =
             "http://localhost:8080/codenjoy-contest/board/player/0?code=000000000000";
 
-    public static void main(String[] args) {
+    public void run(String[] args) {
+        System.out.println("+-----------------+");
+        System.out.println("| Starting runner |");
+        System.out.println("+-----------------+");
+
         if (args != null && args.length == 2) {
-            GAME = args[0];
-            URL = args[1];
+            game = args[0];
+            url = args[1];
+            System.out.printf("Got 'GAME' from Environment: '%s'\n", game);
+            System.out.printf("Got 'URL' from Environment:  '%s'\n", url);
+        } else {
+            System.out.printf("Got 'GAME' from Runner: '%s'\n", game);
+            System.out.printf("Got 'URL' from Runner:  '%s'\n", url);
         }
-        WebSocketRunner.runClient(URL, loadJavaSolver(GAME), loadJavaBoard(GAME));
+        WebSocketRunner.runClient(url, loadJavaSolver(game), loadJavaBoard(game));
+    }
+
+    public <B extends ClientBoard> void send(String command, B board) {
+        WebSocketRunner.runClient(null, url, new OneCommandSolver<>(command), board);
+    }
+
+    public static void main(String[] args) {
+        new Runner().run(args);
     }
 }
