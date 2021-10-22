@@ -1,9 +1,7 @@
 call 0-settings.bat
 
 echo off
-echo        [44;93m+-------------------------------------+[0m
-echo        [44;93m!           Installing JDK            ![0m
-echo        [44;93m+-------------------------------------+[0m
+call lib.bat :color Installing JDK...
 echo on
 
 if "%SKIP_JDK_INSTALL%"=="true" ( goto :skip )
@@ -26,9 +24,9 @@ goto :eof
 
 :skip
 	echo off
-	echo        [44;93m  Installation skipped:       [0m
-	echo        [44;93m      INSTALL_LOCALLY=%INSTALL_LOCALLY%     [0m
-	echo        [44;93m      SKIP_JDK_INSTALL=%SKIP_JDK_INSTALL%        [0m
-	echo on	
+	call lib.bat :color Installation skipped
+	call lib.bat :color INSTALL_LOCALLY=%INSTALL_LOCALLY%
+	call lib.bat :color SKIP_JDK_INSTALL=%SKIP_JDK_INSTALL%
+	echo on
 	call lib.bat :ask
     goto :eof

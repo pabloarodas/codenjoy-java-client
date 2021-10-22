@@ -3,23 +3,21 @@ goto :eof
 
 :print_color
 	call %* > %TOOLS%\out
-    echo off
+	echo off
     for /f "tokens=*" %%s in (%TOOLS%\out) do (
-        call :color %%s
+         call :color %%s
     )
     echo on
     del /Q %TOOLS%\out
     goto :eof
 
 :color
-    echo        [44;93m%*[0m
+    echo [44;93m%*[0m
     goto :eof
 
 :ask
     echo off
-    echo        [44;93m+---------------------------------+[0m
-    echo        [44;93m!    Press any key to continue    ![0m
-    echo        [44;93m+---------------------------------+[0m
+    call :color Press any key to continue
     echo on
     pause >nul
     goto :eof

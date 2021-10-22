@@ -1,9 +1,7 @@
 call 0-settings.bat
 
 echo off
-echo        [44;93m+----------------------------------------------+[0m
-echo        [44;93m!      Now we are building java client...      ![0m
-echo        [44;93m+----------------------------------------------+[0m
+call lib.bat :color Building java client...
 echo on
 
 call lib.bat :print_color %MVNW% -v
