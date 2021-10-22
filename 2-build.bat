@@ -5,7 +5,6 @@ call lib.bat :color Building java client...
 echo on
 
 call lib.bat :print_color %MVNW% -v
-
 call %MVNW% clean install -DskipTests=%SKIP_TESTS%
 
 call lib.bat :ask
