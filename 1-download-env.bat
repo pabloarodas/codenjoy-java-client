@@ -20,7 +20,7 @@ rd /S /Q %TOOLS%\..\.jdk
 rename %TOOLS%\..\%ARCH_JDK_FOLDER% .jdk
 cd %ROOT%
 
-call :ask
+call lib.bat :ask
 
 goto :eof
 
@@ -30,14 +30,5 @@ goto :eof
 	echo        [44;93m      INSTALL_LOCALLY=%INSTALL_LOCALLY%     [0m
 	echo        [44;93m      SKIP_JDK_INSTALL=%SKIP_JDK_INSTALL%        [0m
 	echo on	
-	goto :ask
-goto :eof
-
-:ask
-    echo off
-    echo        [44;93m+---------------------------------+[0m
-    echo        [44;93m!    Press any key to continue    ![0m
-    echo        [44;93m+---------------------------------+[0m
-    echo on
-    pause >nul
-goto :eof
+	call lib.bat :ask
+    goto :eof

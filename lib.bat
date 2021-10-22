@@ -10,3 +10,12 @@ goto :eof
     echo on
     del /Q %TOOLS%\out
     goto :eof
+
+:ask
+    echo off
+    echo        [44;93m+---------------------------------+[0m
+    echo        [44;93m!    Press any key to continue    ![0m
+    echo        [44;93m+---------------------------------+[0m
+    echo on
+    pause >nul
+    goto :eof
