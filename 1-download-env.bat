@@ -10,6 +10,8 @@ if "%INSTALL_LOCALLY%"=="" ( goto :skip )
 
 call :install jdk %ARCH_JDK% %ARCH_JDK_FOLDER%
 
+call lib.bat :print_color %MVNW% -v
+
 call lib.bat :ask
 
 goto :eof
