@@ -1,7 +1,7 @@
 call 0-settings.bat
 
 echo off
-call lib.bat :color Installing JDK...
+call lib.bat :color Installing java...
 echo on
 
 if "%SKIP_JDK_INSTALL%"=="true" ( goto :skip )
