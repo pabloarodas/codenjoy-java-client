@@ -33,7 +33,7 @@ call lib.bat :color MAVEN_HOME=%MAVEN_HOME%
 call lib.bat :color MAVEN_OPTS=%MAVEN_OPTS%
 echo on
 
-set ARCH_JDK=https://aka.ms/download-jdk/microsoft-jdk-11.0.11.9.1-windows-x64.zip
-set ARCH_JDK_FOLDER=jdk-11.0.11+9
+set ARCH_URL=https://aka.ms/download-jdk/microsoft-jdk-11.0.11.9.1-windows-x64.zip
+set ARCH_FOLDER=jdk-11.0.11+9
 
 set JAVA_CLIENT_HOME=%ROOT%
