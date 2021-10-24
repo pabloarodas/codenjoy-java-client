@@ -6,6 +6,7 @@ target/
 .tools/*.zip
 /**/java-client.zip
 /**/pitest/
+*.jar
 
 # macOS
 .DS_Store
