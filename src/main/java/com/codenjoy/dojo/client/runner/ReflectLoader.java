@@ -45,6 +45,10 @@ public class ReflectLoader {
         return loadSolver(game, "scala");
     }
 
+    public static Solver loadKotlinSolver(String game) {
+        return loadSolver(game, "kotlin");
+    }
+
     private static Solver loadSolver(String game, String language) {
         try {
             return (Solver) load(Solver.class, game, language, PRIMARY_SOLVER_NAME)
@@ -62,6 +66,10 @@ public class ReflectLoader {
 
     public static ClientBoard loadScalaBoard(String game) {
         return loadBoard(game, "scala");
+    }
+
+    public static ClientBoard loadKotlinBoard(String game) {
+        return loadBoard(game, "kotlin");
     }
 
     private static ClientBoard loadBoard(String game, String language) {
