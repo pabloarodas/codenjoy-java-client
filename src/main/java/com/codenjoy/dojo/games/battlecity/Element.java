@@ -33,66 +33,88 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    NONE(' '),
-    BATTLE_WALL('☼'),
-    BANG('Ѡ'),
+    NONE(' ',                             "An empty space where a tank can move."),
 
-	ICE('#'),
-	TREE('%'),
-	RIVER('~'),
+    BATTLE_WALL('☼',                      "The undestroyable wall."),
 
-	WALL('╬', 3),
+    BANG('Ѡ',                             "A destroyed enemy’s tank. A new appears just in a second."),
 
-    WALL_DESTROYED_DOWN('╩', 2),
-    WALL_DESTROYED_UP('╦', 2),
-    WALL_DESTROYED_LEFT('╠', 2),
-    WALL_DESTROYED_RIGHT('╣', 2),
+	ICE('#',                              "Ice, having driven onto which the tank will begin to drift. " +
+                                          "During a skid, the tank will repeat the old commands for " +
+                                          "several ticks in a row, ignoring the current commands."),
 
-    WALL_DESTROYED_DOWN_TWICE('╨', 1),
-    WALL_DESTROYED_UP_TWICE('╥', 1),
-    WALL_DESTROYED_LEFT_TWICE('╞', 1),
-    WALL_DESTROYED_RIGHT_TWICE('╡', 1),
+    TREE('%',                             "The trees hide tanks which can continue to shoot at the " +
+                                          "same time. The fired shells are also not visible under the " +
+                                          "trees. Only prizes can be seen from behind the trees."),
 
-    WALL_DESTROYED_LEFT_RIGHT('│', 1),
-    WALL_DESTROYED_UP_DOWN('─', 1),
+    RIVER('~',                            "The river does not allow to pass through itself without " +
+                                          "the PRIZE_WALKING_ON_WATER prize, but the shells fly freely " +
+                                          "through the water. A tank stuck in the middle of the water, " +
+                                          "after canceling the PRIZE_WALKING_ON_WATER prize, can move " +
+                                          "1 cell in the water only every N ticks."),
 
-    WALL_DESTROYED_UP_LEFT('┌', 1),
-    WALL_DESTROYED_RIGHT_UP('┐', 1),
-    WALL_DESTROYED_DOWN_LEFT('└', 1),
-    WALL_DESTROYED_DOWN_RIGHT('┘', 1),
+	WALL('╬', 3,                          "A wall that hasn't been shot yet. It takes 3 shots to completely destroy."),
 
-    WALL_DESTROYED(' ', 0),
+    WALL_DESTROYED_DOWN('╩', 2,           "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    WALL_DESTROYED_UP('╦', 2,             "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    WALL_DESTROYED_LEFT('╠', 2,           "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    WALL_DESTROYED_RIGHT('╣', 2,          "Partially destroyed wall. For complete destruction, 2 shot is required."),
 
-    BULLET('•'),
+    WALL_DESTROYED_DOWN_TWICE('╨', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_UP_TWICE('╥', 1,       "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_LEFT_TWICE('╞', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_RIGHT_TWICE('╡', 1,    "Partially destroyed wall. For complete destruction, 1 shot is required."),
 
-    TANK_UP('▲'),
-    TANK_RIGHT('►'),
-    TANK_DOWN('▼'),
-    TANK_LEFT('◄'),
+    WALL_DESTROYED_LEFT_RIGHT('│', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_UP_DOWN('─', 1,        "Partially destroyed wall. For complete destruction, 1 shot is required."),
 
-    OTHER_TANK_UP('˄'),
-    OTHER_TANK_RIGHT('˃'),
-    OTHER_TANK_DOWN('˅'),
-    OTHER_TANK_LEFT('˂'),
+    WALL_DESTROYED_UP_LEFT('┌', 1,        "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_RIGHT_UP('┐', 1,       "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_DOWN_LEFT('└', 1,      "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_DOWN_RIGHT('┘', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
 
-    AI_TANK_UP('?'),
-    AI_TANK_RIGHT('»'),
-    AI_TANK_DOWN('¿'),
-    AI_TANK_LEFT('«'),
+    WALL_DESTROYED(' ', 0,                "Partially destroyed wall. For complete destruction, 2 shot is required."),
 
-    AI_TANK_PRIZE('◘'),
+    BULLET('•',                           "Completely destroyed wall. Wall will recover over time."),
 
-    PRIZE('!'),
-    PRIZE_IMMORTALITY('1'),
-    PRIZE_BREAKING_WALLS('2'),
-    PRIZE_WALKING_ON_WATER('3'),
-    PRIZE_VISIBILITY('4'),
-    PRIZE_NO_SLIDING('5');
+    TANK_UP('▲',                          "Your tank is pointing up."),
+    TANK_RIGHT('►',                       "Your tank is pointing right."),
+    TANK_DOWN('▼',                        "Your tank is pointing down."),
+    TANK_LEFT('◄',                        "Your tank is pointing left."),
 
-    public final char ch;
-    int power;
+    OTHER_TANK_UP('˄',                    "Enemy tank is pointing up."),
+    OTHER_TANK_RIGHT('˃',                 "Enemy tank is pointing right."),
+    OTHER_TANK_DOWN('˅',                  "Enemy tank is pointing down."),
+    OTHER_TANK_LEFT('˂',                  "Enemy tank is pointing left."),
+
+    AI_TANK_UP('?',                       "AI-tank is pointing up."),
+    AI_TANK_RIGHT('»',                    "AI-tank is pointing right."),
+    AI_TANK_DOWN('¿',                     "AI-tank is pointing down."),
+    AI_TANK_LEFT('«',                     "AI-tank is pointing left."),
+
+    AI_TANK_PRIZE('◘',                    "AI-tank can also be a prize, then it is highlighted " +
+                                          "by this sprite every few ticks"),
+
+    PRIZE('!',                            "The dropped prize after the destruction of the prize " +
+                                          "tank flickers on the field every even tick of the game " +
+                                          "with this sprite. "),
+
+    PRIZE_IMMORTALITY('1',                "A prize that gives the hero temporary invulnerability."),
+
+    PRIZE_BREAKING_WALLS('2',             "A prize that allows you to temporarily destroy any walls " +
+                                          "with 1 shot, even indestructible ones (but not the border " +
+                                          "of the field) "),
+
+    PRIZE_WALKING_ON_WATER('3',           "A prize that allows the hero to temporarily walk on water."),
+
+    PRIZE_VISIBILITY('4',                 "A prize that allows the hero to temporarily see all " +
+                                          "enemies under the trees."),
+
+    PRIZE_NO_SLIDING('5',                 "A prize that allows the hero to temporarily not slide " +
+                                          "on the ice.");
 
     private static List<Element> result = null;
+
     public static Collection<Element> getWalls() {
         if (result == null) {
             result = Arrays.stream(values())
@@ -102,23 +124,32 @@ public enum Element implements CharElement {
         return result;
     }
 
+    private final char ch;
+    private final String info;
+    private final int power;
+
+    Element(char ch, String info) {
+        this(ch, -1, info);
+    }
+
+    Element(char ch, int power, String info) {
+        this.ch = ch;
+        this.info = info;
+        this.power = power;
+    }
+
     @Override
     public char ch() {
         return ch;
     }
 
+    @Override
+    public String info() {
+        return info;
+    }
+
     public int power() {
         return power;
-    }
-
-    Element(char ch) {
-        this.ch = ch;
-        this.power = -1;
-    }
-
-    Element(char ch, int power) {
-        this.ch = ch;
-        this.power = power;
     }
 
     @Override
