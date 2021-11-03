@@ -31,24 +31,31 @@ import com.codenjoy.dojo.services.printer.CharElement;
  */
 public enum Element implements CharElement {
 
-    NONE(' '),       // например это пустое место, куда можно перейти герою
-    WALL('☼'),       // а это стенка, через которую я хочу чтобы проходить нельзя было
-    HERO('☺'),       // а это мой герой
-    OTHER_HERO('☻'), // это герои других игроков
-    DEAD_HERO('X'),  // а это временное явление - трупик моего героя, которое пропадет в следующем такте
-    OTHER_DEAD_HERO('Y'),  // трупик героя другого игрока
-    GOLD('$'),       // это то, за чем будет охота
-    BOMB('x');       // а это бомба, на которой можно подорваться
+    NONE(' ',            "Empty place where the hero can go."),
+    WALL('☼',            "Wall you can't walk through."),
+    HERO('☺',            "My hero."),
+    OTHER_HERO('☻',      "Heroes of other players."),
+    DEAD_HERO('X',       "My hero died. His body will disappear in the next tick."),
+    OTHER_DEAD_HERO('Y', "Another player's hero died."),
+    GOLD('$',            "Gold. It must be picked up."),
+    BOMB('x',            "Bomb planted by the hero. You can blow up on it.");
 
-    final char ch;
+    private final char ch;
+    private final String info;
 
-    Element(char ch) {
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override
