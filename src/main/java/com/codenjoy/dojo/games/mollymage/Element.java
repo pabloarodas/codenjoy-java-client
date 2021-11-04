@@ -32,131 +32,101 @@ public enum Element implements CharElement {
 
 /// the potions
 
-    // After Molly set the potion, the timer starts (5 ticks).
-    POTION_TIMER_5('5'),
+    POTION_TIMER_5('5',    "After Molly set the potion, the timer starts (5 ticks)."),
 
-    // This will blow up after 4 ticks.
-    POTION_TIMER_4('4'),
+    POTION_TIMER_4('4',    "This potion will blow up after 4 ticks."),
 
-    // This after 3...
-    POTION_TIMER_3('3'),
+    POTION_TIMER_3('3',    "This after 3..."),
 
-    // Two..
-    POTION_TIMER_2('2'),
+    POTION_TIMER_2('2',    "Two.."),
 
-    // One.
-    POTION_TIMER_1('1'),
+    POTION_TIMER_1('1',    "One."),
 
-    // Boom! this is what is potion does,
-    // everything that is destroyable got destroyed.
-    BOOM('҉'),
+    BOOM('҉',              "Boom! this is what is potion does, everything that is " +
+                           "destroyable got destroyed."),
 
 /// walls
 
-    // Indestructible wall - it will not fall from potion.
-    WALL('☼'),
+    WALL('☼',              "Indestructible wall - it will not fall from potion."),
 
-    // this is a treasure box, it opens with an explosion.
-    TREASURE_BOX('#'),
+    TREASURE_BOX('#',      "This is a treasure box, it opens with an explosion."),
 
-    // this is like a treasure box opens looks
-    // like, it will disappear on next move.
-    // if it's you did it - you'll get score
-    // points. Perhaps a prize will appear.
-    OPENING_TREASURE_BOX('H'),
+    OPENING_TREASURE_BOX('H', "This is like a treasure box opens looks like, it will " +
+                              "disappear on next move. If it's you did it - you'll " +
+                              "get score points. Perhaps a prize will appear."),
 
 /// soulless creatures
 
-    // This guys runs over the board randomly
-    // and gets in the way all the time.
-    // If it will touch Molly - she will die.
-    // You'd better kill this piece of ... soul,
-    // you'll get score points for it.
-    GHOST('&'),
+    GHOST('&',             "This guys runs over the board randomly and gets in the way " +
+                           "all the time. If it will touch Molly - she will die. " +
+                           "You'd better kill this piece of ... soul, you'll get score " +
+                           "points for it."),
 
-    // This is ghost corpse.
-    DEAD_GHOST('x'),
+    DEAD_GHOST('x',        "This is ghost corpse."),
 
 /// perks
 
-    // Potion blast radius increase.
-    // Applicable only to new potions.
-    // The perk is temporary.
-    POTION_BLAST_RADIUS_INCREASE('+'),
+    POTION_BLAST_RADIUS_INCREASE('+', "Temporarily increase potion radius blast. " +
+                                      "Applicable only to new potions."),
 
-    // Increase available potions count.
-    // Number of extra potions can be set
-    // in settings. Temporary.
-    POTION_COUNT_INCREASE('c'),
+    POTION_COUNT_INCREASE('c', "Temporarily increase available potions count. " +
+                               "Number of extra potions can be set in settings*."),
 
-    // Potion blast not by timer but by second act.
-    // Number of RC triggers is limited and c
-    // an be set in settings.
-    POTION_REMOTE_CONTROL('r'),
+    POTION_REMOTE_CONTROL('r', "Next several potions would be with remote control. " +
+                               "Activating by command ACT. Number of RC triggers " +
+                               "is limited and can be set in settings*."),
 
-    // Do not die after potion blast
-    // (own potion and others as well). Temporary.
-    POTION_IMMUNE('i'),
+    POTION_IMMUNE('i',     "Temporarily gives you immunity from potion blasts " +
+                           "(own potion and others as well)."),
 
-    // Hero can shoot by poison cloud
-    // Using: ACT(1)
-    // Temporary.
-    POISON_THROWER('T'),
+    POISON_THROWER('T',    "Hero can shoot by poison cloud. Using: ACT(1)+Direction. " +
+                           "Temporary."),
 
-    // Hero can explode all potions on the field
-    // Using: ACT(2)
-    // Temporary.
-    POTION_EXPLODER('A'),
+    POTION_EXPLODER('A',   "Hero can explode all potions on the field. " +
+                           "Using: ACT(2). Temporary."),
 
 /// a void
 
-    // This is the only place where you can move your Molly.
-    NONE(' '),
+    NONE(' ',              "A void. This is the only place where you can move your Molly."),
 
 /// your Molly
-    // This is what she usually looks like.
-    HERO('☺'),
 
-    // This is if she is sitting on own potion.
-    POTION_HERO('☻'),
+    HERO('☺',              "This is what your Molly usually looks like."),
 
-    // Oops, your Molly is dead (don't worry,
-    // she will appear somewhere in next move).
-    // You're getting penalty points for each death.
-    DEAD_HERO('Ѡ'),
+    POTION_HERO('☻',       "This is if your Molly is sitting on own potion."),
+
+    DEAD_HERO('Ѡ',         "Oops, your Molly is dead (don't worry, she will appear " +
+                           "somewhere in next move). You're getting penalty points " +
+                           "for each death."),
 
 /// other players heroes
 
-    // This is what other heroes looks like.
-    OTHER_HERO('♥'),
+    OTHER_HERO('♥',        "This is what other heroes looks like."),
 
-    // This is if other hero is sitting on own potion.
-    OTHER_POTION_HERO('♠'),
+    OTHER_POTION_HERO('♠', "This is if other hero is sitting on own potion."),
 
-    // Other hero corpse (it will disappear shortly,
-    // right on the next move).
-    // If you've done it you'll get score points.
-    OTHER_DEAD_HERO('♣'),
+    OTHER_DEAD_HERO('♣',   "Other hero corpse (it will disappear shortly, right " +
+                           "on the next move). If you've done it you'll get " +
+                           "score points."),
 
 /// enemy players heroes
 
-    // This is what enemy heroes looks like.
-    ENEMY_HERO('ö'),
+    ENEMY_HERO('ö',        "This is what enemy heroes looks like."),
 
-    // This is if enemy hero is sitting on own potion.
-    ENEMY_POTION_HERO('Ö'),
+    ENEMY_POTION_HERO('Ö', "This is if enemy hero is sitting on own potion."),
 
-    // Enemy hero corpse (it will disappear shortly,
-    // right on the next move).
-    // If you've done it you'll get score points.
-    ENEMY_DEAD_HERO('ø');
+    ENEMY_DEAD_HERO('ø',   "Enemy hero corpse (it will disappear shortly, right " +
+                           "on the next move). If you've done it you'll get " +
+                           "score points.");
 
     public static final String POTIONS = "12345";
 
-    final char ch;
+    private final char ch;
+    private final String info;
 
-    Element(char ch) {
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     public static List<Element> perks() {
@@ -173,6 +143,11 @@ public enum Element implements CharElement {
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override
