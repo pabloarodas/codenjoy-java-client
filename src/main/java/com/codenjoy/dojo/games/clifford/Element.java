@@ -30,142 +30,290 @@ import java.util.List;
 
 public enum Element implements CharElement {
 
-    NONE(' '),                    // Пустое место – по которому может двигаться детектив
+/// void
 
-    BRICK('#'),                   // Cтена в которой можно прострелить дырочку слева или справа от детектива
-                                  // (в зависимости от того, куда он сейчас смотрит)
+    NONE(' ',               "Empty space - where the hero can move "),
 
-    PIT_FILL_1('1'),              // Стена со временем зарастает. Когда процес начинается - мы видим таймер
-    PIT_FILL_2('2'),
-    PIT_FILL_3('3'),
-    PIT_FILL_4('4'),
+/// bricks
 
-    STONE('☼'),                   // Неразрушаемая стена - в ней ничего прострелить не получится
+    BRICK('#',              "A wall where you can shoot a hole "),
 
-    CRACK_PIT('*'),               // В момент выстрела мы видим процесс так
+    PIT_FILL_1('1',         "The wall is restored over time. When the " +
+                            "process begins, we see a timer."),
 
-    CLUE_KNIFE('$'),              // Улика нож
-    CLUE_GLOVE('&'),              // Улика перчатка
-    CLUE_RING('@'),               // Улика кольцо
+    PIT_FILL_2('2',         "The wall is restored over time. When the " +
+                            "process begins, we see a timer."),
 
-    // Твой детектив в зависимости от того, чем он сейчас занят отображается следующими символами
-    HERO_DIE('Ѡ'),                // Детектив переживает процесс умирания
-    HERO_CRACK_LEFT('Я'),         // Детектив простреливает слева от себя
-    HERO_CRACK_RIGHT('R'),        // Детектив простреливает справа от себя
-    HERO_LADDER('Y'),             // Детектив находится на лестнице
-    HERO_LEFT('◄'),               // Детектив бежит влево
-    HERO_RIGHT('►'),              // Детектив бежит вправо
-    HERO_FALL_LEFT(']'),          // Детектив падает, смотря влево
-    HERO_FALL_RIGHT('['),         // Детектив падает, смотря вправо
-    HERO_PIPE_LEFT('{'),          // Детектив ползёт по трубе влево
-    HERO_PIPE_RIGHT('}'),         // Детектив ползёт по трубе вправо
-    HERO_PIT_LEFT('⍃'),           // Детектив в яме смотрит влево
-    HERO_PIT_RIGHT('⍄'),          // Детектив в яме смотрит вправо
+    PIT_FILL_3('3',         "The wall is restored over time. When the " +
+                            "process begins, we see a timer."),
 
-    // Тоже твой детектив, но под маскировкой:
-    HERO_MASK_DIE('x'),         // Детектив-маскировка переживает процесс умирания // TODO test me
-    HERO_MASK_CRACK_LEFT('⊰'),  // Детектив-маскировка простреливает слева от себя
-    HERO_MASK_CRACK_RIGHT('⊱'), // Детектив-маскировка простреливает справа от себя
-    HERO_MASK_LADDER('⍬'),      // Детектив-маскировка находится на лестнице
-    HERO_MASK_LEFT('⊲'),        // Детектив-маскировка бежит влево
-    HERO_MASK_RIGHT('⊳'),       // Детектив-маскировка бежит вправо
-    HERO_MASK_FALL_LEFT('⊅'),   // Детектив-маскировка падает, смотря влево
-    HERO_MASK_FALL_RIGHT('⊄'),  // Детектив-маскировка падает, смотря вправо
-    HERO_MASK_PIPE_LEFT('⋜'),   // Детектив-маскировка ползёт по трубе влево
-    HERO_MASK_PIPE_RIGHT('⋝'),  // Детектив-маскировка ползёт по трубе вправо
-    HERO_MASK_PIT_LEFT('ᐊ'),    // Детектив-маскировка в яме смотрит влево
-    HERO_MASK_PIT_RIGHT('ᐅ'),   // Детектив-маскировка в яме смотрит вправо
+    PIT_FILL_4('4',         "The wall is restored over time. When the " +
+                            "process begins, we see a timer."),
 
-    // Детективы других игроков отображаются так
-    OTHER_HERO_DIE('Z'),          // Другой детектив переживает процесс умирания
-    OTHER_HERO_CRACK_LEFT('⌋'),   // Другой детектив простреливает слева от себя       // TODO test me
-    OTHER_HERO_CRACK_RIGHT('⌊'),  // Другой детектив простреливает справа от себя      // TODO test me
-    OTHER_HERO_LADDER('U'),       // Другой детектив находится на лестнице
-    OTHER_HERO_LEFT(')'),         // Другой детектив бежит влево
-    OTHER_HERO_RIGHT('('),        // Другой детектив бежит вправо
-    OTHER_HERO_FALL_LEFT('⊐'),    // Другой детектив падает, смотря влево        // TODO test me
-    OTHER_HERO_FALL_RIGHT('⊏'),   // Другой детектив падает, смотря вправо       // TODO test me
-    OTHER_HERO_PIPE_LEFT('Э'),    // Другой детектив ползёт по трубе влево
-    OTHER_HERO_PIPE_RIGHT('Є'),   // Другой детектив ползёт по трубе вправо
-    OTHER_HERO_PIT_LEFT('ᗉ'),     // Другой детектив в яме смотрит влево
-    OTHER_HERO_PIT_RIGHT('ᗆ'),    // Другой детектив в яме смотрит вправо
+    STONE('☼',              "Indestructible wall - It cannot be destroyed " +
+                            "with a shot."),
 
-    // А если детективы других игроков под маскировкой, то так
-    OTHER_HERO_MASK_DIE('⋈'),         // Другой детектив-маскировка переживает процесс умирания
-    OTHER_HERO_MASK_CRACK_LEFT('⋰'),  // Другой детектив-маскировка простреливает слева от себя       // TODO test me
-    OTHER_HERO_MASK_CRACK_RIGHT('⋱'), // Другой детектив-маскировка простреливает справа от себя      // TODO test me
-    OTHER_HERO_MASK_LEFT('⋊'),        // Другой детектив-маскировка находится на лестнице
-    OTHER_HERO_MASK_RIGHT('⋉'),       // Другой детектив-маскировка бежит влево
-    OTHER_HERO_MASK_LADDER('⋕'),      // Другой детектив-маскировка бежит вправо
-    OTHER_HERO_MASK_FALL_LEFT('⋣'),   // Другой детектив-маскировка падает, смотря влево        // TODO test me
-    OTHER_HERO_MASK_FALL_RIGHT('⋢'),  // Другой детектив-маскировка падает, смотря вправо       // TODO test me
-    OTHER_HERO_MASK_PIPE_LEFT('⊣'),   // Другой детектив-маскировка ползёт по трубе влево
-    OTHER_HERO_MASK_PIPE_RIGHT('⊢'),  // Другой детектив-маскировка ползёт по трубе вправо
-    OTHER_HERO_MASK_PIT_LEFT('ᗏ'),     // Другой детектив-маскировка в яме смотрит влево
-    OTHER_HERO_MASK_PIT_RIGHT('ᗌ'),    // Другой детектив-маскировка в яме смотрит вправо
+    CRACK_PIT('*',          "At the moment of the shot, we see the wall " +
+                            "like this. "),
 
-    // Вражеские детективы других игроков отображаются так
-    ENEMY_HERO_DIE('Ž'),          // Вражеский детектив переживает процесс умирания       // TODO test me
-    ENEMY_HERO_CRACK_LEFT('⟧'),   // Вражеский детектив простреливает слева от себя       // TODO test me
-    ENEMY_HERO_CRACK_RIGHT('⟦'),  // Вражеский детектив простреливает справа от себя      // TODO test me
-    ENEMY_HERO_LADDER('Ǔ'),       // Вражеский детектив находится на лестнице       // TODO test me
-    ENEMY_HERO_LEFT('❫'),         // Вражеский детектив бежит влево       // TODO test me
-    ENEMY_HERO_RIGHT('❪'),        // Вражеский детектив бежит вправо       // TODO test me
-    ENEMY_HERO_FALL_LEFT('⋥'),    // Вражеский детектив падает, смотря влево        // TODO test me
-    ENEMY_HERO_FALL_RIGHT('⋤'),   // Вражеский детектив падает, смотря вправо       // TODO test me
-    ENEMY_HERO_PIPE_LEFT('Ǯ'),    // Вражеский детектив ползёт по трубе влево       // TODO test me
-    ENEMY_HERO_PIPE_RIGHT('Ě'),   // Вражеский детектив ползёт по трубе вправо       // TODO test me
-    ENEMY_HERO_PIT_LEFT('⇇'),     // Вражеский детектив в яме смотрит влево
-    ENEMY_HERO_PIT_RIGHT('⇉'),    // Вражеский детектив в яме смотрит вправо
+/// clues
 
-    // А если вражеские детективы других игроков под маскировкой, то так
-    ENEMY_HERO_MASK_DIE('⧓'),         // Вражеский детектив-маскировка переживает процесс умирания       // TODO test me
-    ENEMY_HERO_MASK_CRACK_LEFT('⇢'),  // Вражеский детектив-маскировка простреливает слева от себя       // TODO test me
-    ENEMY_HERO_MASK_CRACK_RIGHT('⇠'), // Вражеский детектив-маскировка простреливает справа от себя      // TODO test me
-    ENEMY_HERO_MASK_LEFT('⧒'),        // Вражеский детектив-маскировка находится на лестнице       // TODO test me
-    ENEMY_HERO_MASK_RIGHT('⧑'),       // Вражеский детектив-маскировка бежит влево       // TODO test me
-    ENEMY_HERO_MASK_LADDER('≠'),      // Вражеский детектив-маскировка бежит вправо       // TODO test me
-    ENEMY_HERO_MASK_FALL_LEFT('⌫'),   // Вражеский детектив-маскировка падает, смотря влево        // TODO test me
-    ENEMY_HERO_MASK_FALL_RIGHT('⌦'),  // Вражеский детектив-маскировка падает, смотря вправо       // TODO test me
-    ENEMY_HERO_MASK_PIPE_LEFT('❵'),   // Вражеский детектив-маскировка ползёт по трубе влево       // TODO test me
-    ENEMY_HERO_MASK_PIPE_RIGHT('❴'),  // Вражеский детектив-маскировка ползёт по трубе вправо       // TODO test me
-    ENEMY_HERO_MASK_PIT_LEFT('⬱'),    // Вражеский детектив-маскировка в яме смотрит влево
-    ENEMY_HERO_MASK_PIT_RIGHT('⇶'),   // Вражеский детектив-маскировка в яме смотрит вправо
+    CLUE_KNIFE('$',         "Clue knife. Collect a series of clues to " +
+                            "get the maximum points. "),
 
-    // Боты-воры
-    ROBBER_LADDER('Q'),
-    ROBBER_LEFT('«'),
-    ROBBER_RIGHT('»'),
-    ROBBER_FALL_LEFT('‹'),
-    ROBBER_FALL_RIGHT('›'),
-    ROBBER_PIPE_LEFT('<'),
-    ROBBER_PIPE_RIGHT('>'),
-    ROBBER_PIT_LEFT('⍇'),
-    ROBBER_PIT_RIGHT('⍈'),
+    CLUE_GLOVE('&',         "Clue glove. Collect a series of clues to " +
+                            "get the maximum points. "),
 
-    // Ворота
-    OPENED_DOOR_GOLD('⍙'),
-    OPENED_DOOR_SILVER('⍚'),
-    OPENED_DOOR_BRONZE('⍜'),
+    CLUE_RING('@',          "Clue ring. Collect a series of clues to " +
+                            "get the maximum points. "),
 
-    CLOSED_DOOR_GOLD('⍍'),
-    CLOSED_DOOR_SILVER('⌺'),
-    CLOSED_DOOR_BRONZE('⌼'),
+/// your hero
 
-    KEY_GOLD('✦'),
-    KEY_SILVER('✼'),
-    KEY_BRONZE('⍟'),
+    HERO_DIE('Ѡ',           "Your hero is dead. In the next tick, it will " +
+                            "disappear and appear in a new location."),
 
-    BULLET('•'),
+    HERO_CRACK_LEFT('Я',    "Your hero shoots to the left at his feet."),
 
-    LADDER('H'),              // Лестница - по ней можно перемещаться по уровню
-    PIPE('~'),                // Труба - по ней так же можно перемещаться по уровню, но только горизонтально
+    HERO_CRACK_RIGHT('R',   "Your hero shoots to the right at his feet."),
 
-    BACKWAY('⊛'),              // Черный ход - позволяет скрыто перемещаться в иное место на карте
+    HERO_LADDER('Y',        "Your hero is climbing the ladder."),
 
-    MASK_POTION('S');         // Маскировочное зелье - наделяют детектива дополнительными способностями
+    HERO_LEFT('◄',          "Your hero runs to the left."),
 
-    final char ch;
+    HERO_RIGHT('►',         "Your hero runs to the right."),
+
+    HERO_FALL_LEFT(']',     "Your hero is falling, look to the left."),
+
+    HERO_FALL_RIGHT('[',    "Your hero is falling, look to the right."),
+
+    HERO_PIPE_LEFT('{',     "Your hero is crawling along the pipe to the left."),
+
+    HERO_PIPE_RIGHT('}',    "Your hero is crawling along the pipe to the right."),
+
+    HERO_PIT_LEFT('⍃',      "Your hero in the pit looks to the left."),
+
+    HERO_PIT_RIGHT('⍄',     "Your hero in the pit looks to the right."),
+
+/// your hero in shadow mode
+
+    HERO_MASK_DIE('x',          "Your shadow-heroe is dead. In the next tick, " +
+                                "it will disappear and appear in a new location."),
+
+    HERO_MASK_CRACK_LEFT('⊰',   "Your shadow-hero shoots to the left at his feet."),
+
+    HERO_MASK_CRACK_RIGHT('⊱',  "Your shadow-hero shoots to the right at his feet."),
+
+    HERO_MASK_LADDER('⍬',       "Your shadow-hero is climbing the ladder."),
+
+    HERO_MASK_LEFT('⊲',         "Your shadow-hero runs to the left."),
+
+    HERO_MASK_RIGHT('⊳',        "Your shadow-hero runs to the right."),
+
+    HERO_MASK_FALL_LEFT('⊅',    "Your shadow-hero is falling, look to the left."),
+
+    HERO_MASK_FALL_RIGHT('⊄',   "Your shadow-hero is falling, look to the right."),
+
+    HERO_MASK_PIPE_LEFT('⋜',    "Your shadow-hero is crawling along the pipe " +
+                                "to the left."),
+
+    HERO_MASK_PIPE_RIGHT('⋝',   "Your shadow-hero is crawling along the pipe " +
+                                "to the right."),
+
+    HERO_MASK_PIT_LEFT('ᐊ',     "Your shadow-hero in the pit looks to the left."),
+
+    HERO_MASK_PIT_RIGHT('ᐅ',    "Your shadow-hero in the pit looks to the right."),
+
+/// other heroes
+
+    OTHER_HERO_DIE('Z',         "Other hero is dead. In the next tick, it will " +
+                                "disappear and appear in a new location."),
+
+    OTHER_HERO_CRACK_LEFT('⌋',  "Other hero shoots to the left at his feet."),
+
+    OTHER_HERO_CRACK_RIGHT('⌊', "Other hero shoots to the right at his feet."),
+
+    OTHER_HERO_LADDER('U',      "Other hero is climbing the ladder."),
+
+    OTHER_HERO_LEFT(')',        "Other hero runs to the left."),
+
+    OTHER_HERO_RIGHT('(',       "Other hero runs to the right."),
+
+    OTHER_HERO_FALL_LEFT('⊐',   "Other hero is falling, look to the left."),
+
+    OTHER_HERO_FALL_RIGHT('⊏',  "Other hero is falling, look to the right."),
+
+    OTHER_HERO_PIPE_LEFT('Э',   "Other hero is crawling along the pipe to the left."),
+
+    OTHER_HERO_PIPE_RIGHT('Є',  "Other hero is crawling along the pipe to the right."),
+
+    OTHER_HERO_PIT_LEFT('ᗉ',    "Other hero in the pit looks to the left."),
+
+    OTHER_HERO_PIT_RIGHT('ᗆ',   "Other hero in the pit looks to the right."),
+
+/// other heroes in shadow mode
+
+    OTHER_HERO_MASK_DIE('⋈',         "Other shadow-hero is dead. In the next tick, " +
+                                     "it will disappear and appear in a new location."),
+
+    OTHER_HERO_MASK_CRACK_LEFT('⋰',  "Other shadow-hero shoots to the left at his feet."),
+
+    OTHER_HERO_MASK_CRACK_RIGHT('⋱', "Other shadow-hero shoots to the right at his feet."),
+
+    OTHER_HERO_MASK_LEFT('⋊',        "Other shadow-hero is climbing the ladder."),
+
+    OTHER_HERO_MASK_RIGHT('⋉',       "Other shadow-hero runs to the left."),
+
+    OTHER_HERO_MASK_LADDER('⋕',      "Other shadow-hero runs to the right."),
+
+    OTHER_HERO_MASK_FALL_LEFT('⋣',   "Other shadow-hero is falling, look to the left."),
+
+    OTHER_HERO_MASK_FALL_RIGHT('⋢',  "Other shadow-hero is falling, look to the right."),
+
+    OTHER_HERO_MASK_PIPE_LEFT('⊣',   "Other shadow-hero is crawling along the pipe " +
+                                     "to the left."),
+
+    OTHER_HERO_MASK_PIPE_RIGHT('⊢',  "Other shadow-hero is crawling along the pipe " +
+                                     "to the right."),
+
+    OTHER_HERO_MASK_PIT_LEFT('ᗏ',    "Other shadow-hero in the pit looks to the left."),
+
+    OTHER_HERO_MASK_PIT_RIGHT('ᗌ',   "Other shadow-hero in the pit looks to the right."),
+
+/// enemy heroes
+
+    ENEMY_HERO_DIE('Ž',         "Enemy hero is dead. In the next tick, it will " +
+                                "disappear and appear in a new location."),
+
+    ENEMY_HERO_CRACK_LEFT('⟧',  "Enemy hero shoots to the left at his feet."),
+
+    ENEMY_HERO_CRACK_RIGHT('⟦', "Enemy hero shoots to the right at his feet."),
+
+    ENEMY_HERO_LADDER('Ǔ',      "Enemy hero is climbing the ladder."),
+
+    ENEMY_HERO_LEFT('❫',        "Enemy hero runs to the left."),
+
+    ENEMY_HERO_RIGHT('❪',       "Enemy hero runs to the right."),
+
+    ENEMY_HERO_FALL_LEFT('⋥',   "Enemy hero is falling, look to the left."),
+
+    ENEMY_HERO_FALL_RIGHT('⋤',  "Enemy hero is falling, look to the right."),
+
+    ENEMY_HERO_PIPE_LEFT('Ǯ',   "Enemy hero is crawling along the pipe to the left."),
+
+    ENEMY_HERO_PIPE_RIGHT('Ě',  "Enemy hero is crawling along the pipe to the right."),
+
+    ENEMY_HERO_PIT_LEFT('⇇',    "Enemy hero in the pit looks to the left."),
+
+    ENEMY_HERO_PIT_RIGHT('⇉',   "Enemy hero in the pit looks to the right."),
+
+/// enemy heroes in shadow mode
+
+    ENEMY_HERO_MASK_DIE('⧓',         "Enemy shadow-hero is dead. In the next tick, " +
+                                     "it will disappear and appear in a new location."),
+
+    ENEMY_HERO_MASK_CRACK_LEFT('⇢',  "Enemy shadow-hero shoots to the left at his feet."),
+
+    ENEMY_HERO_MASK_CRACK_RIGHT('⇠', "Enemy shadow-hero shoots to the right at his feet."),
+
+    ENEMY_HERO_MASK_LEFT('⧒',        "Enemy shadow-hero is climbing the ladder."),
+
+    ENEMY_HERO_MASK_RIGHT('⧑',       "Enemy shadow-hero runs to the left."),
+
+    ENEMY_HERO_MASK_LADDER('≠',      "Enemy shadow-hero runs to the right."),
+
+    ENEMY_HERO_MASK_FALL_LEFT('⌫',   "Enemy shadow-hero is falling, look to the left."),
+
+    ENEMY_HERO_MASK_FALL_RIGHT('⌦',  "Enemy shadow-hero is falling, look to the right."),
+
+    ENEMY_HERO_MASK_PIPE_LEFT('❵',   "Enemy shadow-hero is crawling along the pipe " +
+                                     "to the left."),
+
+    ENEMY_HERO_MASK_PIPE_RIGHT('❴',  "Enemy shadow-hero is crawling along the pipe " +
+                                     "to the right."),
+
+    ENEMY_HERO_MASK_PIT_LEFT('⬱',    "Enemy shadow-hero in the pit looks to the left."),
+
+    ENEMY_HERO_MASK_PIT_RIGHT('⇶',   "Enemy shadow-hero in the pit looks to the right."),
+
+// robbers (dummy AI-bots)
+
+    ROBBER_LADDER('Q',      "Robber is climbing the ladder."),
+
+    ROBBER_LEFT('«',        "Robber runs to the left. Robber picks up the " +
+                            "nearest prey and hunts for it until it overtakes it. "),
+
+    ROBBER_RIGHT('»',       "Robber runs to the right. Robber picks up the " +
+                            "nearest prey and hunts for it until it overtakes it. "),
+
+    ROBBER_FALL_LEFT('‹',   "Robber is falling, look to the left."),
+
+    ROBBER_FALL_RIGHT('›',  "Robber is falling, look to the right."),
+
+    ROBBER_PIPE_LEFT('<',   "Robber is crawling along the pipe to the left."),
+
+    ROBBER_PIPE_RIGHT('>',  "Robber is crawling along the pipe to the right."),
+
+    ROBBER_PIT_LEFT('⍇',    "Robber in the pit looks to the left."),
+
+    ROBBER_PIT_RIGHT('⍈',   "Robber in the pit looks to the right."),
+
+/// doors and keys
+
+    OPENED_DOOR_GOLD('⍙',   "Opened golden gates. Can only be locked " +
+                            "with a golden key."),
+
+    OPENED_DOOR_SILVER('⍚', "Opened silver gates. Can only be locked " +
+                            "with a silver key."),
+
+    OPENED_DOOR_BRONZE('⍜', "Opened bronze gates. Can only be locked " +
+                            "with a bronze key."),
+
+    CLOSED_DOOR_GOLD('⍍',   "Closed golden gates. Can only be opened " +
+                            "with a golden key."),
+
+    CLOSED_DOOR_SILVER('⌺', "Closed silver gates. Can only be opened " +
+                            "with a silver key."),
+
+    CLOSED_DOOR_BRONZE('⌼', "Closed bronze gates. Can only be opened " +
+                            "with a bronze key."),
+
+    KEY_GOLD('✦',           "Bronze key. Helps open/close golden gates. " +
+                            "The key can only be used once."),
+
+    KEY_SILVER('✼',         "Silver key. Helps open/close silver gates. " +
+                            "The key can only be used once."),
+
+    KEY_BRONZE('⍟',         "Bronze key. Helps open/close bronze gates. " +
+                            "The key can only be used once."),
+
+/// other stuff
+
+    BULLET('•',             "Bullet. After the shot by the hero, the bullet " +
+                            "flies until it meets an obstacle. The bullet " +
+                            "kills the hero. It ricochets from the indestructible " +
+                            "wall (no more than 1 time). The bullet destroys " +
+                            "the destructible wall. "),
+
+    LADDER('H',             "Ladder - the hero can move along the level " +
+                            "along it."),
+
+    PIPE('~',               "Pipe - the hero can also move along the " +
+                            "level along it, but only horizontally."),
+
+    BACKWAY('⊛',            "Back door - allows the hero to secretly " +
+                            "move to another random place on the map."),
+
+    MASK_POTION('S',        "Disguise potion - endow the hero with " +
+                            "additional abilities. The hero goes into " +
+                            "shadow mode. ");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
+        this.ch = ch;
+        this.info = info;
+    }
 
     public static List<Element> clues() {
         return Arrays.asList(
@@ -322,14 +470,11 @@ public enum Element implements CharElement {
         return ch;
     }
 
-    public char getChar() {
-        return ch;
+    @Override
+    public String info() {
+        return info;
     }
-
-    Element(char ch) {
-        this.ch = ch;
-    }
-
+    
     @Override
     public String toString() {
         return String.valueOf(ch);
