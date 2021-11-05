@@ -82,17 +82,13 @@ public enum Element implements CharElement {
 
     HERO_RIGHT('►',         "Your hero runs to the right."),
 
-    HERO_FALL_LEFT(']',     "Your hero is falling, look to the left."),
-
-    HERO_FALL_RIGHT('[',    "Your hero is falling, look to the right."),
+    HERO_FALL(']',          "Your hero is falling."),
 
     HERO_PIPE_LEFT('{',     "Your hero is crawling along the pipe to the left."),
 
     HERO_PIPE_RIGHT('}',    "Your hero is crawling along the pipe to the right."),
 
-    HERO_PIT_LEFT('⍃',      "Your hero in the pit looks to the left."),
-
-    HERO_PIT_RIGHT('⍄',     "Your hero in the pit looks to the right."),
+    HERO_PIT('⍃',           "Your hero in the pit."),
 
 /// your hero in shadow mode
 
@@ -109,9 +105,7 @@ public enum Element implements CharElement {
 
     HERO_MASK_RIGHT('⊳',        "Your shadow-hero runs to the right."),
 
-    HERO_MASK_FALL_LEFT('⊅',    "Your shadow-hero is falling, look to the left."),
-
-    HERO_MASK_FALL_RIGHT('⊄',   "Your shadow-hero is falling, look to the right."),
+    HERO_MASK_FALL('⊅',         "Your shadow-hero is falling."),
 
     HERO_MASK_PIPE_LEFT('⋜',    "Your shadow-hero is crawling along the pipe " +
                                 "to the left."),
@@ -119,9 +113,7 @@ public enum Element implements CharElement {
     HERO_MASK_PIPE_RIGHT('⋝',   "Your shadow-hero is crawling along the pipe " +
                                 "to the right."),
 
-    HERO_MASK_PIT_LEFT('ᐊ',     "Your shadow-hero in the pit looks to the left."),
-
-    HERO_MASK_PIT_RIGHT('ᐅ',    "Your shadow-hero in the pit looks to the right."),
+    HERO_MASK_PIT('ᐊ',          "Your shadow-hero in the pit."),
 
 /// other heroes
 
@@ -138,17 +130,13 @@ public enum Element implements CharElement {
 
     OTHER_HERO_RIGHT('(',       "Other hero runs to the right."),
 
-    OTHER_HERO_FALL_LEFT('⊐',   "Other hero is falling, look to the left."),
-
-    OTHER_HERO_FALL_RIGHT('⊏',  "Other hero is falling, look to the right."),
+    OTHER_HERO_FALL('⊐',        "Other hero is falling."),
 
     OTHER_HERO_PIPE_LEFT('Э',   "Other hero is crawling along the pipe to the left."),
 
     OTHER_HERO_PIPE_RIGHT('Є',  "Other hero is crawling along the pipe to the right."),
 
-    OTHER_HERO_PIT_LEFT('ᗉ',    "Other hero in the pit looks to the left."),
-
-    OTHER_HERO_PIT_RIGHT('ᗆ',   "Other hero in the pit looks to the right."),
+    OTHER_HERO_PIT('ᗉ',         "Other hero in the pit."),
 
 /// other heroes in shadow mode
 
@@ -165,9 +153,7 @@ public enum Element implements CharElement {
 
     OTHER_HERO_MASK_LADDER('⋕',      "Other shadow-hero runs to the right."),
 
-    OTHER_HERO_MASK_FALL_LEFT('⋣',   "Other shadow-hero is falling, look to the left."),
-
-    OTHER_HERO_MASK_FALL_RIGHT('⋢',  "Other shadow-hero is falling, look to the right."),
+    OTHER_HERO_MASK_FALL('⋣',        "Other shadow-hero is falling."),
 
     OTHER_HERO_MASK_PIPE_LEFT('⊣',   "Other shadow-hero is crawling along the pipe " +
                                      "to the left."),
@@ -175,9 +161,7 @@ public enum Element implements CharElement {
     OTHER_HERO_MASK_PIPE_RIGHT('⊢',  "Other shadow-hero is crawling along the pipe " +
                                      "to the right."),
 
-    OTHER_HERO_MASK_PIT_LEFT('ᗏ',    "Other shadow-hero in the pit looks to the left."),
-
-    OTHER_HERO_MASK_PIT_RIGHT('ᗌ',   "Other shadow-hero in the pit looks to the right."),
+    OTHER_HERO_MASK_PIT('ᗏ',         "Other shadow-hero in the pit."),
 
 /// enemy heroes
 
@@ -194,17 +178,13 @@ public enum Element implements CharElement {
 
     ENEMY_HERO_RIGHT('❪',       "Enemy hero runs to the right."),
 
-    ENEMY_HERO_FALL_LEFT('⋥',   "Enemy hero is falling, look to the left."),
-
-    ENEMY_HERO_FALL_RIGHT('⋤',  "Enemy hero is falling, look to the right."),
+    ENEMY_HERO_FALL('⋥',        "Enemy hero is falling."),
 
     ENEMY_HERO_PIPE_LEFT('Ǯ',   "Enemy hero is crawling along the pipe to the left."),
 
     ENEMY_HERO_PIPE_RIGHT('Ě',  "Enemy hero is crawling along the pipe to the right."),
 
-    ENEMY_HERO_PIT_LEFT('⇇',    "Enemy hero in the pit looks to the left."),
-
-    ENEMY_HERO_PIT_RIGHT('⇉',   "Enemy hero in the pit looks to the right."),
+    ENEMY_HERO_PIT('⇇',         "Enemy hero in the pit."),
 
 /// enemy heroes in shadow mode
 
@@ -221,9 +201,7 @@ public enum Element implements CharElement {
 
     ENEMY_HERO_MASK_LADDER('≠',      "Enemy shadow-hero runs to the right."),
 
-    ENEMY_HERO_MASK_FALL_LEFT('⌫',   "Enemy shadow-hero is falling, look to the left."),
-
-    ENEMY_HERO_MASK_FALL_RIGHT('⌦',  "Enemy shadow-hero is falling, look to the right."),
+    ENEMY_HERO_MASK_FALL('⌫',       "Enemy shadow-hero is falling."),
 
     ENEMY_HERO_MASK_PIPE_LEFT('❵',   "Enemy shadow-hero is crawling along the pipe " +
                                      "to the left."),
@@ -231,9 +209,7 @@ public enum Element implements CharElement {
     ENEMY_HERO_MASK_PIPE_RIGHT('❴',  "Enemy shadow-hero is crawling along the pipe " +
                                      "to the right."),
 
-    ENEMY_HERO_MASK_PIT_LEFT('⬱',    "Enemy shadow-hero in the pit looks to the left."),
-
-    ENEMY_HERO_MASK_PIT_RIGHT('⇶',   "Enemy shadow-hero in the pit looks to the right."),
+    ENEMY_HERO_MASK_PIT('⬱',        "Enemy shadow-hero in the pit."),
 
 // robbers (dummy AI-bots)
 
@@ -245,17 +221,13 @@ public enum Element implements CharElement {
     ROBBER_RIGHT('»',       "Robber runs to the right. Robber picks up the " +
                             "nearest prey and hunts for it until it overtakes it. "),
 
-    ROBBER_FALL_LEFT('‹',   "Robber is falling, look to the left."),
-
-    ROBBER_FALL_RIGHT('›',  "Robber is falling, look to the right."),
+    ROBBER_FALL('‹',        "Robber is falling."),
 
     ROBBER_PIPE_LEFT('<',   "Robber is crawling along the pipe to the left."),
 
     ROBBER_PIPE_RIGHT('>',  "Robber is crawling along the pipe to the right."),
 
-    ROBBER_PIT_LEFT('⍇',    "Robber in the pit looks to the left."),
-
-    ROBBER_PIT_RIGHT('⍈',   "Robber in the pit looks to the right."),
+    ROBBER_PIT('⍇',         "Robber in the pit."),
 
 /// doors and keys
 
@@ -343,12 +315,10 @@ public enum Element implements CharElement {
                 HERO_LADDER,
                 HERO_LEFT,
                 HERO_RIGHT,
-                HERO_FALL_LEFT,
-                HERO_FALL_RIGHT,
+                HERO_FALL,
                 HERO_PIPE_LEFT,
                 HERO_PIPE_RIGHT,
-                HERO_PIT_LEFT,
-                HERO_PIT_RIGHT,
+                HERO_PIT,
 
                 HERO_MASK_DIE,
                 HERO_MASK_CRACK_LEFT,
@@ -356,24 +326,20 @@ public enum Element implements CharElement {
                 HERO_MASK_LADDER,
                 HERO_MASK_LEFT,
                 HERO_MASK_RIGHT,
-                HERO_MASK_FALL_LEFT,
-                HERO_MASK_FALL_RIGHT,
+                HERO_MASK_FALL,
                 HERO_MASK_PIPE_LEFT,
                 HERO_MASK_PIPE_RIGHT,
-                HERO_MASK_PIT_LEFT,
-                HERO_MASK_PIT_RIGHT);
+                HERO_MASK_PIT);
     }
 
     public static List<Element> robbers() {
         return Arrays.asList(ROBBER_LADDER,
                 ROBBER_LEFT,
                 ROBBER_RIGHT,
-                ROBBER_FALL_LEFT,
-                ROBBER_FALL_RIGHT,
+                ROBBER_FALL,
                 ROBBER_PIPE_LEFT,
                 ROBBER_PIPE_RIGHT,
-                ROBBER_PIT_LEFT,
-                ROBBER_PIT_RIGHT);
+                ROBBER_PIT);
     }
 
     public static List<Element> otherHeroes() {
@@ -383,12 +349,10 @@ public enum Element implements CharElement {
                 OTHER_HERO_LADDER,
                 OTHER_HERO_LEFT,
                 OTHER_HERO_RIGHT,
-                OTHER_HERO_FALL_LEFT,
-                OTHER_HERO_FALL_RIGHT,
+                OTHER_HERO_FALL,
                 OTHER_HERO_PIPE_LEFT,
                 OTHER_HERO_PIPE_RIGHT,
-                OTHER_HERO_PIT_LEFT,
-                OTHER_HERO_PIT_RIGHT,
+                OTHER_HERO_PIT,
 
                 OTHER_HERO_MASK_DIE,
                 OTHER_HERO_MASK_CRACK_LEFT,
@@ -396,12 +360,10 @@ public enum Element implements CharElement {
                 OTHER_HERO_MASK_LEFT,
                 OTHER_HERO_MASK_RIGHT,
                 OTHER_HERO_MASK_LADDER,
-                OTHER_HERO_MASK_FALL_LEFT,
-                OTHER_HERO_MASK_FALL_RIGHT,
+                OTHER_HERO_MASK_FALL,
                 OTHER_HERO_MASK_PIPE_LEFT,
                 OTHER_HERO_MASK_PIPE_RIGHT,
-                OTHER_HERO_MASK_PIT_LEFT,
-                OTHER_HERO_MASK_PIT_RIGHT);
+                OTHER_HERO_MASK_PIT);
     }
 
     public static List<Element> enemyHeroes() {
@@ -411,12 +373,10 @@ public enum Element implements CharElement {
                 ENEMY_HERO_LADDER,
                 ENEMY_HERO_LEFT,
                 ENEMY_HERO_RIGHT,
-                ENEMY_HERO_FALL_LEFT,
-                ENEMY_HERO_FALL_RIGHT,
+                ENEMY_HERO_FALL,
                 ENEMY_HERO_PIPE_LEFT,
                 ENEMY_HERO_PIPE_RIGHT,
-                ENEMY_HERO_PIT_LEFT,
-                ENEMY_HERO_PIT_RIGHT,
+                ENEMY_HERO_PIT,
 
                 ENEMY_HERO_MASK_DIE,
                 ENEMY_HERO_MASK_CRACK_LEFT,
@@ -424,12 +384,10 @@ public enum Element implements CharElement {
                 ENEMY_HERO_MASK_LEFT,
                 ENEMY_HERO_MASK_RIGHT,
                 ENEMY_HERO_MASK_LADDER,
-                ENEMY_HERO_MASK_FALL_LEFT,
-                ENEMY_HERO_MASK_FALL_RIGHT,
+                ENEMY_HERO_MASK_FALL,
                 ENEMY_HERO_MASK_PIPE_LEFT,
                 ENEMY_HERO_MASK_PIPE_RIGHT,
-                ENEMY_HERO_MASK_PIT_LEFT,
-                ENEMY_HERO_MASK_PIT_RIGHT);
+                ENEMY_HERO_MASK_PIT);
     }
 
     public static List<Element> pipes() {
@@ -488,12 +446,10 @@ public enum Element implements CharElement {
             case HERO_LADDER: return HERO_MASK_LADDER;
             case HERO_LEFT: return HERO_MASK_LEFT;
             case HERO_RIGHT: return HERO_MASK_RIGHT;
-            case HERO_FALL_LEFT: return HERO_MASK_FALL_LEFT;
-            case HERO_FALL_RIGHT: return HERO_MASK_FALL_RIGHT;
+            case HERO_FALL: return HERO_MASK_FALL;
             case HERO_PIPE_LEFT: return HERO_MASK_PIPE_LEFT;
             case HERO_PIPE_RIGHT: return HERO_MASK_PIPE_RIGHT;
-            case HERO_PIT_LEFT: return HERO_MASK_PIT_LEFT;
-            case HERO_PIT_RIGHT: return HERO_MASK_PIT_RIGHT;
+            case HERO_PIT: return HERO_MASK_PIT;
 
             case OTHER_HERO_DIE: return OTHER_HERO_MASK_DIE;
             case OTHER_HERO_CRACK_LEFT: return OTHER_HERO_MASK_CRACK_LEFT;
@@ -501,12 +457,10 @@ public enum Element implements CharElement {
             case OTHER_HERO_LADDER: return OTHER_HERO_MASK_LADDER;
             case OTHER_HERO_LEFT: return OTHER_HERO_MASK_LEFT;
             case OTHER_HERO_RIGHT: return OTHER_HERO_MASK_RIGHT;
-            case OTHER_HERO_FALL_LEFT: return OTHER_HERO_MASK_FALL_LEFT;
-            case OTHER_HERO_FALL_RIGHT: return OTHER_HERO_MASK_FALL_RIGHT;
+            case OTHER_HERO_FALL: return OTHER_HERO_MASK_FALL;
             case OTHER_HERO_PIPE_LEFT: return OTHER_HERO_MASK_PIPE_LEFT;
             case OTHER_HERO_PIPE_RIGHT: return OTHER_HERO_MASK_PIPE_RIGHT;
-            case OTHER_HERO_PIT_LEFT: return OTHER_HERO_MASK_PIT_LEFT;
-            case OTHER_HERO_PIT_RIGHT: return OTHER_HERO_MASK_PIT_RIGHT;
+            case OTHER_HERO_PIT: return OTHER_HERO_MASK_PIT;
 
             case ENEMY_HERO_DIE: return ENEMY_HERO_MASK_DIE;
             case ENEMY_HERO_CRACK_LEFT: return ENEMY_HERO_MASK_CRACK_LEFT;
@@ -514,12 +468,10 @@ public enum Element implements CharElement {
             case ENEMY_HERO_LADDER: return ENEMY_HERO_MASK_LADDER;
             case ENEMY_HERO_LEFT: return ENEMY_HERO_MASK_LEFT;
             case ENEMY_HERO_RIGHT: return ENEMY_HERO_MASK_RIGHT;
-            case ENEMY_HERO_FALL_LEFT: return ENEMY_HERO_MASK_FALL_LEFT;
-            case ENEMY_HERO_FALL_RIGHT: return ENEMY_HERO_MASK_FALL_RIGHT;
+            case ENEMY_HERO_FALL: return ENEMY_HERO_MASK_FALL;
             case ENEMY_HERO_PIPE_LEFT: return ENEMY_HERO_MASK_PIPE_LEFT;
             case ENEMY_HERO_PIPE_RIGHT: return ENEMY_HERO_MASK_PIPE_RIGHT;
-            case ENEMY_HERO_PIT_LEFT: return ENEMY_HERO_MASK_PIT_LEFT;
-            case ENEMY_HERO_PIT_RIGHT: return ENEMY_HERO_MASK_PIT_RIGHT;
+            case ENEMY_HERO_PIT: return ENEMY_HERO_MASK_PIT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
@@ -532,12 +484,10 @@ public enum Element implements CharElement {
             case HERO_LADDER: return OTHER_HERO_LADDER;
             case HERO_LEFT: return OTHER_HERO_LEFT;
             case HERO_RIGHT: return OTHER_HERO_RIGHT;
-            case HERO_FALL_LEFT: return OTHER_HERO_FALL_LEFT;
-            case HERO_FALL_RIGHT: return OTHER_HERO_FALL_RIGHT;
+            case HERO_FALL: return OTHER_HERO_FALL;
             case HERO_PIPE_LEFT: return OTHER_HERO_PIPE_LEFT;
             case HERO_PIPE_RIGHT: return OTHER_HERO_PIPE_RIGHT;
-            case HERO_PIT_LEFT: return OTHER_HERO_PIT_LEFT;
-            case HERO_PIT_RIGHT: return OTHER_HERO_PIT_RIGHT;
+            case HERO_PIT: return OTHER_HERO_PIT;
 
             case HERO_MASK_DIE: return OTHER_HERO_MASK_DIE;
             case HERO_MASK_CRACK_LEFT: return OTHER_HERO_MASK_CRACK_LEFT;
@@ -545,12 +495,10 @@ public enum Element implements CharElement {
             case HERO_MASK_LADDER: return OTHER_HERO_MASK_LADDER;
             case HERO_MASK_LEFT: return OTHER_HERO_MASK_LEFT;
             case HERO_MASK_RIGHT: return OTHER_HERO_MASK_RIGHT;
-            case HERO_MASK_FALL_LEFT: return OTHER_HERO_MASK_FALL_LEFT;
-            case HERO_MASK_FALL_RIGHT: return OTHER_HERO_MASK_FALL_RIGHT;
+            case HERO_MASK_FALL: return OTHER_HERO_MASK_FALL;
             case HERO_MASK_PIPE_LEFT: return OTHER_HERO_MASK_PIPE_LEFT;
             case HERO_MASK_PIPE_RIGHT: return OTHER_HERO_MASK_PIPE_RIGHT;
-            case HERO_MASK_PIT_LEFT: return OTHER_HERO_MASK_PIT_LEFT;
-            case HERO_MASK_PIT_RIGHT: return OTHER_HERO_MASK_PIT_RIGHT;
+            case HERO_MASK_PIT: return OTHER_HERO_MASK_PIT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
@@ -563,12 +511,10 @@ public enum Element implements CharElement {
             case HERO_LADDER: return ENEMY_HERO_LADDER;
             case HERO_LEFT: return ENEMY_HERO_LEFT;
             case HERO_RIGHT: return ENEMY_HERO_RIGHT;
-            case HERO_FALL_LEFT: return ENEMY_HERO_FALL_LEFT;
-            case HERO_FALL_RIGHT: return ENEMY_HERO_FALL_RIGHT;
+            case HERO_FALL: return ENEMY_HERO_FALL;
             case HERO_PIPE_LEFT: return ENEMY_HERO_PIPE_LEFT;
             case HERO_PIPE_RIGHT: return ENEMY_HERO_PIPE_RIGHT;
-            case HERO_PIT_LEFT: return ENEMY_HERO_PIT_LEFT;
-            case HERO_PIT_RIGHT: return ENEMY_HERO_PIT_RIGHT;
+            case HERO_PIT: return ENEMY_HERO_PIT;
 
             case HERO_MASK_DIE: return ENEMY_HERO_MASK_DIE;
             case HERO_MASK_CRACK_LEFT: return ENEMY_HERO_MASK_CRACK_LEFT;
@@ -576,12 +522,10 @@ public enum Element implements CharElement {
             case HERO_MASK_LADDER: return ENEMY_HERO_MASK_LADDER;
             case HERO_MASK_LEFT: return ENEMY_HERO_MASK_LEFT;
             case HERO_MASK_RIGHT: return ENEMY_HERO_MASK_RIGHT;
-            case HERO_MASK_FALL_LEFT: return ENEMY_HERO_MASK_FALL_LEFT;
-            case HERO_MASK_FALL_RIGHT: return ENEMY_HERO_MASK_FALL_RIGHT;
+            case HERO_MASK_FALL: return ENEMY_HERO_MASK_FALL;
             case HERO_MASK_PIPE_LEFT: return ENEMY_HERO_MASK_PIPE_LEFT;
             case HERO_MASK_PIPE_RIGHT: return ENEMY_HERO_MASK_PIPE_RIGHT;
-            case HERO_MASK_PIT_LEFT: return ENEMY_HERO_PIT_LEFT;
-            case HERO_MASK_PIT_RIGHT: return ENEMY_HERO_PIT_RIGHT;
+            case HERO_MASK_PIT: return ENEMY_HERO_PIT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
