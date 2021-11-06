@@ -32,57 +32,57 @@ public enum Element implements CharElement {
 
 /// void
 
-    NONE(' ',               "Empty space - where the hero can move "),
+    NONE(' ',                   "Empty space - where the hero can move."),
 
 /// bricks
 
-    BRICK('#',              "A wall where you can shoot a hole "),
+    BRICK('#',                  "A wall where you can shoot a hole."),
 
-    PIT_FILL_1('1',         "The wall is restored over time. When the " +
-                            "process begins, we see a timer."),
+    PIT_FILL_1('1',             "The wall is restored over time. When the " +
+                                "process begins, we see a timer."),
 
-    PIT_FILL_2('2',         "The wall is restored over time. When the " +
-                            "process begins, we see a timer."),
+    PIT_FILL_2('2',             "The wall is restored over time. When the " +
+                                "process begins, we see a timer."),
 
-    PIT_FILL_3('3',         "The wall is restored over time. When the " +
-                            "process begins, we see a timer."),
+    PIT_FILL_3('3',             "The wall is restored over time. When the " +
+                                "process begins, we see a timer."),
 
-    PIT_FILL_4('4',         "The wall is restored over time. When the " +
-                            "process begins, we see a timer."),
+    PIT_FILL_4('4',             "The wall is restored over time. When the " +
+                                "process begins, we see a timer."),
 
-    STONE('☼',              "Indestructible wall - It cannot be destroyed " +
-                            "with a shot."),
+    STONE('☼',                  "Indestructible wall - It cannot be destroyed " +
+                                "with a shot."),
 
-    CRACK_PIT('*',          "At the moment of the shot, we see the wall " +
-                            "like this. "),
+    CRACK_PIT('*',              "At the moment of the shot, we see the wall " +
+                                "like this."),
 
 /// clues
 
-    CLUE_KNIFE('$',         "Clue knife. Collect a series of clues to " +
-                            "get the maximum points. "),
+    CLUE_KNIFE('$',             "Clue knife. Collect a series of clues to " +
+                                "get the maximum points."),
 
-    CLUE_GLOVE('&',         "Clue glove. Collect a series of clues to " +
-                            "get the maximum points. "),
+    CLUE_GLOVE('&',             "Clue glove. Collect a series of clues to " +
+                                "get the maximum points."),
 
-    CLUE_RING('@',          "Clue ring. Collect a series of clues to " +
-                            "get the maximum points. "),
+    CLUE_RING('@',              "Clue ring. Collect a series of clues to " +
+                                "get the maximum points."),
 
 /// your hero
 
-    HERO_DIE('Ѡ',           "Your hero is dead. In the next tick, it will " +
-                            "disappear and appear in a new location."),
+    HERO_DIE('Ѡ',               "Your hero is dead. In the next tick, it will " +
+                                "disappear and appear in a new location."),
 
-    HERO_LADDER('Y',        "Your hero is climbing the ladder."),
+    HERO_LADDER('Y',            "Your hero is climbing the ladder."),
 
-    HERO_LEFT('◄',          "Your hero runs to the left."),
+    HERO_LEFT('◄',              "Your hero runs to the left."),
 
-    HERO_RIGHT('►',         "Your hero runs to the right."),
+    HERO_RIGHT('►',             "Your hero runs to the right."),
 
-    HERO_FALL(']',          "Your hero is falling."),
+    HERO_FALL(']',              "Your hero is falling."),
 
-    HERO_PIPE('{',          "Your hero is crawling along the pipe."),
+    HERO_PIPE('{',              "Your hero is crawling along the pipe."),
 
-    HERO_PIT('⍃',           "Your hero in the pit."),
+    HERO_PIT('⍃',               "Your hero in the pit."),
 
 /// your hero in shadow mode
 
@@ -120,20 +120,20 @@ public enum Element implements CharElement {
 
 /// other heroes in shadow mode
 
-    OTHER_HERO_MASK_DIE('⋈',         "Other shadow-hero is dead. In the next tick, " +
-                                     "it will disappear and appear in a new location."),
+    OTHER_HERO_MASK_DIE('⋈',    "Other shadow-hero is dead. In the next tick, " +
+                                "it will disappear and appear in a new location."),
 
-    OTHER_HERO_MASK_LADDER('⋕',      "Other shadow-hero is climbing the ladder."),
+    OTHER_HERO_MASK_LADDER('⋕', "Other shadow-hero is climbing the ladder."),
 
-    OTHER_HERO_MASK_LEFT('⋊',        "Other shadow-hero runs to the left."),
+    OTHER_HERO_MASK_LEFT('⋊',   "Other shadow-hero runs to the left."),
 
-    OTHER_HERO_MASK_RIGHT('⋉',       "Other shadow-hero runs to the right."),
+    OTHER_HERO_MASK_RIGHT('⋉',  "Other shadow-hero runs to the right."),
 
-    OTHER_HERO_MASK_FALL('⋣',        "Other shadow-hero is falling."),
+    OTHER_HERO_MASK_FALL('⋣',   "Other shadow-hero is falling."),
 
-    OTHER_HERO_MASK_PIPE('⊣',        "Other shadow-hero is crawling along the pipe."),
+    OTHER_HERO_MASK_PIPE('⊣',   "Other shadow-hero is crawling along the pipe."),
 
-    OTHER_HERO_MASK_PIT('ᗏ',         "Other shadow-hero in the pit."),
+    OTHER_HERO_MASK_PIT('ᗏ',    "Other shadow-hero in the pit."),
 
 /// enemy heroes
 
@@ -154,86 +154,86 @@ public enum Element implements CharElement {
 
 /// enemy heroes in shadow mode
 
-    ENEMY_HERO_MASK_DIE('⧓',         "Enemy shadow-hero is dead. In the next tick, " +
-                                     "it will disappear and appear in a new location."),
+    ENEMY_HERO_MASK_DIE('⧓',    "Enemy shadow-hero is dead. In the next tick, " +
+                                "it will disappear and appear in a new location."),
 
-    ENEMY_HERO_MASK_LADDER('≠',     "Enemy shadow-hero is climbing the ladder."),
+    ENEMY_HERO_MASK_LADDER('≠', "Enemy shadow-hero is climbing the ladder."),
 
-    ENEMY_HERO_MASK_LEFT('⧒',       "Enemy shadow-hero runs to the left."),
+    ENEMY_HERO_MASK_LEFT('⧒',   "Enemy shadow-hero runs to the left."),
 
-    ENEMY_HERO_MASK_RIGHT('⧑',      "Enemy shadow-hero runs to the right."),
+    ENEMY_HERO_MASK_RIGHT('⧑',  "Enemy shadow-hero runs to the right."),
 
-    ENEMY_HERO_MASK_FALL('⌫',       "Enemy shadow-hero is falling."),
+    ENEMY_HERO_MASK_FALL('⌫',   "Enemy shadow-hero is falling."),
 
-    ENEMY_HERO_MASK_PIPE('❵',        "Enemy shadow-hero is crawling along the pipe."),
+    ENEMY_HERO_MASK_PIPE('❵',    "Enemy shadow-hero is crawling along the pipe."),
 
-    ENEMY_HERO_MASK_PIT('⬱',        "Enemy shadow-hero in the pit."),
+    ENEMY_HERO_MASK_PIT('⬱',    "Enemy shadow-hero in the pit."),
 
 // robbers (dummy AI-bots)
 
-    ROBBER_LADDER('Q',      "Robber is climbing the ladder."),
+    ROBBER_LADDER('Q',          "Robber is climbing the ladder."),
 
-    ROBBER_LEFT('«',        "Robber runs to the left. Robber picks up the " +
-                            "nearest prey and hunts for it until it overtakes it. "),
+    ROBBER_LEFT('«',            "Robber runs to the left. Robber picks up the " +
+                                "nearest prey and hunts for it until it overtakes it."),
 
-    ROBBER_RIGHT('»',       "Robber runs to the right. Robber picks up the " +
-                            "nearest prey and hunts for it until it overtakes it. "),
+    ROBBER_RIGHT('»',           "Robber runs to the right. Robber picks up the " +
+                                "nearest prey and hunts for it until it overtakes it."),
 
-    ROBBER_FALL('‹',        "Robber is falling."),
+    ROBBER_FALL('‹',            "Robber is falling."),
 
-    ROBBER_PIPE('<',        "Robber is crawling along the pipe."),
+    ROBBER_PIPE('<',            "Robber is crawling along the pipe."),
 
-    ROBBER_PIT('⍇',         "Robber in the pit."),
+    ROBBER_PIT('⍇',             "Robber in the pit."),
 
 /// doors and keys
 
-    OPENED_DOOR_GOLD('⍙',   "Opened golden gates. Can only be locked " +
-                            "with a golden key."),
+    OPENED_DOOR_GOLD('⍙',       "Opened golden gates. Can only be locked " +
+                                "with a golden key."),
 
-    OPENED_DOOR_SILVER('⍚', "Opened silver gates. Can only be locked " +
-                            "with a silver key."),
+    OPENED_DOOR_SILVER('⍚',     "Opened silver gates. Can only be locked " +
+                                "with a silver key."),
 
-    OPENED_DOOR_BRONZE('⍜', "Opened bronze gates. Can only be locked " +
-                            "with a bronze key."),
+    OPENED_DOOR_BRONZE('⍜',     "Opened bronze gates. Can only be locked " +
+                                "with a bronze key."),
 
-    CLOSED_DOOR_GOLD('⍍',   "Closed golden gates. Can only be opened " +
-                            "with a golden key."),
+    CLOSED_DOOR_GOLD('⍍',       "Closed golden gates. Can only be opened " +
+                                "with a golden key."),
 
-    CLOSED_DOOR_SILVER('⌺', "Closed silver gates. Can only be opened " +
-                            "with a silver key."),
+    CLOSED_DOOR_SILVER('⌺',     "Closed silver gates. Can only be opened " +
+                                "with a silver key."),
 
-    CLOSED_DOOR_BRONZE('⌼', "Closed bronze gates. Can only be opened " +
-                            "with a bronze key."),
+    CLOSED_DOOR_BRONZE('⌼',     "Closed bronze gates. Can only be opened " +
+                                "with a bronze key."),
 
-    KEY_GOLD('✦',           "Bronze key. Helps open/close golden gates. " +
-                            "The key can only be used once."),
+    KEY_GOLD('✦',               "Bronze key. Helps open/close golden gates. " +
+                                "The key can only be used once."),
 
-    KEY_SILVER('✼',         "Silver key. Helps open/close silver gates. " +
-                            "The key can only be used once."),
+    KEY_SILVER('✼',             "Silver key. Helps open/close silver gates. " +
+                                "The key can only be used once."),
 
-    KEY_BRONZE('⍟',         "Bronze key. Helps open/close bronze gates. " +
-                            "The key can only be used once."),
+    KEY_BRONZE('⍟',             "Bronze key. Helps open/close bronze gates. " +
+                                "The key can only be used once."),
 
 /// other stuff
 
-    BULLET('•',             "Bullet. After the shot by the hero, the bullet " +
-                            "flies until it meets an obstacle. The bullet " +
-                            "kills the hero. It ricochets from the indestructible " +
-                            "wall (no more than 1 time). The bullet destroys " +
-                            "the destructible wall. "),
+    BULLET('•',                 "Bullet. After the shot by the hero, the bullet " +
+                                "flies until it meets an obstacle. The bullet " +
+                                "kills the hero. It ricochets from the indestructible " +
+                                "wall (no more than 1 time). The bullet destroys " +
+                                "the destructible wall."),
 
-    LADDER('H',             "Ladder - the hero can move along the level " +
-                            "along it."),
+    LADDER('H',                 "Ladder - the hero can move along the level " +
+                                "along it."),
 
-    PIPE('~',               "Pipe - the hero can also move along the " +
-                            "level along it, but only horizontally."),
+    PIPE('~',                   "Pipe - the hero can also move along the " +
+                                "level along it, but only horizontally."),
 
-    BACKWAY('⊛',            "Back door - allows the hero to secretly " +
-                            "move to another random place on the map."),
+    BACKWAY('⊛',                "Back door - allows the hero to secretly " +
+                                "move to another random place on the map."),
 
-    MASK_POTION('S',        "Disguise potion - endow the hero with " +
-                            "additional abilities. The hero goes into " +
-                            "shadow mode. ");
+    MASK_POTION('S',            "Disguise potion - endow the hero with " +
+                                "additional abilities. The hero goes into " +
+                                "shadow mode.");
 
     private final char ch;
     private final String info;
