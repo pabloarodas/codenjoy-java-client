@@ -25,28 +25,34 @@ package com.codenjoy.dojo.games.startandjump;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-/**
- * Тут указана легенда всех возможных объектов на поле и их состояний.
- * Важно помнить, что для каждой енумной константы надо создать спрайт в папке \src\main\webapp\resources\sprite.
- */
 public enum Element implements CharElement {
 
-    NONE(' '),       // пустое поле
-    WALL('#'),       // а это стенка, через которую я хочу чтобы проходить нельзя было
-    PLATFORM('='),   // а это МОЯ ПЛАТФОРМА
-    HERO('☺'),       // а это мой герой
-    BLACK_HERO('☻');       // а это очень мертвый труп
+    NONE(' ',       "Пустое поле."),
 
+    WALL('#',       "Стена через которую нельзя пройти."),
 
-    final char ch;
+    PLATFORM('=',   "Платформа на которую можно запрыгнуть."),
 
-    Element(char ch) {
+    HERO('☺',       "Твой герой."),
+
+    BLACK_HERO('☻', "Твой погиб.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override
