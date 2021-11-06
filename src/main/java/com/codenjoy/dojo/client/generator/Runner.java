@@ -22,8 +22,17 @@ package com.codenjoy.dojo.client.generator;
  * #L%
  */
 
+import com.codenjoy.dojo.services.printer.CharElement;
+import org.apache.commons.lang3.StringUtils;
+import org.reflections.Reflections;
+
 import java.io.File;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
 
 public class Runner {
 
@@ -35,7 +44,7 @@ public class Runner {
         System.out.println("| Starting elements generator |");
         System.out.println("+-----------------------------+");
 
-        if (args != null && args.length == 2) {
+        if (args != null && args.length == 3) {
             base = args[0];
             clients = args[1];
             System.out.printf("Got 'CLIENTS' from Environment:  '%s'\n", clients);
@@ -51,8 +60,24 @@ public class Runner {
             System.out.printf("            (absolute): '%s'\n", base);
         }
 
-        for (String language : Arrays.asList(clients.split(","))) {
-            new ElementGenerator("clifford", language).generateToFile(base);
+        for (String game : games()) {
+            System.out.println();
+            for (String language : Arrays.asList(clients.split(","))) {
+                new ElementGenerator(game, language).generateToFile(base);
+            }
         }
+    }
+
+    private static List<String> games() {
+        String packageName = "com.codenjoy.dojo.games";
+        return new Reflections(packageName).getSubTypesOf(CharElement.class).stream()
+                .filter(clazz -> !Modifier.isAbstract(clazz.getModifiers()))
+                .filter(clazz -> !Modifier.isInterface(clazz.getModifiers()))
+                .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
+                .map(Class::getCanonicalName)
+                .map(name -> StringUtils.substringBetween(name, "com.codenjoy.dojo.games.", ".Element"))
+                .filter(Objects::nonNull)
+                .sorted()
+                .collect(toList());
     }
 }
