@@ -75,4 +75,9 @@ public class Go implements Template {
         return "\n" +
                 "}\n";
     }
+
+    @Override
+    public String file() {
+        return "go/games/${game}/element.go";
+    }
 }

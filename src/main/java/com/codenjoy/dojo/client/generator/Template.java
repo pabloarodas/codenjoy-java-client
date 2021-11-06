@@ -53,4 +53,6 @@ public interface Template {
     default String lastDelimiter() {
         return null;
     }
+
+    String file();
 }

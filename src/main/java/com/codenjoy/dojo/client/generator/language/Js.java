@@ -73,4 +73,9 @@ public class Js implements Template {
         return "\n" +
                 "}\n";
     }
+
+    @Override
+    public String file() {
+        return "java-script/games/${game}/elements.js"; // TODO rename to element.js
+    }
 }

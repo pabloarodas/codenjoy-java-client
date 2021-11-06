@@ -103,4 +103,9 @@ public class Java implements Template {
                 "    }\n" +
                 "}\n";
     }
+
+    @Override
+    public String file() {
+        return "java/src/main/java/com/codenjoy/dojo/games/${game}/Element.java";
+    }
 }

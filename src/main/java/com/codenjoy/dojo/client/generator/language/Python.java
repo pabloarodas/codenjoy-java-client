@@ -78,4 +78,9 @@ public class Python implements Template {
                 "if __name__ == '__main__':\n" +
                 "    raise RuntimeError(\"This module is not intended to be ran from CLI\")\n";
     }
+
+    @Override
+    public String file() {
+        return "python/games/${game}/element.py";
+    }
 }

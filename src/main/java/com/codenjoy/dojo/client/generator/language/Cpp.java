@@ -28,9 +28,7 @@ public class Cpp implements Template {
 
     @Override
     public String header() {
-        return "//include \"Element.h\"\n" +
-                "\n" +
-                "/*-\n" +
+        return "/*-\n" +
                 " * #%L\n" +
                 " * Codenjoy - it's a dojo-like platform from developers to developers.\n" +
                 " * %%\n" +
@@ -51,6 +49,8 @@ public class Cpp implements Template {
                 " * <http://www.gnu.org/licenses/gpl-3.0.html>.\n" +
                 " * #L%\n" +
                 " */\n" +
+                "\n" +
+                "//include \"Element.h\"\n" +
                 "\n" +
                 "Element::Element(Char el) {\n" +
                 "    elem.first = valueOf(el);\n" +
@@ -106,5 +106,10 @@ public class Cpp implements Template {
                 "};\n" +
                 "\n" +
                 "const ElementMap Element::Elements = Element::initialiseElements();\n";
+    }
+
+    @Override
+    public String file() {
+        return "cpp/src/games/${game}/Element.cpp";
     }
 }

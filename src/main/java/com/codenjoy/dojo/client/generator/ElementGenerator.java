@@ -25,7 +25,9 @@ package com.codenjoy.dojo.client.generator;
 import com.codenjoy.dojo.client.generator.language.Go;
 import com.codenjoy.dojo.games.sample.Element;
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.codenjoy.dojo.utils.SmokeUtils;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,10 +42,12 @@ public class ElementGenerator {
     private final String game;
     private final boolean subrepo;
     private final String language;
+    private final Template template;
 
     public ElementGenerator(String game, String language) {
         this.game = game;
         this.language = language;
+        this.template = template();
         subrepo = Arrays.asList(
                 "chess", "clifford", "excitebike",
                 "japanese", "mollymage", "selfdefense",
@@ -52,6 +56,16 @@ public class ElementGenerator {
 
     public String generate() {
         return build(elements());
+    }
+
+    public void generateToFile() {
+        String data = build(elements());
+        String preffix = "";
+        if ("CodingDojo".equals(new File(".").getAbsoluteFile().getParentFile().getName())) {
+            preffix = "clients/";
+        }
+        File dest = new File(preffix + replace(template.file()));
+        SmokeUtils.saveToFile(dest, data);
     }
 
     private CharElement[] elements() {

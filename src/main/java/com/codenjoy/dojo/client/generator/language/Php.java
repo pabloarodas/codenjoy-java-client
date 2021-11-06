@@ -80,4 +80,9 @@ public class Php implements Template {
                 "    );\n" +
                 "}\n";
     }
+
+    @Override
+    public String file() {
+        return "php/games/${game}/Element.php";
+    }
 }

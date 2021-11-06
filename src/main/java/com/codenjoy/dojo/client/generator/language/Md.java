@@ -51,4 +51,9 @@ public class Md implements Template {
     public boolean printNewLine() {
         return false;
     }
+
+    @Override
+    public String file() {
+        return "../games/${game}/Element.md";
+    }
 }
