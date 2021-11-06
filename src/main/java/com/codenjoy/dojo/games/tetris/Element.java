@@ -32,26 +32,40 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    BLUE('I', 2),
-    CYAN('J', 3),
-    ORANGE('L', 4),
-    YELLOW('O', 1),
-    GREEN('S', 5),
-    PURPLE('T', 7),
-    RED('Z', 6),
-    NONE('.', 0);
+    BLUE('I', 2,   "I figure. Blue color."),
 
-    final char ch;
-    final int index;
+    CYAN('J', 3,   "J figure. Cyan color."),
 
-    Element(char ch, int index) {
+    ORANGE('L', 4, "L figure. Orange color."),
+
+    YELLOW('O', 1, "O figure. Yellow color."),
+
+    GREEN('S', 5,  "S figure. Green color."),
+
+    PURPLE('T', 7, "T figure. Purple color."),
+
+    RED('Z', 6,    "Z figure. Red color."),
+
+    NONE('.', 0,   "Empty space.");
+
+    private final char ch;
+    private final int index;
+    private final String info;
+
+    Element(char ch, int index, String info) {
         this.ch = ch;
         this.index = index;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override
