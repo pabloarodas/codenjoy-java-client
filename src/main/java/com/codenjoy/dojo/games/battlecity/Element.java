@@ -33,85 +33,85 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    NONE(' ',                             "An empty space where a tank can move."),
+    NONE(' ',                          "An empty space where a tank can move."),
 
-    BATTLE_WALL('☼',                      "The undestroyable wall."),
+    BATTLE_WALL('☼',                   "The undestroyable wall."),
 
-    BANG('Ѡ',                             "A destroyed enemy’s tank. A new appears just in a second."),
+    BANG('Ѡ',                          "A destroyed enemy’s tank. A new appears just in a second."),
 
-	ICE('#',                              "Ice, having driven onto which the tank will begin to drift. " +
-                                          "During a skid, the tank will repeat the old commands for " +
-                                          "several ticks in a row, ignoring the current commands."),
+	ICE('#',                           "Ice, having driven onto which the tank will begin to drift. " +
+                                       "During a skid, the tank will repeat the old commands for " +
+                                       "several ticks in a row, ignoring the current commands."),
 
-    TREE('%',                             "The trees hide tanks which can continue to shoot at the " +
-                                          "same time. The fired shells are also not visible under the " +
-                                          "trees. Only prizes can be seen from behind the trees."),
+    TREE('%',                          "The trees hide tanks which can continue to shoot at the " +
+                                       "same time. The fired shells are also not visible under the " +
+                                       "trees. Only prizes can be seen from behind the trees."),
 
-    RIVER('~',                            "The river does not allow to pass through itself without " +
-                                          "the PRIZE_WALKING_ON_WATER prize, but the shells fly freely " +
-                                          "through the water. A tank stuck in the middle of the water, " +
-                                          "after canceling the PRIZE_WALKING_ON_WATER prize, can move " +
-                                          "1 cell in the water only every N ticks."),
+    RIVER('~',                         "The river does not allow to pass through itself without " +
+                                       "the PRIZE_WALKING_ON_WATER prize, but the shells fly freely " +
+                                       "through the water. A tank stuck in the middle of the water, " +
+                                       "after canceling the PRIZE_WALKING_ON_WATER prize, can move " +
+                                       "1 cell in the water only every N ticks."),
 
-	WALL('╬', 3,                          "A wall that hasn't been shot yet. It takes 3 shots to completely destroy."),
+	WALL('╬', 3,                       "A wall that hasn't been shot yet. It takes 3 shots to completely destroy."),
 
-    WALL_DESTROYED_DOWN('╩', 2,           "Partially destroyed wall. For complete destruction, 2 shot is required."),
-    WALL_DESTROYED_UP('╦', 2,             "Partially destroyed wall. For complete destruction, 2 shot is required."),
-    WALL_DESTROYED_LEFT('╠', 2,           "Partially destroyed wall. For complete destruction, 2 shot is required."),
-    WALL_DESTROYED_RIGHT('╣', 2,          "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    WALL_DESTROYED_DOWN('╩', 2,        "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    WALL_DESTROYED_UP('╦', 2,          "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    WALL_DESTROYED_LEFT('╠', 2,        "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    WALL_DESTROYED_RIGHT('╣', 2,       "Partially destroyed wall. For complete destruction, 2 shot is required."),
 
-    WALL_DESTROYED_DOWN_TWICE('╨', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_UP_TWICE('╥', 1,       "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_LEFT_TWICE('╞', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_RIGHT_TWICE('╡', 1,    "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_DOWN_TWICE('╨', 1,  "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_UP_TWICE('╥', 1,    "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_LEFT_TWICE('╞', 1,  "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_RIGHT_TWICE('╡', 1, "Partially destroyed wall. For complete destruction, 1 shot is required."),
 
-    WALL_DESTROYED_LEFT_RIGHT('│', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_UP_DOWN('─', 1,        "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_LEFT_RIGHT('│', 1,  "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_UP_DOWN('─', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
 
-    WALL_DESTROYED_UP_LEFT('┌', 1,        "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_RIGHT_UP('┐', 1,       "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_DOWN_LEFT('└', 1,      "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_DOWN_RIGHT('┘', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_UP_LEFT('┌', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_RIGHT_UP('┐', 1,    "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_DOWN_LEFT('└', 1,   "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    WALL_DESTROYED_DOWN_RIGHT('┘', 1,  "Partially destroyed wall. For complete destruction, 1 shot is required."),
 
-    WALL_DESTROYED(' ', 0,                "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    WALL_DESTROYED(' ', 0,             "Partially destroyed wall. For complete destruction, 2 shot is required."),
 
-    BULLET('•',                           "Completely destroyed wall. Wall will recover over time."),
+    BULLET('•',                        "Completely destroyed wall. Wall will recover over time."),
 
-    TANK_UP('▲',                          "Your tank is pointing up."),
-    TANK_RIGHT('►',                       "Your tank is pointing right."),
-    TANK_DOWN('▼',                        "Your tank is pointing down."),
-    TANK_LEFT('◄',                        "Your tank is pointing left."),
+    TANK_UP('▲',                       "Your tank is pointing up."),
+    TANK_RIGHT('►',                    "Your tank is pointing right."),
+    TANK_DOWN('▼',                     "Your tank is pointing down."),
+    TANK_LEFT('◄',                     "Your tank is pointing left."),
 
-    OTHER_TANK_UP('˄',                    "Enemy tank is pointing up."),
-    OTHER_TANK_RIGHT('˃',                 "Enemy tank is pointing right."),
-    OTHER_TANK_DOWN('˅',                  "Enemy tank is pointing down."),
-    OTHER_TANK_LEFT('˂',                  "Enemy tank is pointing left."),
+    OTHER_TANK_UP('˄',                 "Enemy tank is pointing up."),
+    OTHER_TANK_RIGHT('˃',              "Enemy tank is pointing right."),
+    OTHER_TANK_DOWN('˅',               "Enemy tank is pointing down."),
+    OTHER_TANK_LEFT('˂',               "Enemy tank is pointing left."),
 
-    AI_TANK_UP('?',                       "AI-tank is pointing up."),
-    AI_TANK_RIGHT('»',                    "AI-tank is pointing right."),
-    AI_TANK_DOWN('¿',                     "AI-tank is pointing down."),
-    AI_TANK_LEFT('«',                     "AI-tank is pointing left."),
+    AI_TANK_UP('?',                    "AI-tank is pointing up."),
+    AI_TANK_RIGHT('»',                 "AI-tank is pointing right."),
+    AI_TANK_DOWN('¿',                  "AI-tank is pointing down."),
+    AI_TANK_LEFT('«',                  "AI-tank is pointing left."),
 
-    AI_TANK_PRIZE('◘',                    "AI-tank can also be a prize, then it is highlighted " +
-                                          "by this sprite every few ticks"),
+    AI_TANK_PRIZE('◘',                 "AI-tank can also be a prize, then it is highlighted " +
+                                       "by this sprite every few ticks."),
 
-    PRIZE('!',                            "The dropped prize after the destruction of the prize " +
-                                          "tank flickers on the field every even tick of the game " +
-                                          "with this sprite. "),
+    PRIZE('!',                         "The dropped prize after the destruction of the prize " +
+                                       "tank flickers on the field every even tick of the game " +
+                                       "with this sprite."),
 
-    PRIZE_IMMORTALITY('1',                "A prize that gives the hero temporary invulnerability."),
+    PRIZE_IMMORTALITY('1',             "A prize that gives the hero temporary invulnerability."),
 
-    PRIZE_BREAKING_WALLS('2',             "A prize that allows you to temporarily destroy any walls " +
-                                          "with 1 shot, even indestructible ones (but not the border " +
-                                          "of the field) "),
+    PRIZE_BREAKING_WALLS('2',          "A prize that allows you to temporarily destroy any walls " +
+                                       "with 1 shot, even indestructible ones (but not the border " +
+                                       "of the field)."),
 
-    PRIZE_WALKING_ON_WATER('3',           "A prize that allows the hero to temporarily walk on water."),
+    PRIZE_WALKING_ON_WATER('3',        "A prize that allows the hero to temporarily walk on water."),
 
-    PRIZE_VISIBILITY('4',                 "A prize that allows the hero to temporarily see all " +
-                                          "enemies under the trees."),
+    PRIZE_VISIBILITY('4',              "A prize that allows the hero to temporarily see all " +
+                                       "enemies under the trees."),
 
-    PRIZE_NO_SLIDING('5',                 "A prize that allows the hero to temporarily not slide " +
-                                          "on the ice.");
+    PRIZE_NO_SLIDING('5',              "A prize that allows the hero to temporarily not slide " +
+                                       "on the ice.");
 
     private static List<Element> result = null;
 
