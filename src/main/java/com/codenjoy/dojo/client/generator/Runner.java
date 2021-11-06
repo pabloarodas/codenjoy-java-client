@@ -44,7 +44,7 @@ public class Runner {
         System.out.println("| Starting elements generator |");
         System.out.println("+-----------------------------+");
 
-        if (args != null && args.length == 3) {
+        if (args != null && args.length == 2) {
             base = args[0];
             clients = args[1];
             System.out.printf("Got 'CLIENTS' from Environment:  '%s'\n", clients);
