@@ -23,6 +23,7 @@ package com.codenjoy.dojo.client.generator;
  */
 
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.codenjoy.dojo.utils.PrintUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.reflections.Reflections;
 
@@ -31,6 +32,8 @@ import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Objects;
 
+import static com.codenjoy.dojo.utils.PrintUtils.Color.ERROR;
+import static com.codenjoy.dojo.utils.PrintUtils.Color.INFO;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
@@ -40,12 +43,14 @@ public class Runner {
     private static String base;
     private static String games;
     private static String clients;
+    private static List<String> allGames;
 
     public static void main(String[] args) {
         System.out.println("+-----------------------------+");
         System.out.println("| Starting elements generator |");
         System.out.println("+-----------------------------+");
 
+        allGames = games();
         if (args != null && args.length == 3) {
             base = args[0];
             games = args[1];
@@ -58,16 +63,22 @@ public class Runner {
             printInfo("Runner");
         }
         if (isAllGames()) {
-            games = games().stream().collect(joining(","));
+            games = allGames.stream().collect(joining(","));
         }
 
         if (!new File(base).isAbsolute()) {
             base = new File(base).getAbsoluteFile().getPath();
-            System.out.printf("\t   absolute:'%s'\n", base);
+            PrintUtils.printf("\t   absolute:'%s'\n",
+                    INFO,
+                    base);
         }
 
         for (String game : games.split(",")) {
             System.out.println();
+            if (!allGames.contains(game)) {
+                PrintUtils.printf("Game not found: '%s'\n", ERROR, game);
+                continue;
+            }
             for (String language : clients.split(",")) {
                 new ElementGenerator(game, language).generateToFile(base);
             }
@@ -79,13 +90,14 @@ public class Runner {
     }
 
     private static void printInfo(String source) {
-        System.out.printf(
-                "Got from %s:\n" +
+        PrintUtils.printf(
+                "\u001B[44;93mGot from %s:\n" +
                 "\t 'GAMES':   '%s'\n" +
                 "\t 'CLIENTS': '%s'\n" +
-                "\t 'BASE':    '%s'\n",
+                "\t 'BASE':    '%s'\u001B[0m\n",
+                INFO,
                 source,
-                isAllGames() ? "all=" + games() : games,
+                isAllGames() ? "all=" + allGames : games,
                 clients, base);
     }
 
