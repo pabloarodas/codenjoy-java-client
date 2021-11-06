@@ -32,28 +32,46 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    NONE(' '),   // отгадай, что тут за цифра
-    BORDER('☼'), // граница, проигнорь ее ;) она не учитывается в координатах
-    HIDDEN('*'), // если число не отображается на поле
-    ONE('1'),    // циферки
-    TWO('2'),
-    THREE('3'),
-    FOUR('4'),
-    FIVE('5'),
-    SIX('6'),
-    SEVEN('7'),
-    EIGHT('8'),
-    NINE('9');
+    NONE(' ',   "Отгадай, что тут за цифра."),
 
-    final char ch;
+    BORDER('☼', "Граница, проигнорируй ее - она не учитывается в координатах."),
 
-    Element(char ch) {
+    HIDDEN('*', "Если число не отображается на поле."),
+
+    ONE('1',    "Цифра 1."),
+
+    TWO('2',    "Цифра 2."),
+
+    THREE('3',  "Цифра 3."),
+
+    FOUR('4',   "Цифра 4."),
+
+    FIVE('5',   "Цифра 5."),
+
+    SIX('6',    "Цифра 6."),
+
+    SEVEN('7',  "Цифра 7."),
+
+    EIGHT('8',  "Цифра 8."),
+
+    NINE('9',   "Цифра 9.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override
