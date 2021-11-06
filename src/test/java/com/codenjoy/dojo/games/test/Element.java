@@ -28,7 +28,7 @@ import com.codenjoy.dojo.services.printer.CharElement;
 public enum Element implements CharElement {
 
     NONE(' ',                                       "Short comment."),
-    WALL('☼',                                       "Long long long long long long long long long long long long" +
+    WALL('☼',                                       "Long long long long long long long long long long long looooooooong " +
                                                     "long long long long long long long long long long comment."),
     HERO('☺',                                       "Another short comment."),
     OTHER_HERO('☻',                                 "One more time."),

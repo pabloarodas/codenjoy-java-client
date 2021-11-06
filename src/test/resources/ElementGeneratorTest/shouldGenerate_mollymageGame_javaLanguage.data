@@ -47,8 +47,8 @@ public enum Element implements CharElement {
 
     POTION_TIMER_1('1'),
 
-        // Boom! this is what is potion does, everything that is destro
-        // yable got destroyed.
+        // Boom! this is what is potion does, everything that is
+        // destroyable got destroyed.
 
     BOOM('҉'),
 
@@ -60,16 +60,16 @@ public enum Element implements CharElement {
 
     TREASURE_BOX('#'),
 
-        // This is like a treasure box opens looks like, it will disapp
-        // ear on next move. If it's you did it - you'll get score poin
-        // ts. Perhaps a prize will appear.
+        // This is like a treasure box opens looks like, it will
+        // disappear on next move. If it's you did it - you'll get
+        // score points. Perhaps a prize will appear.
 
     OPENING_TREASURE_BOX('H'),
 
-        // This guys runs over the board randomly and gets in the way a
-        // ll the time. If it will touch Molly - she will die. You'd be
-        // tter kill this piece of ... soul, you'll get score points fo
-        // r it.
+        // This guys runs over the board randomly and gets in the way
+        // all the time. If it will touch Molly - she will die. You'd
+        // better kill this piece of ... soul, you'll get score points
+        // for it.
 
     GHOST('&'),
 
@@ -78,38 +78,38 @@ public enum Element implements CharElement {
     DEAD_GHOST('x'),
 
         // Temporarily increase potion radius blast. Applicable only to
-        //  new potions.
+        // new potions.
 
     POTION_BLAST_RADIUS_INCREASE('+'),
 
-        // Temporarily increase available potions count. Number of extr
-        // a potions can be set in settings*.
+        // Temporarily increase available potions count. Number of
+        // extra potions can be set in settings*.
 
     POTION_COUNT_INCREASE('c'),
 
-        // Next several potions would be with remote control. Activatin
-        // g by command ACT. Number of RC triggers is limited and can b
-        // e set in settings*.
+        // Next several potions would be with remote control.
+        // Activating by command ACT. Number of RC triggers is limited
+        // and can be set in settings*.
 
     POTION_REMOTE_CONTROL('r'),
 
-        // Temporarily gives you immunity from potion blasts (own potio
-        // n and others as well).
+        // Temporarily gives you immunity from potion blasts (own
+        // potion and others as well).
 
     POTION_IMMUNE('i'),
 
-        // Hero can shoot by poison cloud. Using: ACT(1)+Direction. Tem
-        // porary.
+        // Hero can shoot by poison cloud. Using: ACT(1)+Direction.
+        // Temporary.
 
     POISON_THROWER('T'),
 
-        // Hero can explode all potions on the field. Using: ACT(2). Te
-        // mporary.
+        // Hero can explode all potions on the field. Using: ACT(2).
+        // Temporary.
 
     POTION_EXPLODER('A'),
 
-        // A void. This is the only place where you can move your Molly
-        // .
+        // A void. This is the only place where you can move your
+        // Molly.
 
     NONE(' '),
 
@@ -121,9 +121,9 @@ public enum Element implements CharElement {
 
     POTION_HERO('☻'),
 
-        // Oops, your Molly is dead (don't worry, she will appear somew
-        // here in next move). You're getting penalty points for each d
-        // eath.
+        // Oops, your Molly is dead (don't worry, she will appear
+        // somewhere in next move). You're getting penalty points for
+        // each death.
 
     DEAD_HERO('Ѡ'),
 
@@ -135,8 +135,8 @@ public enum Element implements CharElement {
 
     OTHER_POTION_HERO('♠'),
 
-        // Other hero corpse (it will disappear shortly, right on the n
-        // ext move). If you've done it you'll get score points.
+        // Other hero corpse (it will disappear shortly, right on the
+        // next move). If you've done it you'll get score points.
 
     OTHER_DEAD_HERO('♣'),
 
@@ -148,8 +148,8 @@ public enum Element implements CharElement {
 
     ENEMY_POTION_HERO('Ö'),
 
-        // Enemy hero corpse (it will disappear shortly, right on the n
-        // ext move). If you've done it you'll get score points.
+        // Enemy hero corpse (it will disappear shortly, right on the
+        // next move). If you've done it you'll get score points.
 
     ENEMY_DEAD_HERO('ø');
 

@@ -26,6 +26,7 @@ import com.codenjoy.dojo.client.generator.language.Go;
 import com.codenjoy.dojo.games.sample.Element;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.utils.SmokeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.util.Arrays;
@@ -158,10 +159,22 @@ public class ElementGenerator {
 
     private List<String> splitLength(String text, int length) {
         return new LinkedList<>(){{
-            int index = 0;
-            while (index < text.length()) {
-                add(text.substring(index, Math.min(index + length, text.length())));
-                index += length;
+            if (StringUtils.isNotEmpty(text)) {
+                List<String> words = new LinkedList<>(Arrays.asList(text.split(" ")));
+
+                String line = "";
+                while (!words.isEmpty()) {
+                    if ((line + " " + words.get(0)).length() <= length) {
+                        if (StringUtils.isNotEmpty(line)) {
+                            line += " ";
+                        }
+                        line += words.remove(0);
+                    } else {
+                        add(line);
+                        line = "";
+                    }
+                }
+                add(line);
             }
         }};
     }

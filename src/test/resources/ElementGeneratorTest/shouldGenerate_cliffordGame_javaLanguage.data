@@ -27,30 +27,30 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-        // Empty space - where the hero can move 
+        // Empty space - where the hero can move
 
     NONE(' '),
 
-        // A wall where you can shoot a hole 
+        // A wall where you can shoot a hole
 
     BRICK('#'),
 
-        // The wall is restored over time. When the process begins, we 
+        // The wall is restored over time. When the process begins, we
         // see a timer.
 
     PIT_FILL_1('1'),
 
-        // The wall is restored over time. When the process begins, we 
+        // The wall is restored over time. When the process begins, we
         // see a timer.
 
     PIT_FILL_2('2'),
 
-        // The wall is restored over time. When the process begins, we 
+        // The wall is restored over time. When the process begins, we
         // see a timer.
 
     PIT_FILL_3('3'),
 
-        // The wall is restored over time. When the process begins, we 
+        // The wall is restored over time. When the process begins, we
         // see a timer.
 
     PIT_FILL_4('4'),
@@ -59,27 +59,27 @@ public enum Element implements CharElement {
 
     STONE('☼'),
 
-        // At the moment of the shot, we see the wall like this. 
+        // At the moment of the shot, we see the wall like this.
 
     CRACK_PIT('*'),
 
-        // Clue knife. Collect a series of clues to get the maximum poi
-        // nts. 
+        // Clue knife. Collect a series of clues to get the maximum
+        // points.
 
     CLUE_KNIFE('$'),
 
-        // Clue glove. Collect a series of clues to get the maximum poi
-        // nts. 
+        // Clue glove. Collect a series of clues to get the maximum
+        // points.
 
     CLUE_GLOVE('&'),
 
-        // Clue ring. Collect a series of clues to get the maximum poin
-        // ts. 
+        // Clue ring. Collect a series of clues to get the maximum
+        // points.
 
     CLUE_RING('@'),
 
-        // Your hero is dead. In the next tick, it will disappear and a
-        // ppear in a new location.
+        // Your hero is dead. In the next tick, it will disappear and
+        // appear in a new location.
 
     HERO_DIE('Ѡ'),
 
@@ -107,8 +107,8 @@ public enum Element implements CharElement {
 
     HERO_PIT('⍃'),
 
-        // Your shadow-hero is dead. In the next tick, it will disappea
-        // r and appear in a new location.
+        // Your shadow-hero is dead. In the next tick, it will
+        // disappear and appear in a new location.
 
     HERO_MASK_DIE('x'),
 
@@ -136,7 +136,7 @@ public enum Element implements CharElement {
 
     HERO_MASK_PIT('ᐊ'),
 
-        // Other hero is dead. In the next tick, it will disappear and 
+        // Other hero is dead. In the next tick, it will disappear and
         // appear in a new location.
 
     OTHER_HERO_DIE('Z'),
@@ -165,8 +165,8 @@ public enum Element implements CharElement {
 
     OTHER_HERO_PIT('ᗉ'),
 
-        // Other shadow-hero is dead. In the next tick, it will disappe
-        // ar and appear in a new location.
+        // Other shadow-hero is dead. In the next tick, it will
+        // disappear and appear in a new location.
 
     OTHER_HERO_MASK_DIE('⋈'),
 
@@ -194,7 +194,7 @@ public enum Element implements CharElement {
 
     OTHER_HERO_MASK_PIT('ᗏ'),
 
-        // Enemy hero is dead. In the next tick, it will disappear and 
+        // Enemy hero is dead. In the next tick, it will disappear and
         // appear in a new location.
 
     ENEMY_HERO_DIE('Ž'),
@@ -223,8 +223,8 @@ public enum Element implements CharElement {
 
     ENEMY_HERO_PIT('⇇'),
 
-        // Enemy shadow-hero is dead. In the next tick, it will disappe
-        // ar and appear in a new location.
+        // Enemy shadow-hero is dead. In the next tick, it will
+        // disappear and appear in a new location.
 
     ENEMY_HERO_MASK_DIE('⧓'),
 
@@ -256,13 +256,13 @@ public enum Element implements CharElement {
 
     ROBBER_LADDER('Q'),
 
-        // Robber runs to the left. Robber picks up the nearest prey an
-        // d hunts for it until it overtakes it. 
+        // Robber runs to the left. Robber picks up the nearest prey
+        // and hunts for it until it overtakes it.
 
     ROBBER_LEFT('«'),
 
-        // Robber runs to the right. Robber picks up the nearest prey a
-        // nd hunts for it until it overtakes it. 
+        // Robber runs to the right. Robber picks up the nearest prey
+        // and hunts for it until it overtakes it.
 
     ROBBER_RIGHT('»'),
 
@@ -302,25 +302,25 @@ public enum Element implements CharElement {
 
     CLOSED_DOOR_BRONZE('⌼'),
 
-        // Bronze key. Helps open/close golden gates. The key can only 
+        // Bronze key. Helps open/close golden gates. The key can only
         // be used once.
 
     KEY_GOLD('✦'),
 
-        // Silver key. Helps open/close silver gates. The key can only 
+        // Silver key. Helps open/close silver gates. The key can only
         // be used once.
 
     KEY_SILVER('✼'),
 
-        // Bronze key. Helps open/close bronze gates. The key can only 
+        // Bronze key. Helps open/close bronze gates. The key can only
         // be used once.
 
     KEY_BRONZE('⍟'),
 
-        // Bullet. After the shot by the hero, the bullet flies until i
-        // t meets an obstacle. The bullet kills the hero. It ricochets
-        //  from the indestructible wall (no more than 1 time). The bul
-        // let destroys the destructible wall. 
+        // Bullet. After the shot by the hero, the bullet flies until
+        // it meets an obstacle. The bullet kills the hero. It
+        // ricochets from the indestructible wall (no more than 1
+        // time). The bullet destroys the destructible wall.
 
     BULLET('•'),
 
@@ -328,18 +328,18 @@ public enum Element implements CharElement {
 
     LADDER('H'),
 
-        // Pipe - the hero can also move along the level along it, but 
+        // Pipe - the hero can also move along the level along it, but
         // only horizontally.
 
     PIPE('~'),
 
-        // Back door - allows the hero to secretly move to another rand
-        // om place on the map.
+        // Back door - allows the hero to secretly move to another
+        // random place on the map.
 
     BACKWAY('⊛'),
 
-        // Disguise potion - endow the hero with additional abilities. 
-        // The hero goes into shadow mode. 
+        // Disguise potion - endow the hero with additional abilities.
+        // The hero goes into shadow mode.
 
     MASK_POTION('S');
 

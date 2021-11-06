@@ -28,8 +28,9 @@ var Elements = map[string]rune{
 
     "NONE": ' ',
 
-        // Long long long long long long long long long long long longl
-        // ong long long long long long long long long long comment.
+        // Long long long long long long long long long long long
+        // looooooooong long long long long long long long long long
+        // long comment.
 
     "WALL": '☼',
 
