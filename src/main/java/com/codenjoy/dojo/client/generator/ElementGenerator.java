@@ -148,6 +148,7 @@ public class ElementGenerator {
 
     private String replace(String template) {
         return template
+                .replace("${tag}", "#" + "%L") // because of warning in the mvn compile in phase lecense header generation
                 .replace("${language}", language)
                 .replace("${game}", game)
                 .replace("${game-capitalize}", capitalize(game));

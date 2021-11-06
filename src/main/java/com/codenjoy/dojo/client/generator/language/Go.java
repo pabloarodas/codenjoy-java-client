@@ -31,7 +31,7 @@ public class Go implements Template {
         return "package ${game}\n" +
                 "\n" +
                 "/*-\n" +
-                " * #%L\n" +
+                " * ${tag}\n" +
                 " * Codenjoy - it's a dojo-like platform from developers to developers.\n" +
                 " * %%\n" +
                 " * Copyright (C) 2021 Codenjoy\n" +

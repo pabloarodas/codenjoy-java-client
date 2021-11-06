@@ -31,7 +31,7 @@ public class Python implements Template {
         return "#!/usr/bin/env python3\n" +
                 "\n" +
                 "###\n" +
-                "# #%L\n" +
+                "# ${tag}\n" +
                 "# Codenjoy - it's a dojo-like platform from developers to developers.\n" +
                 "# %%\n" +
                 "# Copyright (C) 2021 Codenjoy\n" +
