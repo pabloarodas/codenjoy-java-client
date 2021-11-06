@@ -32,12 +32,19 @@ import com.codenjoy.dojo.services.printer.CharElement;
 public enum Element implements CharElement {
 
     NONE(' ',            "Empty place where the hero can go."),
+
     WALL('☼',            "Wall you can't walk through."),
-    HERO('☺',            "My hero."),
+
+    HERO('☺',            "Your hero."),
+
     OTHER_HERO('☻',      "Heroes of other players."),
-    DEAD_HERO('X',       "My hero died. His body will disappear in the next tick."),
+
+    DEAD_HERO('X',       "Your hero died. His body will disappear in the next tick."),
+
     OTHER_DEAD_HERO('Y', "Another player's hero died."),
+
     GOLD('$',            "Gold. It must be picked up."),
+
     BOMB('x',            "Bomb planted by the hero. You can blow up on it.");
 
     private final char ch;
