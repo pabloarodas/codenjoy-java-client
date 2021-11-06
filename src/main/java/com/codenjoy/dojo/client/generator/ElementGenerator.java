@@ -58,13 +58,15 @@ public class ElementGenerator {
         return build(elements());
     }
 
-    public void generateToFile() {
+    public void generateToFile(String base) {
         String data = build(elements());
-        String preffix = "";
-        if ("CodingDojo".equals(new File(".").getAbsoluteFile().getParentFile().getName())) {
-            preffix = "clients/";
+        String preffix = "/";
+        if ("CodingDojo".equals(new File(base).getAbsoluteFile().getName())) {
+            preffix = "/clients/";
         }
-        File dest = new File(preffix + replace(template.file()));
+        File dest = new File(base + preffix + replace(template.file()));
+        System.out.printf("Store '%s-%s' in file: '%s'\n",
+                game, language, dest.getAbsolutePath());
         SmokeUtils.saveToFile(dest, data);
     }
 
