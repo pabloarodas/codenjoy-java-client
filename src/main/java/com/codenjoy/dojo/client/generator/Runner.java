@@ -75,7 +75,8 @@ public class Runner {
                 .filter(clazz -> !Modifier.isInterface(clazz.getModifiers()))
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
                 .map(Class::getCanonicalName)
-                .map(name -> StringUtils.substringBetween(name, "com.codenjoy.dojo.games.", ".Element"))
+                .map(name -> StringUtils.substringBetween(name,
+                        "com.codenjoy.dojo.games.", ".Element"))
                 .filter(Objects::nonNull)
                 .sorted()
                 .collect(toList());

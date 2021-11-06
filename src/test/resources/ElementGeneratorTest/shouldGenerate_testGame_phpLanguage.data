@@ -45,7 +45,6 @@ abstract class Element
 
         "OTHER_HERO" => '☻',
 
-
         "DEAD_HERO" => 'X',
 
             # Long name.

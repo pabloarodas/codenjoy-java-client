@@ -44,7 +44,6 @@ public enum Element implements CharElement {
 
     OTHER_HERO('☻'),
 
-
     DEAD_HERO('X'),
 
         // Long name.

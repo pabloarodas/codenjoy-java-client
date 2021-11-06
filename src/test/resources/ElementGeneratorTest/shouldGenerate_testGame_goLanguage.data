@@ -41,7 +41,6 @@ var Elements = map[string]rune{
 
     "OTHER_HERO": '☻',
 
-
     "DEAD_HERO": 'X',
 
         // Long name.

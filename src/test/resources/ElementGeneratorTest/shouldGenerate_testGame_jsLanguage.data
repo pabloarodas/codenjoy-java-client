@@ -39,7 +39,6 @@ var TestElement = module.exports = {
 
     OTHER_HERO : '☻',
 
-
     DEAD_HERO : 'X',
 
         // Long name.

@@ -115,9 +115,9 @@ public class ElementGenerator {
                             body.append('\n')
                                     .append(template.comment())
                                     .append(comment));
-                }
-                if (template.printNewLine()) {
-                    body.append('\n');
+                    if (template.printNewLine()) {
+                        body.append('\n');
+                    }
                 }
             }
 
