@@ -24,33 +24,46 @@ package com.codenjoy.dojo.games.spacerace;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-/**
- * Тут указана легенда всех возможных объектов на поле и их состояний.
- * Важно помнить, что для каждой енумной константы надо создать спрайт в папке \src\main\webapp\resources\sprite.
- */
 public enum Element implements CharElement {
 
-    NONE(' '),       // например это пустое место, куда можно перейти герою
-    EXPLOSION('x'),     // взрыв
-    WALL('☼'),       // а это стенка, через которую я хочу чтобы проходить нельзя было
-    HERO('☺'),       // а это мой герой
-    OTHER_HERO('☻'), // это герои других игроков
-    DEAD_HERO('+'),  // а это временное явление - трупик моего героя, которое пропадет в следующем такте
-    GOLD('$'),       // это то, за чем будет охота
-    BOMB('♣'),       // а это бомба, на которой можно подорваться
-    STONE('0'),      // а это камень
-    BULLET_PACK('7'), // а это лежит магазин патронов
-    BULLET('*');     // а это пуля
+    NONE(' ',        "Пустое место, куда можно перейти герою."),
 
-    final char ch;
+    EXPLOSION('x',   "Взрыв."),
 
-    Element(char ch) {
+    WALL('☼',        "Стенка, через которую нельзя пройти."),
+
+    HERO('☺',        "Твой герой."),
+
+    OTHER_HERO('☻',  "Герои других игроков."),
+
+    DEAD_HERO('+',   "Твой герой погиб. Пропадет в следующем тике."),
+
+    GOLD('$',        "Золото - за ним стоит поохотиться."),
+
+    BOMB('♣',        "Бомба на которой можно подорваться."),
+
+    STONE('0',       "Камень."),
+
+    BULLET_PACK('7', "Магазин патронов."),
+
+    BULLET('*',      "Пуля.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override
