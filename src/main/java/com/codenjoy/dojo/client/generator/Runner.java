@@ -28,15 +28,16 @@ import org.reflections.Reflections;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 public class Runner {
 
     private static String base;
+    private static String games;
     private static String clients;
 
     public static void main(String[] args) {
@@ -44,25 +45,35 @@ public class Runner {
         System.out.println("| Starting elements generator |");
         System.out.println("+-----------------------------+");
 
-        if (args != null && args.length == 2) {
+        if (args != null && args.length == 3) {
             base = args[0];
-            clients = args[1];
-            System.out.printf("Got 'CLIENTS' from Environment:  '%s'\n", clients);
-            System.out.printf("Got 'BASE' from Environment: '%s'\n", base);
+            games = args[1];
+            clients = args[2];
+            System.out.printf(
+                    "Got from Environment:\n" +
+                    "\t 'GAMES':   '%s'\n" +
+                    "\t 'CLIENTS': '%s'\n" +
+                    "\t 'BASE':    '%s'\n",
+                    games, clients, base);
         } else {
             base = "";
+            games = games().stream().collect(joining(","));
             clients = "cpp,go,js,php,python";
-            System.out.printf("Got 'CLIENTS' from Runner:  '%s'\n", clients);
-            System.out.printf("Got 'BASE' from Runner: '%s'\n", base);
+            System.out.printf(
+                    "Got from Runner:\n" +
+                    "\t 'GAMES':   '%s'\n" +
+                    "\t 'CLIENTS': '%s'\n" +
+                    "\t 'BASE':    '%s'\n",
+                    games, clients, base);
         }
         if (!new File(base).isAbsolute()) {
             base = new File(base).getAbsoluteFile().getPath();
-            System.out.printf("            (absolute): '%s'\n", base);
+            System.out.printf("\t   absolute:'%s'\n", base);
         }
 
-        for (String game : games()) {
+        for (String game : games.split(",")) {
             System.out.println();
-            for (String language : Arrays.asList(clients.split(","))) {
+            for (String language : clients.split(",")) {
                 new ElementGenerator(game, language).generateToFile(base);
             }
         }
