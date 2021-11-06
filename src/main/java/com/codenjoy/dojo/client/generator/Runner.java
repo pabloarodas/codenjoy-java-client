@@ -36,6 +36,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Runner {
 
+    public static final String ALL_GAMES = "all";
     private static String base;
     private static String games;
     private static String clients;
@@ -49,23 +50,17 @@ public class Runner {
             base = args[0];
             games = args[1];
             clients = args[2];
-            System.out.printf(
-                    "Got from Environment:\n" +
-                    "\t 'GAMES':   '%s'\n" +
-                    "\t 'CLIENTS': '%s'\n" +
-                    "\t 'BASE':    '%s'\n",
-                    games, clients, base);
+            printInfo("Environment");
         } else {
             base = "";
-            games = games().stream().collect(joining(","));
+            games = ALL_GAMES;
             clients = "cpp,go,js,php,python";
-            System.out.printf(
-                    "Got from Runner:\n" +
-                    "\t 'GAMES':   '%s'\n" +
-                    "\t 'CLIENTS': '%s'\n" +
-                    "\t 'BASE':    '%s'\n",
-                    games, clients, base);
+            printInfo("Runner");
         }
+        if (isAllGames()) {
+            games = games().stream().collect(joining(","));
+        }
+
         if (!new File(base).isAbsolute()) {
             base = new File(base).getAbsoluteFile().getPath();
             System.out.printf("\t   absolute:'%s'\n", base);
@@ -77,6 +72,21 @@ public class Runner {
                 new ElementGenerator(game, language).generateToFile(base);
             }
         }
+    }
+
+    private static boolean isAllGames() {
+        return ALL_GAMES.equalsIgnoreCase(games);
+    }
+
+    private static void printInfo(String source) {
+        System.out.printf(
+                "Got from %s:\n" +
+                "\t 'GAMES':   '%s'\n" +
+                "\t 'CLIENTS': '%s'\n" +
+                "\t 'BASE':    '%s'\n",
+                source,
+                isAllGames() ? "all=" + games() : games,
+                clients, base);
     }
 
     private static List<String> games() {

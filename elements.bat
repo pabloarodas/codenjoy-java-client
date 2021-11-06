@@ -5,6 +5,7 @@ call lib :color generating elements for all clients...
 echo on
 
 set BASE=%ROOT%\..
+rem call 'set GAMES=all' to select all games
 set GAMES=clifford,mollymage
 set CLIENTS=cpp,go,js,php,python
 
