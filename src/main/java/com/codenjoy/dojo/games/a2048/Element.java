@@ -57,7 +57,7 @@ public enum Element implements CharElement {
     _1048576('Q',  "Number 1,048,576. 1M+1M=2M."),
     _2097152('R',  "Number 2,097,152. 2M+2M=4M."),
     _4194304('S',  "Number 4,194,304. 4M+4M=8M."),
-    NONE(' ',      "Empty space");
+    NONE(' ',      "Empty space.");
 
     private final char ch;
     private final String info;
