@@ -26,6 +26,8 @@ import com.codenjoy.dojo.client.generator.Template;
 
 public class Md implements Template {
 
+    public static final String SPRITE_SIZE = "40";
+
     @Override
     public String header() {
         return "## Symbol breakdown\n" +
@@ -36,10 +38,17 @@ public class Md implements Template {
     @Override
     public String line(boolean subrepo) {
         if (subrepo) {
-            return "|<img src=\"https://github.com/codenjoyme/codenjoy-${game}/raw/master/src/main/webapp/resources/sprite/${game}/${element-lower}.png\" style=\"width:30px;height:30px;\" /> | `${element}('${char}')` | ${info} | \n";
-        } else {
-            return "|<img src=\"https://github.com/codenjoyme/codenjoy/raw/master/CodingDojo/games/${game}/src/main/webapp/resources/sprite/${game}/${element-lower}.png\" style=\"width:30px;height:30px;\" /> | `${element}('${char}')` | ${info} | \n";
+            return "|<img src=\"https://github.com/codenjoyme/codenjoy-${game}/raw/master" +
+                    "/src/main/webapp/resources/sprite/${game}/${element-lower}.png\" " +
+                    "style=\"width:" + SPRITE_SIZE + "px;height:" + SPRITE_SIZE + "px;\" />" +
+                    " | `${element}('${char}')` | ${info} | \n";
         }
+
+        return "|<img src=\"https://github.com/codenjoyme/codenjoy/raw/master" +
+                "/CodingDojo/games/${game}/src/main/webapp/resources" +
+                "/sprite/${game}/${element-lower}.png\" " +
+                "style=\"width:" + SPRITE_SIZE + "px;height:" + SPRITE_SIZE + "px;\" />" +
+                " | `${element}('${char}')` | ${info} | \n";
     }
 
     @Override
@@ -54,6 +63,6 @@ public class Md implements Template {
 
     @Override
     public String file() {
-        return "../games/${game}/Element.md";
+        return "../games/${game}/src/main/webapp/resources/help/${game}-elements.md";
     }
 }
