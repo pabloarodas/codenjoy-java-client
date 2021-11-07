@@ -49,7 +49,7 @@ public class Board extends AbstractBoard<Element> {
         return isAt(x, y, WALL, OTHER_HERO);
     }
 
-    public Point getMe() {
+    public Point getHero() {
         return get(DEAD_HERO,
                 HERO).get(0);
     }
