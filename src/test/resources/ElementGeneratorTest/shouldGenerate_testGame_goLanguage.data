@@ -50,5 +50,6 @@ var Elements = map[string]rune{
 
         // Short name.
 
-    "G": '$'
+    "G": '$',
+
 }
