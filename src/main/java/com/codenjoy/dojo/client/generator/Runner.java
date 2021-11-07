@@ -91,10 +91,10 @@ public class Runner {
 
     private static void printInfo(String source) {
         PrintUtils.printf(
-                "\u001B[44;93mGot from %s:\n" +
+                "Got from %s:\n" +
                 "\t 'GAMES':   '%s'\n" +
                 "\t 'CLIENTS': '%s'\n" +
-                "\t 'BASE':    '%s'\u001B[0m\n",
+                "\t 'BASE':    '%s'\n",
                 INFO,
                 source,
                 isAllGames() ? "all=" + allGames : games,

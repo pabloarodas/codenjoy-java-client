@@ -25,11 +25,13 @@ package com.codenjoy.dojo;
 import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.client.OneCommandSolver;
 import com.codenjoy.dojo.client.WebSocketRunner;
+import com.codenjoy.dojo.utils.PrintUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaBoard;
 import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaSolver;
+import static com.codenjoy.dojo.utils.PrintUtils.Color.INFO;
 
 public class Runner {
 
@@ -51,13 +53,23 @@ public class Runner {
         if (args != null && args.length == 2) {
             game = args[0];
             url = args[1];
-            System.out.printf("Got 'GAME' from Environment: '%s'\n", game);
-            System.out.printf("Got 'URL' from Environment:  '%s'\n", url);
+            printInfo("Environment");
         } else {
-            System.out.printf("Got 'GAME' from Runner: '%s'\n", game);
-            System.out.printf("Got 'URL' from Runner:  '%s'\n", url);
+            printInfo("Runner");
         }
+
         WebSocketRunner.runClient(url, loadJavaSolver(game), loadJavaBoard(game));
+    }
+
+    private void printInfo(String source) {
+        PrintUtils.printf(
+                "Got from %s:\n" +
+                        "\t 'GAME': '%s'\n" +
+                        "\t 'URL':  '%s'\n",
+                INFO,
+                source,
+                game,
+                url);
     }
 
     public <B extends ClientBoard> void send(String command, B board) {
