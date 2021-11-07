@@ -247,7 +247,7 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldWork_isMyHeroDead() {
+    public void shouldWork_isGameOver() {
         assertEquals(false, board.isGameOver());
         assertEquals(true, board("Ѡ").isGameOver());
     }
