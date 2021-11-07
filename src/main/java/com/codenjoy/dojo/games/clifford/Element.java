@@ -26,7 +26,6 @@ package com.codenjoy.dojo.games.clifford;
 import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum Element implements CharElement {
 
@@ -243,31 +242,34 @@ public enum Element implements CharElement {
         this.info = info;
     }
 
-    public static List<Element> clues() {
-        return Arrays.asList(
+    public static Element[] clues() {
+         return new Element[]{
                 CLUE_KNIFE,
                 CLUE_GLOVE,
-                CLUE_RING);
+                CLUE_RING
+         };
     }
 
-    public static List<Element> ladders() {
-        return Arrays.asList(
+    public static Element[] ladders() {
+        return new Element[]{
                 LADDER,
                 HERO_LADDER,
                 HERO_MASK_LADDER,
                 OTHER_HERO_LADDER,
                 OTHER_HERO_MASK_LADDER,
-                ROBBER_LADDER);
+                ROBBER_LADDER
+        };
     }
 
-    public static List<Element> walls() {
-        return Arrays.asList(
+    public static Element[] walls() {
+        return new Element[]{
                 BRICK,
-                STONE);
+                STONE
+        };
     }
 
-    public static List<Element> heroes() {
-        return Arrays.asList(
+    public static Element[] heroes() {
+         return new Element[]{
                 HERO_DIE,
                 HERO_LADDER,
                 HERO_LEFT,
@@ -282,21 +284,23 @@ public enum Element implements CharElement {
                 HERO_MASK_RIGHT,
                 HERO_MASK_FALL,
                 HERO_MASK_PIPE,
-                HERO_MASK_PIT);
+                HERO_MASK_PIT
+         };
     }
 
-    public static List<Element> robbers() {
-        return Arrays.asList(
+    public static Element[] robbers() {
+         return new Element[]{
                 ROBBER_LADDER,
                 ROBBER_LEFT,
                 ROBBER_RIGHT,
                 ROBBER_FALL,
                 ROBBER_PIPE,
-                ROBBER_PIT);
+                ROBBER_PIT
+         };
     }
 
-    public static List<Element> otherHeroes() {
-        return Arrays.asList(
+    public static Element[] otherHeroes() {
+         return new Element[]{
                 OTHER_HERO_DIE,
                 OTHER_HERO_LADDER,
                 OTHER_HERO_LEFT,
@@ -311,11 +315,12 @@ public enum Element implements CharElement {
                 OTHER_HERO_MASK_RIGHT,
                 OTHER_HERO_MASK_FALL,
                 OTHER_HERO_MASK_PIPE,
-                OTHER_HERO_MASK_PIT);
+                OTHER_HERO_MASK_PIT
+         };
     }
 
-    public static List<Element> enemyHeroes() {
-        return Arrays.asList(
+    public static Element[] enemyHeroes() {
+         return new Element[]{
                 ENEMY_HERO_DIE,
                 ENEMY_HERO_LADDER,
                 ENEMY_HERO_LEFT,
@@ -330,39 +335,44 @@ public enum Element implements CharElement {
                 ENEMY_HERO_MASK_RIGHT,
                 ENEMY_HERO_MASK_FALL,
                 ENEMY_HERO_MASK_PIPE,
-                ENEMY_HERO_MASK_PIT);
+                ENEMY_HERO_MASK_PIT
+         };
     }
 
-    public static List<Element> pipes() {
-        return Arrays.asList(
+    public static Element[] pipes() {
+         return new Element[]{
                 PIPE,
                 HERO_PIPE,
                 HERO_MASK_PIPE,
                 OTHER_HERO_PIPE,
                 OTHER_HERO_MASK_PIPE,
                 ENEMY_HERO_PIPE,
-                ENEMY_HERO_MASK_PIPE);
+                ENEMY_HERO_MASK_PIPE
+         };
     }
 
-    public static List<Element> openDoors() {
-        return Arrays.asList(
+    public static Element[] openDoors() {
+         return new Element[]{
                 OPENED_DOOR_GOLD,
                 OPENED_DOOR_SILVER,
-                OPENED_DOOR_BRONZE);
+                OPENED_DOOR_BRONZE
+         };
     }
 
-    public static List<Element> closedDoors() {
-        return Arrays.asList(
+    public static Element[] closedDoors() {
+         return new Element[]{
                 CLOSED_DOOR_GOLD,
                 CLOSED_DOOR_SILVER,
-                CLOSED_DOOR_BRONZE);
+                CLOSED_DOOR_BRONZE
+         };
     }
 
-    public static List<Element> keys() {
-        return Arrays.asList(
+    public static Element[] keys() {
+         return new Element[]{
                 KEY_GOLD,
                 KEY_SILVER,
-                KEY_BRONZE);
+                KEY_BRONZE
+         };
     }
 
     @Override

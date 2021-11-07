@@ -26,6 +26,7 @@ package com.codenjoy.dojo.games.clifford;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -56,30 +57,37 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Collection<Point> getWalls() {
-        return get(walls().toArray(new Element[0]));
+        return get(walls());
     }
 
-    public boolean isBarrierAt(Point pt) {
-        return getBarriers().contains(pt);
-    }
-
-    public Point getMe() {
-        List<Point> list = get(heroes().toArray(new Element[0]));
-
+    public Point getHero() {
+        List<Point> list = get(heroes());
         return (list.isEmpty()) ? null : list.get(0);
+    }
+
+    public Collection<Point> getOtherHeroes() {
+        return get(otherHeroes());
+    }
+
+    public Collection<Point> getEnemyHeroes() {
+        return get(enemyHeroes());
     }
 
     public boolean isGameOver() {
         return !get(HERO_DIE).isEmpty();
     }
 
+    public boolean isBarrierAt(Point pt) {
+        return getBarriers().contains(pt);
+    }
+
     public boolean isRobberAt(Point pt) {
         return is(pt, robbers());
     }
 
-    public boolean is(Point pt, List<Element> enemies) {
+    public boolean is(Point pt, Element... elements) {
         return getAllAt(pt).stream()
-                .anyMatch(el -> enemies.contains(el));
+                .anyMatch(el -> Arrays.asList(elements).contains(el));
     }
 
     public boolean isOtherHeroAt(Point pt) {
@@ -94,7 +102,7 @@ public class Board extends AbstractBoard<Element> {
         return is(pt, walls());
     }
 
-    public boolean isGold(Point pt) {
+    public boolean isClue(Point pt) {
         return is(pt, clues());
     }
 
