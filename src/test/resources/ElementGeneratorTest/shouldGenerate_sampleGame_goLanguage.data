@@ -32,7 +32,7 @@ var Elements = map[string]rune{
 
     "WALL": '☼',
 
-        // My hero.
+        // Your hero.
 
     "HERO": '☺',
 
@@ -40,7 +40,7 @@ var Elements = map[string]rune{
 
     "OTHER_HERO": '☻',
 
-        // My hero died. His body will disappear in the next tick.
+        // Your hero died. His body will disappear in the next tick.
 
     "DEAD_HERO": 'X',
 
