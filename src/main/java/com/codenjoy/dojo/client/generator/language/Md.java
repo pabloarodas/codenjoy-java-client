@@ -42,14 +42,14 @@ public class Md implements Template {
         if (subrepo) {
             return "|<img src=\"https://github.com/codenjoyme/codenjoy-${game}/raw/master" +
                     "/src/main/webapp/resources/sprite/${game}/${element-lower}.png\" " +
-                    "style=\"width:" + SPRITE_SIZE + "px;height:" + SPRITE_SIZE + "px;\" />" +
+                    "style=\"width:" + SPRITE_SIZE + "px;\" />" +
                     " | `${element}('${char}')` | ${info} | \n";
         }
 
         return "|<img src=\"https://github.com/codenjoyme/codenjoy/raw/master" +
                 "/CodingDojo/games/${game}/src/main/webapp/resources" +
                 "/sprite/${game}/${element-lower}.png\" " +
-                "style=\"width:" + SPRITE_SIZE + "px;height:" + SPRITE_SIZE + "px;\" />" +
+                "style=\"width:" + SPRITE_SIZE + "px;\" />" +
                 " | `${element}('${char}')` | ${info} | \n";
     }
 
