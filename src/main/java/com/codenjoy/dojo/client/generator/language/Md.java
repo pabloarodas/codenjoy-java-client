@@ -65,6 +65,6 @@ public class Md implements Template {
 
     @Override
     public String file() {
-        return "../games/${game}/src/main/webapp/resources/help/${game}-elements.md";
+        return "../games/${game}/src/main/webapp/resources/${game}/help/elements.md";
     }
 }
