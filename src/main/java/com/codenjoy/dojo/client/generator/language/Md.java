@@ -30,7 +30,9 @@ public class Md implements Template {
 
     @Override
     public String header() {
-        return "## Symbol breakdown\n" +
+        return "<meta charset=\"UTF-8\">\n" +
+                "\n" +
+                "## Symbol breakdown\n" +
                 "| Sprite | Code | Description |\n" +
                 "| -------- | -------- | -------- |\n";
     }
