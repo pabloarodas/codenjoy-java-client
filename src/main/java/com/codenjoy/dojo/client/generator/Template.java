@@ -46,6 +46,10 @@ public interface Template {
         return true;
     }
 
+    default boolean printLines() {
+        return true;
+    }
+
     default boolean printNewLine() {
         return true;
     }

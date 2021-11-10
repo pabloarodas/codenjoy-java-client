@@ -59,7 +59,7 @@ public class Runner {
         } else {
             base = "";
             games = ALL_GAMES;
-            clients = "md,cpp,go,js,php,python";
+            clients = "md,md_footer,md_header,cpp,go,js,php,python";
             printInfo("Runner");
         }
         if (isAllGames()) {

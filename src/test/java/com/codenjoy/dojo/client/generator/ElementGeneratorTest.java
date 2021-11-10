@@ -75,6 +75,16 @@ public class ElementGeneratorTest {
     }
 
     @Test
+    public void shouldGenerate_testGame_markdownHeaderLanguage() {
+        assertEquals(new ElementGenerator("test", "md_header").generate());
+    }
+
+    @Test
+    public void shouldGenerate_testGame_markdownFooterLanguage() {
+        assertEquals(new ElementGenerator("test", "md_footer").generate());
+    }
+
+    @Test
     public void shouldGenerate_sampleGame_markdownLanguage() {
         assertEquals(new ElementGenerator("sample", "md").generate());
     }
