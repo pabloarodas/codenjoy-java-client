@@ -41,14 +41,14 @@ public class Md implements Template {
     public String line(boolean subrepo) {
         if (subrepo) {
             return "|<img src=\"https://github.com/codenjoyme/codenjoy-${game}/raw/master" +
-                    "/src/main/webapp/resources/sprite/${game}/${element-lower}.png\" " +
+                    "/src/main/webapp/resources/${game}/sprite/${element-lower}.png\" " +
                     "style=\"width:" + SPRITE_SIZE + "px;\" />" +
                     " | `${element}('${char}')` | ${info} | \n";
         }
 
         return "|<img src=\"https://github.com/codenjoyme/codenjoy/raw/master" +
                 "/CodingDojo/games/${game}/src/main/webapp/resources" +
-                "/sprite/${game}/${element-lower}.png\" " +
+                "/${game}/sprite/${element-lower}.png\" " +
                 "style=\"width:" + SPRITE_SIZE + "px;\" />" +
                 " | `${element}('${char}')` | ${info} | \n";
     }
