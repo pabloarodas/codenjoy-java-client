@@ -36,73 +36,73 @@ public enum Element implements CharElement {
 
 /// Empty space where player can go
 
-    EMPTY(LAYER2, '-'),
+    EMPTY(LAYER2, '-',                  "."),
 
-    FLOOR(LAYER1, '.'),
+    FLOOR(LAYER1, '.',                  "."),
 
 // Walls
 
-    ANGLE_IN_LEFT(LAYER1, '╔'),
+    ANGLE_IN_LEFT(LAYER1, '╔',          "."),
 
-    WALL_FRONT(LAYER1, '═'),
+    WALL_FRONT(LAYER1, '═',             "."),
 
-    ANGLE_IN_RIGHT(LAYER1, '┐'),
+    ANGLE_IN_RIGHT(LAYER1, '┐',         "."),
 
-    WALL_RIGHT(LAYER1, '│'),
+    WALL_RIGHT(LAYER1, '│',             "."),
 
-    ANGLE_BACK_RIGHT(LAYER1, '┘'),
+    ANGLE_BACK_RIGHT(LAYER1, '┘',       "."),
 
-    WALL_BACK(LAYER1, '─'),
+    WALL_BACK(LAYER1, '─',              "."),
 
-    ANGLE_BACK_LEFT(LAYER1, '└'),
+    ANGLE_BACK_LEFT(LAYER1, '└',        "."),
 
-    WALL_LEFT(LAYER1, '║'),
+    WALL_LEFT(LAYER1, '║',              "."),
 
-    WALL_BACK_ANGLE_LEFT(LAYER1, '┌'),
+    WALL_BACK_ANGLE_LEFT(LAYER1, '┌',   "."),
 
-    WALL_BACK_ANGLE_RIGHT(LAYER1, '╗'),
+    WALL_BACK_ANGLE_RIGHT(LAYER1, '╗',  "."),
 
-    ANGLE_OUT_RIGHT(LAYER1, '╝'),
+    ANGLE_OUT_RIGHT(LAYER1, '╝',        "."),
 
-    ANGLE_OUT_LEFT(LAYER1, '╚'),
+    ANGLE_OUT_LEFT(LAYER1, '╚',         "."),
 
-    SPACE(LAYER1, ' '),
+    SPACE(LAYER1, ' ',                  "."),
 
 /// Forces stuff
 
-    FORCE1(LAYER2, '♥', 0),
+    FORCE1(LAYER2, '♥', 0,              "."),
 
-    FORCE2(LAYER2, '♦', 1),
+    FORCE2(LAYER2, '♦', 1,              "."),
 
-    FORCE3(LAYER2, '♣', 2),
+    FORCE3(LAYER2, '♣', 2,              "."),
 
-    FORCE4(LAYER2, '♠', 3),
+    FORCE4(LAYER2, '♠', 3,              "."),
 
 /// Other stuff
 
-    EXIT(LAYER1, 'E'),
+    EXIT(LAYER1, 'E',                   "."),
 
-    HOLE(LAYER1, 'O'),
+    HOLE(LAYER1, 'O',                   "."),
 
-    BREAK(LAYER1, 'B'),
+    BREAK(LAYER1, 'B',                  "."),
 
-    GOLD(LAYER1, '$'),
+    GOLD(LAYER1, '$',                   "."),
 
 // Bases stuff
 
-    BASE1(LAYER1, '1', 0),
+    BASE1(LAYER1, '1', 0,               "."),
 
-    BASE2(LAYER1, '2', 1),
+    BASE2(LAYER1, '2', 1,               "."),
 
-    BASE3(LAYER1, '3', 2),
+    BASE3(LAYER1, '3', 2,               "."),
 
-    BASE4(LAYER1, '4', 3),
+    BASE4(LAYER1, '4', 3,               "."),
 
 /// System elements, don't touch it
 
-    FOG(LAYER1, 'F'),
+    FOG(LAYER1, 'F',                    "."),
 
-    BACKGROUND(LAYER2, 'G');
+    BACKGROUND(LAYER2, 'G',             ".");
 
     public int getIndex() {
         return index;
@@ -114,7 +114,8 @@ public enum Element implements CharElement {
             case 1: return FORCE2;
             case 2: return FORCE3;
             case 3: return FORCE4;
-            default: throw new IllegalArgumentException("Force element bot found for index: " + index);
+            default: throw new IllegalArgumentException(
+                    "Force element bot found for index: " + index);
         }
     }
 
@@ -128,15 +129,17 @@ public enum Element implements CharElement {
     private final char ch;
     private final int layer;
     private final int index;
+    private final String info;
 
-    Element(int layer, char ch, int index) {
+    Element(int layer, char ch, int index, String info) {
         this.layer = layer;
         this.ch = ch;
         this.index = index;
+        this.info = info;
     }
 
-    Element(int layer, char ch) {
-        this(layer, ch, -1);
+    Element(int layer, char ch, String info) {
+        this(layer, ch, -1, info);
     }
 
     @Override

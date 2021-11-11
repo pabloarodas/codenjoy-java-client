@@ -27,23 +27,36 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' '),     // это то, на что не стоит обращать внимание
-    RED('R'),      // а дальше идут цвета
-    GREEN('G'),
-    BLUE('B'),
-    WHITE('W'),
-    YELLOW('Y'),
-    ORANGE('O');
+    NONE(' ',   "Пустое место на поле, не обращай на него внимания."),
 
-    final char ch;
+    RED('R',    "Красная грань."),
 
-    Element(char ch) {
+    GREEN('G',  "Зеленая грань."),
+
+    BLUE('B',   "Синяя грань."),
+
+    WHITE('W',  "Белая грань."),
+
+    YELLOW('Y', "Желтая грань."),
+
+    ORANGE('O', "Оранжевая грань.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

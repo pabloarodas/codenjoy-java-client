@@ -27,43 +27,72 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    BAD_APPLE('☻'),
-    GOOD_APPLE('☺'),
+/// Board stuff
 
-    BREAK('☼'),
+    BAD_APPLE('☻',       "Stone. "),
+    GOOD_APPLE('☺',      "Having eaten it, you shorten it in length. " +
+                         "If it is not long enough, you die."),
 
-    HEAD_DOWN('▼'),
-    HEAD_LEFT('◄'),
-    HEAD_RIGHT('►'),
-    HEAD_UP('▲'),
+    BREAK('☼',           "An obstacle that cannot be passed. " +
+                         "It is also the border of the field."),
 
-    TAIL_END_DOWN('╙'),
-    TAIL_END_LEFT('╘'),
-    TAIL_END_UP('╓'),
-    TAIL_END_RIGHT('╕'),
-    TAIL_HORIZONTAL('═'),
-    TAIL_VERTICAL('║'),
-    TAIL_LEFT_DOWN('╗'),
-    TAIL_LEFT_UP('╝'),
-    TAIL_RIGHT_DOWN('╔'),
-    TAIL_RIGHT_UP('╚'),
+    NONE(' ',            "An empty place in the field where the snake can go."),
 
-    NONE(' ');
+/// Snake head
 
-    final char ch;
+    HEAD_DOWN('▼',       "Snake head is pointing down."),
 
-    Element(char ch) {
+    HEAD_LEFT('◄',       "Snake head is pointing left."),
+
+    HEAD_RIGHT('►',      "Snake head is pointing right."),
+
+    HEAD_UP('▲',         "Snake head is pointing up."),
+
+/// Snake tail middle
+
+    TAIL_HORIZONTAL('═', "Horizontal part of the body."),
+
+    TAIL_VERTICAL('║',   "Vertical part of the body."),
+
+    TAIL_LEFT_DOWN('╗',  "Turning the snake body from left to down."),
+
+    TAIL_LEFT_UP('╝',    "Turning the snake body from left to up."),
+
+    TAIL_RIGHT_DOWN('╔', "Turning the snake body from right to down."),
+
+    TAIL_RIGHT_UP('╚',   "Turning the snake body from right to up."),
+
+/// Snake tail end
+
+    TAIL_END_DOWN('╙',   "Down tail."),
+
+    TAIL_END_LEFT('╘',   "Left tail."),
+
+    TAIL_END_UP('╓',     "Up tail."),
+
+    TAIL_END_RIGHT('╕',  "Right tail.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(ch);
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(ch);
     }
 
     public static Element valueOf(char ch) {

@@ -32,7 +32,7 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    NONE(' ',   "Отгадай, что тут за цифра."),
+    NONE(' ',   "Пустое место – циферку в котором предстоит отгадать."),
 
     BORDER('☼', "Граница, проигнорируй ее - она не учитывается в координатах."),
 

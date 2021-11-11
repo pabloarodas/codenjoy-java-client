@@ -33,7 +33,7 @@ public enum Element implements CharElement {
 
     NONE(' ',            "Empty place where the hero can go."),
 
-    WALL('☼',            "Wall you can't walk through."),
+    WALL('☼',            "Wall you cant walk through."),
 
     HERO('☺',            "Your hero."),
 

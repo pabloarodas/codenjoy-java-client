@@ -26,29 +26,44 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' '),             // например это пустое место, куда можно перейти герою
-    WALL('☼'),             // а это стенка, через которую я хочу чтобы проходить нельзя было
-    HERO('☺'),             // а это мой герой
-    SUPER_OTHER_HERO('Š'), // это герои других игроков
-    BULLET('*'),           // а это наша пуля
-    OTHER_HERO('☻'),       // это герои других игроков
-    DEAD_HERO('X'),        // а это временное явление - трупик моего героя, которое пропадет в следующем такте
-    SUPER_DEFENCE('#'),    // доп защита
-    HEALTH_PACKAGE('+'),   // доп защита
-    SUPER_WEAPON('~'),     // доп атака
-    ROBOT('!');            // робот
-//    GOLD('$'),           // это то, за чем будет охота
-//    BOMB('x');           // а это бомба, на которой можно подорваться
+    NONE(' ',              "Пустое место – по которому может двигаться герой."),
 
-    final char ch;
+    WALL('☼',              "Стена, через которую нельзя пройти."),
 
-    Element(char ch) {
+    HERO('☺',              "Твой герой"),
+
+    OTHER_HERO('☻',        "Герои других игроков."),
+
+    DEAD_HERO('X',         "Твой герой погиб."),
+
+    SUPER_OTHER_HERO('Š',  "Герои других игроков под модификаторами."),
+
+    BULLET('*',            "Пуля, ее надо стралять )."),
+
+    SUPER_DEFENCE('#',     "Модификатор. Дополнительная защита."),
+
+    HEALTH_PACKAGE('+',    "Модификатор. Дополнительная защита."),
+
+    SUPER_WEAPON('~',      "Модификатор. Дополнительная атака."),
+
+    ROBOT('!',             "Робот.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

@@ -27,33 +27,54 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' '),
+/// Всякое на поле
 
-    BASE('☺'),
-    SPACESHIP('.'),
-    PLATFORM('='),
-    GUARD('+'),
+    NONE(' ',            "Пустое место в космосе. Сюда может переместиться корабль."),
 
-    OTHER_BASE('☻'),
-    OTHER_SPACESHIP(','),
-    OTHER_PLATFORM('-'),
-    OTHER_GUARD('*'),
+    ENEMY('X',           "Инопланетянин. Атакует всех."),
 
-    ENEMY('X'),
+/// Твои войска
 
-    // system elements, don't touch it
-    FOG('F'),
-    BACKGROUND('G');
+    BASE('☺',            "Твоя база. Ее нужно защищать."),
 
-    final char ch;
+    SPACESHIP('.',       "Твой корабль."),
 
-    Element(char ch) {
+    PLATFORM('=',        "Твоя платформа."),
+
+    GUARD('+',           "Защитники твоей базы. Выносят вначале их, потом саму базу."),
+
+/// Войска противника
+
+    OTHER_BASE('☻',      "Базы твоих противников."),
+
+    OTHER_SPACESHIP(',', "Корабли противников."),
+
+    OTHER_PLATFORM('-',  "Платформы противников."),
+
+    OTHER_GUARD('*',     "Защитники баз противников."),
+
+/// system elements, don't touch it
+
+    FOG('F',             "Туман войны."),
+
+    BACKGROUND('G',      "Космос.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

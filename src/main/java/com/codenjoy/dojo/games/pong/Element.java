@@ -26,22 +26,34 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' '),
-    VERTICAL_WALL('|'),
-    HORIZONTAL_WALL('-'),
-    BALL('o'),
-    PANEL('#'),
-    HERO('H');
+    NONE(' ',            "Пустое место на поле."),
 
-    final char ch;
+    VERTICAL_WALL('|',   "Вертикальная граница поля."),
 
-    Element(char ch) {
+    HORIZONTAL_WALL('-', "Горизонтальная граница поля."),
+
+    BALL('o',            "Мяч."),
+
+    PANEL('#',           "Игровая панель противника (доска отбивающая мяч)."),
+
+    HERO('H',            "Твоя игровая панель (доска отбивающая мяч).");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

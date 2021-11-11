@@ -25,82 +25,132 @@ package com.codenjoy.dojo.games.snakebattle;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-/**
- * Тут указана легенда всех возможных объектов на поле и их состояний.
- * Важно помнить, что для каждой енумной константы надо создать спрайт в папке \src\main\webapp\resources\sprite.
- */
 public enum Element implements CharElement {
 
-    NONE(' '),         // пустое место
-    WALL('☼'),         // а это стенка
-    START_FLOOR('#'),  // место старта змей
-    OTHER('?'),        // этого ты никогда не увидишь :)
+/// Board stuff
 
-    APPLE('○'),        // яблоки надо кушать от них становишься длинее
-    STONE('●'),        // а это кушать не стоит - от этого укорачиваешься
-    FLYING_PILL('©'),  // таблетка полета - дает суперсилы
-    FURY_PILL('®'),    // таблетка ярости - дает суперсилы
-    GOLD('$'),         // золото - просто очки
+    NONE(' ',             "Empty space - space where the snake can move."),
 
-    // голова твоей змеи в разных состояниях и напрвлениях
-    HEAD_DOWN('▼'),
-    HEAD_LEFT('◄'),
-    HEAD_RIGHT('►'),
-    HEAD_UP('▲'),
-    HEAD_DEAD('☻'),    // этот раунд ты проиграл
-    HEAD_EVIL('♥'),    // ты скушал таблетку ярости
-    HEAD_FLY('♠'),     // ты скушал таблетку полета
-    HEAD_SLEEP('&'),   // твоя змейка ожидает начала раунда
+    WALL('☼',             "Impenetrable wall."),
 
-    // хвост твоей змейки
-    TAIL_END_DOWN('╙'),
-    TAIL_END_LEFT('╘'),
-    TAIL_END_UP('╓'),
-    TAIL_END_RIGHT('╕'),
-    TAIL_INACTIVE('~'),
+    START_FLOOR('#',      "Respawn point from which the snake starts its movement."),
 
-    // туловище твоей змейки
-    BODY_HORIZONTAL('═'),
-    BODY_VERTICAL('║'),
-    BODY_LEFT_DOWN('╗'),
-    BODY_LEFT_UP('╝'),
-    BODY_RIGHT_DOWN('╔'),
-    BODY_RIGHT_UP('╚'),
+    OTHER('?',            "."),
 
-    // змейки противников
-    ENEMY_HEAD_DOWN('˅'),
-    ENEMY_HEAD_LEFT('<'),
-    ENEMY_HEAD_RIGHT('>'),
-    ENEMY_HEAD_UP('˄'),
-    ENEMY_HEAD_DEAD('☺'),   // этот раунд противник проиграл
-    ENEMY_HEAD_EVIL('♣'),   // противник скушал таблетку ярости
-    ENEMY_HEAD_FLY('♦'),    // противник скушал таблетку полета
-    ENEMY_HEAD_SLEEP('ø'),  // змейка противника ожидает начала раунда
+    APPLE('○',            "Apple."),
 
-    // хвосты змеек противников
-    ENEMY_TAIL_END_DOWN('¤'),
-    ENEMY_TAIL_END_LEFT('×'),
-    ENEMY_TAIL_END_UP('æ'),
-    ENEMY_TAIL_END_RIGHT('ö'),
-    ENEMY_TAIL_INACTIVE('*'),
+    STONE('●',            "Stone."),
 
-    // туловище змеек противников
-    ENEMY_BODY_HORIZONTAL('─'),
-    ENEMY_BODY_VERTICAL('│'),
-    ENEMY_BODY_LEFT_DOWN('┐'),
-    ENEMY_BODY_LEFT_UP('┘'),
-    ENEMY_BODY_RIGHT_DOWN('┌'),
-    ENEMY_BODY_RIGHT_UP('└');
+    FLYING_PILL('©',      "Flying pill/Angel's wings."),
 
-    final char ch;
+    FURY_PILL('®',        "Fury pill/Devil's mask."),
 
-    Element(char ch) {
+    GOLD('$',             "Gold."),
+
+/// голова твоей змеи в разных состояниях и напрвлениях
+
+    HEAD_DOWN('▼',        "Your snake head pointing down."),
+
+    HEAD_LEFT('◄',        "Your snake head pointing left."),
+
+    HEAD_RIGHT('►',       "Your snake head pointing right."),
+
+    HEAD_UP('▲',          "Your snake head pointing up."),
+
+    HEAD_DEAD('☻',        "Your snake is dead."),
+
+    HEAD_EVIL('♥',        "Your snake head under influence Fury pill/Devils mask."),
+
+    HEAD_FLY('♠',         "Your snake head under influence Flying pill/Angels wings."),
+
+    HEAD_SLEEP('&',       "Your snake head when snake is inactive."),
+
+/// туловище твоей змеи
+
+    BODY_HORIZONTAL('═',  "Body of your snake is directed horizontally."),
+
+    BODY_VERTICAL('║',    "Body of your snake is directed vertically."),
+
+    BODY_LEFT_DOWN('╗',   "Turning your snake body from left to down."),
+
+    BODY_LEFT_UP('╝',     "Turning your snake body from left to up."),
+
+    BODY_RIGHT_DOWN('╔',  "Turning your snake body from right to down."),
+
+    BODY_RIGHT_UP('╚',    "Turning your snake body from left to up."),
+
+/// хвост твоей змеи
+
+    TAIL_END_DOWN('╙',    "Your snake tail (end) pointing down."),
+
+    TAIL_END_LEFT('╘',    "Your snake tail (end) pointing left."),
+
+    TAIL_END_UP('╓',      "Your snake tail (end) pointing up."),
+
+    TAIL_END_RIGHT('╕',   "Your snake tail (end) pointing right."),
+
+    TAIL_INACTIVE('~',    "Your snake tail (end) when snake is inactive."),
+
+/// голова змейки противника
+
+    ENEMY_HEAD_DOWN('˅',  "Enemy snake head pointing down."),
+
+    ENEMY_HEAD_LEFT('<',  "Enemy snake head pointing left."),
+
+    ENEMY_HEAD_RIGHT('>', "Enemy snake head pointing right."),
+
+    ENEMY_HEAD_UP('˄',    "Enemy snake head pointing up."),
+
+    ENEMY_HEAD_DEAD('☺',  "Enemy snake is dead."),
+
+    ENEMY_HEAD_EVIL('♣',  "Enemy snake head under influence Fury pill/Devils mask."),
+
+    ENEMY_HEAD_FLY('♦',   "Enemy snake head under influence Flying pill/Angels wings."),
+
+    ENEMY_HEAD_SLEEP('ø', "Enemy snake head when snake is inactive."),
+
+/// туловище змейки противника
+
+    ENEMY_BODY_HORIZONTAL('─', "Body of enemy snake is directed horizontally."),
+
+    ENEMY_BODY_VERTICAL('│',   "Body of enemy snake is directed vertically."),
+
+    ENEMY_BODY_LEFT_DOWN('┐',  "Turning enemy snake body from left to down."),
+
+    ENEMY_BODY_LEFT_UP('┘',    "Turning enemy snake body from left to up."),
+
+    ENEMY_BODY_RIGHT_DOWN('┌', "Turning enemy snake body from right to down."),
+
+    ENEMY_BODY_RIGHT_UP('└',   "Turning enemy snake body from left to up."),
+
+/// хвост змейки противника
+
+    ENEMY_TAIL_END_DOWN('¤',   "Enemy snake tail (end) pointing down."),
+
+    ENEMY_TAIL_END_LEFT('×',   "Enemy snake tail (end) pointing left."),
+
+    ENEMY_TAIL_END_UP('æ',     "Enemy snake tail (end) pointing up."),
+
+    ENEMY_TAIL_END_RIGHT('ö',  "Enemy snake tail (end) pointing right."),
+
+    ENEMY_TAIL_INACTIVE('*',   "Enemy snake tail (end) when snake is inactive.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

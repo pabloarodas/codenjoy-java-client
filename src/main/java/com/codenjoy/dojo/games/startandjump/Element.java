@@ -27,7 +27,7 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',       "Пустое поле."),
+    NONE(' ',       "Пустое место – по которому может двигаться герой."),
 
     WALL('#',       "Стена через которую нельзя пройти."),
 
