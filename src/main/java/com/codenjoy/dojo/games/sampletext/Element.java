@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.kata;
+package com.codenjoy.dojo.games.sampletext;
 
 /*-
  * #%L
@@ -27,9 +27,6 @@ import com.codenjoy.dojo.services.printer.CharElement;
 public enum Element implements CharElement {
 
     NONE(' ', "There are no elements for this game.");
-
-    public static final String START_NEXT_LEVEL = "StartNextLevel";
-    public static final String SKIP_THIS_LEVEL = "SkipThisLevel";
 
     private final char ch;
     private final String info;
