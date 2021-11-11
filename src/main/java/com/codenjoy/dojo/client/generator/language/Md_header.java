@@ -53,16 +53,16 @@ public class Md_header implements Template {
                 "    <head>\n" +
                 "        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n" +
                 "        <title>2048 codenjoy — как играть? | Игры на работе</title>\n" +
-                "        <base href=\"../../../\">\n" +
-                "        <link href=\"resources/css/all.min.css\" media=\"all\" type=\"text/css\" rel=\"stylesheet\">\n" +
-                "        <link href=\"resources/css/custom.css\" rel=\"stylesheet\">\n" +
+                "        <base href=\".\">\n" +
+                "        <link href=\"../../../resources/css/all.min.css\" media=\"all\" type=\"text/css\" rel=\"stylesheet\">\n" +
+                "        <link href=\"../../../resources/css/custom.css\" rel=\"stylesheet\">\n" +
                 "\n" +
-                "        <script src=\"resources/js/all.min.js\"></script>\n" +
+                "        <script src=\"../../../resources/js/all.min.js\"></script>\n" +
                 "    </head>\n" +
                 "    <body style=\"background-color: white;\"\n" +
                 "          class=\"single single-post postid-170 single-format-standard logged-in admin-bar singular one-column content customize-support\">\n" +
                 "        <div id=\"settings\" page=\"rules\"></div>\n" +
-                "        <a href=\"https://github.com/codenjoyme/codenjoy\"><img style=\"position: absolute; top: 0; right: 0; border: 0;z-index: 100;\" src=\"resources/img/fork-me.png\" alt=\"Fork me on GitHub\"></a>\n" +
+                "        <a href=\"https://github.com/codenjoyme/codenjoy\"><img style=\"position: absolute; top: 0; right: 0; border: 0;z-index: 100;\" src=\"../../../resources/img/fork-me.png\" alt=\"Fork me on GitHub\"></a>\n" +
                 "        <div id=\"page\" class=\"hfeed\">\n" +
                 "            <div id=\"main\">\n" +
                 "                <div id=\"primary\">\n" +
