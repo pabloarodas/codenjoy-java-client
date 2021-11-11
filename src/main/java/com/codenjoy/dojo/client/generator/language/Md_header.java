@@ -86,6 +86,6 @@ public class Md_header implements Template {
 
     @Override
     public String file() {
-        return "../games/${game}/src/main/webapp/resources/${game}/help/header.html";
+        return "../games/${game-canonical}/src/main/webapp/resources/${game}/help/header.html";
     }
 }

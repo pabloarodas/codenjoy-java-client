@@ -40,19 +40,29 @@ public class ElementGenerator {
 
     public static final int COMMENT_MAX_LENGTH = 60;
 
+    public static final List<String> SUBREPO_GAMES = Arrays.asList(
+            "chess", "clifford", "excitebike",
+            "japanese", "mollymage", "selfdefense",
+            "vacuum", "xonix");
+
     private final String game;
+    private final String canonicalGame;
+
     private final boolean subrepo;
     private final String language;
     private final Template template;
 
     public ElementGenerator(String game, String language) {
-        this.game = game;
+        this.canonicalGame = game;
+        this.game = cleanGame(game);
+
         this.language = language;
         this.template = template();
-        subrepo = Arrays.asList(
-                "chess", "clifford", "excitebike",
-                "japanese", "mollymage", "selfdefense",
-                "vacuum", "xonix").contains(game);
+        subrepo = SUBREPO_GAMES.contains(game);
+    }
+
+    public static String cleanGame(String game) {
+        return game.replaceAll("[-_.]", "");
     }
 
     public String generate() {
@@ -156,6 +166,7 @@ public class ElementGenerator {
                 .replace("${tag}", "#" + "%L") // because of warning in the mvn compile in phase lecense header generation
                 .replace("${language}", language)
                 .replace("${game}", game)
+                .replace("${game-canonical}", canonicalGame)
                 .replace("${game-capitalize}", capitalize(game));
     }
 

@@ -32,6 +32,7 @@ import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Objects;
 
+import static com.codenjoy.dojo.client.generator.ElementGenerator.cleanGame;
 import static com.codenjoy.dojo.utils.PrintUtils.Color.ERROR;
 import static com.codenjoy.dojo.utils.PrintUtils.Color.INFO;
 import static java.util.stream.Collectors.joining;
@@ -59,7 +60,7 @@ public class Runner {
         } else {
             base = "";
             games = ALL_GAMES;
-            clients = "md,md_footer,md_header,cpp,go,js,php,python";
+            clients = "md,md_header,md_footer,cpp,go,js,php,python";
             printInfo("Runner");
         }
         if (isAllGames()) {
@@ -75,7 +76,7 @@ public class Runner {
 
         for (String game : games.split(",")) {
             System.out.println();
-            if (!allGames.contains(game)) {
+            if (!allGames.contains(cleanGame(game))) {
                 PrintUtils.printf("Game not found: '%s'\n", ERROR, game);
                 continue;
             }

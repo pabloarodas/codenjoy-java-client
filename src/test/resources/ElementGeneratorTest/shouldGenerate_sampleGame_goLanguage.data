@@ -28,7 +28,7 @@ var Elements = map[string]rune{
 
     "NONE": ' ',
 
-        // Wall you can't walk through.
+        // Wall you cant walk through.
 
     "WALL": '☼',
 

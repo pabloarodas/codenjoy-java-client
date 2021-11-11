@@ -75,6 +75,11 @@ public class ElementGeneratorTest {
     }
 
     @Test
+    public void shouldGenerate_testAnotherGame_markdownLanguage() {
+        assertEquals(new ElementGenerator("test-another", "md").generate());
+    }
+
+    @Test
     public void shouldGenerate_testGame_markdownHeaderLanguage() {
         assertEquals(new ElementGenerator("test", "md_header").generate());
     }

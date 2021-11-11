@@ -74,6 +74,6 @@ public class Md_footer implements Template {
 
     @Override
     public String file() {
-        return "../games/${game}/src/main/webapp/resources/${game}/help/footer.html";
+        return "../games/${game-canonical}/src/main/webapp/resources/${game}/help/footer.html";
     }
 }
