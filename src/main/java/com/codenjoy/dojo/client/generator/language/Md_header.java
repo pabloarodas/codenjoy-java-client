@@ -29,7 +29,7 @@ public class Md_header implements Template {
     @Override
     public String header() {
         return "<!--\n" +
-                "  #%L\n" +
+                "  ${tag}\n" +
                 "  Codenjoy - it's a dojo-like platform from developers to developers.\n" +
                 "  %%\n" +
                 "  Copyright (C) 2021 Codenjoy\n" +
