@@ -27,35 +27,60 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    BANG('Ѡ', -7),
-    HERE_IS_BOMB('☻', -6),
-    DETECTOR('☺', -5),
-    FLAG('‼', -4),
-    HIDDEN('*', -3),
-    BORDER('☼', -2),
-    DESTROYED_BOMB('x', -1),
+/// Разное на поле
 
-    NONE(' ', 0),
-    ONE_MINE('1', 1),
-    TWO_MINES('2', 2),
-    THREE_MINES('3', 3),
-    FOUR_MINES('4', 4),
-    FIVE_MINES('5', 5),
-    SIX_MINES('6', 6),
-    SEVEN_MINES('7', 7),
-    EIGHT_MINES('8', 8);
+    BANG('Ѡ', -7,           "Сапер взорвался на бомбе."),
 
-    final char ch;
-    final int value;
+    HERE_IS_BOMB('☻', -6,   "."),
 
-    Element(char ch, int value) {
+    DETECTOR('☺', -5,       "Сапер."),
+
+    FLAG('‼', -4,           "Флажок, указывающий что тут вероятно бомба."),
+
+    HIDDEN('*', -3,         "Неизведанный участок поля."),
+
+    BORDER('☼', -2,         "Граница поля или препятствие для перемещения."),
+
+    DESTROYED_BOMB('x', -1, "Уничтоженная бомба."),
+
+/// Маркеры бомб вокруг
+
+    NONE(' ', 0,            "Вокруг этой клеточки нет бомб."),
+
+    ONE_MINE('1', 1,        "Вокруг этой клеточки одна бомба."),
+
+    TWO_MINES('2', 2,       "Вокруг этой клеточки две бомбы."),
+
+    THREE_MINES('3', 3,     "Вокруг этой клеточки три бомбы."),
+
+    FOUR_MINES('4', 4,      "Вокруг этой клеточки четыре бомбы."),
+
+    FIVE_MINES('5', 5,      "Вокруг этой клеточки пять бомб."),
+
+    SIX_MINES('6', 6,       "Вокруг этой клеточки шесть бомб."),
+
+    SEVEN_MINES('7', 7,     "Вокруг этой клеточки семь бомб."),
+
+    EIGHT_MINES('8', 8,     "Вокруг этой клеточки восемь бомб.");
+
+    private final char ch;
+    private final int value;
+    private final String info;
+
+    Element(char ch, int value, String info) {
         this.ch = ch;
         this.value = value;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     public int value() {

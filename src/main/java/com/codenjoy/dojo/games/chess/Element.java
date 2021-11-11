@@ -32,44 +32,58 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    SQUARE('.'),
-    BARRIER(' '),
+/// Поле
 
-    WHITE_KING('W'),
-    WHITE_QUEEN('Q'),
-    WHITE_ROOK('R'),
-    WHITE_BISHOP('B'),
-    WHITE_KNIGHT('K'),
-    WHITE_PAWN('P'),
+    SQUARE('.',       "."),
+    BARRIER(' ',      "."),
 
-    BLACK_KING('w'),
-    BLACK_QUEEN('q'),
-    BLACK_ROOK('r'),
-    BLACK_BISHOP('b'),
-    BLACK_KNIGHT('k'),
-    BLACK_PAWN('p'),
+/// Фигуры белых
 
-    RED_KING('Y'),
-    RED_QUEEN('X'),
-    RED_ROOK('I'),
-    RED_BISHOP('G'),
-    RED_KNIGHT('L'),
-    RED_PAWN('Z'),
+    WHITE_KING('W',   "Король белых."),
+    WHITE_QUEEN('Q',  "Ферзь белых."),
+    WHITE_ROOK('R',   "Ладья белых."),
+    WHITE_BISHOP('B', "Слон белых."),
+    WHITE_KNIGHT('K', "Конь белых."),
+    WHITE_PAWN('P',   "Пешка белых."),
 
-    BLUE_KING('y'),
-    BLUE_QUEEN('x'),
-    BLUE_ROOK('i'),
-    BLUE_BISHOP('g'),
-    BLUE_KNIGHT('l'),
-    BLUE_PAWN('z'),
+/// Фигуры черных
 
-    BACKGROUND('-');
+    BLACK_KING('w',   "Король черных."),
+    BLACK_QUEEN('q',  "Ферзь черных."),
+    BLACK_ROOK('r',   "Ладья черных."),
+    BLACK_BISHOP('b', "Слон черных."),
+    BLACK_KNIGHT('k', "Конь черных."),
+    BLACK_PAWN('p',   "Пешка черных."),
 
-    final char ch;
-    final Color color;
+/// Фигуры красных
 
-    Element(char ch) {
+    RED_KING('Y',     "Король красных."),
+    RED_QUEEN('X',    "Ферзь красных."),
+    RED_ROOK('I',     "Ладья красных."),
+    RED_BISHOP('G',   "Слон красных."),
+    RED_KNIGHT('L',   "Конь красных."),
+    RED_PAWN('Z',     "Пешка красных."),
+
+/// Фигуры синих
+
+    BLUE_KING('y',    "Король синих."),
+    BLUE_QUEEN('x',   "Ферзь синих."),
+    BLUE_ROOK('i',    "Ладья синих."),
+    BLUE_BISHOP('g',  "Слон синих."),
+    BLUE_KNIGHT('l',  "Конь синих."),
+    BLUE_PAWN('z',    "Пешка синих."),
+
+// Системные спрайты
+
+    BACKGROUND('-',   "Системный спрайт - изображение шахматной доски.");
+
+    private final char ch;
+    private final String info;
+    private final Color color;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
         switch (name().split("_")[0]) {
             case "RED" : color = Color.RED; break;
             case "BLACK" : color = Color.BLACK; break;
@@ -82,6 +96,11 @@ public enum Element implements CharElement {
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

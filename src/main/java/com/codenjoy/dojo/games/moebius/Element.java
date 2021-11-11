@@ -31,28 +31,43 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
 
 public enum Element implements CharElement {
 
-    LEFT_UP('╝', pt(-1, 0), pt(0, 1)),
-    UP_RIGHT('╚', pt(0, 1), pt(1, 0)),
-    RIGHT_DOWN('╔', pt(1, 0), pt(0, -1)),
-    DOWN_LEFT('╗', pt(0, -1), pt(-1, 0)),
-    LEFT_RIGHT('═', pt(-1, 0),  pt(1, 0)),
-    UP_DOWN('║', pt(0, 1),  pt(0, -1)),
-    CROSS('╬', null, null),
-    EMPTY(' ', null, null);
+    LEFT_UP('╝', pt(-1, 0), pt(0, 1),     "Труба повернута слева вверх."),
+
+    UP_RIGHT('╚', pt(0, 1), pt(1, 0),     "Труба повернута сверху направо."),
+
+    RIGHT_DOWN('╔', pt(1, 0), pt(0, -1),  "Труба повернута справа вниз."),
+
+    DOWN_LEFT('╗', pt(0, -1), pt(-1, 0),  "Труба повернута снизу влево."),
+
+    LEFT_RIGHT('═', pt(-1, 0),  pt(1, 0), "Прямая труба слева направо."),
+
+    UP_DOWN('║', pt(0, 1),  pt(0, -1),    "Прямая труба сверху вниз."),
+
+    CROSS('╬', null, null,                "Две пересеченные прямые трубы, " +
+                                          "одна сверху вниз, другая слева направо."),
+
+    EMPTY(' ', null, null,                "Пустое место на поле.");
 
     private final char ch;
+    private final String info;
     private final Point from;
     private final Point to;
 
-    Element(char ch, Point from, Point to) {
+    Element(char ch, Point from, Point to, String info) {
         this.ch = ch;
         this.from = from;
         this.to = to;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

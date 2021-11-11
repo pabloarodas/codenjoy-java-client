@@ -24,15 +24,33 @@ package com.codenjoy.dojo.games.lemonade;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum WeatherForecast implements CharElement {
-    
-    SUNNY,
-    CLOUDY,
-    HOT_AND_DRY,
-    UNKNOWN;
+public enum Element implements CharElement {
+
+/// Weather forecast
+
+    SUNNY("Sunny weather."),
+
+    CLOUDY("Cloudy weather."),
+
+    HOT_AND_DRY("Hot and dry weather."),
+
+    UNKNOWN("Unknown weather.");
+
+    private final char ch;
+    private final String info;
+
+    Element(String info) {
+        this.ch = name().toLowerCase().charAt(0);
+        this.info = info;
+    }
+
+    @Override
+    public String info() {
+        return info;
+    }
 
     @Override
     public char ch() {
-        return name().toLowerCase().charAt(0);
+        return ch;
     }
 }

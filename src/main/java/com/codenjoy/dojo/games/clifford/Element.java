@@ -29,11 +29,11 @@ import java.util.Arrays;
 
 public enum Element implements CharElement {
 
-/// void
+/// Void
 
     NONE(' ',                   "Empty space - where the hero can move."),
 
-/// bricks
+/// Bricks
 
     BRICK('#',                  "A wall where you can shoot a hole."),
 
@@ -55,7 +55,7 @@ public enum Element implements CharElement {
     CRACK_PIT('*',              "At the moment of the shot, we see the wall " +
                                 "like this."),
 
-/// clues
+/// Clues
 
     CLUE_KNIFE('$',             "Clue knife. Collect a series of clues to " +
                                 "get the maximum points."),
@@ -66,7 +66,7 @@ public enum Element implements CharElement {
     CLUE_RING('@',              "Clue ring. Collect a series of clues to " +
                                 "get the maximum points."),
 
-/// your hero
+/// Your hero
 
     HERO_DIE('Ѡ',               "Your hero is dead. In the next tick, it will " +
                                 "disappear and appear in a new location."),
@@ -83,7 +83,7 @@ public enum Element implements CharElement {
 
     HERO_PIT('⍃',               "Your hero in the pit."),
 
-/// your hero in shadow mode
+/// Your hero in shadow mode
 
     HERO_MASK_DIE('x',          "Your shadow-hero is dead. In the next tick, " +
                                 "it will disappear and appear in a new location."),
@@ -100,7 +100,7 @@ public enum Element implements CharElement {
 
     HERO_MASK_PIT('ᐊ',          "Your shadow-hero in the pit."),
 
-/// other heroes
+/// Other heroes
 
     OTHER_HERO_DIE('Z',         "Other hero is dead. In the next tick, it will " +
                                 "disappear and appear in a new location."),
@@ -117,7 +117,7 @@ public enum Element implements CharElement {
 
     OTHER_HERO_PIT('ᗉ',         "Other hero in the pit."),
 
-/// other heroes in shadow mode
+/// Other heroes in shadow mode
 
     OTHER_HERO_MASK_DIE('⋈',    "Other shadow-hero is dead. In the next tick, " +
                                 "it will disappear and appear in a new location."),
@@ -134,7 +134,7 @@ public enum Element implements CharElement {
 
     OTHER_HERO_MASK_PIT('ᗏ',    "Other shadow-hero in the pit."),
 
-/// enemy heroes
+/// Enemy heroes
 
     ENEMY_HERO_DIE('Ž',         "Enemy hero is dead. In the next tick, it will " +
                                 "disappear and appear in a new location."),
@@ -151,7 +151,7 @@ public enum Element implements CharElement {
 
     ENEMY_HERO_PIT('⇇',         "Enemy hero in the pit."),
 
-/// enemy heroes in shadow mode
+/// Enemy heroes in shadow mode
 
     ENEMY_HERO_MASK_DIE('⧓',    "Enemy shadow-hero is dead. In the next tick, " +
                                 "it will disappear and appear in a new location."),
@@ -168,7 +168,7 @@ public enum Element implements CharElement {
 
     ENEMY_HERO_MASK_PIT('⬱',    "Enemy shadow-hero in the pit."),
 
-// robbers (dummy AI-bots)
+// Robbers (dummy AI-bots)
 
     ROBBER_LADDER('Q',          "Robber is climbing the ladder."),
 
@@ -184,7 +184,7 @@ public enum Element implements CharElement {
 
     ROBBER_PIT('⍇',             "Robber in the pit."),
 
-/// doors and keys
+/// Doors and keys
 
     OPENED_DOOR_GOLD('⍙',       "Opened golden gates. Can only be locked " +
                                 "with a golden key."),
@@ -213,7 +213,7 @@ public enum Element implements CharElement {
     KEY_BRONZE('⍟',             "Bronze key. Helps open/close bronze gates. " +
                                 "The key can only be used once."),
 
-/// other stuff
+/// Other stuff
 
     BULLET('•',                 "Bullet. After the shot by the hero, the bullet " +
                                 "flies until it meets an obstacle. The bullet " +

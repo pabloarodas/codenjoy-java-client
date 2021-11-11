@@ -34,79 +34,131 @@ import static com.codenjoy.dojo.games.icancode.Element.Layers.*;
 
 public enum Element implements CharElement {
 
-    // empty space where player can go
-    EMPTY(LAYER2, '-'),
-    FLOOR(LAYER1, '.'),
+/// empty space where player can go
 
-    // walls
-    ANGLE_IN_LEFT(LAYER1, '╔'),
-    WALL_FRONT(LAYER1, '═'),
-    ANGLE_IN_RIGHT(LAYER1, '┐'),
-    WALL_RIGHT(LAYER1, '│'),
-    ANGLE_BACK_RIGHT(LAYER1, '┘'),
-    WALL_BACK(LAYER1, '─'),
-    ANGLE_BACK_LEFT(LAYER1, '└'),
-    WALL_LEFT(LAYER1, '║'),
-    WALL_BACK_ANGLE_LEFT(LAYER1, '┌'),
-    WALL_BACK_ANGLE_RIGHT(LAYER1, '╗'),
-    ANGLE_OUT_RIGHT(LAYER1, '╝'),
-    ANGLE_OUT_LEFT(LAYER1, '╚'),
-    SPACE(LAYER1, ' '),
+    EMPTY(LAYER2, '-',                  ""),
 
-    // laser machine
-    LASER_MACHINE_CHARGING_LEFT(LAYER1, '˂'),
-    LASER_MACHINE_CHARGING_RIGHT(LAYER1, '˃'),
-    LASER_MACHINE_CHARGING_UP(LAYER1, '˄'),
-    LASER_MACHINE_CHARGING_DOWN(LAYER1, '˅'),
+    FLOOR(LAYER1, '.',                  ""),
 
-    // lase machine ready
-    LASER_MACHINE_READY_LEFT(LAYER1, '◄'),
-    LASER_MACHINE_READY_RIGHT(LAYER1, '►'),
-    LASER_MACHINE_READY_UP(LAYER1, '▲'),
-    LASER_MACHINE_READY_DOWN(LAYER1, '▼'),
+/// walls
 
-    // other stuff
-    START(LAYER1, 'S'),
-    EXIT(LAYER1, 'E'),
-    HOLE(LAYER1, 'O'),
-    BOX(LAYER2, 'B'),
-    ZOMBIE_START(LAYER1, 'Z'),
-    GOLD(LAYER1, '$'),
+    ANGLE_IN_LEFT(LAYER1, '╔',          ""),
 
-    // perks
-    UNSTOPPABLE_LASER_PERK(LAYER1, 'l'),
-    DEATH_RAY_PERK(LAYER1, 'r'),
-    UNLIMITED_FIRE_PERK(LAYER1, 'f'),
-    FIRE_PERK(LAYER1, 'a'),
-    JUMP_PERK(LAYER1, 'j'),
-    MOVE_BOXES_PERK(LAYER1, 'm'),
+    WALL_FRONT(LAYER1, '═',             ""),
 
-    // your robot
-    ROBO(LAYER2, '☺'),
-    ROBO_FALLING(LAYER2, 'o'),
-    ROBO_FLYING(LAYER3, '*'),
-    ROBO_LASER(LAYER2, '☻'),
+    ANGLE_IN_RIGHT(LAYER1, '┐',         ""),
 
-    // other robot
-    ROBO_OTHER(LAYER2, 'X'),
-    ROBO_OTHER_FALLING(LAYER2, 'x'),
-    ROBO_OTHER_FLYING(LAYER3, '^'),
-    ROBO_OTHER_LASER(LAYER2, '&'),
+    WALL_RIGHT(LAYER1, '│',             ""),
 
-    // laser
-    LASER_LEFT(LAYER2, '←'),
-    LASER_RIGHT(LAYER2, '→'),
-    LASER_UP(LAYER2, '↑'),
-    LASER_DOWN(LAYER2, '↓'),
+    ANGLE_BACK_RIGHT(LAYER1, '┘',       ""),
 
-    // zombie
-    FEMALE_ZOMBIE(LAYER2, '♀'),
-    MALE_ZOMBIE(LAYER2, '♂'),
-    ZOMBIE_DIE(LAYER2, '✝'),
+    WALL_BACK(LAYER1, '─',              ""),
 
-    // system elements, don't touch it
-    FOG(LAYER1, 'F'),
-    BACKGROUND(LAYER2, 'G');
+    ANGLE_BACK_LEFT(LAYER1, '└',        ""),
+
+    WALL_LEFT(LAYER1, '║',              ""),
+
+    WALL_BACK_ANGLE_LEFT(LAYER1, '┌',   ""),
+
+    WALL_BACK_ANGLE_RIGHT(LAYER1, '╗',  ""),
+
+    ANGLE_OUT_RIGHT(LAYER1, '╝',        ""),
+
+    ANGLE_OUT_LEFT(LAYER1, '╚',         ""),
+
+    SPACE(LAYER1, ' ',                  ""),
+
+/// laser machine
+
+    LASER_MACHINE_CHARGING_LEFT(LAYER1, '˂',  ""),
+
+    LASER_MACHINE_CHARGING_RIGHT(LAYER1, '˃', ""),
+
+    LASER_MACHINE_CHARGING_UP(LAYER1, '˄',    ""),
+
+    LASER_MACHINE_CHARGING_DOWN(LAYER1, '˅',  ""),
+
+/// laser machine ready
+
+    LASER_MACHINE_READY_LEFT(LAYER1, '◄',     ""),
+
+    LASER_MACHINE_READY_RIGHT(LAYER1, '►',    ""),
+
+    LASER_MACHINE_READY_UP(LAYER1, '▲',       ""),
+
+    LASER_MACHINE_READY_DOWN(LAYER1, '▼',     ""),
+
+/// other stuff
+
+    START(LAYER1, 'S',                  ""),
+
+    EXIT(LAYER1, 'E',                   ""),
+
+    HOLE(LAYER1, 'O',                   ""),
+
+    BOX(LAYER2, 'B',                    ""),
+
+    ZOMBIE_START(LAYER1, 'Z',           ""),
+
+    GOLD(LAYER1, '$',                   ""),
+
+/// perks
+
+    UNSTOPPABLE_LASER_PERK(LAYER1, 'l', ""),
+
+    DEATH_RAY_PERK(LAYER1, 'r',         ""),
+
+    UNLIMITED_FIRE_PERK(LAYER1, 'f',    ""),
+
+    FIRE_PERK(LAYER1, 'a',              ""),
+
+    JUMP_PERK(LAYER1, 'j',              ""),
+
+    MOVE_BOXES_PERK(LAYER1, 'm',        ""),
+
+/// your robot
+
+    ROBO(LAYER2, '☺',                   ""),
+
+    ROBO_FALLING(LAYER2, 'o',           ""),
+
+    ROBO_FLYING(LAYER3, '*',            ""),
+
+    ROBO_LASER(LAYER2, '☻',             ""),
+
+/// other robot
+
+    ROBO_OTHER(LAYER2, 'X',             ""),
+
+    ROBO_OTHER_FALLING(LAYER2, 'x',     ""),
+
+    ROBO_OTHER_FLYING(LAYER3, '^',      ""),
+
+    ROBO_OTHER_LASER(LAYER2, '&',       ""),
+
+/// laser
+
+    LASER_LEFT(LAYER2, '←',             ""),
+
+    LASER_RIGHT(LAYER2, '→',            ""),
+
+    LASER_UP(LAYER2, '↑',               ""),
+
+    LASER_DOWN(LAYER2, '↓',             ""),
+
+/// zombie
+
+    FEMALE_ZOMBIE(LAYER2, '♀',          ""),
+
+    MALE_ZOMBIE(LAYER2, '♂',            ""),
+
+    ZOMBIE_DIE(LAYER2, '✝',             ""),
+
+/// system elements, don't touch it
+
+    FOG(LAYER1, 'F',                    ""),
+
+    BACKGROUND(LAYER2, 'G',             "");
 
     public static class Layers {
         public final static int LAYER1 = 0;
@@ -122,15 +174,22 @@ public enum Element implements CharElement {
 
     private final char ch;
     private final int layer;
+    private final String info;
 
-    Element(int layer, char ch) {
+    Element(int layer, char ch, String info) {
         this.layer = layer;
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

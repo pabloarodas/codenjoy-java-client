@@ -32,27 +32,44 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    NONE(' '),
-    BORDER('☼'),
-    ONE('1'),
-    TWO('2'),
-    THREE('3'),
-    FOUR('4'),
-    FIVE('5'),
-    SIX('6'),
-    SEVEN('7'),
-    EIGHT('8'),
-    NINE('9');
+    NONE(' ',    "Пустое место – место которое заполнится фишкой в следующий тик."),
 
-    final char ch;
+    BORDER('☼',  "Граница поля, в игре не участвует (не перемещается)."),
 
-    Element(char ch) {
+    ONE('1',     "Перемещаемая фишка 1."),
+
+    TWO('2',     "Перемещаемая фишка 2."),
+
+    THREE('3',   "Перемещаемая фишка 3."),
+
+    FOUR('4',    "Перемещаемая фишка 4."),
+
+    FIVE('5',    "Перемещаемая фишка 5."),
+
+    SIX('6',     "Перемещаемая фишка 6."),
+
+    SEVEN('7',   "Перемещаемая фишка 7."),
+
+    EIGHT('8',   "Перемещаемая фишка 8."),
+
+    NINE('9',    "Перемещаемая фишка 9.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

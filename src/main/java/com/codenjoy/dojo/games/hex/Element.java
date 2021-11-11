@@ -29,30 +29,57 @@ import java.util.*;
 
 public enum Element implements CharElement {
 
-    NONE(' '),
-    WALL('☼'),
-    MY_HERO('☺'),
-    HERO1('☻'),
-    HERO2('♥'),
-    HERO3('♦'),
-    HERO4('♣'),
-    HERO5('♠'),
-    HERO6('•'),
-    HERO7('◘'),
-    HERO8('○'),
-    HERO9('◙'),
-    HERO10('♂'),
-    HERO11('♀');
+/// Разное на поле
 
-    final char ch;
+    NONE(' ',    "Пустое поле на карте. Сюда можно перемещать " +
+                 "свои войска."),
 
-    Element(char ch) {
+    WALL('☼',    "Непроходимое препятствие. Обычно граница поля, " +
+                 "но может появиться в месте, куда два героя " +
+                 "одновременно отправят вои войска."),
+
+/// Войска игроков
+
+    MY_HERO('☺', "Твои войска."),
+
+    HERO1('☻',   "Войска противника 1."),
+
+    HERO2('♥',   "Войска противника 2."),
+
+    HERO3('♦',   "Войска противника 3."),
+
+    HERO4('♣',   "Войска противника 4."),
+
+    HERO5('♠',   "Войска противника 5."),
+
+    HERO6('•',   "Войска противника 6."),
+
+    HERO7('◘',   "Войска противника 7."),
+
+    HERO8('○',   "Войска противника 8."),
+
+    HERO9('◙',   "Войска противника 9."),
+
+    HERO10('♂',  "Войска противника 10."),
+
+    HERO11('♀',  "Войска противника 11.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

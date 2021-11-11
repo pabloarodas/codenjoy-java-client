@@ -27,17 +27,24 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ');
+    NONE(' ', "None.");
 
-    final char ch;
+    private final char ch;
+    private final String info;
 
-    Element(char ch) {
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

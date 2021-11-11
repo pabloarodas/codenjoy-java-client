@@ -81,6 +81,6 @@ public class BoardTest {
         assertEquals("my test message", parsedBoard.getMessages());
         assertEquals(1.55, parsedBoard.getAssets(), 0.001);
         assertEquals(0.02, parsedBoard.getLemonadeCost(), 0.001);
-        assertEquals(WeatherForecast.SUNNY, parsedBoard.getWeatherForecast());
+        assertEquals(Element.SUNNY, parsedBoard.getWeatherForecast());
     }
 }

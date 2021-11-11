@@ -44,7 +44,7 @@ public class Board extends AbstractTextBoard {
     private String messages;
     private boolean isBankrupt;
     private double lemonadeCost;
-    private WeatherForecast weatherForecast;
+    private Element weatherForecast;
     private boolean isGameOver;
 
     private ArrayList<DailyReport> history;
@@ -68,7 +68,7 @@ public class Board extends AbstractTextBoard {
         this.day = dataJson.getInt("day");
         this.lemonadeCost = dataJson.getFloat("lemonadeCost");
         this.assets = dataJson.getFloat("assets");
-        this.weatherForecast = dataJson.getEnum(WeatherForecast.class, "weatherForecast");
+        this.weatherForecast = dataJson.getEnum(Element.class, "weatherForecast");
         this.messages = dataJson.getString("messages");
         this.isBankrupt = dataJson.optBoolean("isBankrupt", false);
         this.isGameOver = dataJson.optBoolean("isGameOver", false);
@@ -101,7 +101,7 @@ public class Board extends AbstractTextBoard {
         return this.lemonadeCost;
     }
 
-    public WeatherForecast getWeatherForecast() {
+    public Element getWeatherForecast() {
         return this.weatherForecast;
     }
 

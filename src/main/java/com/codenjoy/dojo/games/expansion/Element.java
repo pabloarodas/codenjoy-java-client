@@ -34,45 +34,74 @@ import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER2;
 
 public enum Element implements CharElement {
 
-    // empty space where player can go
+/// Empty space where player can go
+
     EMPTY(LAYER2, '-'),
+
     FLOOR(LAYER1, '.'),
 
-    // walls
+// Walls
+
     ANGLE_IN_LEFT(LAYER1, '╔'),
+
     WALL_FRONT(LAYER1, '═'),
+
     ANGLE_IN_RIGHT(LAYER1, '┐'),
+
     WALL_RIGHT(LAYER1, '│'),
+
     ANGLE_BACK_RIGHT(LAYER1, '┘'),
+
     WALL_BACK(LAYER1, '─'),
+
     ANGLE_BACK_LEFT(LAYER1, '└'),
+
     WALL_LEFT(LAYER1, '║'),
+
     WALL_BACK_ANGLE_LEFT(LAYER1, '┌'),
+
     WALL_BACK_ANGLE_RIGHT(LAYER1, '╗'),
+
     ANGLE_OUT_RIGHT(LAYER1, '╝'),
+
     ANGLE_OUT_LEFT(LAYER1, '╚'),
+
     SPACE(LAYER1, ' '),
 
-    // forces stuff
+/// Forces stuff
+
     FORCE1(LAYER2, '♥', 0),
+
     FORCE2(LAYER2, '♦', 1),
+
     FORCE3(LAYER2, '♣', 2),
+
     FORCE4(LAYER2, '♠', 3),
 
-    // other stuff
+/// Other stuff
+
     EXIT(LAYER1, 'E'),
+
     HOLE(LAYER1, 'O'),
+
     BREAK(LAYER1, 'B'),
+
     GOLD(LAYER1, '$'),
 
-    // bases stuff
+// Bases stuff
+
     BASE1(LAYER1, '1', 0),
+
     BASE2(LAYER1, '2', 1),
+
     BASE3(LAYER1, '3', 2),
+
     BASE4(LAYER1, '4', 3),
 
-    // system elements, don't touch it
+/// System elements, don't touch it
+
     FOG(LAYER1, 'F'),
+
     BACKGROUND(LAYER2, 'G');
 
     public int getIndex() {

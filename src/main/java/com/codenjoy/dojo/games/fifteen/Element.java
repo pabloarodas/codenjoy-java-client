@@ -26,33 +26,60 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    A('a'),
-    B('b'),
-    C('c'),
-    D('d'),
-    E('e'),
-    F('f'),
-    G('g'),
-    H('h'),
-    I('i'),
-    J('j'),
-    K('k'),
-    L('l'),
-    M('m'),
-    N('n'),
-    O('o'),
-    HERO('+'),
-    WALL('*');
+/// Фишки
 
-    final char ch;
+    A('a',    "Фишка 1. Герой ее может переместить на свое место."),
 
-    Element(char ch) {
+    B('b',    "Фишка 2."),
+
+    C('c',    "Фишка 3."),
+
+    D('d',    "Фишка 4."),
+
+    E('e',    "Фишка 5."),
+
+    F('f',    "Фишка 6."),
+
+    G('g',    "Фишка 7."),
+
+    H('h',    "Фишка 8."),
+
+    I('i',    "Фишка 9."),
+
+    J('j',    "Фишка 10."),
+
+    K('k',    "Фишка 11."),
+
+    L('l',    "Фишка 12."),
+
+    M('m',    "Фишка 13."),
+
+    N('n',    "Фишка 14."),
+
+    O('o',    "Фишка 15."),
+
+/// Разное на поле
+
+    HERO('+', "Твой герой. Герой перемещает фишки меняясь с ними местами."),
+
+    WALL('*', "Стена. Препятствие для перемещения фишек.");
+
+    private final char ch;
+    private final String info;
+
+    Element(char ch, String info) {
         this.ch = ch;
+        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override
