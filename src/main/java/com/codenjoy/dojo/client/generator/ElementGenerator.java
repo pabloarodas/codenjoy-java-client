@@ -45,6 +45,9 @@ public class ElementGenerator {
             "japanese", "mollymage", "selfdefense",
             "vacuum", "xonix");
 
+    public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList(
+            "sample-text");
+
     private final String game;
     private final String canonicalGame;
 
@@ -54,15 +57,24 @@ public class ElementGenerator {
 
     public ElementGenerator(String game, String language) {
         this.canonicalGame = game;
-        this.game = cleanGame(game);
+        this.game = getGame(game);
 
         this.language = language;
         this.template = template();
         subrepo = SUBREPO_GAMES.contains(game);
     }
 
-    public static String cleanGame(String game) {
-        return game.replaceAll("[-_.]", "");
+    public static String getCanonicalGame(String game) {
+        for (String canonicalName : DIFFERENT_NAME_GAMES) {
+            if (game.equals(getGame(canonicalName))) {
+                return canonicalName;
+            }
+        }
+        return game;
+    }
+
+    public static String getGame(String canonicalGame) {
+        return canonicalGame.replaceAll("[-_.]", "");
     }
 
     public String generate() {

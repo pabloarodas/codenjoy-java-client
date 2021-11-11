@@ -32,7 +32,7 @@ import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Objects;
 
-import static com.codenjoy.dojo.client.generator.ElementGenerator.cleanGame;
+import static com.codenjoy.dojo.client.generator.ElementGenerator.getCanonicalGame;
 import static com.codenjoy.dojo.utils.PrintUtils.Color.ERROR;
 import static com.codenjoy.dojo.utils.PrintUtils.Color.INFO;
 import static java.util.stream.Collectors.joining;
@@ -41,6 +41,7 @@ import static java.util.stream.Collectors.toList;
 public class Runner {
 
     public static final String ALL_GAMES = "all";
+
     private static String base;
     private static String games;
     private static String clients;
@@ -76,7 +77,7 @@ public class Runner {
 
         for (String game : games.split(",")) {
             System.out.println();
-            if (!allGames.contains(cleanGame(game))) {
+            if (!allGames.contains(game)) {
                 PrintUtils.printf("Game not found: '%s'\n", ERROR, game);
                 continue;
             }
@@ -112,6 +113,7 @@ public class Runner {
                 .map(name -> StringUtils.substringBetween(name,
                         "com.codenjoy.dojo.games.", ".Element"))
                 .filter(Objects::nonNull)
+                .map(game -> getCanonicalGame(game))
                 .sorted()
                 .collect(toList());
     }
