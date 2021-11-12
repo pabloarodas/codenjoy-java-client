@@ -33,9 +33,9 @@ import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaBoard;
 import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaSolver;
 import static com.codenjoy.dojo.utils.PrintUtils.Color.INFO;
 
-public class Runner {
+public class JavaRunner {
 
-    private static Logger log = LoggerFactory.getLogger(Runner.class);
+    private static Logger log = LoggerFactory.getLogger(JavaRunner.class);
 
     // Select your game
     private String game = "mollymage";
@@ -77,6 +77,6 @@ public class Runner {
     }
 
     public static void main(String[] args) {
-        new Runner().run(args);
+        new JavaRunner().run(args);
     }
 }

@@ -23,10 +23,7 @@ package com.codenjoy.dojo.games.kata;
  */
 
 
-import com.codenjoy.dojo.Runner;
-import com.codenjoy.dojo.client.OneCommandSolver;
-import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.client.WebSocketRunner;
+import com.codenjoy.dojo.JavaRunner;
 
 /**
  * Author: your name
@@ -73,14 +70,14 @@ public class YourSolver extends AbstractTextSolver {
     // Use this command to start next level
     public static class StartNextLevel {
         public static void main(String[] args) {
-            new Runner().send("message('" + Element.START_NEXT_LEVEL + "')", new Board());
+            new JavaRunner().send("message('" + Element.START_NEXT_LEVEL + "')", new Board());
         }
     }
 
     // Use this command to skip this level
     public static class SkipThisLevel extends YourSolver {
         public static void main(String[] args) {
-            new Runner().send("message('" + Element.SKIP_THIS_LEVEL + "')", new Board());
+            new JavaRunner().send("message('" + Element.SKIP_THIS_LEVEL + "')", new Board());
         }
     }
 }
