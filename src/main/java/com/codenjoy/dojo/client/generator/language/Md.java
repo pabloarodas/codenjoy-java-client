@@ -24,12 +24,14 @@ package com.codenjoy.dojo.client.generator.language;
 
 import com.codenjoy.dojo.client.generator.Template;
 
+import java.util.List;
+
 public class Md implements Template {
 
     public static final String SPRITE_SIZE = "40";
 
     @Override
-    public String header() {
+    public String header(List<String> locales) {
         return "<meta charset=\"UTF-8\">\n" +
                 "\n" +
                 "## Symbol breakdown\n" +

@@ -24,9 +24,11 @@ package com.codenjoy.dojo.client.generator;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
+
 public interface Template {
 
-    default String header() {
+    default String header(List<String> locales) {
         return StringUtils.EMPTY;
     }
 

@@ -45,6 +45,10 @@ public class ElementGenerator {
             "japanese", "mollymage", "selfdefense",
             "vacuum", "xonix");
 
+    public static final List<String> ENGLISH_PRESENT = Arrays.asList(
+            "a2048", "clifford", "kata", "snake",
+            "snakebattle", "vacuum");
+
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList(
             "sample-text");
 
@@ -119,7 +123,7 @@ public class ElementGenerator {
     private String build(CharElement[] elements) {
         Template template = template();
 
-        String header = replace(template.header());
+        String header = replace(template.header(locales()));
 
         List<String> lines = Arrays.stream(elements)
                 .map(el -> replace(template.line(subrepo), el))
@@ -163,6 +167,14 @@ public class ElementGenerator {
         return header
                 + body
                 + footer;
+    }
+
+    private List<String> locales() {
+        if (ENGLISH_PRESENT.contains(canonicalGame)) {
+            return Arrays.asList("ru", "en");
+        } else {
+            return Arrays.asList("ru");
+        }
     }
 
     private String replace(String template, CharElement element) {

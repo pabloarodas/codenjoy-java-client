@@ -24,10 +24,12 @@ package com.codenjoy.dojo.client.generator.language;
 
 import com.codenjoy.dojo.client.generator.Template;
 
+import java.util.List;
+
 public class Java implements Template {
 
     @Override
-    public String header() {
+    public String header(List<String> locales) {
         return "package com.codenjoy.dojo.games.${game};\n" +
                 "\n" +
                 "/*-\n" +

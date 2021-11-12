@@ -23,11 +23,15 @@ package com.codenjoy.dojo.client.generator.language;
  */
 
 import com.codenjoy.dojo.client.generator.Template;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Md_header implements Template {
 
     @Override
-    public String header() {
+    public String header(List<String> locales) {
         return "<!--\n" +
                 "  ${tag}\n" +
                 "  Codenjoy - it's a dojo-like platform from developers to developers.\n" +
@@ -61,12 +65,33 @@ public class Md_header implements Template {
                 "    </head>\n" +
                 "    <body style=\"background-color: white;\"\n" +
                 "          class=\"single single-post postid-170 single-format-standard logged-in admin-bar singular one-column content customize-support\">\n" +
-                "        <div id=\"settings\" page=\"rules\"></div>\n" +
-                "        <a href=\"https://github.com/codenjoyme/codenjoy\"><img style=\"position: absolute; top: 0; right: 0; border: 0;z-index: 100;\" src=\"../../../resources/img/fork-me.png\" alt=\"Fork me on GitHub\"></a>\n" +
-                "        <div id=\"page\" class=\"hfeed\">\n" +
-                "            <div id=\"main\">\n" +
-                "                <div id=\"primary\">\n" +
-                "                    <div id=\"content\" role=\"main\">\n";
+                "       <div id=\"settings\" page=\"rules\"></div>\n" +
+                "       <a href=\"https://github.com/codenjoyme/codenjoy\"><img style=\"position: absolute; top: 0; right: 0; border: 0;z-index: 100;\" src=\"../../../resources/img/fork-me.png\" alt=\"Fork me on GitHub\"></a>\n" +
+                "       <div id=\"page\" class=\"hfeed\">\n" +
+                "           <div id=\"main\">\n" +
+                "               <div id=\"primary\">\n" +
+                "                   <div id=\"content\" role=\"main\">\n" +
+                "                       <header class=\"entry-header\">\n" +
+                "                           <h1 class=\"entry-title\">${game-capitalize} codenjoy — как играть?&nbsp;\n" +
+            process(locales,
+                "                               <a href=\"../../../resources/${game}/help/index${lng}.html\">[${lng-upper}]</a>\n"
+            ) +
+                "                           </h1>\n" +
+                "                       </header>\n" +
+                "                       <div class=\"entry-content\">\n" +
+                "                           <div class=\"page-restrict-output\">\n";
+    }
+
+    private String process(List<String> locales, String template) {
+        if (locales.size() == 1) {
+            return StringUtils.EMPTY;
+        }
+            
+        return locales.stream()
+                .map(lng -> template
+                        .replace("${lng}", "ru".equals(lng) ? StringUtils.EMPTY : ("-" + lng))
+                        .replace("${lng-upper}", lng.toUpperCase()))
+                .collect(Collectors.joining(""));
     }
 
     @Override
