@@ -38,7 +38,7 @@ import static com.codenjoy.dojo.utils.PrintUtils.Color.INFO;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-public class Runner {
+public class ElementGeneratorRunner {
 
     public static final String ALL_GAMES = "all";
 

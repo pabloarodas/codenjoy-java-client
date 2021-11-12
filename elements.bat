@@ -10,6 +10,6 @@ set GAMES=a2048,battlecity,chess,clifford,collapse,expansion,fifteen,football,he
 set CLIENTS=md,md_header,md_footer,cpp,go,js,php,python
 rem TODO set excitebike(rename elements,add info),icancode(js)(add info),expansion(add info)
 
-call %MVNW% clean compile exec:java -Dfile.encoding=UTF-8 -D"exec.mainClass"="com.codenjoy.dojo.client.generator.Runner" -D"exec.args"="%BASE% %GAMES% %CLIENTS%"
+call %MVNW% clean compile exec:java -Dfile.encoding=UTF-8 -D"exec.mainClass"="com.codenjoy.dojo.client.generator.ElementGeneratorRunner" -D"exec.args"="%BASE% %GAMES% %CLIENTS%"
 
 call lib :ask
