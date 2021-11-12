@@ -75,6 +75,14 @@ public class Runner {
                     base);
         }
 
+        if (!gamesSourcesPresent(base)) {
+            PrintUtils.printf("Please run this script on a fully cloned project c with submodules (with --recursive option)\n" +
+                            "    git clone --recursive https://github.com/codenjoyme/codenjoy.git\n",
+                    ERROR,
+                    base);
+            return;
+        }
+
         for (String game : games.split(",")) {
             System.out.println();
             if (!allGames.contains(game)) {
@@ -85,6 +93,18 @@ public class Runner {
                 new ElementGenerator(game, language).generateToFile(base);
             }
         }
+    }
+
+    private static boolean gamesSourcesPresent(String base) {
+        File file = new File(base);
+        while (!file.getName().equals("CodingDojo")) {
+            file = file.getParentFile();
+            if (file == null) {
+                return false;
+            }
+
+        }
+        return file.exists();
     }
 
     private static boolean isAllGames() {
