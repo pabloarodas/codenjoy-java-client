@@ -50,16 +50,6 @@ public class Board extends AbstractBoard<Element> {
         return size - 1 - y;
     }
 
-    public Collection<Point> getBarriers() {
-        Collection<Point> all = getWalls();
-        // add other barriers here
-        return removeDuplicates(all);
-    }
-
-    public Collection<Point> getWalls() {
-        return get(walls());
-    }
-
     public Point getHero() {
         List<Point> list = get(heroes());
         return (list.isEmpty()) ? null : list.get(0);
@@ -73,21 +63,55 @@ public class Board extends AbstractBoard<Element> {
         return get(enemyHeroes());
     }
 
+    public Collection<Point> getRobbers() {
+        return get(robbers());
+    }
+
+    public Collection<Point> getClues() {
+        return get(clues());
+    }
+
+    public Collection<Point> getPotions() {
+        return get(MASK_POTION);
+    }
+
+    public Collection<Point> getWalls() {
+        return get(walls());
+    }
+
+    public Collection<Point> getLadders() {
+        return get(ladders());
+    }
+
+    public Collection<Point> getPipes() {
+        return get(pipes());
+    }
+
+    public Collection<Point> getDoors() {
+        return get(doors());
+    }
+
+    public Collection<Point> getKeys() {
+        return get(keys());
+    }
+
     public boolean isGameOver() {
         return !get(HERO_DIE).isEmpty();
     }
 
-    public boolean isBarrierAt(Point pt) {
-        return getBarriers().contains(pt);
-    }
-
-    public boolean isRobberAt(Point pt) {
-        return is(pt, robbers());
+    public Collection<Point> getBarriers() {
+        Collection<Point> all = getWalls();
+        // add other barriers here
+        return removeDuplicates(all);
     }
 
     public boolean is(Point pt, Element... elements) {
         return getAllAt(pt).stream()
                 .anyMatch(el -> Arrays.asList(elements).contains(el));
+    }
+
+    public boolean isHeroAt(Point pt) {
+        return is(pt, heroes());
     }
 
     public boolean isOtherHeroAt(Point pt) {
@@ -98,12 +122,20 @@ public class Board extends AbstractBoard<Element> {
         return is(pt, enemyHeroes());
     }
 
-    public boolean isWall(Point pt) {
-        return is(pt, walls());
+    public boolean isRobberAt(Point pt) {
+        return is(pt, robbers());
     }
 
     public boolean isClue(Point pt) {
         return is(pt, clues());
+    }
+
+    public boolean isPotion(Point pt) {
+        return is(pt, MASK_POTION);
+    }
+
+    public boolean isWall(Point pt) {
+        return is(pt, walls());
     }
 
     public boolean isLadder(Point pt) {
@@ -113,4 +145,35 @@ public class Board extends AbstractBoard<Element> {
     public boolean isPipe(Point pt) {
         return is(pt, pipes());
     }
+
+    public boolean isDoor(Point pt) {
+        return is(pt, doors());
+    }
+
+    public boolean isKey(Point pt) {
+        return is(pt, keys());
+    }
+
+    public boolean isBarrierAt(Point pt) {
+        return getBarriers().contains(pt);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\n" +
+                        "Hero at: %s\n" +
+                        "Other heroes at: %s\n" +
+                        "Enemy heroes at: %s\n" +
+                        "Robbers at: %s\n" +
+                        "Mask potions at: %s\n" +
+                        "Keys at: %s\n",
+                boardAsString(),
+                getHero(),
+                getOtherHeroes(),
+                getEnemyHeroes(),
+                getRobbers(),
+                getPotions(),
+                getKeys());
+    }
+
 }

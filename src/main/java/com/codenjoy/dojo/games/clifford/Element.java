@@ -351,16 +351,11 @@ public enum Element implements CharElement {
          };
     }
 
-    public static Element[] openDoors() {
+    public static Element[] doors() {
          return new Element[]{
                 OPENED_DOOR_GOLD,
                 OPENED_DOOR_SILVER,
-                OPENED_DOOR_BRONZE
-         };
-    }
-
-    public static Element[] closedDoors() {
-         return new Element[]{
+                OPENED_DOOR_BRONZE,
                 CLOSED_DOOR_GOLD,
                 CLOSED_DOOR_SILVER,
                 CLOSED_DOOR_BRONZE
