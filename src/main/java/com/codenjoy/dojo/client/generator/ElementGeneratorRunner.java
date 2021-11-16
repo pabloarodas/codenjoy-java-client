@@ -61,7 +61,7 @@ public class ElementGeneratorRunner {
         } else {
             base = "";
             games = ALL_GAMES;
-            clients = "md,md_header,md_footer,cpp,go,js,php,python";
+            clients = "md,md_header,md_footer,cpp,go,js,php,python,csharp";
             printInfo("Runner");
         }
         if (isAllGames()) {

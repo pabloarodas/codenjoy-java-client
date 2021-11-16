@@ -90,6 +90,11 @@ public class ElementGeneratorTest {
     }
 
     @Test
+    public void shouldGenerate_testGame_csharpLanguage() {
+        assertEquals(new ElementGenerator("test", "csharp").generate());
+    }
+
+    @Test
     public void shouldGenerate_sampleGame_markdownLanguage() {
         assertEquals(new ElementGenerator("sample", "md").generate());
     }
