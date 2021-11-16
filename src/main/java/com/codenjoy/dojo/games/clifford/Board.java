@@ -71,6 +71,10 @@ public class Board extends AbstractBoard<Element> {
         return get(clues());
     }
 
+    public Collection<Point> getBackways() {
+        return get(BACKWAY);
+    }
+
     public Collection<Point> getPotions() {
         return get(MASK_POTION);
     }
@@ -128,6 +132,10 @@ public class Board extends AbstractBoard<Element> {
 
     public boolean isClue(Point pt) {
         return is(pt, clues());
+    }
+
+    public boolean isBackway(Point pt) {
+        return is(pt, BACKWAY);
     }
 
     public boolean isPotion(Point pt) {
