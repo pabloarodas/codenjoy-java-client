@@ -54,7 +54,7 @@ public class Go implements Template {
                 " * #L%\n" +
                 " */\n" +
                 "\n" +
-                "var Elements = map[string]rune{\n";
+                "var elements = map[string]rune{\n";
     }
 
     @Override

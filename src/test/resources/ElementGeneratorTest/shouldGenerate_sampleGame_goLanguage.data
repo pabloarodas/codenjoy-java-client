@@ -22,7 +22,7 @@ package sample
  * #L%
  */
 
-var Elements = map[string]rune{
+var elements = map[string]rune{
 
         // Empty place where the hero can go.
 
