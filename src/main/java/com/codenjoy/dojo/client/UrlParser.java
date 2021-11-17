@@ -62,8 +62,7 @@ public class UrlParser {
             context = urlParts[1];
         } catch (MalformedURLException e) {
             throw new RuntimeException("Please set url in format " +
-                    "'http://codenjoyDomainOrIP:8080/codenjoy-contest/" +
-                    "board/player/3edq63tw0bq4w4iem7nb?code=12345678901234567890'",
+                    "'http://127.0.0.1:8080/codenjoy-contest/board/player/0?code=000000000000'",
                     e);
         }
     }
