@@ -18,9 +18,6 @@ eval_echo "ARCH=tar"
 # Set to true if you want to ignore jdk and maven installation on the system
 eval_echo "[[ \"$INSTALL_LOCALLY\" == \"\" ]] && INSTALL_LOCALLY=true"
 
-eval_echo "[[ \"$SKIP_TESTS\" == \"\" ]]      && INSTALL_LOCALLY=true"
-eval_echo "[[ \"$INSTALL_LOCALLY\" == \"\" ]] && INSTALL_LOCALLY=true"
-
 eval_echo "[[ \"$INSTALL_LOCALLY\" == "true" ]] && JAVA_HOME="
 eval_echo "[[ \"$INSTALL_LOCALLY\" == "true" ]] && MAVEN_HOME="
 
