@@ -40,8 +40,15 @@ eval_echo_color() {
 }
 
 ask() {
-    color 94 "Press any key to continue"
-    read -p ""
+    ask_message $COLOR2 "Press any key to continue"
+}
+
+ask_result=""
+ask_message() {
+    color=$1
+    message=$2
+    color $color "$message"
+    read ask_result
 }
 
 sep() {
@@ -51,23 +58,29 @@ sep() {
 install() {
     cd $ROOT
 
-    eval_echo_color $COLOR3 "DEST_ZIP=$1.zip"
+
     eval_echo_color $COLOR3 "DEST=.$1"
     eval_echo_color $COLOR3 "URL=$2"
     eval_echo_color $COLOR3 "FOLDER=$3"
 
-    if test -f "$TOOLS/$DEST_ZIP"; then
-        eval_echo_color $COLOR3 "rm $TOOLS/$DEST_ZIP"
+    if [[ "$URL" == *zip ]]; then
+      eval_echo_color $COLOR3 "DEST_FILE=$1.zip"
+    else
+      eval_echo_color $COLOR3 "DEST_FILE=$1.tar.gz"
     fi
 
-    eval_echo_color $COLOR3 "curl -o $TOOLS/$DEST_ZIP $URL"
+    if test -f "$TOOLS/$DEST_FILE"; then
+        eval_echo_color $COLOR3 "rm $TOOLS/$DEST_FILE"
+    fi
+
+    eval_echo_color $COLOR3 "curl -o $TOOLS/$DEST_FILE $URL"
 
     eval_echo_color $COLOR3 "rm -rf $TOOLS/../$DEST"
 
     if [[ $FOLDER == "" ]]; then
-        eval_echo_color $COLOR3 "$ARCH -xf $TOOLS/$DEST_ZIP --directory $TOOLS/../$DEST"
+        eval_echo_color $COLOR3 "$ARCH -xf $TOOLS/$DEST_FILE --directory $TOOLS/../$DEST"
     else
-        eval_echo_color $COLOR3 "$ARCH -xf $TOOLS/$DEST_ZIP --directory $TOOLS/.."
+        eval_echo_color $COLOR3 "$ARCH -xf $TOOLS/$DEST_FILE --directory $TOOLS/.."
         sleep 1
         eval_echo_color $COLOR3 "mv $TOOLS/../$FOLDER $DEST"
     fi
