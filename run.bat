@@ -186,7 +186,8 @@ set OPTION=%1
     rem create executable jar
     call :eval_echo "%MVNW% compile assembly:single -Pjar-with-dependencies -DskipTests=%SKIP_TESTS%"
 
-    call :color "%CL_INFO%" "The executable file is located here: %ROOT%\target\client-exec.jar"
+    call :eval_echo "copy %ROOT%\target\client-exec.jar %ROOT%\"
+    call :color "%CL_INFO%" "The executable file is located here: %ROOT%\client-exec.jar"
 
     goto :eof
 
@@ -201,7 +202,7 @@ set OPTION=%1
     call :color "%CL_HEADER%" "Running client..."
 
     rem run jar
-    rem call :eval_echo "%JAVA% -Dfile.encoding=UTF-8 -jar %ROOT%\target\client-exec.jar `%GAME_TO_RUN%` `%BOARD_URL%`"
+    rem call :eval_echo "%JAVA% -Dfile.encoding=UTF-8 -jar %ROOT%\client-exec.jar `%GAME_TO_RUN%` `%BOARD_URL%`"
 
     rem build & run (without jar)
     call :eval_echo "%MVNW% clean compile exec:java -Dfile.encoding=UTF-8 -Dexec.mainClass=com.codenjoy.dojo.JavaRunner -Dexec.args=`%GAME_TO_RUN% %BOARD_URL%`"
