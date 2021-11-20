@@ -32,8 +32,10 @@ set OPTION=%1
     goto :start
 
 :eval_echo
-    call :color "%CL_COMMAND%" "%~1%"
-    call %~1%
+    set input=%~1%
+    call set command=%%input:`="%%
+    call :color "%CL_COMMAND%" "%input%"
+    call %command%
 
     goto :eof
 
@@ -210,9 +212,9 @@ set OPTION=%1
     call :color "%CL_HEADER%" "Running client..."
 
     rem run jar
-    call :eval_echo "%JAVA% -Dfile.encoding=UTF-8 -jar %ROOT%\app.jar '%GAME_TO_RUN%' '%BOARD_URL%'"
+    rem call :eval_echo "%JAVA% -Dfile.encoding=UTF-8 -jar %ROOT%\target\client-exec.jar `%GAME_TO_RUN%` `%BOARD_URL%`"
 
     rem build & run (without jar)
-    call :eval_echo "%MVNW% clean compile exec:java -Dfile.encoding=UTF-8 -D'exec.mainClass'='com.codenjoy.dojo.JavaRunner' -D'exec.args'='%GAME_TO_RUN% %BOARD_URL%'"
+    call :eval_echo "%MVNW% clean compile exec:java -Dfile.encoding=UTF-8 -Dexec.mainClass=com.codenjoy.dojo.JavaRunner -Dexec.args=`%GAME_TO_RUN% %BOARD_URL%`"
 
     goto :eof
