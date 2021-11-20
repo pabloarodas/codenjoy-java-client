@@ -197,7 +197,8 @@ set OPTION=%1
 
     rem create executable jar
     call :eval_echo "%MVNW% compile assembly:single -Pjar-with-dependencies -DskipTests=%SKIP_TESTS%"
-    call :eval_echo "echo F|xcopy /y %ROOT%\target\client-java-exec.jar %ROOT%\app.jar"
+
+    call :color "%CL_INFO%" "The executable file is located here: %ROOT%\target\client-exec.jar"
 
     goto :eof
 

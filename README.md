@@ -13,7 +13,7 @@ The entry point for starting a project is `com.codenjoy.dojo.Runner.main(args)`.
 You can pass the game type and token connection to the server as command-line arguments.
 Game parameters passed by arguments at startup have a higher priority than those defined in the code.
 
-The archive is run with the command `java -jar target/client-java-exec.jar [<game>] [<url>]`
+The archive is run with the command `java -jar target/client-exec.jar [<game>] [<url>]`
 
 # How does it work?
 The elements on the map are defined in `com.codenjoy.dojo.games.<gamename>.Element`. They determine the meaning of a particular symbol.
