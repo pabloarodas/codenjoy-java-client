@@ -64,8 +64,8 @@ public class JavaRunner {
     private void printInfo(String source) {
         PrintUtils.printf(
                 "Got from %s:\n" +
-                        "\t 'GAME': '%s'\n" +
-                        "\t 'URL':  '%s'\n",
+                "\t 'GAME': '%s'\n" +
+                "\t 'URL':  '%s'\n",
                 INFO,
                 source,
                 game,
