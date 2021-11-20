@@ -163,8 +163,6 @@ set OPTION=%1
     set ARCH_URL=https://aka.ms/download-jdk/microsoft-jdk-11.0.11.9.1-windows-x64.zip
     set ARCH_FOLDER=jdk-11.0.11+9
 
-    set JAVA_CLIENT_HOME=%ROOT%
-
     goto :eof
 
 :download
