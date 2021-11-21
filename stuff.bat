@@ -60,8 +60,6 @@ call run :init_colors
     goto :eof
 
 :build
-    call :version
-        
     rem install jar to maven local repo
     call run :eval_echo ‘%MVNW% clean install -DskipTests=%SKIP_TESTS%‘
 
