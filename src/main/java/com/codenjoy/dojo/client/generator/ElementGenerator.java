@@ -43,7 +43,7 @@ public class ElementGenerator {
     public static final List<String> SUBREPO_GAMES = Arrays.asList(
             "chess", "clifford", "excitebike",
             "japanese", "mollymage", "selfdefense",
-            "vacuum", "xonix");
+            "vacuum", "verland", "xonix");
 
     public static final List<String> ENGLISH_PRESENT = Arrays.asList(
             "a2048", "clifford", "kata", "snake",
