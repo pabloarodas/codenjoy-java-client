@@ -205,7 +205,7 @@ public enum Element implements CharElement {
     CLOSED_DOOR_BRONZE('B',     "Closed bronze gates. Can only be opened " +
                                 "with a bronze key."),
 
-    KEY_GOLD('+',               "Bronze key. Helps open/close golden gates. " +
+    KEY_GOLD('+',               "Golden key. Helps open/close golden gates. " +
                                 "The key can only be used once."),
 
     KEY_SILVER('-',             "Silver key. Helps open/close silver gates. " +
