@@ -26,6 +26,9 @@ package com.codenjoy.dojo.games.verland;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import static com.codenjoy.dojo.games.verland.Element.*;
 
 /**
@@ -56,6 +59,55 @@ public class Board extends AbstractBoard<Element> {
 
     public boolean isWin() {
         return !(isGameOver() || get(HERO_HEALING).isEmpty());
+    }
+
+    public Collection<Point> getMyHeroes() {
+        return get(myHeroes());
+    }
+
+    public Collection<Point> getOtherHeroes() {
+        return get(otherHeroes());
+    }
+
+    public Collection<Point> getEnemyHeroes() {
+        return get(enemyHeroes());
+    }
+
+    public Collection<Point> getOtherStuff() {
+        return get(otherStuff());
+    }
+
+    public boolean is(Point point, Element... elements) {
+        return getAllAt(point).stream()
+                .anyMatch(element -> Arrays.asList(elements).contains(element));
+    }
+
+    public boolean isHeroAt(Point pt) {
+        return is(pt, myHeroes());
+    }
+
+    public boolean isOtherHeroAt(Point pt) {
+        return is(pt, otherHeroes());
+    }
+
+    public boolean isEnemyHeroAt(Point pt) {
+        return is(pt, enemyHeroes());
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\n" +
+                        "Hero at: %s\n" +
+                        "Other heroes at: %s\n" +
+                        "Enemy heroes at: %s\n" +
+                        "My heroes at: %s\n" +
+                        "Other stuff at: %s\n",
+                getMe(),
+                getOtherHeroes(),
+                getEnemyHeroes(),
+                boardAsString(),
+                getMyHeroes(),
+                getOtherStuff());
     }
 
 }

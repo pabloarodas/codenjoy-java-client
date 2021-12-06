@@ -142,4 +142,38 @@ public enum Element implements CharElement {
         }
         throw new IllegalArgumentException("No such element for " + ch);
     }
+
+    public static Element[] myHeroes() {
+        return new Element[]{
+                HERO_DEAD,
+                HERO,
+                HERO_CURE,
+                HERO_HEALING
+        };
+    }
+
+    public static Element[] otherHeroes() {
+        return new Element[]{
+                OTHER_HERO_DEAD,
+                OTHER_HERO,
+                OTHER_HERO_CURE,
+                OTHER_HERO_HEALING
+        };
+    }
+
+    public static Element[] enemyHeroes() {
+        return new Element[]{
+                ENEMY_HERO_DEAD,
+                ENEMY_HERO,
+                ENEMY_HERO_HEALING
+        };
+    }
+
+    public static Element[] otherStuff() {
+        return new Element[]{
+                INFECTION,
+                HIDDEN,
+                PATHLESS
+        };
+    }
 }
