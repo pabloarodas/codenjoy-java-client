@@ -61,7 +61,7 @@ public class Board extends AbstractBoard<Element> {
         return !(isGameOver() || get(HERO_HEALING).isEmpty());
     }
 
-    public Collection<Point> getMyHeroes() {
+    public Collection<Point> getHeroes() {
         return get(myHeroes());
     }
 
@@ -113,7 +113,7 @@ public class Board extends AbstractBoard<Element> {
                 getOtherHeroes(),
                 getEnemyHeroes(),
                 boardAsString(),
-                getMyHeroes(),
+                getHeroes(),
                 getOtherStuff());
     }
 
