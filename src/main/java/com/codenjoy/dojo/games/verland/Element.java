@@ -176,4 +176,18 @@ public enum Element implements CharElement {
                 PATHLESS
         };
     }
+
+    public static Element[] infectionMarkers() {
+        return new Element[]{
+                CLEAR,
+                ONE_CONTAGION,
+                TWO_CONTAGIONS,
+                THREE_CONTAGIONS,
+                FOUR_CONTAGIONS,
+                FIVE_CONTAGIONS,
+                SIX_CONTAGIONS,
+                SEVEN_CONTAGIONS,
+                EIGHT_CONTAGIONS
+        };
+    }
 }

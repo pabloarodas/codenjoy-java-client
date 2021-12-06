@@ -82,16 +82,23 @@ public class Board extends AbstractBoard<Element> {
                 .anyMatch(element -> Arrays.asList(elements).contains(element));
     }
 
-    public boolean isHeroAt(Point pt) {
-        return is(pt, myHeroes());
+    public boolean isHeroAt(Point point) {
+        return is(point, myHeroes());
     }
 
-    public boolean isOtherHeroAt(Point pt) {
-        return is(pt, otherHeroes());
+    public boolean isOtherHeroAt(Point point) {
+        return is(point, otherHeroes());
     }
 
-    public boolean isEnemyHeroAt(Point pt) {
-        return is(pt, enemyHeroes());
+    public boolean isEnemyHeroAt(Point point) {
+        return is(point, enemyHeroes());
+    }
+
+    public int countContagions(Point point) {
+        Element marker = getAllAt(point).stream()
+                .filter(element -> Arrays.stream(infectionMarkers()).anyMatch(e -> e == element))
+                .findAny().orElse(null);
+        return marker != null ? marker.value() : 0;
     }
 
     @Override
