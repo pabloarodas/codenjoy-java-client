@@ -143,7 +143,7 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("No such element for " + ch);
     }
 
-    public static Element[] myHeroes() {
+    public static Element[] heroes() {
         return new Element[]{
                 HERO_DEAD,
                 HERO,

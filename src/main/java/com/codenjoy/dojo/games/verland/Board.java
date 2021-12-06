@@ -62,7 +62,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Collection<Point> getHeroes() {
-        return get(myHeroes());
+        return get(heroes());
     }
 
     public Collection<Point> getOtherHeroes() {
@@ -83,7 +83,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isHeroAt(Point point) {
-        return is(point, myHeroes());
+        return is(point, heroes());
     }
 
     public boolean isOtherHeroAt(Point point) {
@@ -107,12 +107,12 @@ public class Board extends AbstractBoard<Element> {
                         "Hero at: %s\n" +
                         "Other heroes at: %s\n" +
                         "Enemy heroes at: %s\n" +
-                        "My heroes at: %s\n" +
-                        "Other stuff at: %s\n",
+                        "Heroes at: %s\n" +
+                        "Other stuff at: %s",
+                boardAsString(),
                 getMe(),
                 getOtherHeroes(),
                 getEnemyHeroes(),
-                boardAsString(),
                 getHeroes(),
                 getOtherStuff());
     }
