@@ -106,7 +106,7 @@ public class Board extends AbstractBoard<Element> {
 
     public int countContagions(Point point) {
         Element element = getAt(point);
-        return Arrays.stream(infectionMarkers()).anyMatch(e -> e == element) ? element.value() : 0;
+        return Arrays.asList(infectionMarkers()).contains(element) ? element.value() : 0;
     }
 
     @Override
