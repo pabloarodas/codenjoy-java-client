@@ -156,32 +156,32 @@ public class BoardTest {
 
     @Test
     public void shouldWork_isAt() {
-        assertTrue(board.isAt(1, 5, INFECTION));
-        assertFalse(board.isAt(2, 1, INFECTION));
+        assertEquals(true, board.isAt(1, 5, INFECTION));
+        assertEquals(false, board.isAt(2, 1, INFECTION));
 
-        assertTrue(board.isAt(1, 5, OTHER_HERO_DEAD, INFECTION));
-        assertFalse(board.isAt(2, 1, INFECTION, OTHER_HERO_DEAD));
+        assertEquals(true, board.isAt(1, 5, OTHER_HERO_DEAD, INFECTION));
+        assertEquals(false, board.isAt(2, 1, INFECTION, OTHER_HERO_DEAD));
     }
 
     @Test
     public void shouldWork_isAt_point() {
-        assertTrue(board.isAt(pt(1, 5), INFECTION));
-        assertFalse(board.isAt(pt(2, 1), INFECTION));
+        assertEquals(true, board.isAt(pt(1, 5), INFECTION));
+        assertEquals(false, board.isAt(pt(2, 1), INFECTION));
 
-        assertTrue(board.isAt(pt(1, 5), OTHER_HERO_DEAD, INFECTION));
-        assertFalse(board.isAt(pt(2, 1), INFECTION, OTHER_HERO_DEAD));
+        assertEquals(true, board.isAt(pt(1, 5), OTHER_HERO_DEAD, INFECTION));
+        assertEquals(false, board.isAt(pt(2, 1), INFECTION, OTHER_HERO_DEAD));
     }
 
     @Test
     public void shouldWork_isNear() {
-        assertTrue(board.isNear(1, 1, PATHLESS));
-        assertFalse(board.isNear(1, 7, OTHER_HERO_DEAD));
+        assertEquals(true, board.isNear(1, 1, PATHLESS));
+        assertEquals(false, board.isNear(1, 7, OTHER_HERO_DEAD));
     }
 
     @Test
     public void shouldWork_isNear_point() {
-        assertTrue(board.isNear(pt(1, 1), PATHLESS));
-        assertFalse(board.isNear(pt(1, 7), OTHER_HERO_DEAD));
+        assertEquals(true, board.isNear(pt(1, 1), PATHLESS));
+        assertEquals(false, board.isNear(pt(1, 7), OTHER_HERO_DEAD));
     }
 
     @Test
@@ -194,23 +194,23 @@ public class BoardTest {
 
     @Test
     public void shouldWork_isGameOver() {
-        assertFalse(board.isGameOver());
-        assertTrue(board("X").isGameOver());
+        assertEquals(false,board.isGameOver());
+        assertEquals(true, board("X").isGameOver());
     }
 
     @Test
     public void shouldWork_IsHeroAt() {
-        assertTrue(board.isHeroAt(pt(1,4)));;
+        assertEquals(true, board.isHeroAt(pt(1,4)));;
     }
 
     @Test
     public void shouldWork_IsOtherHeroAt() {
-        assertTrue(board.isOtherHeroAt(pt(3,7)));;
+        assertEquals(true, board.isOtherHeroAt(pt(3,7)));;
     }
 
     @Test
     public void shouldWork_IsEnemyHeroAt() {
-        assertTrue(board.isEnemyHeroAt(pt(4,3)));;
+        assertEquals(true, board.isEnemyHeroAt(pt(4,3)));;
     }
 
     @Test
@@ -223,7 +223,7 @@ public class BoardTest {
 
     @Test
     public void shouldWork_IsWin() {
-        assertTrue(board.isWin());
-        assertFalse(board("X").isWin());
+        assertEquals(true, board.isWin());
+        assertEquals(false, board("X").isWin());
     }
 }
