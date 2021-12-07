@@ -23,8 +23,6 @@ package com.codenjoy.dojo.games.verland;
  */
 
 
-import com.codenjoy.dojo.games.mollymage.Board;
-import com.codenjoy.dojo.games.mollymage.YourSolver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Test;
@@ -39,5 +37,19 @@ public class YourSolverTest {
 
     private void assertB(String board, Direction direction) {
         assertEquals(direction.toString(), solver.get((Board) new Board().forString(board)));
+    }
+
+    @Test
+    public void should_when() {
+        assertB("☼☼☼☼☼☼☼☼☼" +
+                        "☼1 Y   y☼" +
+                        "☼*2  x  ☼" +
+                        "☼o 3 ♠ +☼" +
+                        "☼♥  4   ☼" +
+                        "☼   Z   ☼" +
+                        "☼       ☼" +
+                        "☼  !    ☼" +
+                        "☼☼☼☼☼☼☼☼☼",
+                Direction.UP);
     }
 }

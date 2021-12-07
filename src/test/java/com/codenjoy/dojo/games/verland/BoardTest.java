@@ -23,13 +23,12 @@ package com.codenjoy.dojo.games.verland;
  */
 
 
-import com.codenjoy.dojo.games.verland.Board;
-import com.codenjoy.dojo.games.verland.Element;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.codenjoy.dojo.games.verland.Element.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class BoardTest {
 
@@ -49,7 +48,7 @@ public class BoardTest {
                 "☼♥  4   ☼" +
                 "☼   Z   ☼" +
                 "☼       ☼" +
-                "☼X !    ☼" +
+                "☼  !    ☼" +
                 "☼☼☼☼☼☼☼☼☼");
     }
 
@@ -63,14 +62,168 @@ public class BoardTest {
            /*4*/"☼♥  4   ☼\n" +
            /*3*/"☼   Z   ☼\n" +
            /*2*/"☼       ☼\n" +
-           /*1*/"☼X !    ☼\n" +
+           /*1*/"☼  !    ☼\n" +
            /*0*/"☼☼☼☼☼☼☼☼☼\n" +
                /*012345678*/
                 "\n" +
                 "Hero at: [1,4]\n" +
                 "Other heroes at: [[3,7], [5,5], [7,5], [7,7]]\n" +
                 "Enemy heroes at: [[4,3]]\n" +
-                "Heroes at: [[1,1], [1,4], [3,1], [5,6]]\n" +
-                "Other stuff at: [[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [0,7], [0,8], [1,0], [1,5], [1,6], [1,8], [2,0], [2,8], [3,0], [3,8], [4,0], [4,8], [5,0], [5,8], [6,0], [6,8], [7,0], [7,8], [8,0], [8,1], [8,2], [8,3], [8,4], [8,5], [8,6], [8,7], [8,8]]", board.toString());
+                "Other stuff at: [[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [0,7], [0,8], [1,0], [1,5], " +
+                        "[1,6], [1,8], [2,0], [2,8], [3,0], [3,8], [4,0], [4,8], [5,0], [5,8], [6,0], [6,8], " +
+                        "[7,0], [7,8], [8,0], [8,1], [8,2], [8,3], [8,4], [8,5], [8,6], [8,7], [8,8]]\n", board.toString());
+    }
+
+    @Test
+    public void shouldWork_getAt() {
+        assertEquals(HERO, board.getAt(1, 4));
+        assertEquals(OTHER_HERO_HEALING, board.getAt(7, 7));
+    }
+
+    @Test
+    public void shouldWork_getAt_point() {
+        assertEquals(HERO, board.getAt(pt(1, 4)));
+        assertEquals(OTHER_HERO_HEALING, board.getAt(pt(7, 7)));
+    }
+
+    @Test
+    public void shouldWork_getNear() {
+        assertEquals("[ ,  ,  ,  ,  , ☼, ☼, ☼]", board.getNear(7, 3).toString());
+        assertEquals("[☼, 1, ☼]", board.getNear(0, 8).toString());
+        assertEquals("[ ,  ,  , ♠,  ,  ,  ,  ]", board.getNear(5, 6).toString());
+    }
+
+    @Test
+    public void shouldWork_getNear_point() {
+        assertEquals("[ ,  ,  ,  ,  , ☼, ☼, ☼]", board.getNear(pt(7, 3)).toString());
+        assertEquals("[☼, 1, ☼]", board.getNear(pt(0, 8)).toString());
+        assertEquals("[ ,  ,  , ♠,  ,  ,  ,  ]", board.getNear(pt(5, 6)).toString());
+    }
+
+    @Test
+    public void shouldWork_getAt_outOfBoard() {
+        assertEquals(PATHLESS, board.getAt(-1, 1));
+        assertEquals(PATHLESS, board.getAt(1, -1));
+        assertEquals(PATHLESS, board.getAt(100, 1));
+        assertEquals(PATHLESS, board.getAt(1, 100));
+
+        assertEquals(PATHLESS, board.getAt(pt(-1, 1)));
+        assertEquals(PATHLESS, board.getAt(pt(1, -1)));
+        assertEquals(PATHLESS, board.getAt(pt(100, 1)));
+        assertEquals(PATHLESS, board.getAt(pt(1, 100)));
+    }
+
+    @Test
+    public void shouldWork_getOtherHeroes() {
+        assertEquals("[[3,7], [5,5], [7,5], [7,7]]", board.getOtherHeroes().toString());
+    }
+
+    @Test
+    public void shouldWork_getEnemyHeroes() {
+        assertEquals("[[4,3]]", board.getEnemyHeroes().toString());
+    }
+
+    @Test
+    public void shouldWork_getHero() {
+        assertEquals("[1,4]", board.getHero().toString());
+    }
+
+    @Test
+    public void shouldWork_countNear() {
+        assertEquals(1, board.countNear(2, 5, INFECTION));
+        assertEquals(1, board.countNear(5, 3, ENEMY_HERO_DEAD));
+        assertEquals(1, board.countNear(2, 7, OTHER_HERO_DEAD));
+
+        assertEquals(5, board.countNear(1, 7, PATHLESS));
+        assertEquals(5, board.countNear(1, 1, PATHLESS));
+        assertEquals(5, board.countNear(7, 7, PATHLESS));
+        assertEquals(5, board.countNear(7, 1, PATHLESS));
+        assertEquals(3, board.countNear(1, 6, PATHLESS));
+    }
+
+    @Test
+    public void shouldWork_countNear_point() {
+        assertEquals(1, board.countNear(pt(2, 5), INFECTION));
+        assertEquals(1, board.countNear(pt(5, 3), ENEMY_HERO_DEAD));
+        assertEquals(1, board.countNear(pt(2, 7), OTHER_HERO_DEAD));
+
+        assertEquals(5, board.countNear(pt(1, 7), PATHLESS));
+        assertEquals(5, board.countNear(pt(1, 1), PATHLESS));
+        assertEquals(5, board.countNear(pt(7, 7), PATHLESS));
+        assertEquals(5, board.countNear(pt(7, 1), PATHLESS));
+        assertEquals(3, board.countNear(pt(1, 6), PATHLESS));
+    }
+
+    @Test
+    public void shouldWork_isAt() {
+        assertTrue(board.isAt(1, 5, INFECTION));
+        assertFalse(board.isAt(2, 1, INFECTION));
+
+        assertTrue(board.isAt(1, 5, OTHER_HERO_DEAD, INFECTION));
+        assertFalse(board.isAt(2, 1, INFECTION, OTHER_HERO_DEAD));
+    }
+
+    @Test
+    public void shouldWork_isAt_point() {
+        assertTrue(board.isAt(pt(1, 5), INFECTION));
+        assertFalse(board.isAt(pt(2, 1), INFECTION));
+
+        assertTrue(board.isAt(pt(1, 5), OTHER_HERO_DEAD, INFECTION));
+        assertFalse(board.isAt(pt(2, 1), INFECTION, OTHER_HERO_DEAD));
+    }
+
+    @Test
+    public void shouldWork_isNear() {
+        assertTrue(board.isNear(1, 1, PATHLESS));
+        assertFalse(board.isNear(1, 7, OTHER_HERO_DEAD));
+    }
+
+    @Test
+    public void shouldWork_isNear_point() {
+        assertTrue(board.isNear(pt(1, 1), PATHLESS));
+        assertFalse(board.isNear(pt(1, 7), OTHER_HERO_DEAD));
+    }
+
+    @Test
+    public void shouldWork_getWalls() {
+        assertEquals("[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [0,7], [0,8], " +
+                "[1,0], [1,8], [2,0], [2,8], [3,0], [3,8], [4,0], [4,8], [5,0], [5,8], " +
+                "[6,0], [6,8], [7,0], [7,8], [8,0], [8,1], [8,2], [8,3], [8,4], [8,5], " +
+                "[8,6], [8,7], [8,8]]", board.getWalls().toString());
+    }
+
+    @Test
+    public void shouldWork_isGameOver() {
+        assertFalse(board.isGameOver());
+        assertTrue(board("X").isGameOver());
+    }
+
+    @Test
+    public void shouldWork_IsHeroAt() {
+        assertTrue(board.isHeroAt(pt(1,4)));;
+    }
+
+    @Test
+    public void shouldWork_IsOtherHeroAt() {
+        assertTrue(board.isOtherHeroAt(pt(3,7)));;
+    }
+
+    @Test
+    public void shouldWork_IsEnemyHeroAt() {
+        assertTrue(board.isEnemyHeroAt(pt(4,3)));;
+    }
+
+    @Test
+    public void shouldWork_CountContagions() {
+        assertEquals(board.countContagions(pt(1,7)),1);
+        assertEquals(board.countContagions(pt(2,6)),2);
+        assertEquals(board.countContagions(pt(3,5)),3);
+        assertEquals(board.countContagions(pt(4,4)),4);
+    }
+
+    @Test
+    public void shouldWork_IsWin() {
+        assertTrue(board.isWin());
+        assertFalse(board("X").isWin());
     }
 }
