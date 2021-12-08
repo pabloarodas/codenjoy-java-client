@@ -100,6 +100,7 @@ public class SmokeUtils {
         }
 
         try (FileWriter writer = new FileWriter(actualFile.getAbsolutePath(), StandardCharsets.UTF_8)) {
+            data = fixOSEndLine(data);
             writer.write(data);
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,10 +109,16 @@ public class SmokeUtils {
 
     private static String load(File file) {
         try {
-            return Files.readString(file.toPath());
+            String data = Files.readString(file.toPath());
+            data = fixOSEndLine(data);
+            return data;
         } catch (IOException e) {
             e.printStackTrace();
             return StringUtils.EMPTY;
         }
+    }
+
+    private static String fixOSEndLine(String data) {
+        return data.replace(System.lineSeparator(), "\n");
     }
 }
