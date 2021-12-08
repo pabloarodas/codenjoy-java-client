@@ -42,15 +42,11 @@ public class YourSolverTest {
     @Test
     public void should_when() {
         assertB(
-            "☼☼☼☼☼☼☼☼☼" +
-	    "☼1 Y   y☼" +
-	    "☼*2  x  ☼" +
-	    "☼o 3 ♠ +☼" +
-	    "☼♥  4   ☼" +
-	    "☼   Z   ☼" +
-	    "☼       ☼" +
-	    "☼  !    ☼" +
-	    "☼☼☼☼☼☼☼☼☼",
+            "☼☼☼☼☼\n" +
+            "☼***☼\n" +
+            "☼1♥*☼\n" +
+            "☼!**☼\n" +
+            "☼☼☼☼☼\n",
                 Direction.UP);
     }
 }

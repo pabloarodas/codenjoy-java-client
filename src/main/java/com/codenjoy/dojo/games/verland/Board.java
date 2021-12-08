@@ -30,7 +30,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import static com.codenjoy.dojo.games.verland.Element.heroes;
 import static com.codenjoy.dojo.games.verland.Element.*;
 
 /**
@@ -68,7 +67,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isWin() {
-        return !(isGameOver() || get(HERO_HEALING).isEmpty());
+        return !isGameOver() && !get(HERO_HEALING).isEmpty();
     }
 
     public Collection<Point> getOtherHeroes() {
