@@ -26,6 +26,11 @@ package com.codenjoy.dojo.games.verland;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import static com.codenjoy.dojo.games.verland.Element.heroes;
 import static com.codenjoy.dojo.games.verland.Element.*;
 
 /**
@@ -46,8 +51,16 @@ public class Board extends AbstractBoard<Element> {
         return size - 1 - y;
     }
 
-    public Point getMe() {
-        return get(HERO).get(0);
+    public Point getHero() {
+        List<Point> list = get(heroes());
+        return (list.isEmpty()) ? null : list.get(0);
+    }
+
+    public Element getAt(int x, int y) {
+        if (isOutOfField(x, y)) {
+            return PATHLESS;
+        }
+        return super.getAt(x, y);
     }
 
     public boolean isGameOver() {
@@ -56,6 +69,57 @@ public class Board extends AbstractBoard<Element> {
 
     public boolean isWin() {
         return !(isGameOver() || get(HERO_HEALING).isEmpty());
+    }
+
+    public Collection<Point> getOtherHeroes() {
+        return get(otherHeroes());
+    }
+
+    public Collection<Point> getEnemyHeroes() {
+        return get(enemyHeroes());
+    }
+
+    public Collection<Point> getOtherStuff() {
+        return get(otherStuff());
+    }
+
+    public Collection<Point> getWalls() {
+        return get(PATHLESS);
+    }
+
+    public boolean is(Point point, Element... elements) {
+        return getAllAt(point).stream()
+                .anyMatch(element -> Arrays.asList(elements).contains(element));
+    }
+
+    public boolean isHeroAt(Point point) {
+        return is(point, heroes());
+    }
+
+    public boolean isOtherHeroAt(Point point) {
+        return is(point, otherHeroes());
+    }
+
+    public boolean isEnemyHeroAt(Point point) {
+        return is(point, enemyHeroes());
+    }
+
+    public int countContagions(Point point) {
+        return is(point, infectionMarkers()) ? getAt(point).value() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\n" +
+                        "Hero at: %s\n" +
+                        "Other heroes at: %s\n" +
+                        "Enemy heroes at: %s\n" +
+                        "Other stuff at: %s\n",
+                boardAsString(),
+                getHero(),
+                getOtherHeroes(),
+                getEnemyHeroes(),
+                getOtherStuff());
     }
 
 }
