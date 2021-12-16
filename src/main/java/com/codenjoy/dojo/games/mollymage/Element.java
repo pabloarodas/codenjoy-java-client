@@ -239,7 +239,7 @@ public enum Element implements CharElement {
     public static Element[] ghosts() {
         return new Element[]{
                 GHOST,
-                DEAD_GHOST,
+                //DEAD_GHOST,
         };
     }
 
@@ -252,7 +252,7 @@ public enum Element implements CharElement {
     public static Element[] treasureBoxes() {
         return new Element[]{
                 TREASURE_BOX,
-                OPENING_TREASURE_BOX,
+                //OPENING_TREASURE_BOX,
         };
     }
 
@@ -265,7 +265,7 @@ public enum Element implements CharElement {
     public static Element[] barriers() {
         return new Element[]{
                 GHOST,
-                DEAD_GHOST,
+                //DEAD_GHOST,
                 WALL,
                 POTION_TIMER_1,
                 POTION_TIMER_2,
@@ -276,7 +276,7 @@ public enum Element implements CharElement {
                 OTHER_POTION_HERO,
                 ENEMY_POTION_HERO,
                 TREASURE_BOX,
-                OPENING_TREASURE_BOX,
+                //OPENING_TREASURE_BOX,
                 OTHER_HERO,
                 OTHER_POTION_HERO,
                 OTHER_DEAD_HERO,

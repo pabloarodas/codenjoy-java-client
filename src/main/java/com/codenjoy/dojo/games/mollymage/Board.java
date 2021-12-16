@@ -181,7 +181,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isBarrierAt(Point pt) {
-        return getBarriers().contains(pt);
+        return isAt(pt, barriers());
     }
 
     @Override
