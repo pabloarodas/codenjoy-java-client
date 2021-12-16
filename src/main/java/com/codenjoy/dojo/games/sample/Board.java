@@ -26,6 +26,7 @@ package com.codenjoy.dojo.games.sample;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
+import java.util.Collection;
 import java.util.List;
 
 import static com.codenjoy.dojo.games.sample.Element.*;
@@ -80,12 +81,8 @@ public class Board extends AbstractBoard<Element> {
         return get(gold());
     }
 
-    public List<Point> getBarriers() {
-        List<Point> all = getWalls();
-
-        // add other barriers here
-
-        return removeDuplicates(all);
+    public Collection<Point> getBarriers() {
+       return get(barriers());
     }
 
     public boolean isHeroAt(Point pt) {
@@ -109,7 +106,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isBarrierAt(Point pt) {
-        return getBarriers().contains(pt);
+        return isAt(pt, barriers());
     }
 
     @Override

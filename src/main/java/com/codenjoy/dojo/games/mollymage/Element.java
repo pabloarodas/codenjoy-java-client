@@ -261,4 +261,28 @@ public enum Element implements CharElement {
                 BLAST,
         };
     }
+
+    public static Element[] barriers() {
+        return new Element[]{
+                GHOST,
+                DEAD_GHOST,
+                WALL,
+                POTION_TIMER_1,
+                POTION_TIMER_2,
+                POTION_TIMER_3,
+                POTION_TIMER_4,
+                POTION_TIMER_5,
+                POTION_HERO,
+                OTHER_POTION_HERO,
+                ENEMY_POTION_HERO,
+                TREASURE_BOX,
+                OPENING_TREASURE_BOX,
+                OTHER_HERO,
+                OTHER_POTION_HERO,
+                OTHER_DEAD_HERO,
+                ENEMY_HERO,
+                ENEMY_POTION_HERO,
+                ENEMY_DEAD_HERO,
+        };
+    }
 }

@@ -28,7 +28,9 @@ import com.codenjoy.dojo.services.printer.CharElement;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
@@ -88,10 +90,6 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
 
     public int size() {
         return size;
-    }
-
-    public static List<Point> removeDuplicates(Collection<Point> all) {
-        return new ArrayList<>(new TreeSet<>(all));
     }
 
     private void getAnd(Function<Point, Boolean> function, int numLayer, E... elements) {

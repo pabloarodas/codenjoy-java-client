@@ -133,4 +133,13 @@ public enum Element implements CharElement {
         };
     }
 
+    public static Element[] barriers() {
+        return new Element[]{
+                WALL,
+                BOMB,
+                OTHER_HERO,
+                OTHER_DEAD_HERO,
+        };
+    }
+
 }

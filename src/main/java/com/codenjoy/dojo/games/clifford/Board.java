@@ -114,11 +114,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Collection<Point> getBarriers() {
-        Collection<Point> all = getWalls();
-
-        // add other barriers here
-
-        return removeDuplicates(all);
+        return get(barriers());
     }
 
     public boolean isHeroAt(Point pt) {
@@ -174,7 +170,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isBarrierAt(Point pt) {
-        return getBarriers().contains(pt);
+        return isAt(pt, barriers());
     }
 
     @Override

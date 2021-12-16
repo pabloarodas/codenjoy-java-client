@@ -23,14 +23,11 @@ package com.codenjoy.dojo.client;
  */
 
 
-import com.codenjoy.dojo.services.Point;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
 import static org.junit.Assert.assertEquals;
 
 public class AbstractLayeredBoardTest {
@@ -411,12 +408,4 @@ public class AbstractLayeredBoardTest {
         assertEquals("[[1,1]]",
                 board.get(LAYER_2, Element.THREE).toString());
     }
-
-    @Test
-    public void shouldWorks_removeDuplicates() {
-        List<Point> input = Arrays.asList(pt(1, 1), pt(1, 2), pt(2, 2), pt(1, 1));
-
-        assertEquals("[[1,1], [1,2], [2,2]]", AbstractBoard.removeDuplicates(input).toString());
-    }
-
 }

@@ -28,6 +28,7 @@ import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static com.codenjoy.dojo.games.mollymage.Element.*;
@@ -119,7 +120,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     private List<Point> getFutureBlasts(Point pt, Direction direction) {
-        List<Point> barriers = getBarriers();
+        Collection<Point> barriers = getBarriers();
 
         List<Point> result = new ArrayList<>();
         for (int index = 0; index < BLAST_RANGE; index++) {
@@ -135,18 +136,8 @@ public class Board extends AbstractBoard<Element> {
         return result;
     }
 
-    public List<Point> getBarriers() {
-        List<Point> result = getGhosts();
-
-        result.addAll(getWalls());
-        result.addAll(getPotions());
-        result.addAll(getTreasureBoxes());
-        result.addAll(getOtherHeroes());
-        result.addAll(getEnemyHeroes());
-
-        // add other barriers here
-
-        return removeDuplicates(result);
+    public Collection<Point> getBarriers() {
+        return get(barriers());
     }
 
     public boolean isHeroAt(Point pt) {
