@@ -252,6 +252,7 @@ public enum Element implements CharElement {
     public static Element[] treasureBoxes() {
         return new Element[]{
                 TREASURE_BOX,
+                OPENING_TREASURE_BOX,
         };
     }
 
