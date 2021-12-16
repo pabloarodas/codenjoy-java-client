@@ -25,6 +25,14 @@ package com.codenjoy.dojo.games.clifford;
 import com.codenjoy.dojo.client.Utils;
 import org.junit.Test;
 
+import java.util.AbstractMap;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+import static java.util.stream.Collectors.toMap;
+import static org.apache.commons.lang3.StringUtils.rightPad;
 import static org.junit.Assert.assertEquals;
 
 public class ElementTest {
@@ -105,5 +113,93 @@ public class ElementTest {
                     "ROBBER_RIGHT[(]          =robber\n" +
                     "STONE[☼]                 =wall",
                 Utils.elements(Element.values()));
+    }
+
+    @Test
+    public void testGetMask() {
+        assertEquals("HERO_DIE            =HERO_MASK_DIE\n" +
+                    "HERO_LADDER         =HERO_MASK_LADDER\n" +
+                    "HERO_LEFT           =HERO_MASK_LEFT\n" +
+                    "HERO_RIGHT          =HERO_MASK_RIGHT\n" +
+                    "HERO_FALL           =HERO_MASK_FALL\n" +
+                    "HERO_PIPE           =HERO_MASK_PIPE\n" +
+                    "HERO_PIT            =HERO_MASK_PIT\n" +
+                    "OTHER_HERO_DIE      =OTHER_HERO_MASK_DIE\n" +
+                    "OTHER_HERO_LADDER   =OTHER_HERO_MASK_LADDER\n" +
+                    "OTHER_HERO_LEFT     =OTHER_HERO_MASK_LEFT\n" +
+                    "OTHER_HERO_RIGHT    =OTHER_HERO_MASK_RIGHT\n" +
+                    "OTHER_HERO_FALL     =OTHER_HERO_MASK_FALL\n" +
+                    "OTHER_HERO_PIPE     =OTHER_HERO_MASK_PIPE\n" +
+                    "OTHER_HERO_PIT      =OTHER_HERO_MASK_PIT\n" +
+                    "ENEMY_HERO_DIE      =ENEMY_HERO_MASK_DIE\n" +
+                    "ENEMY_HERO_LADDER   =ENEMY_HERO_MASK_LADDER\n" +
+                    "ENEMY_HERO_LEFT     =ENEMY_HERO_MASK_LEFT\n" +
+                    "ENEMY_HERO_RIGHT    =ENEMY_HERO_MASK_RIGHT\n" +
+                    "ENEMY_HERO_FALL     =ENEMY_HERO_MASK_FALL\n" +
+                    "ENEMY_HERO_PIPE     =ENEMY_HERO_MASK_PIPE\n" +
+                    "ENEMY_HERO_PIT      =ENEMY_HERO_MASK_PIT",
+                toString(Element::mask));
+    }
+
+    @Test
+    public void testGetOtherHero() {
+        assertEquals("HERO_DIE            =OTHER_HERO_DIE\n" +
+                    "HERO_LADDER         =OTHER_HERO_LADDER\n" +
+                    "HERO_LEFT           =OTHER_HERO_LEFT\n" +
+                    "HERO_RIGHT          =OTHER_HERO_RIGHT\n" +
+                    "HERO_FALL           =OTHER_HERO_FALL\n" +
+                    "HERO_PIPE           =OTHER_HERO_PIPE\n" +
+                    "HERO_PIT            =OTHER_HERO_PIT\n" +
+                    "HERO_MASK_DIE       =OTHER_HERO_MASK_DIE\n" +
+                    "HERO_MASK_LADDER    =OTHER_HERO_MASK_LADDER\n" +
+                    "HERO_MASK_LEFT      =OTHER_HERO_MASK_LEFT\n" +
+                    "HERO_MASK_RIGHT     =OTHER_HERO_MASK_RIGHT\n" +
+                    "HERO_MASK_FALL      =OTHER_HERO_MASK_FALL\n" +
+                    "HERO_MASK_PIPE      =OTHER_HERO_MASK_PIPE\n" +
+                    "HERO_MASK_PIT       =OTHER_HERO_MASK_PIT",
+                toString(Element::otherHero));
+    }
+
+    @Test
+    public void testGetEnemyHero() {
+        assertEquals("HERO_DIE            =ENEMY_HERO_DIE\n" +
+                        "HERO_LADDER         =ENEMY_HERO_LADDER\n" +
+                        "HERO_LEFT           =ENEMY_HERO_LEFT\n" +
+                        "HERO_RIGHT          =ENEMY_HERO_RIGHT\n" +
+                        "HERO_FALL           =ENEMY_HERO_FALL\n" +
+                        "HERO_PIPE           =ENEMY_HERO_PIPE\n" +
+                        "HERO_PIT            =ENEMY_HERO_PIT\n" +
+                        "HERO_MASK_DIE       =ENEMY_HERO_MASK_DIE\n" +
+                        "HERO_MASK_LADDER    =ENEMY_HERO_MASK_LADDER\n" +
+                        "HERO_MASK_LEFT      =ENEMY_HERO_MASK_LEFT\n" +
+                        "HERO_MASK_RIGHT     =ENEMY_HERO_MASK_RIGHT\n" +
+                        "HERO_MASK_FALL      =ENEMY_HERO_MASK_FALL\n" +
+                        "HERO_MASK_PIPE      =ENEMY_HERO_MASK_PIPE\n" +
+                        "HERO_MASK_PIT       =ENEMY_HERO_PIT",
+                toString(Element::enemyHero));
+    }
+
+    private String toString(Function<Element, Element> transformer) {
+        return allElements(transformer)
+                .toString()
+                .replace(", ", "\n")
+                .replaceAll("[{}]", "");
+    }
+
+    private LinkedHashMap<String, String> allElements(Function<Element, Element> transformer) {
+        return Arrays.stream(Element.values())
+                .map(element -> {
+                    try {
+                        return new AbstractMap.SimpleEntry<>(
+                                rightPad(element.name(), 20),
+                                transformer.apply(element).name());
+                    } catch (IllegalArgumentException exception) {
+                        return null;
+                    }
+                })
+                .filter(entry -> entry != null)
+                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (value1, value2) -> value2,
+                        LinkedHashMap::new));
     }
 }
