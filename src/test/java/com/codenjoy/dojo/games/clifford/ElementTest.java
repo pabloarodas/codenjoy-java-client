@@ -22,14 +22,9 @@ package com.codenjoy.dojo.games.clifford;
  * #L%
  */
 
-import org.json.JSONObject;
+import com.codenjoy.dojo.client.Utils;
 import org.junit.Test;
 
-import java.util.*;
-
-import static com.codenjoy.dojo.client.Utils.split;
-import static java.util.stream.Collectors.toMap;
-import static org.apache.commons.lang3.StringUtils.rightPad;
 import static org.junit.Assert.assertEquals;
 
 public class ElementTest {
@@ -109,35 +104,6 @@ public class ElementTest {
                     "ROBBER_PIT[y]            =robber, pit\n" +
                     "ROBBER_RIGHT[(]          =robber\n" +
                     "STONE[☼]                 =wall",
-                clean(elementsMap()));
-
-    }
-
-    private String clean(Map<String, String> map) {
-        return split(map, "}, \n")
-                .replaceAll("[\"{}]", "")
-                .replace(":true", "")
-                .replace(", ", "")
-                .replace(",", ", ");
-    }
-
-    private Map<String, String> elementsMap() {
-        return Arrays.stream(Element.values())
-                .map(element -> {
-                    JSONObject json = new JSONObject(element);
-                    new LinkedList<>(json.keySet()).forEach(key -> {
-                        if (!json.getBoolean(key)) {
-                            json.remove(key);
-                        }
-                    });
-
-                    return new AbstractMap.SimpleEntry<>(
-                            rightPad(element.name() + "[" + element.ch() + "]", 25),
-                            json.toString());
-                })
-                .sorted(Map.Entry.comparingByKey())
-                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (value1, value2) -> value2,
-                        LinkedHashMap::new));
+                Utils.elements(Element.values()));
     }
 }

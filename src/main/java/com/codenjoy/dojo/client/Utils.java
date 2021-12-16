@@ -26,11 +26,13 @@ package com.codenjoy.dojo.client;
 import com.codenjoy.dojo.services.printer.CharElement;
 import org.apache.commons.text.StringEscapeUtils;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.SortedJSONObject;
 
 import java.util.*;
 
 import static java.util.stream.Collectors.toMap;
+import static org.apache.commons.lang3.StringUtils.rightPad;
 
 public class Utils {
 
@@ -74,6 +76,34 @@ public class Utils {
         return result.toString();
     }
 
+    public static String elements(CharElement[] elements) {
+        return split(elementsMap(elements), "}, \n")
+                .replaceAll("[\"{}]", "")
+                .replace(":true", "")
+                .replace(", ", "")
+                .replace(",", ", ");
+    }
+
+    public static Map<String, String> elementsMap(CharElement[] elements) {
+        return Arrays.stream(elements)
+                .map(element -> {
+                    JSONObject json = new JSONObject(element);
+                    new LinkedList<>(json.keySet()).forEach(key -> {
+                        if (!json.getBoolean(key)) {
+                            json.remove(key);
+                        }
+                    });
+
+                    return new AbstractMap.SimpleEntry<>(
+                            rightPad(element.name() + "[" + element.ch() + "]", 25),
+                            json.toString());
+                })
+                .sorted(Map.Entry.comparingByKey())
+                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (value1, value2) -> value2,
+                        LinkedHashMap::new));
+    }
+
     public static <E extends CharElement> String elements(AbstractBoard<E> board, E[] elements) {
         return split(elementsMap(board, elements),
                 "]], \n",
@@ -104,5 +134,4 @@ public class Utils {
             array.toList().forEach(it -> add((String)it));
         }};
     }
-
 }
