@@ -227,10 +227,10 @@ public enum Element implements CharElement {
 
     public static Element[] perks() {
         return new Element[]{
-                POTION_COUNT_INCREASE,
-                POTION_REMOTE_CONTROL,
-                POTION_IMMUNE,
                 POTION_BLAST_RADIUS_INCREASE,
+                POTION_COUNT_INCREASE,
+                POTION_IMMUNE,
+                POTION_REMOTE_CONTROL,
                 POISON_THROWER,
                 POTION_EXPLODER,
         };
