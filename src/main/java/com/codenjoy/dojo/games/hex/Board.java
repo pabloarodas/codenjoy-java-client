@@ -27,6 +27,7 @@ import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.Collection;
+import java.util.List;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
@@ -43,7 +44,7 @@ public class Board extends AbstractBoard<Element> {
         return Element.valueOf(ch);
     }
 
-    public Collection<Point> getBarriers() {
+    public List<Point> getBarriers() {
         return get(Element.WALL,
                 Element.MY_HERO,
                 Element.HERO1,

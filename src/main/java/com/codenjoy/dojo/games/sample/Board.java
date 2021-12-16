@@ -26,7 +26,6 @@ package com.codenjoy.dojo.games.sample;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
-import java.util.Collection;
 import java.util.List;
 
 import static com.codenjoy.dojo.games.sample.Element.*;
@@ -81,7 +80,7 @@ public class Board extends AbstractBoard<Element> {
         return get(gold());
     }
 
-    public Collection<Point> getBarriers() {
+    public List<Point> getBarriers() {
        return get(barriers());
     }
 

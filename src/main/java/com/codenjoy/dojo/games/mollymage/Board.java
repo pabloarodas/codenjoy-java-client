@@ -136,7 +136,7 @@ public class Board extends AbstractBoard<Element> {
         return result;
     }
 
-    public Collection<Point> getBarriers() {
+    public List<Point> getBarriers() {
         return get(barriers());
     }
 

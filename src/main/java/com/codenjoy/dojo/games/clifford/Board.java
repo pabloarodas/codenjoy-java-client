@@ -25,7 +25,6 @@ package com.codenjoy.dojo.games.clifford;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
-import java.util.Collection;
 import java.util.List;
 
 import static com.codenjoy.dojo.games.clifford.Element.*;
@@ -65,55 +64,55 @@ public class Board extends AbstractBoard<Element> {
         return (list.isEmpty()) ? null : list.get(0);
     }
 
-    public Collection<Point> getOtherHeroes() {
+    public List<Point> getOtherHeroes() {
         return get(otherHeroes());
     }
 
-    public Collection<Point> getEnemyHeroes() {
+    public List<Point> getEnemyHeroes() {
         return get(enemyHeroes());
     }
 
-    public Collection<Point> getRobbers() {
+    public List<Point> getRobbers() {
         return get(robbers());
     }
 
-    public Collection<Point> getClues() {
+    public List<Point> getClues() {
         return get(clues());
     }
 
-    public Collection<Point> getBackWays() {
+    public List<Point> getBackWays() {
         return get(backWays());
     }
 
-    public Collection<Point> getMaskPotions() {
+    public List<Point> getMaskPotions() {
         return get(maskPotions());
     }
 
-    public Collection<Point> getWalls() {
+    public List<Point> getWalls() {
         return get(walls());
     }
 
-    public Collection<Point> getLadders() {
+    public List<Point> getLadders() {
         return get(ladders());
     }
 
-    public Collection<Point> getPipes() {
+    public List<Point> getPipes() {
         return get(pipes());
     }
 
-    public Collection<Point> getPits() {
+    public List<Point> getPits() {
         return get(pits());
     }
 
-    public Collection<Point> getDoors() {
+    public List<Point> getDoors() {
         return get(doors());
     }
 
-    public Collection<Point> getKeys() {
+    public List<Point> getKeys() {
         return get(keys());
     }
 
-    public Collection<Point> getBarriers() {
+    public List<Point> getBarriers() {
         return get(barriers());
     }
 
