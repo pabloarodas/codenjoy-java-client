@@ -273,6 +273,12 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_getPits() {
+        assertEquals("[[2,2], [3,7], [5,5]]",
+                board.getPits().toString());
+    }
+
+    @Test
     public void shouldWork_getMaskPotions() {
         assertEquals("[[1,4]]", board.getMaskPotions().toString());
     }

@@ -101,6 +101,10 @@ public class Board extends AbstractBoard<Element> {
         return get(pipes());
     }
 
+    public Collection<Point> getPits() {
+        return get(pits());
+    }
+
     public Collection<Point> getDoors() {
         return get(doors());
     }
@@ -155,6 +159,10 @@ public class Board extends AbstractBoard<Element> {
 
     public boolean isPipe(Point pt) {
         return isAt(pt, pipes());
+    }
+
+    public boolean isPit(Point pt) {
+        return isAt(pt, pits());
     }
 
     public boolean isDoor(Point pt) {

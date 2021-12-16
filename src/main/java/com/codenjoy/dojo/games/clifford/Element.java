@@ -362,11 +362,11 @@ public enum Element implements CharElement {
     }
 
     public boolean isOtherHero() {
-        return asList(otherHero()).contains(this);
+        return asList(otherHeroes()).contains(this);
     }
 
     public boolean isEnemyHero() {
-        return asList(enemyHero()).contains(this);
+        return asList(enemyHeroes()).contains(this);
     }
 
     public boolean isRobber() {
@@ -375,6 +375,10 @@ public enum Element implements CharElement {
 
     public boolean isPipe() {
         return asList(pipes()).contains(this);
+    }
+
+    public boolean isPit() {
+        return asList(pits()).contains(this);
     }
 
     public boolean isBullet() {
@@ -416,6 +420,8 @@ public enum Element implements CharElement {
                 HERO_MASK_LADDER,
                 OTHER_HERO_LADDER,
                 OTHER_HERO_MASK_LADDER,
+                ENEMY_HERO_LADDER,
+                ENEMY_HERO_MASK_LADDER,
                 ROBBER_LADDER,
         };
     }
@@ -514,6 +520,24 @@ public enum Element implements CharElement {
                 OTHER_HERO_MASK_PIPE,
                 ENEMY_HERO_PIPE,
                 ENEMY_HERO_MASK_PIPE,
+                ROBBER_PIPE,
+        };
+    }
+
+    public static Element[] pits() {
+        return new Element[]{
+                CRACK_PIT,
+                PIT_FILL_1,
+                PIT_FILL_2,
+                PIT_FILL_3,
+                PIT_FILL_4,
+                HERO_PIT,
+                HERO_MASK_PIT,
+                OTHER_HERO_PIT,
+                OTHER_HERO_MASK_PIT,
+                ENEMY_HERO_PIT,
+                ENEMY_HERO_MASK_PIT,
+                ROBBER_PIT,
         };
     }
 
