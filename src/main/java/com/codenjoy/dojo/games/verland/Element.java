@@ -80,21 +80,21 @@ public enum Element implements CharElement {
 
     CLEAR(' ', 0,                "Вокруг этой зоны нет заражений."),
 
-    ONE_CONTAGION('1', 1,        "Вокруг этой зоны было зафиксировано одно заражение."),
+    CONTAGION_ONE('1', 1,        "Вокруг этой зоны было зафиксировано одно заражение."),
 
-    TWO_CONTAGIONS('2', 2,       "Вокруг этой зоны было зафиксировано два заражения."),
+    CONTAGION_TWO('2', 2,       "Вокруг этой зоны было зафиксировано два заражения."),
 
-    THREE_CONTAGIONS('3', 3,     "Вокруг этой зоны было зафиксировано три заражения."),
+    CONTAGION_THREE('3', 3,     "Вокруг этой зоны было зафиксировано три заражения."),
 
-    FOUR_CONTAGIONS('4', 4,      "Вокруг этой зоны было зафиксировано четыре заражения."),
+    CONTAGION_FOUR('4', 4,      "Вокруг этой зоны было зафиксировано четыре заражения."),
 
-    FIVE_CONTAGIONS('5', 5,      "Вокруг этой зоны было зафиксировано пять заражений."),
+    CONTAGION_FIVE('5', 5,      "Вокруг этой зоны было зафиксировано пять заражений."),
 
-    SIX_CONTAGIONS('6', 6,       "Вокруг этой зоны было зафиксировано шесть заражений."),
+    CONTAGION_SIX('6', 6,       "Вокруг этой зоны было зафиксировано шесть заражений."),
 
-    SEVEN_CONTAGIONS('7', 7,     "Вокруг этой зоны было зафиксировано семь заражений."),
+    CONTAGION_SEVEN('7', 7,     "Вокруг этой зоны было зафиксировано семь заражений."),
 
-    EIGHT_CONTAGIONS('8', 8,     "Вокруг этой зоны было зафиксировано восемь заражений.");
+    CONTAGION_EIGHT('8', 8,     "Вокруг этой зоны было зафиксировано восемь заражений.");
 
     private final char ch;
     private final int value;
@@ -220,14 +220,14 @@ public enum Element implements CharElement {
 
     public static Element[] contagions() {
         return new Element[]{
-                ONE_CONTAGION,
-                TWO_CONTAGIONS,
-                THREE_CONTAGIONS,
-                FOUR_CONTAGIONS,
-                FIVE_CONTAGIONS,
-                SIX_CONTAGIONS,
-                SEVEN_CONTAGIONS,
-                EIGHT_CONTAGIONS,
+                CONTAGION_ONE,
+                CONTAGION_TWO,
+                CONTAGION_THREE,
+                CONTAGION_FOUR,
+                CONTAGION_FIVE,
+                CONTAGION_SIX,
+                CONTAGION_SEVEN,
+                CONTAGION_EIGHT,
         };
     }
 
