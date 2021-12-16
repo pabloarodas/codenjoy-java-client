@@ -80,8 +80,8 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         }
     }
 
-    public E getAt(Point point) {
-        return getAt(point.getX(), point.getY());
+    public E getAt(Point pt) {
+        return getAt(pt.getX(), pt.getY());
     }
 
     public List<E> getAllAt(int x, int y) {
@@ -100,8 +100,8 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         }};
     }
 
-    public List<E> getAllAt(Point point) {
-        return getAllAt(point.getX(), point.getY());
+    public List<E> getAllAt(Point pt) {
+        return getAllAt(pt.getX(), pt.getY());
     }
 
     public String boardAsString() {
@@ -126,13 +126,13 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         return isAt(pt(x, y), elements);
     }
 
-    public boolean isAt(Point point, E... elements) {
-        if (point.isOutOf(size)) {
+    public boolean isAt(Point pt, E... elements) {
+        if (pt.isOutOf(size)) {
             return false;
         }
 
         for (int layer = 0; layer < countLayers(); ++layer) {
-            E found = getAt(layer, point.getX(), point.getY());
+            E found = getAt(layer, pt.getX(), pt.getY());
                 for (E element : elements) {
                 if (found.equals(element)) {
                     return true;
@@ -158,8 +158,8 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         return false;
     }
 
-    public boolean isNear(Point point, E element) {
-        return isNear(point.getX(), point.getY(), element);
+    public boolean isNear(Point pt, E element) {
+        return isNear(pt.getX(), pt.getY(), element);
     }
 
     /**
@@ -180,8 +180,8 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         return count;
     }
 
-    public int countNear(Point point, E element){
-        return countNear(point.getX(), point.getY(), element);
+    public int countNear(Point pt, E element){
+        return countNear(pt.getX(), pt.getY(), element);
     }
 
     /**
@@ -191,7 +191,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
      *     left-down, left-up, right-down, right-up) position.
      */
     public List<E> getNear(int x, int y) {
-        List<E> result = new LinkedList<E>();
+        List<E> result = new LinkedList<>();
 
         for (int layer = 0; layer < countLayers(); ++layer) {
             result.addAll(getNear(layer, x, y));
@@ -200,8 +200,8 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         return result;
     }
 
-    public List<E> getNear(Point point) {
-        return getNear(point.getX(), point.getY());
+    public List<E> getNear(Point pt) {
+        return getNear(pt.getX(), pt.getY());
     }
 
     public void set(int x, int y, char ch) {
