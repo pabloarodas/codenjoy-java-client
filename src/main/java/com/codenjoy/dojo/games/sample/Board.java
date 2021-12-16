@@ -88,27 +88,27 @@ public class Board extends AbstractBoard<Element> {
         return removeDuplicates(all);
     }
 
-    public boolean isHero(Point pt) {
+    public boolean isHeroAt(Point pt) {
         return isAt(pt, heroes());
     }
 
-    public boolean isOtherHero(Point pt) {
+    public boolean isOtherHeroAt(Point pt) {
         return isAt(pt, otherHeroes());
     }
 
-    public boolean isWall(Point pt) {
+    public boolean isWallAt(Point pt) {
         return isAt(pt, walls());
     }
 
-    public boolean isBomb(Point pt) {
+    public boolean isBombAt(Point pt) {
         return isAt(pt, bombs());
     }
 
-    public boolean isGold(Point pt) {
+    public boolean isGoldAt(Point pt) {
         return isAt(pt, gold());
     }
 
-    public boolean isBarrier(Point pt) {
+    public boolean isBarrierAt(Point pt) {
         return getBarriers().contains(pt);
     }
 
