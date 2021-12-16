@@ -28,25 +28,78 @@ import com.codenjoy.dojo.services.Direction;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class YourSolverTest {
 
     private Dice dice = mock(Dice.class);
     private final YourSolver solver = new YourSolver(dice);
 
-    private void assertB(String board, Direction direction) {
-        assertEquals(direction.toString(), solver.get((Board) new Board().forString(board)));
+    private Board board(String board) {
+        return (Board) new Board().forString(board);
+    }
+
+    private void dice(Direction direction) {
+        when(dice.next(anyInt())).thenReturn(direction.value());
+    }
+
+    private void assertB(String board, String command) {
+        assertEquals(command, solver.get(board(board)));
+    }
+
+    // TODO these dummy tests are here for an example, delete it and write your own
+
+    @Test
+    public void shouldSomething_whenCase1() {
+        assertB("☼☼☼☼☼☼☼☼☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼♥******☼\n" +
+                "☼☼☼☼☼☼☼☼☼\n", Command.MOVE_UP);
     }
 
     @Test
-    public void should_when() {
-        assertB(
-            "☼☼☼☼☼\n" +
-            "☼***☼\n" +
-            "☼1♥*☼\n" +
-            "☼!**☼\n" +
-            "☼☼☼☼☼\n",
-                Direction.UP);
+    public void shouldSomething_whenCase2() {
+        assertB("☼☼☼☼☼☼☼☼☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼♥******☼\n" +
+                "☼ ******☼\n" +
+                "☼☼☼☼☼☼☼☼☼\n", Command.MOVE_UP);
+    }
+
+    @Test
+    public void shouldSomething_whenCase3() {
+        assertB("☼☼☼☼☼☼☼☼☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼♥******☼\n" +
+                "☼ ******☼\n" +
+                "☼ ******☼\n" +
+                "☼☼☼☼☼☼☼☼☼\n", Command.MOVE_UP);
+    }
+
+    @Test
+    public void shouldSomething_whenCase4() {
+        assertB("☼☼☼☼☼☼☼☼☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼*******☼\n" +
+                "☼♥******☼\n" +
+                "☼ ******☼\n" +
+                "☼ ******☼\n" +
+                "☼ ******☼\n" +
+                "☼☼☼☼☼☼☼☼☼\n", Command.MOVE_UP);
     }
 }

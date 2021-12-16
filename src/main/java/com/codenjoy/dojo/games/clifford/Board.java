@@ -22,11 +22,9 @@ package com.codenjoy.dojo.games.clifford;
  * #L%
  */
 
-
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -50,6 +48,18 @@ public class Board extends AbstractBoard<Element> {
         return size - 1 - y;
     }
 
+    @Override
+    public Element getAt(int x, int y) {
+        if (isOutOfField(x, y)) {
+            return STONE;
+        }
+        return super.getAt(x, y);
+    }
+
+    public boolean isGameOver() {
+        return !get(heroDie()).isEmpty();
+    }
+
     public Point getHero() {
         List<Point> list = get(heroes());
         return (list.isEmpty()) ? null : list.get(0);
@@ -71,12 +81,12 @@ public class Board extends AbstractBoard<Element> {
         return get(clues());
     }
 
-    public Collection<Point> getBackways() {
-        return get(BACKWAY);
+    public Collection<Point> getBackWays() {
+        return get(backWays());
     }
 
-    public Collection<Point> getPotions() {
-        return get(MASK_POTION);
+    public Collection<Point> getMaskPotions() {
+        return get(maskPotions());
     }
 
     public Collection<Point> getWalls() {
@@ -99,67 +109,60 @@ public class Board extends AbstractBoard<Element> {
         return get(keys());
     }
 
-    public boolean isGameOver() {
-        return !get(HERO_DIE).isEmpty();
-    }
-
     public Collection<Point> getBarriers() {
         Collection<Point> all = getWalls();
+
         // add other barriers here
+
         return removeDuplicates(all);
     }
 
-    public boolean is(Point pt, Element... elements) {
-        return getAllAt(pt).stream()
-                .anyMatch(el -> Arrays.asList(elements).contains(el));
-    }
-
     public boolean isHeroAt(Point pt) {
-        return is(pt, heroes());
+        return isAt(pt, heroes());
     }
 
     public boolean isOtherHeroAt(Point pt) {
-        return is(pt, otherHeroes());
+        return isAt(pt, otherHeroes());
     }
 
     public boolean isEnemyHeroAt(Point pt) {
-        return is(pt, enemyHeroes());
+        return isAt(pt, enemyHeroes());
     }
 
     public boolean isRobberAt(Point pt) {
-        return is(pt, robbers());
+        return isAt(pt, robbers());
     }
 
     public boolean isClue(Point pt) {
-        return is(pt, clues());
+        return isAt(pt, clues());
     }
 
-    public boolean isBackway(Point pt) {
-        return is(pt, BACKWAY);
+    public boolean isBackWay(Point pt) {
+        return isAt(pt, backWays());
     }
 
     public boolean isPotion(Point pt) {
-        return is(pt, MASK_POTION);
+        return isAt(pt, maskPotions());
     }
 
     public boolean isWall(Point pt) {
-        return is(pt, walls());
+        return isAt(pt, walls());
     }
 
     public boolean isLadder(Point pt) {
-        return is(pt, ladders());
+        return isAt(pt, ladders());
     }
 
     public boolean isPipe(Point pt) {
-        return is(pt, pipes());
+        return isAt(pt, pipes());
     }
 
     public boolean isDoor(Point pt) {
-        return is(pt, doors());
+        return isAt(pt, doors());
     }
 
     public boolean isKey(Point pt) {
-        return is(pt, keys());
+        return isAt(pt, keys());
     }
 
     public boolean isBarrierAt(Point pt) {
@@ -180,7 +183,7 @@ public class Board extends AbstractBoard<Element> {
                 getOtherHeroes(),
                 getEnemyHeroes(),
                 getRobbers(),
-                getPotions(),
+                getMaskPotions(),
                 getKeys());
     }
 

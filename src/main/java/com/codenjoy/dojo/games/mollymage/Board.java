@@ -28,10 +28,10 @@ import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
+import static com.codenjoy.dojo.games.mollymage.Element.*;
+import static com.codenjoy.dojo.services.Direction.*;
 
 /**
  * The class is a wrapper over the board string
@@ -58,35 +58,152 @@ public class Board extends AbstractBoard<Element> {
         return true;
     }
 
+    @Override
     public Element getAt(int x, int y) {
         if (isOutOfField(x, y)) {
-            return Element.WALL;
+            return WALL;
         }
         return super.getAt(x, y);
     }
 
-    public Collection<Point> getBarriers() {
-        Collection<Point> all = getGhosts();
-        all.addAll(getWalls());
-        all.addAll(getPotions());
-        all.addAll(getTreasureBoxes());
-        all.addAll(getOtherHeroes());
-        all.addAll(getEnemyHeroes());
+    public boolean isGameOver() {
+        return !get(DEAD_HERO).isEmpty();
+    }
 
-        return removeDuplicates(all);
+    public Point getHero() {
+        List<Point> list = get(heroes());
+        return (list.isEmpty()) ? null : list.get(0);
+    }
+
+    public List<Point> getOtherHeroes() {
+        return get(otherHeroes());
+    }
+
+    public List<Point> getEnemyHeroes() {
+        return get(enemyHeroes());
+    }
+
+    public List<Point> getGhosts() {
+        return get(ghosts());
+    }
+
+    public List<Point> getWalls() {
+        return get(walls());
+    }
+
+    public List<Point> getTreasureBoxes() {
+        return get(treasureBoxes());
+    }
+
+    public List<Point> getPotions() {
+        return get(potions());
+    }
+
+    public List<Point> getPerks() {
+        return get(perks());
+    }
+
+    public List<Point> getBlasts() {
+        return get(blasts());
+    }
+
+    public List<Point> getFutureBlasts() {
+        List<Point> result = new ArrayList<>();
+        for (Point pt : get(POTION_TIMER_1)) {
+            result.addAll(getFutureBlasts(pt, RIGHT));
+            result.addAll(getFutureBlasts(pt, LEFT));
+            result.addAll(getFutureBlasts(pt, UP));
+            result.addAll(getFutureBlasts(pt, DOWN));
+        }
+        return result;
+    }
+
+    private List<Point> getFutureBlasts(Point pt, Direction direction) {
+        List<Point> barriers = getBarriers();
+
+        List<Point> result = new ArrayList<>();
+        for (int index = 0; index < BLAST_RANGE; index++) {
+            pt = direction.change(pt);
+            if (pt.isOutOf(size)) {
+                break;
+            }
+            if (barriers.contains(pt)) {
+                break;
+            }
+            result.add(pt);
+        }
+        return result;
+    }
+
+    public List<Point> getBarriers() {
+        List<Point> result = getGhosts();
+
+        result.addAll(getWalls());
+        result.addAll(getPotions());
+        result.addAll(getTreasureBoxes());
+        result.addAll(getOtherHeroes());
+        result.addAll(getEnemyHeroes());
+
+        // add other barriers here
+
+        return removeDuplicates(result);
+    }
+
+    public boolean isHeroAt(Point pt) {
+        return isAt(pt, heroes());
+    }
+
+    public boolean isOtherHeroAt(Point pt) {
+        return isAt(pt, otherHeroes());
+    }
+
+    public boolean isEnemyHeroAt(Point pt) {
+        return isAt(pt, enemyHeroes());
+    }
+
+    public boolean isGhostAt(Point pt) {
+        return isAt(pt, ghosts());
+    }
+
+    public boolean isWallAt(Point pt) {
+        return isAt(pt, walls());
+    }
+
+    public boolean isTreasureBoxAt(Point pt) {
+        return isAt(pt, treasureBoxes());
+    }
+
+    public boolean isPotionAt(Point pt) {
+        return isAt(pt, potions());
+    }
+
+    public boolean isPerkAt(Point pt) {
+        return isAt(pt, perks());
+    }
+
+    public boolean isBlastAt(Point pt) {
+        return isAt(pt, blasts());
+    }
+
+    public boolean isFutureBlastAt(Point pt) {
+       return getFutureBlasts().contains(pt);
+    }
+
+    public boolean isBarrierAt(Point pt) {
+        return getBarriers().contains(pt);
     }
 
     @Override
     public String toString() {
         return String.format("%s\n" +
-            "Hero at: %s\n" +
-            "Other heroes at: %s\n" +
-            "Enemy heroes at: %s\n" +
-            "Ghosts at: %s\n" +
-            "Treasure boxes at: %s\n" +
-            "Potions at: %s\n" +
-            "Blasts: %s\n" +
-            "Expected blasts at: %s",
+                        "Hero at: %s\n" +
+                        "Other heroes at: %s\n" +
+                        "Enemy heroes at: %s\n" +
+                        "Ghosts at: %s\n" +
+                        "Treasure boxes at: %s\n" +
+                        "Potions at: %s\n" +
+                        "Blasts: %s\n" +
+                        "Expected blasts at: %s",
                 boardAsString(),
                 getHero(),
                 getOtherHeroes(),
@@ -97,99 +214,4 @@ public class Board extends AbstractBoard<Element> {
                 getBlasts(),
                 getFutureBlasts());
     }
-
-    public Point getHero() {
-        return get(Element.HERO,
-                Element.POTION_HERO,
-                Element.DEAD_HERO).get(0);
-    }
-
-    public Collection<Point> getOtherHeroes() {
-        return get(Element.OTHER_HERO,
-                Element.OTHER_POTION_HERO,
-                Element.OTHER_DEAD_HERO);
-    }
-
-    public Collection<Point> getEnemyHeroes() {
-        return get(Element.ENEMY_HERO,
-                Element.ENEMY_POTION_HERO,
-                Element.ENEMY_DEAD_HERO);
-    }
-
-    public boolean isGameOver() {
-        return !get(Element.DEAD_HERO).isEmpty();
-    }
-
-    public Collection<Point> getGhosts() {
-        return get(Element.GHOST);
-    }
-
-    public Collection<Point> getWalls() {
-        return get(Element.WALL);
-    }
-
-    public Collection<Point> getTreasureBoxes() {
-        return get(Element.TREASURE_BOX);
-    }
-
-    public Collection<Point> getPotions() {
-        return get(Element.POTION_TIMER_1,
-                Element.POTION_TIMER_2,
-                Element.POTION_TIMER_3,
-                Element.POTION_TIMER_4,
-                Element.POTION_TIMER_5,
-                Element.POTION_HERO,
-                Element.OTHER_POTION_HERO,
-                Element.ENEMY_POTION_HERO);
-    }
-
-    public Collection<Point> getPerks() {
-        return get(Element.POTION_COUNT_INCREASE,
-                Element.POTION_REMOTE_CONTROL,
-                Element.POTION_IMMUNE,
-                Element.POTION_BLAST_RADIUS_INCREASE,
-                Element.POISON_THROWER,
-                Element.POTION_EXPLODER);
-    }
-
-    public Collection<Point> getBlasts() {
-        return get(Element.BOOM);
-    }
-
-    public Collection<Point> getFutureBlasts() {
-        List<Point> blasts = new ArrayList<>();
-        for (Point point : get(Element.POTION_TIMER_1)) {
-            blasts.addAll(getFutureBlasts(point, Direction.RIGHT));
-            blasts.addAll(getFutureBlasts(point, Direction.LEFT));
-            blasts.addAll(getFutureBlasts(point, Direction.UP));
-            blasts.addAll(getFutureBlasts(point, Direction.DOWN));
-        }
-        return blasts;
-    }
-
-    private Collection<Point> getFutureBlasts(Point pt, Direction direction) {
-        Collection<Point> barriers = getBarriers();
-
-        Collection<Point> points = new ArrayList<>();
-        for (int i = 0; i < BLAST_RANGE; i++) {
-            pt = direction.change(pt);
-            if (pt.isOutOf(size)) {
-                break;
-            }
-            if (barriers.contains(pt)) {
-                break;
-            }
-            points.add(pt);
-        }
-        return points;
-    }
-
-    public boolean isBarrierAt(int x, int y) { // TODO remove this method
-        return getBarriers().contains(pt(x, y));
-    }
-
-    public boolean isBarrierAt(Point point) {
-        return isBarrierAt(point.getX(), point.getY());
-    }
-
 }

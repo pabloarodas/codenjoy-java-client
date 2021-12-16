@@ -23,11 +23,9 @@ package com.codenjoy.dojo.games.sample;
  */
 
 
-import com.codenjoy.dojo.games.sample.Board;
-import com.codenjoy.dojo.games.sample.YourSolver;
-import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,62 +37,69 @@ import static org.mockito.Mockito.when;
 public class YourSolverTest {
 
     private Dice dice;
-    private Solver ai;
+    private Solver solver;
 
     @Before
     public void setup() {
         dice = mock(Dice.class);
-        ai = new YourSolver(dice);
+        solver = new YourSolver(dice);
     }
 
     private Board board(String board) {
         return (Board) new Board().forString(board);
     }
 
+    private void dice(Direction direction) {
+        when(dice.next(anyInt())).thenReturn(direction.value());
+    }
+
+    private void assertB(String board, String command) {
+        assertEquals(command, solver.get(board(board)));
+    }
+
+    // TODO these dummy tests are here for an example, delete it and write your own
+
     @Test
-    public void should() {
-
-        // TODO these asserts are here for an example, delete it and write your own
-
-        asertAI("☼☼☼☼☼☼☼" +
+    public void shouldSomething_whenCase1() {
+        assertB("☼☼☼☼☼☼☼" +
                 "☼  x  ☼" +
                 "☼ $   ☼" +
                 "☼     ☼" +
                 "☼ ☺ $ ☼" +
                 "☼  ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
+                "☼☼☼☼☼☼☼", Command.MOVE_UP);
+    }
 
-        asertAI("☼☼☼☼☼☼☼" +
+    @Test
+    public void shouldSomething_whenCase2() {
+        assertB("☼☼☼☼☼☼☼" +
                 "☼  x  ☼" +
                 "☼ $   ☼" +
                 "☼ ☺   ☼" +
                 "☼   $ ☼" +
                 "☼  ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
+                "☼☼☼☼☼☼☼", Command.MOVE_UP);
+    }
 
-        asertAI("☼☼☼☼☼☼☼" +
+    @Test
+    public void shouldSomething_whenCase3() {
+        assertB("☼☼☼☼☼☼☼" +
                 "☼  x  ☼" +
                 "☼ ☺   ☼" +
                 "☼     ☼" +
                 "☼   $ ☼" +
                 "☼$ ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
+                "☼☼☼☼☼☼☼", Command.MOVE_UP);
+    }
 
-        asertAI("☼☼☼☼☼☼☼" +
+    @Test
+    public void shouldSomething_whenCase4() {
+        assertB("☼☼☼☼☼☼☼" +
                 "☼ ☺x  ☼" +
                 "☼     ☼" +
                 "☼     ☼" +
                 "☼   $ ☼" +
                 "☼$ ☻  ☼" +
-                "☼☼☼☼☼☼☼", Direction.UP);
-    }
-
-    private void asertAI(String board, Direction expected) {
-        String actual = ai.get(board(board));
-        assertEquals(expected.toString(), actual);
-    }
-
-    private void dice(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
+                "☼☼☼☼☼☼☼", Command.MOVE_UP);
     }
 }

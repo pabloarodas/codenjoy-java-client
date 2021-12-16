@@ -47,14 +47,18 @@ public class BoardTest {
 
     @Test
     public void shouldToString() {
-        asrtBrd("Board:\n" +
-                "☼☼☼☼☼☼☼\n" +
+        asrtBrd("☼☼☼☼☼☼☼\n" +
                 "☼  x  ☼\n" +
                 "☼ $   ☼\n" +
                 "☼X   Y☼\n" +
                 "☼ ☺ $ ☼\n" +
                 "☼  ☻  ☼\n" +
-                "☼☼☼☼☼☼☼\n");
+                "☼☼☼☼☼☼☼\n" +
+                "\n" +
+                "Hero at: [1,3]\n" +
+                "Other heroes at: [[3,1], [5,3]]\n" +
+                "Bombs at: [[3,5]]\n" +
+                "Gold at: [[2,4], [4,2]]\n");
     }
 
     private void asrtBrd(String expected) {

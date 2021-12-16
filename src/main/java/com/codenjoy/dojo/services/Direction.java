@@ -23,9 +23,10 @@ package com.codenjoy.dojo.services;
  */
 
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
@@ -165,23 +166,24 @@ public enum Direction {
     }
 
     /**
-     * @param parameters Given parameters.
+     * @param params Given act parameters.
      * @return ACT with parameters
      */
-    public static String ACT(int... parameters) {
-        String s = Arrays.toString(parameters).replaceAll("[\\[\\] ]", "");
-        return ACT.toString() + "(" + s + ")";
+    public static String ACT(int... params) {
+        String string = Arrays.toString(params).replaceAll("[\\[\\] ]", "");
+        return ACT +
+                ((StringUtils.isEmpty(string)) ? "" : "(" + string + ")");
     }
 
     /**
      * @param before true if direction should be before.
+     * @param params Given act parameters.
      * @return ACT with current Direction.
      */
-    public String ACT(boolean before) {
-        if (before) {
-            return "ACT," + toString();
-        } else {
-            return toString() + ",ACT";
-        }
+    public String ACT(boolean before, int... params) {
+        String act = Direction.ACT(params);
+        return before
+                ? act + "," + this
+                : this + "," + act;
     }
 }

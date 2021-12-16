@@ -25,7 +25,6 @@ package com.codenjoy.dojo.games.verland;
 
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.Direction;
 
 /**
  * Author: your name
@@ -51,6 +50,6 @@ public class YourSolver implements Solver<Board> {
 
         // TODO your code here
 
-        return Direction.UP.toString();
+        return Command.MOVE_UP;
     }
 }

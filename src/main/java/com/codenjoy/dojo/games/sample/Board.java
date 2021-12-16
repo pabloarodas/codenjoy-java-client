@@ -26,6 +26,8 @@ package com.codenjoy.dojo.games.sample;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
+import java.util.List;
+
 import static com.codenjoy.dojo.games.sample.Element.*;
 
 /**
@@ -45,23 +47,82 @@ public class Board extends AbstractBoard<Element> {
         return size - 1 - y;
     }
 
-    public boolean isBarrierAt(int x, int y) {
-        return isAt(x, y,
-                WALL,
-                BOMB,
-                OTHER_HERO);
-    }
-
-    public Point getHero() {
-        return get(DEAD_HERO,
-                HERO).get(0);
+    @Override
+    public Element getAt(int x, int y) {
+        if (isOutOfField(x, y)) {
+            return WALL;
+        }
+        return super.getAt(x, y);
     }
 
     public boolean isGameOver() {
         return !get(DEAD_HERO).isEmpty();
     }
 
-    public boolean isBombAt(int x, int y) {
-        return isAt(x, y, BOMB);
+    public Point getHero() {
+        List<Point> list = get(heroes());
+        return (list.isEmpty()) ? null : list.get(0);
+    }
+
+    public List<Point> getOtherHeroes() {
+        return get(otherHeroes());
+    }
+
+    public List<Point> getWalls() {
+        return get(walls());
+    }
+
+    public List<Point> getBombs() {
+        return get(bombs());
+    }
+
+    public List<Point> getGold() {
+        return get(gold());
+    }
+
+    public List<Point> getBarriers() {
+        List<Point> all = getWalls();
+
+        // add other barriers here
+
+        return removeDuplicates(all);
+    }
+
+    public boolean isHero(Point pt) {
+        return isAt(pt, heroes());
+    }
+
+    public boolean isOtherHero(Point pt) {
+        return isAt(pt, otherHeroes());
+    }
+
+    public boolean isWall(Point pt) {
+        return isAt(pt, walls());
+    }
+
+    public boolean isBomb(Point pt) {
+        return isAt(pt, bombs());
+    }
+
+    public boolean isGold(Point pt) {
+        return isAt(pt, gold());
+    }
+
+    public boolean isBarrier(Point pt) {
+        return getBarriers().contains(pt);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\n" +
+                        "Hero at: %s\n" +
+                        "Other heroes at: %s\n" +
+                        "Bombs at: %s\n" +
+                        "Gold at: %s\n",
+                boardAsString(),
+                getHero(),
+                getOtherHeroes(),
+                getBombs(),
+                getGold());
     }
 }

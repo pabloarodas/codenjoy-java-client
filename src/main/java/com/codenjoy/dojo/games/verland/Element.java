@@ -74,8 +74,6 @@ public enum Element implements CharElement {
     PATHLESS('☼', -14,           "Непроходимые территории - обычно граница поля, но может быть и " +
                                  "простое на пути героя."),
 
-
-
 /// Маркеры заражений вокруг
 
     CLEAR(' ', 0,                "Вокруг этой зоны нет заражений."),
@@ -125,7 +123,7 @@ public enum Element implements CharElement {
         return String.valueOf(ch);
     }
 
-    public static Element get(int value) {
+    public static Element valueOf(int value) {
         for (Element element : values()) {
             if (element.value == value) {
                 return element;
@@ -135,9 +133,9 @@ public enum Element implements CharElement {
     }
 
     public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
+        for (Element element : values()) {
+            if (element.ch == ch) {
+                return element;
             }
         }
         throw new IllegalArgumentException("No such element for " + ch);
@@ -146,35 +144,44 @@ public enum Element implements CharElement {
     public static Element[] heroes() {
         return new Element[]{
                 HERO_DEAD,
-                HERO
+                HERO,
         };
     }
 
     public static Element[] otherHeroes() {
         return new Element[]{
                 OTHER_HERO_DEAD,
-                OTHER_HERO
+                OTHER_HERO,
         };
     }
 
     public static Element[] enemyHeroes() {
         return new Element[]{
                 ENEMY_HERO_DEAD,
-                ENEMY_HERO
+                ENEMY_HERO,
         };
     }
 
-    public static Element[] otherStuff() {
+    public static Element[] pathless() {
+        return new Element[]{
+                PATHLESS,
+        };
+    }
+
+    public static Element[] infections() {
         return new Element[]{
                 INFECTION,
-                HIDDEN,
-                PATHLESS
         };
     }
 
-    public static Element[] infectionMarkers() {
+    public static Element[] hidden() {
         return new Element[]{
-                CLEAR,
+                HIDDEN,
+        };
+    }
+
+    public static Element[] contagions() {
+        return new Element[]{
                 ONE_CONTAGION,
                 TWO_CONTAGIONS,
                 THREE_CONTAGIONS,
@@ -182,7 +189,7 @@ public enum Element implements CharElement {
                 FIVE_CONTAGIONS,
                 SIX_CONTAGIONS,
                 SEVEN_CONTAGIONS,
-                EIGHT_CONTAGIONS
+                EIGHT_CONTAGIONS,
         };
     }
 }

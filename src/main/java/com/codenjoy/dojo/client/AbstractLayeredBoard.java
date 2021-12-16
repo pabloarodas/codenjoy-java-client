@@ -90,8 +90,8 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         return size;
     }
 
-    public static Set<Point> removeDuplicates(Collection<Point> all) {
-        return new TreeSet<>(all);
+    public static List<Point> removeDuplicates(Collection<Point> all) {
+        return new ArrayList<>(new TreeSet<>(all));
     }
 
     private void getAnd(Function<Point, Boolean> function, int numLayer, E... elements) {
@@ -273,6 +273,10 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         return result;
     }
 
+    /**
+     * Метод уточняет, что являетсяся оперделением "вокруг" героя.
+     * @return true - если стоит не учитывать диагональные углы.
+     */
     protected boolean withoutCorners() {
         return false;
     }

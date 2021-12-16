@@ -25,6 +25,8 @@ package com.codenjoy.dojo.games.sample;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
+import static java.util.Arrays.asList;
+
 /**
  * Тут указана легенда всех возможных объектов на поле и их состояний.
  * Важно помнить, что для каждой енумной константы надо создать спрайт в папке \src\main\webapp\resources\sprite.
@@ -71,12 +73,64 @@ public enum Element implements CharElement {
     }
 
     public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
+        for (Element element : Element.values()) {
+            if (element.ch == ch) {
+                return element;
             }
         }
         throw new IllegalArgumentException("No such element for " + ch);
+    }
+
+    public boolean isHero() {
+        return asList(heroes()).contains(this);
+    }
+
+    public boolean isOtherHero() {
+        return asList(otherHeroes()).contains(this);
+    }
+
+    public boolean isWall() {
+        return asList(walls()).contains(this);
+    }
+
+    public boolean isGold() {
+        return asList(gold()).contains(this);
+    }
+
+    public boolean isBomb() {
+        return asList(bombs()).contains(this);
+    }
+
+    public static Element[] heroes() {
+        return new Element[]{
+                HERO,
+                DEAD_HERO,
+        };
+    }
+
+    public static Element[] otherHeroes() {
+        return new Element[]{
+                OTHER_HERO,
+                OTHER_DEAD_HERO,
+        };
+    }
+
+    public static Element[] walls() {
+        return new Element[]{
+                WALL,
+        };
+    }
+
+    public static Element[] gold() {
+        return new Element[]{
+                GOLD,
+        };
+    }
+
+    public static Element[] bombs() {
+        return new Element[]{
+                BOMB,
+        };
     }
 
 }

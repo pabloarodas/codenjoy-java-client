@@ -40,39 +40,43 @@ public class BoardTest {
     @Before
     public void before() {
         board = board(
-                "☼☼☼☼☼☼☼☼☼" +
-                "☼1 ♣   ♠☼" +
-                "☼#2  &  ☼" +
-                "☼# 3 ♣ ♠☼" +
-                "☼☺  4   ☼" +
-                "☼   ö H☻☼" +
-                "☼x H ҉҉҉☼" +
-                "☼& &    ☼" +
-                "☼☼☼☼☼☼☼☼☼");
+           /*8*/"☼☼☼☼☼☼☼☼☼" +
+           /*7*/"☼1 ♣   ♠☼" +
+           /*6*/"☼#2  &  ☼" +
+           /*5*/"☼# 3 ♣ ♠☼" +
+           /*4*/"☼☺  4   ☼" +
+           /*3*/"☼   ö H☻☼" +
+           /*2*/"☼x H ҉҉҉☼" +
+           /*1*/"☼& &    ☼" +
+           /*0*/"☼☼☼☼☼☼☼☼☼");
+               /*012345678*/
     }
 
     @Test
     public void shouldWorkToString() {
-        assertEquals(
-           /*8*/"☼☼☼☼☼☼☼☼☼\n" +
-           /*7*/"☼1 ♣   ♠☼\n" +
-           /*6*/"☼#2  &  ☼\n" +
-           /*5*/"☼# 3 ♣ ♠☼\n" +
-           /*4*/"☼☺  4   ☼\n" +
-           /*3*/"☼   ö H☻☼\n" +
-           /*2*/"☼x H ҉҉҉☼\n" +
-           /*1*/"☼& &    ☼\n" +
-           /*0*/"☼☼☼☼☼☼☼☼☼\n" +
-               /*012345678*/
+        assertBoard(
+                "☼☼☼☼☼☼☼☼☼\n" +
+                "☼1 ♣   ♠☼\n" +
+                "☼#2  &  ☼\n" +
+                "☼# 3 ♣ ♠☼\n" +
+                "☼☺  4   ☼\n" +
+                "☼   ö H☻☼\n" +
+                "☼x H ҉҉҉☼\n" +
+                "☼& &    ☼\n" +
+                "☼☼☼☼☼☼☼☼☼\n" +
                 "\n" +
                 "Hero at: [1,4]\n" +
                 "Other heroes at: [[3,7], [5,5], [7,5], [7,7]]\n" +
                 "Enemy heroes at: [[4,3]]\n" +
-                "Ghosts at: [[1,1], [3,1], [5,6]]\n" +
+                "Ghosts at: [[1,1], [1,2], [3,1], [5,6]]\n" +
                 "Treasure boxes at: [[1,5], [1,6]]\n" +
                 "Potions at: [[1,7], [2,6], [3,5], [4,4], [7,3], [7,5], [7,7]]\n" +
                 "Blasts: [[5,2], [6,2], [7,2]]\n" +
-                "Expected blasts at: [[2,7]]", board.toString());
+                "Expected blasts at: [[2,7]]");
+    }
+
+    private void assertBoard(String expected) {
+        assertEquals(expected, board.toString());
     }
 
     @Test
@@ -118,29 +122,26 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getOtherHeroes() {
-        assertEquals("[[3,7], [5,5], [7,5], [7,7]]", board.getOtherHeroes().toString());
+        assertEquals("[[3,7], [5,5], [7,5], [7,7]]",
+                board.getOtherHeroes().toString());
     }
 
     @Test
     public void shouldWork_getEnemyHeroes() {
-        assertEquals("[[4,3]]", board.getEnemyHeroes().toString());
+        assertEquals("[[4,3]]",
+                board.getEnemyHeroes().toString());
     }
 
     @Test
     public void shouldWork_getBarriers() {
         assertEquals("[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], " +
-                "[0,6], [0,7], [0,8], [1,0], [1,1], [1,5], [1,6], " +
+                "[0,6], [0,7], [0,8], [1,0], [1,1], [1,2], [1,5], [1,6], " +
                 "[1,7], [1,8], [2,0], [2,6], [2,8], [3,0], [3,1], " +
                 "[3,5], [3,7], [3,8], [4,0], [4,3], [4,4], [4,8], " +
                 "[5,0], [5,5], [5,6], [5,8], [6,0], [6,8], [7,0], " +
                 "[7,3], [7,5], [7,7], [7,8], [8,0], [8,1], [8,2], " +
-                "[8,3], [8,4], [8,5], [8,6], [8,7], [8,8]]", board.getBarriers().toString());
-    }
-
-    @Test
-    public void shouldWork_isBarrierAt() {
-        assertEquals(true, board.isBarrierAt(1, 1));
-        assertEquals(false, board.isBarrierAt(5, 1));
+                "[8,3], [8,4], [8,5], [8,6], [8,7], [8,8]]",
+                board.getBarriers().toString());
     }
 
     @Test
@@ -151,7 +152,8 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getBlasts() {
-        assertEquals("[[5,2], [6,2], [7,2]]", board.getBlasts().toString());
+        assertEquals("[[5,2], [6,2], [7,2]]",
+                board.getBlasts().toString());
     }
 
     @Test
@@ -164,22 +166,26 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getPotions() {
-        assertEquals("[[1,7], [2,6], [3,5], [4,4], [7,3], [7,5], [7,7]]", board.getPotions().toString());
+        assertEquals("[[1,7], [2,6], [3,5], [4,4], [7,3], [7,5], [7,7]]",
+                board.getPotions().toString());
     }
 
     @Test
     public void shouldWork_getTreasureBoxes() {
-        assertEquals("[[1,5], [1,6]]", board.getTreasureBoxes().toString());
+        assertEquals("[[1,5], [1,6]]",
+                board.getTreasureBoxes().toString());
     }
 
     @Test
     public void shouldWork_getFutureBlasts() {
-        assertEquals("[[2,7]]", board.getFutureBlasts().toString());
+        assertEquals("[[2,7]]",
+                board.getFutureBlasts().toString());
     }
 
     @Test
     public void shouldWork_getGhosts() {
-        assertEquals("[[1,1], [3,1], [5,6]]", board.getGhosts().toString());
+        assertEquals("[[1,1], [1,2], [3,1], [5,6]]",
+                board.getGhosts().toString());
     }
 
     @Test
@@ -243,7 +249,8 @@ public class BoardTest {
         assertEquals("[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [0,7], [0,8], " +
                 "[1,0], [1,8], [2,0], [2,8], [3,0], [3,8], [4,0], [4,8], [5,0], [5,8], " +
                 "[6,0], [6,8], [7,0], [7,8], [8,0], [8,1], [8,2], [8,3], [8,4], [8,5], " +
-                "[8,6], [8,7], [8,8]]", board.getWalls().toString());
+                "[8,6], [8,7], [8,8]]",
+                board.getWalls().toString());
     }
 
     @Test
@@ -254,7 +261,12 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getAllPerks() {
-        board.forString("#cr" + "#i+" + "#TA");
-        assertEquals("[[1,0], [1,1], [1,2], [2,0], [2,1], [2,2]]", board.getPerks().toString());
+        board = board(
+                "#cr" +
+                "#i+" +
+                "#TA");
+
+        assertEquals("[[1,0], [1,1], [1,2], [2,0], [2,1], [2,2]]",
+                board.getPerks().toString());
     }
 }

@@ -192,7 +192,7 @@ public class DirectionTest {
 
     @Test
     public void test_act() {
-        assertEquals("ACT()", Direction.ACT());
+        assertEquals("ACT", Direction.ACT());
         assertEquals("ACT(-1)", Direction.ACT(-1));
         assertEquals("ACT(null)", Direction.ACT(null));
         assertEquals("ACT(1)", Direction.ACT(1));
@@ -203,11 +203,28 @@ public class DirectionTest {
     @Test
     public void test_actBeforeAfter() {
         assertEquals("ACT,LEFT", Direction.LEFT.ACT(true));
+        assertEquals("ACT(1),LEFT", Direction.LEFT.ACT(true, 1));
+        assertEquals("ACT(1,2),LEFT", Direction.LEFT.ACT(true, 1, 2));
+        assertEquals("ACT(1,2,3),LEFT", Direction.LEFT.ACT(true, 1, 2, 3));
+        
         assertEquals("LEFT,ACT", Direction.LEFT.ACT(false));
+        assertEquals("LEFT,ACT(1)", Direction.LEFT.ACT(false, 1));
+        assertEquals("LEFT,ACT(1,2)", Direction.LEFT.ACT(false, 1, 2));
+        assertEquals("LEFT,ACT(1,2,3)", Direction.LEFT.ACT(false, 1, 2, 3));
 
         assertEquals("ACT,ACT", Direction.ACT.ACT(true));
+        assertEquals("ACT(1),ACT", Direction.ACT.ACT(true, 1));
+        assertEquals("ACT(1,2),ACT", Direction.ACT.ACT(true, 1, 2));
+        assertEquals("ACT(1,2,3),ACT", Direction.ACT.ACT(true, 1, 2, 3));
+
         assertEquals("ACT,ACT", Direction.ACT.ACT(false));
+        assertEquals("ACT,ACT(1)", Direction.ACT.ACT(false, 1));
+        assertEquals("ACT,ACT(1,2)", Direction.ACT.ACT(false, 1, 2));
+        assertEquals("ACT,ACT(1,2,3)", Direction.ACT.ACT(false, 1, 2, 3));
 
         assertEquals("ACT,STOP", Direction.STOP.ACT(true));
+        assertEquals("ACT(1),STOP", Direction.STOP.ACT(true, 1));
+        assertEquals("ACT(1,2),STOP", Direction.STOP.ACT(true, 1, 2));
+        assertEquals("ACT(1,2,3),STOP", Direction.STOP.ACT(true, 1, 2, 3));
     }
 }

@@ -26,8 +26,6 @@ package com.codenjoy.dojo.games.verland;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import static com.codenjoy.dojo.games.verland.Element.*;
@@ -70,41 +68,62 @@ public class Board extends AbstractBoard<Element> {
         return !isGameOver() && !get(HERO_HEALING).isEmpty();
     }
 
-    public Collection<Point> getOtherHeroes() {
+    public List<Point> getOtherHeroes() {
         return get(otherHeroes());
     }
 
-    public Collection<Point> getEnemyHeroes() {
+    public List<Point> getEnemyHeroes() {
         return get(enemyHeroes());
     }
 
-    public Collection<Point> getOtherStuff() {
-        return get(otherStuff());
+    public List<Point> getContagions() {
+        return get(contagions());
     }
 
-    public Collection<Point> getWalls() {
-        return get(PATHLESS);
+    public List<Point> getPathless() {
+        return get(pathless());
     }
 
-    public boolean is(Point point, Element... elements) {
-        return getAllAt(point).stream()
-                .anyMatch(element -> Arrays.asList(elements).contains(element));
+    public List<Point> getInfections() {
+        return get(infections());
     }
 
-    public boolean isHeroAt(Point point) {
-        return is(point, heroes());
+    public List<Point> getHidden() {
+        return get(hidden());
     }
 
-    public boolean isOtherHeroAt(Point point) {
-        return is(point, otherHeroes());
+    public boolean isHeroAt(Point pt) {
+        return isAt(pt, heroes());
     }
 
-    public boolean isEnemyHeroAt(Point point) {
-        return is(point, enemyHeroes());
+    public boolean isOtherHeroAt(Point pt) {
+        return isAt(pt, otherHeroes());
     }
 
-    public int countContagions(Point point) {
-        return is(point, infectionMarkers()) ? getAt(point).value() : 0;
+    public boolean isEnemyHeroAt(Point pt) {
+        return isAt(pt, enemyHeroes());
+    }
+
+    public boolean isContagion(Point pt) {
+        return isAt(pt, contagions());
+    }
+
+    public boolean isPathless(Point pt) {
+        return isAt(pt, pathless());
+    }
+
+    public boolean isInfections(Point pt) {
+        return isAt(pt, infections());
+    }
+
+    public boolean isHidden(Point pt) {
+        return isAt(pt, hidden());
+    }
+
+    public int countContagions(Point pt) {
+        return isAt(pt, contagions())
+                ? getAt(pt).value()
+                : 0;
     }
 
     @Override
@@ -113,12 +132,11 @@ public class Board extends AbstractBoard<Element> {
                         "Hero at: %s\n" +
                         "Other heroes at: %s\n" +
                         "Enemy heroes at: %s\n" +
-                        "Other stuff at: %s\n",
+                        "Contagions at: %s\n",
                 boardAsString(),
                 getHero(),
                 getOtherHeroes(),
                 getEnemyHeroes(),
-                getOtherStuff());
+                getContagions());
     }
-
 }

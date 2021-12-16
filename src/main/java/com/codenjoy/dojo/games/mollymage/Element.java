@@ -25,8 +25,7 @@ package com.codenjoy.dojo.games.mollymage;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.Arrays;
-import java.util.List;
+import static java.util.Arrays.asList;
 
 public enum Element implements CharElement {
 
@@ -42,7 +41,7 @@ public enum Element implements CharElement {
 
     POTION_TIMER_1('1',        "One."),
 
-    BOOM('҉',                  "Boom! this is what is potion does, everything that is " +
+    BLAST('҉',                  "Boom! this is what is potion does, everything that is " +
                                "destroyable got destroyed."),
 
 /// walls
@@ -119,7 +118,7 @@ public enum Element implements CharElement {
                                "on the next move). If you've done it you'll get " +
                                "score points.");
 
-    public static final String POTIONS = "12345";
+    public static final String POTIONS_CHARS = "12345";
 
     private final char ch;
     private final String info;
@@ -127,17 +126,6 @@ public enum Element implements CharElement {
     Element(char ch, String info) {
         this.ch = ch;
         this.info = info;
-    }
-
-    public static List<Element> perks() {
-        return Arrays.asList(
-                POTION_BLAST_RADIUS_INCREASE,
-                POTION_COUNT_INCREASE,
-                POTION_IMMUNE,
-                POTION_REMOTE_CONTROL,
-                POISON_THROWER,
-                POTION_EXPLODER
-        );
     }
 
     @Override
@@ -156,22 +144,120 @@ public enum Element implements CharElement {
     }
 
     public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
+        for (Element element : Element.values()) {
+            if (element.ch == ch) {
+                return element;
             }
         }
         throw new IllegalArgumentException("No such element for " + ch);
     }
 
     public boolean isPotion() {
-        return POTIONS.indexOf(ch) != -1;
+        return asList(potions()).contains(this);
     }
 
     public boolean isHero() {
-        return this == Element.HERO ||
-               this == Element.POTION_HERO ||
-               this == Element.DEAD_HERO;
+        return asList(heroes()).contains(this);
     }
 
+    public boolean isEnemyHero() {
+        return asList(enemyHeroes()).contains(this);
+    }
+
+    public boolean isOtherHero() {
+        return asList(otherHeroes()).contains(this);
+    }
+
+    public boolean isPerk() {
+        return asList(perks()).contains(this);
+    }
+
+    public boolean isGhost() {
+        return asList(ghosts()).contains(this);
+    }
+
+    public boolean isWall() {
+        return asList(walls()).contains(this);
+    }
+
+    public boolean isTreasureBox() {
+        return asList(treasureBoxes()).contains(this);
+    }
+
+    public boolean isBoom() {
+        return asList(blasts()).contains(this);
+    }
+
+    public static Element[] heroes() {
+        return new Element[]{
+                HERO,
+                POTION_HERO,
+                DEAD_HERO,
+        };
+    }
+
+    public static Element[] enemyHeroes() {
+        return new Element[]{
+                ENEMY_HERO,
+                ENEMY_POTION_HERO,
+                ENEMY_DEAD_HERO,
+        };
+    }
+
+    public static Element[] otherHeroes() {
+        return new Element[]{
+                OTHER_HERO,
+                OTHER_POTION_HERO,
+                OTHER_DEAD_HERO,
+        };
+    }
+
+    public static Element[] potions() {
+        return new Element[]{
+                POTION_TIMER_1,
+                POTION_TIMER_2,
+                POTION_TIMER_3,
+                POTION_TIMER_4,
+                POTION_TIMER_5,
+                POTION_HERO,
+                OTHER_POTION_HERO,
+                ENEMY_POTION_HERO,
+        };
+    }
+
+    public static Element[] perks() {
+        return new Element[]{
+                POTION_COUNT_INCREASE,
+                POTION_REMOTE_CONTROL,
+                POTION_IMMUNE,
+                POTION_BLAST_RADIUS_INCREASE,
+                POISON_THROWER,
+                POTION_EXPLODER,
+        };
+    }
+
+    public static Element[] ghosts() {
+        return new Element[]{
+                GHOST,
+                DEAD_GHOST,
+        };
+    }
+
+    public static Element[] walls() {
+        return new Element[]{
+                WALL,
+        };
+    }
+
+    public static Element[] treasureBoxes() {
+        return new Element[]{
+                TREASURE_BOX,
+        };
+    }
+
+    public static Element[] blasts() {
+        return new Element[]{
+                BLAST,
+        };
+    }
 }

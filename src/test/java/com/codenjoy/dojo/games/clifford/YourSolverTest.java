@@ -37,63 +37,69 @@ import static org.mockito.Mockito.when;
 public class YourSolverTest {
 
     private Dice dice;
-    private Solver ai;
+    private Solver solver;
 
     @Before
     public void setup() {
         dice = mock(Dice.class);
-        ai = new YourSolver(dice);
+        solver = new YourSolver(dice);
     }
 
     private Board board(String board) {
         return (Board) new Board().forString(board);
     }
 
+    private void dice(Direction direction) {
+        when(dice.next(anyInt())).thenReturn(direction.value());
+    }
+
+    private void assertB(String board, String command) {
+        assertEquals(command, solver.get(board(board)));
+    }
+
+    // TODO these dummy tests are here for an example, delete it and write your own
+
     @Test
-    public void should() {
-
-        // TODO these asserts are here for an example, delete it and write your own
-
-        asertAI("☼☼☼☼☼☼☼" +
+    public void shouldSomething_whenCase1() {
+        assertB("☼☼☼☼☼☼☼" +
                 "☼ $  H☼" +
                 "☼ ###H☼" +
                 "☼    H☼" +
                 "☼►   H☼" +
                 "☼#####☼" +
-                "☼☼☼☼☼☼☼", Direction.RIGHT);
+                "☼☼☼☼☼☼☼", Command.MOVE_RIGHT);
+    }
 
-        asertAI("☼☼☼☼☼☼☼" +
+    @Test
+    public void shouldSomething_whenCase2() {
+        assertB("☼☼☼☼☼☼☼" +
                 "☼ $  H☼" +
                 "☼ ###H☼" +
                 "☼    H☼" +
                 "☼ ►  H☼" +
                 "☼#####☼" +
-                "☼☼☼☼☼☼☼", Direction.RIGHT);
+                "☼☼☼☼☼☼☼", Command.MOVE_RIGHT);
+    }
 
-        asertAI("☼☼☼☼☼☼☼" +
+    @Test
+    public void shouldSomething_whenCase3() {
+        assertB("☼☼☼☼☼☼☼" +
                 "☼ $  H☼" +
                 "☼ ###H☼" +
                 "☼    H☼" +
                 "☼  ► H☼" +
                 "☼#####☼" +
-                "☼☼☼☼☼☼☼", Direction.RIGHT);
+                "☼☼☼☼☼☼☼", Command.MOVE_RIGHT);
+    }
 
-        asertAI("☼☼☼☼☼☼☼" +
+    @Test
+    public void shouldSomething_whenCase4() {
+        assertB("☼☼☼☼☼☼☼" +
                 "☼ $  H☼" +
                 "☼ ###H☼" +
                 "☼    H☼" +
                 "☼   ►H☼" +
                 "☼#####☼" +
-                "☼☼☼☼☼☼☼", Direction.RIGHT);
-    }
-
-
-    private void asertAI(String board, Direction expected) {
-        String actual = ai.get(board(board));
-        assertEquals(expected.toString(), actual);
-    }
-
-    private void dice(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
+                "☼☼☼☼☼☼☼", Command.MOVE_RIGHT);
     }
 }

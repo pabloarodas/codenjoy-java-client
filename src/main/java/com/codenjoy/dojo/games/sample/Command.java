@@ -1,10 +1,10 @@
-package com.codenjoy.dojo.games.mollymage;
+package com.codenjoy.dojo.games.sample;
 
 /*-
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2018 Codenjoy
+ * Copyright (C) 2021 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,33 +22,21 @@ package com.codenjoy.dojo.games.mollymage;
  * #L%
  */
 
-import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.Direction;
 
-/**
- * Author: your name
- * <p>
- * This is your AI algorithm for the game.
- * Implement it at your own discretion.
- * Pay attention to {@link YourSolverTest} - there is
- * a test framework for you.
- */
-public class YourSolver implements Solver<Board> {
+import java.util.function.Function;
 
-    private Dice dice;
-    private Board board;
+import static com.codenjoy.dojo.services.Direction.*;
 
-    public YourSolver(Dice dice) {
-        this.dice = dice;
-    }
+public class Command {
 
-    @Override
-    public String get(Board board) {
-        this.board = board;
-        if (board.isGameOver()) return "";
+    public static final String NONE = "";
 
-        // TODO put your logic here
+    public static final Function<Direction, String> MOVE = Direction::toString;
+    public static final String MOVE_LEFT = MOVE.apply(LEFT);
+    public static final String MOVE_RIGHT = MOVE.apply(RIGHT);
+    public static final String MOVE_UP = MOVE.apply(UP);
+    public static final String MOVE_DOWN = MOVE.apply(DOWN);
 
-        return Command.DROP_POTION;
-    }
+    public static final String DROP_BOMB = Direction.ACT.toString();
 }

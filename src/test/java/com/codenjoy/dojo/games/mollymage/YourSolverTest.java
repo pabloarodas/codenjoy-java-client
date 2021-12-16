@@ -28,22 +28,31 @@ import com.codenjoy.dojo.services.Direction;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class YourSolverTest {
 
     private Dice dice = mock(Dice.class);
     private final YourSolver solver = new YourSolver(dice);
 
-    private void assertB(String board, Direction direction) {
-        assertEquals(direction.toString(), solver.get((Board) new Board().forString(board)));
+    private Board board(String board) {
+        return (Board) new Board().forString(board);
     }
 
+    private void dice(Direction direction) {
+        when(dice.next(anyInt())).thenReturn(direction.value());
+    }
+
+    private void assertB(String board, String command) {
+        assertEquals(command, solver.get(board(board)));
+    }
+
+    // TODO these dummy tests are here for an example, delete it and write your own
+
     @Test
-    public void should_when() {
-
-        // TODO these asserts are here for an example, delete it and write your own
-
+    public void shouldSomething_whenCase1() {
         assertB("☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
                 "☼☺        # # ☼" +
                 "☼ ☼ ☼ ☼#☼ ☼ ☼ ☼" +
@@ -59,7 +68,46 @@ public class YourSolverTest {
                 "☼ ☼ ☼ ☼ ☼ ☼ ☼#☼" +
                 "☼ #   #  &    ☼" +
                 "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼",
-                Direction.ACT);
+                Command.DROP_POTION);
     }
 
+    @Test
+    public void shouldSomething_whenCase2() {
+        assertB("☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
+                "☼☻        # # ☼" +
+                "☼ ☼ ☼ ☼#☼ ☼ ☼ ☼" +
+                "☼##           ☼" +
+                "☼ ☼ ☼#☼ ☼ ☼ ☼ ☼" +
+                "☼   #    # #  ☼" +
+                "☼ ☼ ☼ ☼#☼ ☼ ☼ ☼" +
+                "☼             ☼" +
+                "☼#☼ ☼ ☼#☼ ☼ ☼#☼" +
+                "☼  #  #       ☼" +
+                "☼ ☼ ☼ ☼ ☼ ☼ ☼#☼" +
+                "☼ ##      #   ☼" +
+                "☼ ☼ ☼ ☼ ☼ ☼ ☼#☼" +
+                "☼ #   #  &    ☼" +
+                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼",
+                Command.DROP_POTION);
+    }
+
+    @Test
+    public void shouldSomething_whenCase3() {
+        assertB("☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
+                "☼Ѡ҉҉      # # ☼" +
+                "☼҉☼ ☼ ☼#☼ ☼ ☼ ☼" +
+                "☼H#           ☼" +
+                "☼ ☼ ☼#☼ ☼ ☼ ☼ ☼" +
+                "☼   #    # #  ☼" +
+                "☼ ☼ ☼ ☼#☼ ☼ ☼ ☼" +
+                "☼             ☼" +
+                "☼#☼ ☼ ☼#☼ ☼ ☼#☼" +
+                "☼  #  #       ☼" +
+                "☼ ☼ ☼ ☼ ☼ ☼ ☼#☼" +
+                "☼ ##      #   ☼" +
+                "☼ ☼ ☼ ☼ ☼ ☼ ☼#☼" +
+                "☼ #   #  &    ☼" +
+                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼",
+                Command.NONE);
+    }
 }

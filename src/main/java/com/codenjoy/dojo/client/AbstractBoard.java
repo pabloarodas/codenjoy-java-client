@@ -26,7 +26,8 @@ package com.codenjoy.dojo.client;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
@@ -69,6 +70,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         return null;
     }
 
+    // TODO сделать более защищенным метод добавив проверку isOutOfField
     public E getAt(int x, int y) {
         List<E> at = getAllAt(x, y);
         if (at.isEmpty()) {
