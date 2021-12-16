@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.verland;
+package com.codenjoy.dojo.games.sample;
 
 /*-
  * #%L
@@ -22,25 +22,25 @@ package com.codenjoy.dojo.games.verland;
  * #L%
  */
 
-import com.codenjoy.dojo.services.Direction;
-
-import java.util.function.Function;
+import org.junit.Test;
 
 import static com.codenjoy.dojo.services.Direction.*;
+import static org.junit.Assert.assertEquals;
 
-public class Command {
+public class CommandTest {
 
-    public static final String NONE = "";
+    @Test
+    public void test() {
+        assertEquals("LEFT",  Command.MOVE.apply(LEFT));
+        assertEquals("RIGHT", Command.MOVE.apply(RIGHT));
+        assertEquals("UP",    Command.MOVE.apply(UP));
+        assertEquals("DOWN",  Command.MOVE.apply(DOWN));
 
-    public static final Function<Direction, String> MOVE = Direction::toString;
-    public static final String MOVE_LEFT = MOVE.apply(LEFT);
-    public static final String MOVE_RIGHT = MOVE.apply(RIGHT);
-    public static final String MOVE_UP = MOVE.apply(UP);
-    public static final String MOVE_DOWN = MOVE.apply(DOWN);
+        assertEquals("LEFT",  Command.MOVE_LEFT);
+        assertEquals("RIGHT", Command.MOVE_RIGHT);
+        assertEquals("UP",    Command.MOVE_UP);
+        assertEquals("DOWN",  Command.MOVE_DOWN);
 
-    public static final Function<Direction, String> CURE_AT = d -> d.ACT(true);
-    public static final String CURE_LEFT = CURE_AT.apply(LEFT);
-    public static final String CURE_RIGHT = CURE_AT.apply(RIGHT);
-    public static final String CURE_UP = CURE_AT.apply(UP);
-    public static final String CURE_DOWN = CURE_AT.apply(DOWN);
+        assertEquals("ACT",   Command.DROP_BOMB);
+    }
 }
