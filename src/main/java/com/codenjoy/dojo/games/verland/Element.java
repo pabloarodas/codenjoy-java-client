@@ -25,6 +25,8 @@ package com.codenjoy.dojo.games.verland;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
+import static java.util.Arrays.asList;
+
 public enum Element implements CharElement {
 
 /// Мой герой
@@ -141,6 +143,42 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("No such element for " + ch);
     }
 
+    public boolean isHero() {
+        return asList(heroes()).contains(this);
+    }
+
+    public boolean isOtherHero() {
+        return asList(otherHeroes()).contains(this);
+    }
+
+    public boolean isEnemyHeroes() {
+        return asList(enemyHeroes()).contains(this);
+    }
+
+    public boolean isPathless() {
+        return asList(pathless()).contains(this);
+    }
+
+    public boolean isInfections() {
+        return asList(infections()).contains(this);
+    }
+
+    public boolean isHidden() {
+        return asList(hidden()).contains(this);
+    }
+
+    public boolean isContagions() {
+        return asList(contagions()).contains(this);
+    }
+
+    public boolean isHealing() {
+        return asList(healing()).contains(this);
+    }
+
+    public boolean isCure() {
+        return asList(cure()).contains(this);
+    }
+
     public static Element[] heroes() {
         return new Element[]{
                 HERO_DEAD,
@@ -190,6 +228,21 @@ public enum Element implements CharElement {
                 SIX_CONTAGIONS,
                 SEVEN_CONTAGIONS,
                 EIGHT_CONTAGIONS,
+        };
+    }
+
+    public static Element[] healing() {
+        return new Element[]{
+                HERO_HEALING,
+                OTHER_HERO_HEALING,
+                ENEMY_HERO_HEALING,
+        };
+    }
+
+    public static Element[] cure() {
+        return new Element[]{
+                HERO_CURE,
+                OTHER_HERO_CURE,
         };
     }
 }

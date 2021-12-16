@@ -80,6 +80,14 @@ public class Board extends AbstractBoard<Element> {
         return get(contagions());
     }
 
+    public List<Point> getHealing() {
+        return get(healing());
+    }
+
+    public List<Point> getCure() {
+        return get(cure());
+    }
+
     public List<Point> getPathless() {
         return get(pathless());
     }
