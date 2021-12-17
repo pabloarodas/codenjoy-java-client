@@ -261,6 +261,27 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_getRobbers() {
+        assertEquals("[[6,1]]",
+                board.getRobbers().toString());
+    }
+
+    @Test
+    public void shouldWork_isRobberAt_point() {
+        assertEquals(true, board.isRobberAt(pt(6, 1)));
+        assertEquals(false, board.isRobberAt(pt(6, 2)));
+
+        assertEquals(true, board("x").isRobberAt(pt(0, 0)));
+        assertEquals(true, board("X").isRobberAt(pt(0, 0)));
+        assertEquals(true, board(")").isRobberAt(pt(0, 0)));
+        assertEquals(true, board("(").isRobberAt(pt(0, 0)));
+        assertEquals(true, board("Y").isRobberAt(pt(0, 0)));
+        assertEquals(true, board("y").isRobberAt(pt(0, 0)));
+
+        assertEquals(false, board("#").isRobberAt(pt(0, 0)));
+    }
+
+    @Test
     public void shouldWork_getBarriers() {
         assertEquals("[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], " +
                         "[0,6], [0,7], [0,8], [1,0], [1,2], [1,8], " +
@@ -282,6 +303,12 @@ public class BoardTest {
     public void shouldWork_getBackWays() {
         assertEquals("[[7,4]]",
                 board.getBackWays().toString());
+    }
+
+    @Test
+    public void shouldWork_isBackWayAt_point() {
+        assertEquals(true, board.isBackWayAt(pt(7, 4)));
+        assertEquals(false, board.isBackWayAt(pt(7, 5)));
     }
 
     @Test
@@ -327,9 +354,15 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldWork_getPotions() {
+    public void shouldWork_getMaskPotions() {
         assertEquals("[[1,4]]",
                 board.getMaskPotions().toString());
+    }
+
+    @Test
+    public void shouldWork_isMaskPotionAt_point() {
+        assertEquals(true, board.isMaskPotionAt(pt(1, 4)));
+        assertEquals(false, board.isMaskPotionAt(pt(1, 5)));
     }
 
     @Test
@@ -339,9 +372,21 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isLadderAt_point() {
+        assertEquals(true, board.isLadderAt(pt(2, 6)));
+        assertEquals(false, board.isLadderAt(pt(2, 7)));
+    }
+
+    @Test
     public void shouldWork_getPipes() {
         assertEquals("[[4,3], [5,3], [6,3]]",
                 board.getPipes().toString());
+    }
+
+    @Test
+    public void shouldWork_isPipeAt_point() {
+        assertEquals(true, board.isPipeAt(pt(5, 3)));
+        assertEquals(false, board.isPipeAt(pt(5, 6)));
     }
 
     @Test
@@ -351,8 +396,9 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldWork_getMaskPotions() {
-        assertEquals("[[1,4]]", board.getMaskPotions().toString());
+    public void shouldWork_isPitAt_point() {
+        assertEquals(true, board.isPitAt(pt(3, 7)));
+        assertEquals(false, board.isPitAt(pt(3, 8)));
     }
 
     @Test
@@ -361,9 +407,21 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isClueAt_point() {
+        assertEquals(true, board.isClueAt(pt(3, 1)));
+        assertEquals(false, board.isClueAt(pt(3, 2)));
+    }
+
+    @Test
     public void shouldWork_getDoors() {
         assertEquals("[[4,2], [7,5]]",
                 board.getDoors().toString());
+    }
+
+    @Test
+    public void shouldWork_isDoorAt_point() {
+        assertEquals(true, board.isDoorAt(pt(7, 5)));
+        assertEquals(false, board.isDoorAt(pt(7, 6)));
     }
 
     @Test
@@ -433,6 +491,12 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isWallAt_point() {
+        assertEquals(true, board.isWallAt(pt(7, 0)));
+        assertEquals(false, board.isWallAt(pt(7, 1)));
+    }
+
+    @Test
     public void shouldWork_isGameOver() {
         assertEquals(false, board.isGameOver());
         assertEquals(true, board("O").isGameOver());
@@ -448,5 +512,16 @@ public class BoardTest {
 
         assertEquals("[[1,0], [1,1], [1,2]]",
                 board.getKeys().toString());
+    }
+
+    @Test
+    public void shouldWork_isKeyAt_point() {
+        board = board(
+                "#+ " +
+                "#- " +
+                "#! ");
+
+        assertEquals(true, board.isKeyAt(pt(1, 1)));
+        assertEquals(false, board.isKeyAt(pt(2, 1)));
     }
 }

@@ -132,39 +132,39 @@ public class Board extends AbstractBoard<Element> {
         return isAt(pt, robbers());
     }
 
-    public boolean isClue(Point pt) {
+    public boolean isClueAt(Point pt) {
         return isAt(pt, clues());
     }
 
-    public boolean isBackWay(Point pt) {
+    public boolean isBackWayAt(Point pt) {
         return isAt(pt, backWays());
     }
 
-    public boolean isPotion(Point pt) {
+    public boolean isMaskPotionAt(Point pt) {
         return isAt(pt, maskPotions());
     }
 
-    public boolean isWall(Point pt) {
+    public boolean isWallAt(Point pt) {
         return isAt(pt, walls());
     }
 
-    public boolean isLadder(Point pt) {
+    public boolean isLadderAt(Point pt) {
         return isAt(pt, ladders());
     }
 
-    public boolean isPipe(Point pt) {
+    public boolean isPipeAt(Point pt) {
         return isAt(pt, pipes());
     }
 
-    public boolean isPit(Point pt) {
+    public boolean isPitAt(Point pt) {
         return isAt(pt, pits());
     }
 
-    public boolean isDoor(Point pt) {
+    public boolean isDoorAt(Point pt) {
         return isAt(pt, doors());
     }
 
-    public boolean isKey(Point pt) {
+    public boolean isKeyAt(Point pt) {
         return isAt(pt, keys());
     }
 
