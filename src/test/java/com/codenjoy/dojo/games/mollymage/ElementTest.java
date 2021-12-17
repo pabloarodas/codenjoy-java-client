@@ -31,7 +31,7 @@ public class ElementTest {
 
     @Test
     public void testElementProperties() {
-        assertEquals("BLAST[҉]                 =boom\n" +
+        assertEquals("BLAST[҉]                 =blast\n" +
                     "DEAD_GHOST[x]            =ghost\n" +
                     "DEAD_HERO[Ѡ]             =hero\n" +
                     "ENEMY_DEAD_HERO[ø]       =enemyHero\n" +

@@ -184,7 +184,7 @@ public enum Element implements CharElement {
         return asList(treasureBoxes()).contains(this);
     }
 
-    public boolean isBoom() {
+    public boolean isBlast() {
         return asList(blasts()).contains(this);
     }
 
