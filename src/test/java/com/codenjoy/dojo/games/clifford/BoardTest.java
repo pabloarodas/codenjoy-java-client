@@ -208,8 +208,56 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isOtherHeroAt_point() {
+        assertEquals(true, board.isOtherHeroAt(pt(1, 2)));
+        assertEquals(false, board.isOtherHeroAt(pt(1, 3)));
+
+        assertEquals(true, board("C").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("F").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("D").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("«").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("»").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("J").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("K").isOtherHeroAt(pt(0, 0)));
+
+        assertEquals(true, board("c").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("f").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("d").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("Z").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("z").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("j").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("k").isOtherHeroAt(pt(0, 0)));
+
+        assertEquals(false, board("#").isOtherHeroAt(pt(0, 0)));
+    }
+
+    @Test
     public void shouldWork_getEnemyHeroes() {
         assertEquals("[[4,6], [5,6]]", board.getEnemyHeroes().toString());
+    }
+
+    @Test
+    public void shouldWork_isEnemyHeroAt_point() {
+        assertEquals(true, board.isEnemyHeroAt(pt(4, 6)));
+        assertEquals(false, board.isEnemyHeroAt(pt(4, 7)));
+
+        assertEquals(true, board("L").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("R").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("N").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("P").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("T").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("V").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("Q").isEnemyHeroAt(pt(0, 0)));
+
+        assertEquals(true, board("l").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("r").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("n").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("p").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("t").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("v").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("q").isEnemyHeroAt(pt(0, 0)));
+
+        assertEquals(false, board("#").isEnemyHeroAt(pt(0, 0)));
     }
 
     @Test

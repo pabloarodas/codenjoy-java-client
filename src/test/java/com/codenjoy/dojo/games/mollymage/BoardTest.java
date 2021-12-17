@@ -127,9 +127,33 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isOtherHeroAt_point() {
+        assertEquals(true, board.isOtherHeroAt(pt(5, 5)));
+        assertEquals(false, board.isOtherHeroAt(pt(5, 6)));
+
+        assertEquals(true, board("♥").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("♠").isOtherHeroAt(pt(0, 0)));
+        assertEquals(true, board("♣").isOtherHeroAt(pt(0, 0)));
+
+        assertEquals(false, board("&").isOtherHeroAt(pt(0, 0)));
+    }
+
+    @Test
     public void shouldWork_getEnemyHeroes() {
         assertEquals("[[4,3]]",
                 board.getEnemyHeroes().toString());
+    }
+
+    @Test
+    public void shouldWork_isEnemyHeroAt_point() {
+        assertEquals(true, board.isEnemyHeroAt(pt(4, 3)));
+        assertEquals(false, board.isEnemyHeroAt(pt(4, 4)));
+
+        assertEquals(true, board("ö").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("Ö").isEnemyHeroAt(pt(0, 0)));
+        assertEquals(true, board("ø").isEnemyHeroAt(pt(0, 0)));
+
+        assertEquals(false, board("&").isEnemyHeroAt(pt(0, 0)));
     }
 
     @Test

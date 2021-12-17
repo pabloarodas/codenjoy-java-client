@@ -150,6 +150,7 @@ public class BoardTest {
         assertEquals(false, board.isOtherHeroAt(pt(3, 2)));
 
         assertEquals(true, board("Y").isOtherHeroAt(pt(0, 0)));
+
         assertEquals(false, board("☺").isOtherHeroAt(pt(0, 0)));
         assertEquals(false, board("X").isOtherHeroAt(pt(0, 0)));
         assertEquals(false, board("x").isOtherHeroAt(pt(0, 0)));
@@ -185,6 +186,7 @@ public class BoardTest {
         assertEquals(false, board.isHeroAt(pt(1, 4)));
 
         assertEquals(true, board("X").isHeroAt(pt(0, 0)));
+
         assertEquals(false, board("☻").isHeroAt(pt(0, 0)));
         assertEquals(false, board("Y").isHeroAt(pt(0, 0)));
         assertEquals(false, board("x").isHeroAt(pt(0, 0)));
