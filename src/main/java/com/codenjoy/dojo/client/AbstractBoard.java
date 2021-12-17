@@ -128,6 +128,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
 
     public boolean isAt(Point pt, E... elements) {
         if (pt.isOutOf(size)) {
+            // TODO за пределами поля должны быть барьеры
             return false;
         }
 

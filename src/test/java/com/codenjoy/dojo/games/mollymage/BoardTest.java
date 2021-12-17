@@ -162,6 +162,18 @@ public class BoardTest {
         assertEquals("[0,0]", board("☺").getHero().toString());
         assertEquals("[0,0]", board("☻").getHero().toString());
         assertEquals("[0,0]", board("Ѡ").getHero().toString());
+        assertEquals(null, board("&").getHero());
+    }
+
+    @Test
+    public void shouldWork_isHeroAt_point() {
+        assertEquals(true, board.isHeroAt(pt(1, 4)));
+        assertEquals(false, board.isHeroAt(pt(1, 5)));
+
+        assertEquals(true, board("☺").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("☻").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("Ѡ").isHeroAt(pt(0, 0)));
+        assertEquals(false, board("&").isHeroAt(pt(0, 0)));
     }
 
     @Test

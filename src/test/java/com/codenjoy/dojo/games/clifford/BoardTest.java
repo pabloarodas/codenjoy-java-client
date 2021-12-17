@@ -257,6 +257,28 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isHeroAt_point() {
+        assertEquals(true, board.isHeroAt(pt(2, 7)));
+        assertEquals(false, board.isHeroAt(pt(2, 8)));
+
+        assertEquals(true, board("O").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("A").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("◄").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("►").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("U").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("I").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("E").isHeroAt(pt(0, 0)));
+
+        assertEquals(true, board("o").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("a").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("h").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("w").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("u").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("i").isHeroAt(pt(0, 0)));
+        assertEquals(true, board("e").isHeroAt(pt(0, 0)));
+    }
+
+    @Test
     public void shouldWork_getPotions() {
         assertEquals("[[1,4]]",
                 board.getMaskPotions().toString());
