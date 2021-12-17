@@ -181,6 +181,12 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isBlastAt_point() {
+        assertEquals(true, board.isBlastAt(pt(7, 2)));
+        assertEquals(false, board.isBlastAt(pt(7, 3)));
+    }
+
+    @Test
     public void shouldWork_getHero() {
         assertEquals("[1,4]", board.getHero().toString());
         assertEquals("[0,0]", board("☺").getHero().toString());
@@ -207,9 +213,21 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isPotionAt_point() {
+        assertEquals(true, board.isPotionAt(pt(2, 6)));
+        assertEquals(false, board.isPotionAt(pt(2, 7)));
+    }
+
+    @Test
     public void shouldWork_getTreasureBoxes() {
         assertEquals("[[1,5], [1,6], [3,2], [6,3]]",
                 board.getTreasureBoxes().toString());
+    }
+
+    @Test
+    public void shouldWork_isTreasureBoxAt_point() {
+        assertEquals(true, board.isTreasureBoxAt(pt(3, 2)));
+        assertEquals(false, board.isTreasureBoxAt(pt(3, 3)));
     }
 
     @Test
@@ -219,9 +237,44 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_getFutureBlasts_outOfField() {
+        board = board(
+                "1      1" +
+                "        " +
+                "        " +
+                "        " +
+                "        " +
+                "        " +
+                "        " +
+                "1      1");
+
+        assertEquals("[[1,0], [2,0], [3,0], " +
+                        "[0,1], [0,2], [0,3], " +
+                        "[1,7], [2,7], [3,7], " +
+                        "[0,6], [0,5], [0,4], " +
+                        "[6,0], [5,0], [4,0], " +
+                        "[7,1], [7,2], [7,3], " +
+                        "[6,7], [5,7], [4,7], " +
+                        "[7,6], [7,5], [7,4]]",
+                board.getFutureBlasts().toString());
+    }
+
+    @Test
+    public void shouldWork_isFutureBlastAt_point() {
+        assertEquals(true, board.isFutureBlastAt(pt(2, 7)));
+        assertEquals(false, board.isFutureBlastAt(pt(2, 8)));
+    }
+
+    @Test
     public void shouldWork_getGhosts() {
         assertEquals("[[1,1], [1,2], [3,1], [5,6]]",
                 board.getGhosts().toString());
+    }
+
+    @Test
+    public void shouldWork_isGhostAt_point() {
+        assertEquals(true, board.isGhostAt(pt(1, 2)));
+        assertEquals(false, board.isGhostAt(pt(1, 3)));
     }
 
     @Test
@@ -290,6 +343,12 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_isWallAt_point() {
+        assertEquals(true, board.isWallAt(pt(0, 1)));
+        assertEquals(false, board.isWallAt(pt(1, 2)));
+    }
+
+    @Test
     public void shouldWork_isGameOver() {
         assertEquals(false, board.isGameOver());
         assertEquals(true, board("Ѡ").isGameOver());
@@ -304,5 +363,16 @@ public class BoardTest {
 
         assertEquals("[[1,0], [1,1], [1,2], [2,0], [2,1], [2,2]]",
                 board.getPerks().toString());
+    }
+
+    @Test
+    public void shouldWork_isPerkAt_point() {
+        board = board(
+                "#cr" +
+                "#i+" +
+                "#TA");
+
+        assertEquals(true, board.isPerkAt(pt(1, 0)));
+        assertEquals(false, board.isPerkAt(pt(0, 0)));
     }
 }
