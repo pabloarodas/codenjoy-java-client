@@ -30,9 +30,7 @@ public class Go implements Template {
 
     @Override
     public String header(List<String> locales) {
-        return "package ${game}\n" +
-                "\n" +
-                "/*-\n" +
+        return "/*-\n" +
                 " * ${tag}\n" +
                 " * Codenjoy - it's a dojo-like platform from developers to developers.\n" +
                 " * %%\n" +
@@ -53,6 +51,8 @@ public class Go implements Template {
                 " * <http://www.gnu.org/licenses/gpl-3.0.html>.\n" +
                 " * #L%\n" +
                 " */\n" +
+                "\n" +
+                "package ${game}\n" +
                 "\n" +
                 "var elements = map[string]rune{\n";
     }
