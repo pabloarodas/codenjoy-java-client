@@ -345,7 +345,7 @@ public enum Element implements CharElement {
         return asList(maskPotions()).contains(this);
     }
 
-    public boolean isBackway() {
+    public boolean isBackWay() {
         return asList(backWays()).contains(this);
     }
 

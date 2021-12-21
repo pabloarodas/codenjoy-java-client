@@ -39,7 +39,7 @@ public class ElementTest {
 
     @Test
     public void testElementProperties() {
-        assertEquals("BACKWAY[W]               =backway\n" +
+        assertEquals("BACKWAY[W]               =backWay\n" +
                     "BRICK[#]                 =wall\n" +
                     "BULLET[•]                =bullet\n" +
                     "CLOSED_DOOR_BRONZE[B]    =door\n" +
