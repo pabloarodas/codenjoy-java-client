@@ -346,7 +346,7 @@
                 <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
-                        <!-- Плагин добавлет jar с сырцами engine
+                        <!-- Плагин добавляет jar с сырцами engine
                              в target -->
                         <id>[##6]-attach-engine-sources</id>
                         <goals>
