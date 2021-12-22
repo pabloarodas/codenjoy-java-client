@@ -9,6 +9,7 @@
     <version>1.1.1</version>
 
     <properties>
+        <module.name>client-java</module.name>
         <build.time>${maven.build.timestamp}</build.time>
 
         <java.version>11</java.version>
@@ -292,6 +293,14 @@
 
                                 <copy file="${client.sources}"
                                       todir="target/classes/resources/user"/>
+
+                                <!-- Это нужно для плагина с id [##10]-run-ant engine/pom.xml
+                                     ведь при сборке всего CodingDojo/pom.xml он стелает
+                                     так как не может найти pom.xml-->
+                                <copy todir="${project.build.directory}">
+                                    <fileset file="${project.basedir}/pom.xml"/>
+                                    <globmapper from="pom.xml" to="${module.name}-${project.version}.pom"/>
+                                </copy>
                             </target>
                         </configuration>
                     </execution>
