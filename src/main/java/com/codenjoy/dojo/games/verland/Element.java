@@ -218,6 +218,12 @@ public enum Element implements CharElement {
         };
     }
 
+    public static Element[] clear() {
+        return new Element[]{
+                CLEAR,
+        };
+    }
+
     public static Element[] contagions() {
         return new Element[]{
                 CONTAGION_ONE,

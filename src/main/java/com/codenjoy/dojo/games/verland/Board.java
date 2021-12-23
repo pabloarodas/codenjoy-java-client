@@ -100,6 +100,10 @@ public class Board extends AbstractBoard<Element> {
         return get(hidden());
     }
 
+    public List<Point> getClear() {
+        return get(clear());
+    }
+
     public boolean isHeroAt(Point pt) {
         return isAt(pt, heroes());
     }
@@ -112,20 +116,24 @@ public class Board extends AbstractBoard<Element> {
         return isAt(pt, enemyHeroes());
     }
 
-    public boolean isContagion(Point pt) {
+    public boolean isContagionAt(Point pt) {
         return isAt(pt, contagions());
     }
 
-    public boolean isPathless(Point pt) {
+    public boolean isPathlessAt(Point pt) {
         return isAt(pt, pathless());
     }
 
-    public boolean isInfections(Point pt) {
+    public boolean isInfectionsAt(Point pt) {
         return isAt(pt, infections());
     }
 
-    public boolean isHidden(Point pt) {
+    public boolean isHiddenAt(Point pt) {
         return isAt(pt, hidden());
+    }
+
+    public boolean isClearAt(Point pt) {
+        return isAt(pt, clear());
     }
 
     public int countContagions(Point pt) {
