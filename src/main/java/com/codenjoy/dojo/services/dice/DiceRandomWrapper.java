@@ -1,10 +1,10 @@
-package com.codenjoy.dojo.services;
+package com.codenjoy.dojo.services.dice;
 
 /*-
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2018 Codenjoy
+ * Copyright (C) 2021 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,22 +22,13 @@ package com.codenjoy.dojo.services;
  * #L%
  */
 
+import com.codenjoy.dojo.services.Dice;
 
-import java.security.SecureRandom;
+import java.util.Random;
 
-public class RandomDice implements Dice {
+public class DiceRandomWrapper extends Random {
 
-    private static final SecureRandom random = new SecureRandom(String.valueOf(System.nanoTime()).getBytes());
-
-    /**
-     * Simulates a dice throwing.
-     *
-     * @param n number of dice faces
-     * @return integer between 0 (inclusively) and n (exclusively)
-     */
-    @Override
-    public int next(int n) {
-        if (n <= 0) throw new IllegalArgumentException("Dice should have a positive number of faces");
-        return random.nextInt(n);
+    public DiceRandomWrapper(Dice dice) {
+        super(dice.next(Integer.MAX_VALUE));
     }
 }

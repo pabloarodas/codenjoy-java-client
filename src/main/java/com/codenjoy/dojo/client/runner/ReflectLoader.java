@@ -25,7 +25,7 @@ package com.codenjoy.dojo.client.runner;
 import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.RandomDice;
+import com.codenjoy.dojo.services.dice.RandomDice;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Modifier;

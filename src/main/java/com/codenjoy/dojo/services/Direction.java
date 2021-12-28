@@ -23,6 +23,7 @@ package com.codenjoy.dojo.services;
  */
 
 
+import com.codenjoy.dojo.services.dice.RandomDice;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;

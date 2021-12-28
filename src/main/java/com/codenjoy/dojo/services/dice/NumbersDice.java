@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.services;
+package com.codenjoy.dojo.services.dice;
 
 /*-
  * #%L
@@ -22,6 +22,8 @@ package com.codenjoy.dojo.services;
  * #L%
  */
 
+
+import com.codenjoy.dojo.services.Dice;
 
 import java.util.LinkedList;
 import java.util.List;

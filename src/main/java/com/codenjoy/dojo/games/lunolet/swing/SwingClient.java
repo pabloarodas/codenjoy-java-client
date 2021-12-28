@@ -25,7 +25,7 @@ package com.codenjoy.dojo.games.lunolet.swing;
 
 import com.codenjoy.dojo.games.lunolet.Board;
 import com.codenjoy.dojo.games.lunolet.YourSolver;
-import com.codenjoy.dojo.services.RandomDice;
+import com.codenjoy.dojo.services.dice.RandomDice;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.*;
 import org.eclipse.jetty.websocket.client.WebSocketClient;

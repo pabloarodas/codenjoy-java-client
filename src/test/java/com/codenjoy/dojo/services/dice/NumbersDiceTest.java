@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.services;
+package com.codenjoy.dojo.services.dice;
 
 /*-
  * #%L
@@ -22,6 +22,8 @@ package com.codenjoy.dojo.services;
  * #L%
  */
 
+import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.dice.NumbersDice;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -58,5 +60,4 @@ public class NumbersDiceTest {
         assertEquals(-100, dice.next(100));
         assertEquals(-100, dice.next(100));
     }
-
 }
