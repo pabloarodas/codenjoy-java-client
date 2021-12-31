@@ -31,10 +31,10 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static com.codenjoy.dojo.services.Direction.*;
+import static com.codenjoy.dojo.services.PointImpl.pt;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
-import static com.codenjoy.dojo.services.PointImpl.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
@@ -595,6 +595,15 @@ public class PointImplTest {
         assertEquals(UP, pt(1, 1).direction(pt(1, 2)));
         assertEquals(DOWN, pt(1, 1).direction(pt(1, 0)));
         assertEquals(null, pt(1, 1).direction(pt(0, 0)));
+    }
+
+    @Test
+    public void shouldGetStream() {
+        assertEquals("[12, 34]",
+                pt(12, 34).stream()
+                        .map(Object::toString)
+                        .collect(toList())
+                        .toString());
     }
 
 }

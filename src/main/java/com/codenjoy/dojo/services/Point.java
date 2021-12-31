@@ -23,8 +23,10 @@ package com.codenjoy.dojo.services;
  */
 
 
+import java.util.Arrays;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 /**
  * Encapsulates coordinate of Element at the Board. All Board elements must extends from PointImpl,
@@ -128,4 +130,8 @@ public interface Point extends Comparable<Point> {
     Direction direction(Point to);
 
     void onChange(BiConsumer<Point, Point> onChange);
+
+    default Stream<Integer> stream() {
+        return Arrays.stream(new Integer[]{getX(), getY()});
+    }
 }
