@@ -4,7 +4,7 @@ package com.codenjoy.dojo.utils.core;
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2018 - 2021 Codenjoy
+ * Copyright (C) 2022 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -36,6 +36,8 @@ public interface Testing {
 
     <T> T mock(Class<T> clazz);
 
+    <T> Testing.OngoingStubbing<T> when(T methodCall);
+
     <T> T verify(T mock, Object mode);
 
     <T> void reset(T... mocks);
@@ -43,6 +45,8 @@ public interface Testing {
     void verifyNoMoreInteractions(Object... mocks);
 
     <T> T anyObject();
+
+    <T> T anyInt();
 
     Object never();
 
@@ -57,4 +61,15 @@ public interface Testing {
 
         List<T> getAllValues();
     }
+
+    interface OngoingStubbing<T> {
+        OngoingStubbing<T> thenReturn(T var1);
+
+        OngoingStubbing<T> thenThrow(Throwable... var1);
+
+        OngoingStubbing<T> thenCallRealMethod();
+
+        // другие методы тут есть, но мы их не покажем пока
+    }
+
 }

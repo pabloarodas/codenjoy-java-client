@@ -4,18 +4,18 @@ package com.codenjoy.dojo.utils.core;
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
  * %%
- * Copyright (C) 2018 - 2021 Codenjoy
+ * Copyright (C) 2022 Codenjoy
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -46,8 +46,8 @@ public class MockitoJunitTesting implements Testing {
     private Class<?> Mockito;
     private Class<?> VerificationMode;
     private Class<?> ArgumentCaptor;
+    private Class<?> OngoingStubbing;
     private Class<?> MultipleFailureException;
-
     private MockitoJunitTesting() {
         try {
             ClassLoader classLoader = this.getClass().getClassLoader();
@@ -55,6 +55,7 @@ public class MockitoJunitTesting implements Testing {
             Mockito = classLoader.loadClass("org.mockito.Mockito");
             VerificationMode = classLoader.loadClass("org.mockito.verification.VerificationMode");
             ArgumentCaptor = classLoader.loadClass("org.mockito.ArgumentCaptor");
+            OngoingStubbing = classLoader.loadClass("org.mockito.stubbing.OngoingStubbing");
             MultipleFailureException = classLoader.loadClass("org.junit.internal.runners.model.MultipleFailureException");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -136,6 +137,38 @@ public class MockitoJunitTesting implements Testing {
     }
 
     @Override
+    public <T> Testing.OngoingStubbing<T> when(T methodCall) {
+        return wrap(callStatic(Mockito, "when",
+                new Class[]{Object.class},
+                new Object[]{methodCall}));
+    }
+
+    private <T> Testing.OngoingStubbing<T> wrap(Object when) {
+        return new OngoingStubbing<>() {
+            @Override
+            public OngoingStubbing<T> thenReturn(T var1) {
+                return wrap(call(OngoingStubbing, "thenReturn",
+                        new Class[]{Object.class},
+                        when, new Object[]{var1}));
+            }
+
+            @Override
+            public OngoingStubbing<T> thenThrow(Throwable... var1) {
+                return wrap(call(OngoingStubbing, "thenThrow",
+                        new Class[]{Throwable[].class},
+                        when, new Object[]{var1}));
+            }
+
+            @Override
+            public OngoingStubbing<T> thenCallRealMethod() {
+                return wrap(call(OngoingStubbing, "thenCallRealMethod",
+                        new Class[]{},
+                        when, new Object[]{}));
+            }
+        };
+    }
+
+    @Override
     public <T> T verify(T mock, Object mode) {
         return (T) callStatic(Mockito, "verify",
                 new Class[]{Object.class, VerificationMode},
@@ -159,6 +192,13 @@ public class MockitoJunitTesting implements Testing {
     @Override
     public <T> T anyObject() {
         return (T) callStatic(Mockito, "anyObject",
+                new Class[]{},
+                new Object[]{});
+    }
+
+    @Override
+    public <T> T anyInt() {
+        return (T) callStatic(Mockito, "anyInt",
                 new Class[]{},
                 new Object[]{});
     }
@@ -206,9 +246,9 @@ public class MockitoJunitTesting implements Testing {
     @Override
     public Exception multipleFailureException(List<Throwable> errors) {
         try {
-        return (Exception) MultipleFailureException
-                .getConstructor(List.class)
-                .newInstance(errors);
+            return (Exception) MultipleFailureException
+                    .getConstructor(List.class)
+                    .newInstance(errors);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
