@@ -40,14 +40,18 @@ public class ElementGenerator {
 
     public static final int COMMENT_MAX_LENGTH = 60;
 
+    // TODO динамически получать эту инфу, проверяя наличие файла .git в корне проекта
     public static final List<String> SUBREPO_GAMES = Arrays.asList(
+            "icancode", "kata", "lemonade", "lunolet",
+            "reversi", "rubicscube", "sample", "sampletext",
+            "sudoku", "knibert", "namdreab", "rawelbbub",
             "chess", "clifford", "excitebike",
             "japanese", "mollymage", "selfdefense",
             "vacuum", "verland", "xonix");
 
     public static final List<String> ENGLISH_PRESENT = Arrays.asList(
-            "a2048", "clifford", "kata", "snake",
-            "snakebattle", "vacuum");
+            "a2048", "clifford", "kata", "knibert",
+            "namdreab", "vacuum");
 
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
 
