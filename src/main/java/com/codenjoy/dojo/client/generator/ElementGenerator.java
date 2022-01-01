@@ -49,8 +49,7 @@ public class ElementGenerator {
             "a2048", "clifford", "kata", "snake",
             "snakebattle", "vacuum");
 
-    public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList(
-            "sample-text");
+    public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
 
     private final String game;
     private final String canonicalGame;

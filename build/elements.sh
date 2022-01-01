@@ -16,7 +16,7 @@ eval_echo "MVNW=./mvnw"
 
 # to select all games run
 # eval_echo "GAMES=all'
-eval_echo "GAMES=a2048,battlecity,chess,clifford,collapse,expansion,fifteen,football,hex,icancode,japanese,kata,lemonade,lunolet,moebius,mollymage,pong,puzzlebox,quadro,quake2d,reversi,rubicscube,sample,sample-text,selfdefense,snake,snakebattle,sokoban,spacerace,startandjump,sudoku,tetris,vacuum,verland,xonix"
+eval_echo "GAMES=a2048,battlecity,chess,clifford,collapse,expansion,fifteen,football,hex,icancode,japanese,kata,lemonade,lunolet,moebius,mollymage,pong,puzzlebox,quadro,quake2d,reversi,rubicscube,sample,sampletext,selfdefense,snake,snakebattle,sokoban,spacerace,startandjump,sudoku,tetris,vacuum,verland,xonix"
 eval_echo "CLIENTS=md,md_header,md_footer,cpp,go,js,php,python,csharp"
 
 # TODO excitebike(rename elements,add info)
