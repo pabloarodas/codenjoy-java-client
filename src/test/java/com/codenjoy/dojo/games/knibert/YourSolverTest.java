@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.snake;
+package com.codenjoy.dojo.games.knibert;
 
 /*-
  * #%L
@@ -24,8 +24,6 @@ package com.codenjoy.dojo.games.snake;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.snake.Board;
-import com.codenjoy.dojo.games.snake.YourSolver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;

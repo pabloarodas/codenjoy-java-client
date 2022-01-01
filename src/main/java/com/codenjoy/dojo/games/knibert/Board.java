@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.snake;
+package com.codenjoy.dojo.games.knibert;
 
 /*-
  * #%L
@@ -30,7 +30,7 @@ import com.codenjoy.dojo.services.Point;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.codenjoy.dojo.games.snake.Element.*;
+import static com.codenjoy.dojo.games.knibert.Element.*;
 import static com.codenjoy.dojo.services.Direction.*;
 
 public class Board extends AbstractBoard<Element> {
@@ -49,7 +49,7 @@ public class Board extends AbstractBoard<Element> {
         return size - 1 - y;
     }
 
-    public Direction getSnakeDirection() {
+    public Direction getHeroDirection() {
         Point head = getHead();
         if (head == null) {
             return null;
@@ -79,13 +79,13 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public List<Point> getBarriers() {
-        List<Point> result = getSnake();
+        List<Point> result = getHero();
         result.addAll(getStones());
         result.addAll(getWalls());
         return result;
     }
 
-    public List<Point> getSnake() {
+    public List<Point> getHero() {
         Point head = getHead();
         if (head == null) {
             return Arrays.asList();
@@ -115,14 +115,14 @@ public class Board extends AbstractBoard<Element> {
             "Apple at: %s\n" +
             "Stones at: %s\n" +
             "Head at: %s\n" +
-            "Snake at: %s\n" +
+            "Hero at: %s\n" +
             "Current direction: %s",
                 boardAsString(),
                 getApples(),
                 getStones(),
                 getHead(),
-                getSnake(),
-                getSnakeDirection());
+                getHero(),
+                getHeroDirection());
     }
 
     public List<Point> getStones() {

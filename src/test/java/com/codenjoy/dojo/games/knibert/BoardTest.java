@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.snake;
+package com.codenjoy.dojo.games.knibert;
 
 /*-
  * #%L
@@ -23,8 +23,6 @@ package com.codenjoy.dojo.games.snake;
  */
 
 
-import com.codenjoy.dojo.games.snake.Board;
-import com.codenjoy.dojo.games.snake.Element;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Test;
 
@@ -76,9 +74,9 @@ public class BoardTest {
         assertTrue(board.isAt(2, 2, Element.HEAD_UP));
         assertTrue(board.isAt(2, 1, Element.TAIL_END_DOWN));
 
-        assertEquals(Direction.UP, board.getSnakeDirection());
+        assertEquals(Direction.UP, board.getHeroDirection());
 
-        assertEquals("[[2,2], [2,1]]", board.getSnake().toString());
+        assertEquals("[[2,2], [2,1]]", board.getHero().toString());
 
         assertEquals("[[2,2], [2,1], " +   // змейка
                 "[1,1], " +         // камень
@@ -95,7 +93,7 @@ public class BoardTest {
                 "Apple at: [[1,2]]\n" +
                 "Stones at: [[1,1]]\n" +
                 "Head at: [2,2]\n" +
-                "Snake at: [[2,2], [2,1]]\n" +
+                "Hero at: [[2,2], [2,1]]\n" +
                 "Current direction: UP",
                 board.toString());
     }

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.battlecity;
+package com.codenjoy.dojo.games.rawelbbub;
 
 /*-
  * #%L

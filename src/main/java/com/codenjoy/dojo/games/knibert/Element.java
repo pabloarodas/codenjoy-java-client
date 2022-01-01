@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.snake;
+package com.codenjoy.dojo.games.knibert;
 
 /*-
  * #%L
@@ -36,33 +36,33 @@ public enum Element implements CharElement {
     BREAK('☼',           "An obstacle that cannot be passed. " +
                          "It is also the border of the field."),
 
-    NONE(' ',            "An empty place in the field where the snake can go."),
+    NONE(' ',            "An empty place in the field where the hero can go."),
 
-/// Snake head
+/// Hero head
 
-    HEAD_DOWN('▼',       "Snake head is pointing down."),
+    HEAD_DOWN('▼',       "Hero head is pointing down."),
 
-    HEAD_LEFT('◄',       "Snake head is pointing left."),
+    HEAD_LEFT('◄',       "Hero head is pointing left."),
 
-    HEAD_RIGHT('►',      "Snake head is pointing right."),
+    HEAD_RIGHT('►',      "Hero head is pointing right."),
 
-    HEAD_UP('▲',         "Snake head is pointing up."),
+    HEAD_UP('▲',         "Hero head is pointing up."),
 
-/// Snake tail middle
+/// Hero tail middle
 
     TAIL_HORIZONTAL('═', "Horizontal part of the body."),
 
     TAIL_VERTICAL('║',   "Vertical part of the body."),
 
-    TAIL_LEFT_DOWN('╗',  "Turning the snake body from left to down."),
+    TAIL_LEFT_DOWN('╗',  "Turning the hero body from left to down."),
 
-    TAIL_LEFT_UP('╝',    "Turning the snake body from left to up."),
+    TAIL_LEFT_UP('╝',    "Turning the hero body from left to up."),
 
-    TAIL_RIGHT_DOWN('╔', "Turning the snake body from right to down."),
+    TAIL_RIGHT_DOWN('╔', "Turning the hero body from right to down."),
 
-    TAIL_RIGHT_UP('╚',   "Turning the snake body from right to up."),
+    TAIL_RIGHT_UP('╚',   "Turning the hero body from right to up."),
 
-/// Snake tail end
+/// Hero tail end
 
     TAIL_END_DOWN('╙',   "Down tail."),
 

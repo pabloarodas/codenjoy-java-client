@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.battlecity;
+package com.codenjoy.dojo.games.rawelbbub;
 
 /*-
  * #%L
@@ -28,7 +28,7 @@ import com.codenjoy.dojo.services.Point;
 
 import java.util.List;
 
-import static com.codenjoy.dojo.games.battlecity.Element.*;
+import static com.codenjoy.dojo.games.rawelbbub.Element.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**

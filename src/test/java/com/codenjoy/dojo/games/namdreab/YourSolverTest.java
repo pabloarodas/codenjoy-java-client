@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.snakebattle;
+package com.codenjoy.dojo.games.namdreab;
 
 /*-
  * #%L
@@ -24,8 +24,6 @@ package com.codenjoy.dojo.games.snakebattle;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.snakebattle.Board;
-import com.codenjoy.dojo.games.snakebattle.YourSolver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.battlecity;
+package com.codenjoy.dojo.games.knibert;
 
 /*-
  * #%L
@@ -21,6 +21,7 @@ package com.codenjoy.dojo.games.battlecity;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
+
 
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
@@ -46,9 +47,9 @@ public class YourSolver implements Solver<Board> {
     @Override
     public String get(Board board) {
         this.board = board;
-        if (board.isGameOver()) return "";
+        System.out.println(board.toString());
 
-        // TODO put your logic here
+        // TODO your code here
 
         return Direction.UP.toString();
     }

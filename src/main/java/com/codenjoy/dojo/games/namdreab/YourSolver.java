@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.snakebattle;
+package com.codenjoy.dojo.games.namdreab;
 
 /*-
  * #%L

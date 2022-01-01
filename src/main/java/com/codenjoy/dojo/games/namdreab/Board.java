@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.snakebattle;
+package com.codenjoy.dojo.games.namdreab;
 
 /*-
  * #%L
@@ -28,7 +28,7 @@ import com.codenjoy.dojo.services.Point;
 
 import java.util.List;
 
-import static com.codenjoy.dojo.games.snakebattle.Element.*;
+import static com.codenjoy.dojo.games.namdreab.Element.*;
 
 /**
  * Класс, обрабатывающий строковое представление доски.

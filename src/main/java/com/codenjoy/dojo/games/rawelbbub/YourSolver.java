@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.snake;
+package com.codenjoy.dojo.games.rawelbbub;
 
 /*-
  * #%L
@@ -21,7 +21,6 @@ package com.codenjoy.dojo.games.snake;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
 
 import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
@@ -47,9 +46,9 @@ public class YourSolver implements Solver<Board> {
     @Override
     public String get(Board board) {
         this.board = board;
-        System.out.println(board.toString());
+        if (board.isGameOver()) return "";
 
-        // TODO your code here
+        // TODO put your logic here
 
         return Direction.UP.toString();
     }
