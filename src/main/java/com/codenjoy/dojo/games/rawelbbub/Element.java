@@ -37,7 +37,7 @@ public enum Element implements CharElement {
 
     REEFS('☼',       "Underwater reefs. They cannot be destroyed."),
 
-    BANG('Ѡ',        "A destroyed hero. A new appears just in a second."),
+    EXPLOSION('Ѡ',   "Explosion site. It disappears in a second."),
 
 	ICE('#',         "Ice, having driven onto which hero will begin to drift. " +
                      "During a skid, hero will repeat the old commands for " +
