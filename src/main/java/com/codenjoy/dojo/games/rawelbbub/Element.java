@@ -108,7 +108,7 @@ public enum Element implements CharElement {
     PRIZE_WALKING_ON_WATER('3', "A prize that allows the hero to temporarily walk on water."),
 
     PRIZE_VISIBILITY('4',       "A prize that allows the hero to temporarily see all " +
-                                "enemies under the trees."),
+                                "enemies under the trees and their bullets."),
 
     PRIZE_NO_SLIDING('5',       "A prize that allows the hero to temporarily not slide " +
                                 "on the ice.");
