@@ -33,23 +33,23 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    NONE(' ',        "An empty space where a tank can move."),
+    NONE(' ',        "An empty space where hero can move."),
 
     BATTLE_WALL('☼', "The undestroyable wall."),
 
-    BANG('Ѡ',        "A destroyed enemy’s tank. A new appears just in a second."),
+    BANG('Ѡ',        "A destroyed hero. A new appears just in a second."),
 
-	ICE('#',         "Ice, having driven onto which the tank will begin to drift. " +
-                     "During a skid, the tank will repeat the old commands for " +
+	ICE('#',         "Ice, having driven onto which hero will begin to drift. " +
+                     "During a skid, hero will repeat the old commands for " +
                      "several ticks in a row, ignoring the current commands."),
 
-    TREE('%',        "The trees hide tanks which can continue to shoot at the " +
+    TREE('%',        "The trees hide heroes which can continue to shoot at the " +
                      "same time. The fired shells are also not visible under the " +
                      "trees. Only prizes can be seen from behind the trees."),
 
     RIVER('~',       "The river does not allow to pass through itself without " +
                      "the PRIZE_WALKING_ON_WATER prize, but the shells fly freely " +
-                     "through the water. A tank stuck in the middle of the water, " +
+                     "through the water. Hero stuck in the middle of the water, " +
                      "after canceling the PRIZE_WALKING_ON_WATER prize, can move " +
                      "1 cell in the water only every N ticks."),
 
@@ -77,26 +77,26 @@ public enum Element implements CharElement {
 
     BULLET('•',            "Completely destroyed wall. Wall will recover over time."),
 
-    TANK_UP('▲',           "Your tank is pointing up."),
-    TANK_RIGHT('►',        "Your tank is pointing right."),
-    TANK_DOWN('▼',         "Your tank is pointing down."),
-    TANK_LEFT('◄',         "Your tank is pointing left."),
+    HERO_UP('▲',           "Your hero is pointing up."),
+    HERO_RIGHT('►',        "Your hero is pointing right."),
+    HERO_DOWN('▼',         "Your hero is pointing down."),
+    HERO_LEFT('◄',         "Your hero is pointing left."),
 
-    OTHER_TANK_UP('˄',     "Enemy tank is pointing up."),
-    OTHER_TANK_RIGHT('˃',  "Enemy tank is pointing right."),
-    OTHER_TANK_DOWN('˅',   "Enemy tank is pointing down."),
-    OTHER_TANK_LEFT('˂',   "Enemy tank is pointing left."),
+    OTHER_HERO_UP('˄',     "Enemy hero is pointing up."),
+    OTHER_HERO_RIGHT('˃',  "Enemy hero is pointing right."),
+    OTHER_HERO_DOWN('˅',   "Enemy hero is pointing down."),
+    OTHER_HERO_LEFT('˂',   "Enemy hero is pointing left."),
 
-    AI_TANK_UP('?',        "AI-tank is pointing up."),
-    AI_TANK_RIGHT('»',     "AI-tank is pointing right."),
-    AI_TANK_DOWN('¿',      "AI-tank is pointing down."),
-    AI_TANK_LEFT('«',      "AI-tank is pointing left."),
+    AI_UP('?',        "AI is pointing up."),
+    AI_RIGHT('»',     "AI is pointing right."),
+    AI_DOWN('¿',      "AI is pointing down."),
+    AI_LEFT('«',      "AI is pointing left."),
 
-    AI_TANK_PRIZE('◘',     "AI-tank can also be a prize, then it is highlighted " +
+    AI_PRIZE('◘',     "AI can also be a prize, then it is highlighted " +
                            "by this sprite every few ticks."),
 
     PRIZE('!',             "The dropped prize after the destruction of the prize " +
-                           "tank flickers on the field every even tick of the game " +
+                           "AI flickers on the field every even tick of the game " +
                            "with this sprite."),
 
     PRIZE_IMMORTALITY('1',      "A prize that gives the hero temporary invulnerability."),

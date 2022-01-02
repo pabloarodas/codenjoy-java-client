@@ -83,14 +83,14 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getAt() {
-        assertEquals(Element.OTHER_TANK_DOWN, board.getAt(1, 4));
+        assertEquals(Element.OTHER_HERO_DOWN, board.getAt(1, 4));
         assertEquals(Element.BATTLE_WALL, board.getAt(0, 8));
         assertEquals(Element.WALL, board.getAt(6, 1));
     }
 
     @Test
     public void shouldWork_getAt_point() {
-        assertEquals(Element.OTHER_TANK_DOWN, board.getAt(pt(1, 4)));
+        assertEquals(Element.OTHER_HERO_DOWN, board.getAt(pt(1, 4)));
         assertEquals(Element.BATTLE_WALL, board.getAt(pt(0, 8)));
         assertEquals(Element.WALL, board.getAt(pt(6, 1)));
     }
@@ -182,32 +182,32 @@ public class BoardTest {
 
     @Test
     public void shouldWork_isAt_point() {
-        assertEquals(true, board.isAt(pt(1, 4), Element.OTHER_TANK_DOWN));
+        assertEquals(true, board.isAt(pt(1, 4), Element.OTHER_HERO_DOWN));
         assertEquals(true, board.isAt(pt(0, 8), Element.BATTLE_WALL));
         assertEquals(true, board.isAt(pt(6, 1), Element.WALL));
 
-        assertEquals(false, board.isAt(pt(1, 4), Element.AI_TANK_LEFT));
-        assertEquals(false, board.isAt(pt(0, 8), Element.AI_TANK_LEFT));
-        assertEquals(false, board.isAt(pt(6, 1), Element.AI_TANK_LEFT));
+        assertEquals(false, board.isAt(pt(1, 4), Element.AI_LEFT));
+        assertEquals(false, board.isAt(pt(0, 8), Element.AI_LEFT));
+        assertEquals(false, board.isAt(pt(6, 1), Element.AI_LEFT));
 
-        assertEquals(true, board.isAt(pt(1, 4), Element.OTHER_TANK_DOWN, Element.AI_TANK_LEFT));
-        assertEquals(true, board.isAt(pt(0, 8), Element.AI_TANK_LEFT, Element.BATTLE_WALL));
-        assertEquals(true, board.isAt(pt(6, 1), Element.WALL, Element.AI_TANK_LEFT));
+        assertEquals(true, board.isAt(pt(1, 4), Element.OTHER_HERO_DOWN, Element.AI_LEFT));
+        assertEquals(true, board.isAt(pt(0, 8), Element.AI_LEFT, Element.BATTLE_WALL));
+        assertEquals(true, board.isAt(pt(6, 1), Element.WALL, Element.AI_LEFT));
     }
 
     @Test
     public void shouldWork_isAt() {
-        assertEquals(true, board.isAt(1, 4, Element.OTHER_TANK_DOWN));
+        assertEquals(true, board.isAt(1, 4, Element.OTHER_HERO_DOWN));
         assertEquals(true, board.isAt(0, 8, Element.BATTLE_WALL));
         assertEquals(true, board.isAt(6, 1, Element.WALL));
 
-        assertEquals(false, board.isAt(1, 4, Element.AI_TANK_LEFT));
-        assertEquals(false, board.isAt(0, 8, Element.AI_TANK_LEFT));
-        assertEquals(false, board.isAt(6, 1, Element.AI_TANK_LEFT));
+        assertEquals(false, board.isAt(1, 4, Element.AI_LEFT));
+        assertEquals(false, board.isAt(0, 8, Element.AI_LEFT));
+        assertEquals(false, board.isAt(6, 1, Element.AI_LEFT));
 
-        assertEquals(true, board.isAt(1, 4, Element.OTHER_TANK_DOWN, Element.AI_TANK_LEFT));
-        assertEquals(true, board.isAt(0, 8, Element.AI_TANK_LEFT, Element.BATTLE_WALL));
-        assertEquals(true, board.isAt(6, 1, Element.WALL, Element.AI_TANK_LEFT));
+        assertEquals(true, board.isAt(1, 4, Element.OTHER_HERO_DOWN, Element.AI_LEFT));
+        assertEquals(true, board.isAt(0, 8, Element.AI_LEFT, Element.BATTLE_WALL));
+        assertEquals(true, board.isAt(6, 1, Element.WALL, Element.AI_LEFT));
     }
 
     @Test

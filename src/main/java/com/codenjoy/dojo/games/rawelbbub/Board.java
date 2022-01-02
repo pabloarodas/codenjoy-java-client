@@ -77,10 +77,10 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Point getMe() {
-        List<Point> points = get(TANK_UP,
-                TANK_DOWN,
-                TANK_LEFT,
-                TANK_RIGHT);
+        List<Point> points = get(HERO_UP,
+                HERO_DOWN,
+                HERO_LEFT,
+                HERO_RIGHT);
         if (points.isEmpty()) {
             return null;
         }
@@ -88,15 +88,15 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public List<Point> getEnemies() {
-        return get(AI_TANK_UP,
-                AI_TANK_DOWN,
-                AI_TANK_LEFT,
-                AI_TANK_RIGHT,
-                OTHER_TANK_UP,
-                OTHER_TANK_DOWN,
-                OTHER_TANK_LEFT,
-                OTHER_TANK_RIGHT,
-                AI_TANK_PRIZE);
+        return get(AI_UP,
+                AI_DOWN,
+                AI_LEFT,
+                AI_RIGHT,
+                OTHER_HERO_UP,
+                OTHER_HERO_DOWN,
+                OTHER_HERO_LEFT,
+                OTHER_HERO_RIGHT,
+                AI_PRIZE);
     }
 
     public List<Point> getBullets() {
@@ -108,10 +108,10 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isGameOver() {
-        return get(TANK_UP,
-                TANK_DOWN,
-                TANK_LEFT,
-                TANK_RIGHT).isEmpty();
+        return get(HERO_UP,
+                HERO_DOWN,
+                HERO_LEFT,
+                HERO_RIGHT).isEmpty();
     }
 
     public Element getAt(int x, int y) {
