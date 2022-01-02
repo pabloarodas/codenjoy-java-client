@@ -33,9 +33,9 @@ import static java.util.stream.Collectors.toList;
 
 public enum Element implements CharElement {
 
-    NONE(' ',        "An empty space where hero can move."),
+    WATER(' ',       "An empty space where hero can move."),
 
-    BATTLE_WALL('☼', "The undestroyable wall."),
+    REEFS('☼',       "Underwater reefs. They cannot be destroyed."),
 
     BANG('Ѡ',        "A destroyed hero. A new appears just in a second."),
 

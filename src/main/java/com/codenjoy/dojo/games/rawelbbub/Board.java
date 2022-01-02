@@ -58,7 +58,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public List<Point> getBarriers() {
-        return get(BATTLE_WALL,
+        return get(REEFS,
                 WALL,
                 WALL_DESTROYED_DOWN,
                 WALL_DESTROYED_UP,
@@ -116,7 +116,7 @@ public class Board extends AbstractBoard<Element> {
 
     public Element getAt(int x, int y) {
         if (isOutOfField(x, y)) {
-            return BATTLE_WALL;
+            return REEFS;
         }
         return super.getAt(x, y);
     }
