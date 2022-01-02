@@ -44,9 +44,9 @@ public enum Element implements CharElement {
                      "the hero will repeat the old commands for several " +
                      "ticks in a row, ignoring the current commands."),
 
-    TREE('%',        "The trees hide heroes which can continue to shoot at the " +
+    SEAWEED('%',     "Seaweed hide heroes which can continue to shoot at the " +
                      "same time. The fired shells are also not visible under the " +
-                     "trees. Only prizes can be seen from behind the trees."),
+                     "weed. Only prizes can be seen from behind seaweed."),
 
     RIVER('~',       "The river does not allow to pass through itself without " +
                      "the PRIZE_WALKING_ON_WATER prize, but the shells fly freely " +
