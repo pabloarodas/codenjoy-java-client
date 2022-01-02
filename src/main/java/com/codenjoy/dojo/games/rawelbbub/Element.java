@@ -39,9 +39,10 @@ public enum Element implements CharElement {
 
     EXPLOSION('Ѡ',   "Explosion site. It disappears in a second."),
 
-	ICE('#',         "Ice, having driven onto which hero will begin to drift. " +
-                     "During a skid, hero will repeat the old commands for " +
-                     "several ticks in a row, ignoring the current commands."),
+	OIL('#',         "Oil leak, hitting which the hero partially loses control. " +
+                     "During the passage, the field of view is limited and " +
+                     "the hero will repeat the old commands for several " +
+                     "ticks in a row, ignoring the current commands."),
 
     TREE('%',        "The trees hide heroes which can continue to shoot at the " +
                      "same time. The fired shells are also not visible under the " +
