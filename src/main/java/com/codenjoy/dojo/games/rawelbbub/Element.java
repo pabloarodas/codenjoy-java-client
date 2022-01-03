@@ -79,7 +79,10 @@ public enum Element implements CharElement {
     ICEBERG_DESTROYED(' ', 0,         "Completely destroyed iceberg. No different from WATER. " +
                                       "A new one will appear at this place soon."),
 
-    BULLET('•',            "Completely destroyed wall. Wall will recover over time."),
+    TORPEDO('•',           "Torpedo - is a self-propelled underwater missile designed to " +
+                           "be fired from a submarine and to explode on reaching a target. " +
+                           "The target can be an iceberg, another submarine and other " +
+                           "elements under water."),
 
     HERO_UP('▲',           "Your hero is pointing up."),
     HERO_RIGHT('►',        "Your hero is pointing right."),

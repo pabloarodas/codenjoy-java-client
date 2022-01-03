@@ -130,7 +130,7 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getBullets() {
-        assertEquals("[[1,8]]", board.getBullets().toString());
+        assertEquals("[[1,8]]", board.getTorpedoes().toString());
     }
 
     @Test
@@ -142,9 +142,9 @@ public class BoardTest {
 
     @Test
     public void shouldWork_isBulletAt() {
-        assertEquals(true, board.isBulletAt(1, 8));
-        assertEquals(false, board.isBulletAt(2, 8));
-        assertEquals(false, board.isBulletAt(-2, -8));
+        assertEquals(true, board.isTorpedoAt(1, 8));
+        assertEquals(false, board.isTorpedoAt(2, 8));
+        assertEquals(false, board.isTorpedoAt(-2, -8));
     }
 
     @Test
@@ -161,15 +161,15 @@ public class BoardTest {
         assertEquals(5, board.countNear(5, 5, Element.ICEBERG_HUGE));
         assertEquals(5, board.countNear(7, 6, Element.ICEBERG_HUGE));
 
-        assertEquals(1, board.countNear(0, 7, Element.BULLET));
-        assertEquals(1, board.countNear(0, 8, Element.BULLET));
-        assertEquals(1, board.countNear(0, 9, Element.BULLET));
-        assertEquals(1, board.countNear(1, 7, Element.BULLET));
-        assertEquals(0, board.countNear(1, 8, Element.BULLET)); // сам снаряд
-        assertEquals(1, board.countNear(1, 9, Element.BULLET));
-        assertEquals(1, board.countNear(2, 7, Element.BULLET));
-        assertEquals(1, board.countNear(2, 8, Element.BULLET));
-        assertEquals(1, board.countNear(2, 9, Element.BULLET));
+        assertEquals(1, board.countNear(0, 7, Element.TORPEDO));
+        assertEquals(1, board.countNear(0, 8, Element.TORPEDO));
+        assertEquals(1, board.countNear(0, 9, Element.TORPEDO));
+        assertEquals(1, board.countNear(1, 7, Element.TORPEDO));
+        assertEquals(0, board.countNear(1, 8, Element.TORPEDO)); // сам снаряд
+        assertEquals(1, board.countNear(1, 9, Element.TORPEDO));
+        assertEquals(1, board.countNear(2, 7, Element.TORPEDO));
+        assertEquals(1, board.countNear(2, 8, Element.TORPEDO));
+        assertEquals(1, board.countNear(2, 9, Element.TORPEDO));
     }
 
     @Test

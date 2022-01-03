@@ -99,8 +99,8 @@ public class Board extends AbstractBoard<Element> {
                 AI_PRIZE);
     }
 
-    public List<Point> getBullets() {
-        return get(BULLET);
+    public List<Point> getTorpedoes() {
+        return get(TORPEDO);
     }
 
     public List<Point> getFishnet() {
@@ -121,8 +121,8 @@ public class Board extends AbstractBoard<Element> {
         return super.getAt(x, y);
     }
 
-    public boolean isBulletAt(int x, int y) {
-        return getAt(x, y).equals(BULLET);
+    public boolean isTorpedoAt(int x, int y) {
+        return getAt(x, y).equals(TORPEDO);
     }
 
     @Override
@@ -134,6 +134,6 @@ public class Board extends AbstractBoard<Element> {
                 boardAsString(),
                 getMe(),
                 getEnemies(),
-                getBullets());
+                getTorpedoes());
     }
 }
