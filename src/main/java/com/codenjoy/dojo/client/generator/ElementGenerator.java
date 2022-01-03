@@ -97,6 +97,11 @@ public class ElementGenerator {
         File dest = new File(base + preffix + replace(template.file()));
         System.out.printf("Store '%s-%s' in file: '%s'\n",
                 game, language, dest.getAbsolutePath());
+
+        // TODO пока не закончу переносить полезные методы с icancode/elemtnt.js
+        //      не удалять эту строчку
+        if (game.equals("icancode") && language.equals("js")) return;
+
         SmokeUtils.saveToFile(dest, data);
     }
 
