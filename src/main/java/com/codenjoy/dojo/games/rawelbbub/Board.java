@@ -59,21 +59,21 @@ public class Board extends AbstractBoard<Element> {
 
     public List<Point> getBarriers() {
         return get(REEFS,
-                WALL,
-                WALL_DESTROYED_DOWN,
-                WALL_DESTROYED_UP,
-                WALL_DESTROYED_LEFT,
-                WALL_DESTROYED_RIGHT,
-                WALL_DESTROYED_DOWN_TWICE,
-                WALL_DESTROYED_UP_TWICE,
-                WALL_DESTROYED_LEFT_TWICE,
-                WALL_DESTROYED_RIGHT_TWICE,
-                WALL_DESTROYED_LEFT_RIGHT,
-                WALL_DESTROYED_UP_DOWN,
-                WALL_DESTROYED_UP_LEFT,
-                WALL_DESTROYED_RIGHT_UP,
-                WALL_DESTROYED_DOWN_LEFT,
-                WALL_DESTROYED_DOWN_RIGHT);
+                ICEBERG_HUGE,
+                ICEBERG_MEDIUM_DOWN,
+                ICEBERG_MEDIUM_UP,
+                ICEBERG_MEDIUM_LEFT,
+                ICEBERG_MEDIUM_RIGHT,
+                ICEBERG_SMALL_DOWN_DOWN,
+                ICEBERG_SMALL_UP_UP,
+                ICEBERG_SMALL_LEFT_LEFT,
+                ICEBERG_SMALL_RIGHT_RIGHT,
+                ICEBERG_SMALL_LEFT_RIGHT,
+                ICEBERG_SMALL_UP_DOWN,
+                ICEBERG_SMALL_UP_LEFT,
+                ICEBERG_SMALL_UP_RIGHT,
+                ICEBERG_SMALL_DOWN_LEFT,
+                ICEBERG_SMALL_DOWN_RIGHT);
     }
 
     public Point getMe() {

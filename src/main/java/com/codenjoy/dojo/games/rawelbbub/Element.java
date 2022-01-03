@@ -24,6 +24,7 @@ package com.codenjoy.dojo.games.rawelbbub;
 
 
 import com.codenjoy.dojo.services.printer.CharElement;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,7 +36,8 @@ public enum Element implements CharElement {
 
     WATER(' ',       "An empty space where hero can move."),
 
-    REEFS('☼',       "Underwater reefs. They cannot be destroyed."),
+    REEFS('☼',       "Underwater reefs. They cannot be destroyed " +
+                     "without prize PRIZE_BREAKING_BAD."),
 
     EXPLOSION('Ѡ',   "Explosion site. It disappears in a second."),
 
@@ -54,27 +56,28 @@ public enum Element implements CharElement {
                      "after canceling the PRIZE_WALKING_ON_FISHNET prize, can move " +
                      "1 cell in the fishnet only every N ticks."),
 
-	WALL('╬', 3,     "A wall that hasn't been shot yet. It takes 3 shots to completely destroy."),
+    ICEBERG_HUGE('╬', 3,              "An iceberg that hasn't been shot yet. It takes 3 shots to completely destroy."),
 
-    WALL_DESTROYED_DOWN('╩', 2,        "Partially destroyed wall. For complete destruction, 2 shot is required."),
-    WALL_DESTROYED_UP('╦', 2,          "Partially destroyed wall. For complete destruction, 2 shot is required."),
-    WALL_DESTROYED_LEFT('╠', 2,        "Partially destroyed wall. For complete destruction, 2 shot is required."),
-    WALL_DESTROYED_RIGHT('╣', 2,       "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    ICEBERG_MEDIUM_DOWN('╩', 2,       "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
+    ICEBERG_MEDIUM_UP('╦', 2,         "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
+    ICEBERG_MEDIUM_LEFT('╠', 2,       "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
+    ICEBERG_MEDIUM_RIGHT('╣', 2,      "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
 
-    WALL_DESTROYED_DOWN_TWICE('╨', 1,  "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_UP_TWICE('╥', 1,    "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_LEFT_TWICE('╞', 1,  "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_RIGHT_TWICE('╡', 1, "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_DOWN_DOWN('╨', 1,   "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_UP_UP('╥', 1,       "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_LEFT_LEFT('╞', 1,   "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_RIGHT_RIGHT('╡', 1, "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
 
-    WALL_DESTROYED_LEFT_RIGHT('│', 1,  "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_UP_DOWN('─', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_LEFT_RIGHT('│', 1,  "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_UP_DOWN('─', 1,     "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
 
-    WALL_DESTROYED_UP_LEFT('┌', 1,     "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_RIGHT_UP('┐', 1,    "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_DOWN_LEFT('└', 1,   "Partially destroyed wall. For complete destruction, 1 shot is required."),
-    WALL_DESTROYED_DOWN_RIGHT('┘', 1,  "Partially destroyed wall. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_UP_LEFT('┌', 1,     "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_UP_RIGHT('┐', 1,    "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_DOWN_LEFT('└', 1,   "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_DOWN_RIGHT('┘', 1,  "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
 
-    WALL_DESTROYED(' ', 0, "Partially destroyed wall. For complete destruction, 2 shot is required."),
+    ICEBERG_DESTROYED(' ', 0,         "Completely destroyed iceberg. No different from WATER. " +
+                                      "A new one will appear at this place soon."),
 
     BULLET('•',            "Completely destroyed wall. Wall will recover over time."),
 
@@ -102,9 +105,9 @@ public enum Element implements CharElement {
 
     PRIZE_IMMORTALITY('1',        "A prize that gives the hero temporary invulnerability."),
 
-    PRIZE_BREAKING_WALLS('2',     "A prize that allows you to temporarily destroy any walls " +
-                                  "with 1 shot, even indestructible ones (but not the border " +
-                                  "of the field)."),
+    PRIZE_BREAKING_BAD('2',       "A prize that allows you to temporarily destroy any icebergs " +
+                                  "and underwater reefs (but not the border of the field) " +
+                                  "with 1 shot."),
 
     PRIZE_WALKING_ON_FISHNET('3', "A prize that allows the hero to temporarily walk on fishnet."),
 
@@ -116,10 +119,11 @@ public enum Element implements CharElement {
 
     private static List<Element> result = null;
 
-    public static Collection<Element> getWalls() {
+    public static Collection<Element> icebergs() {
         if (result == null) {
+            String prefix = StringUtils.substringBefore(ICEBERG_HUGE.name(), "_");
             result = Arrays.stream(values())
-                    .filter(e -> e.name().startsWith(WALL.name()))
+                    .filter(element -> element.name().startsWith(prefix))
                     .collect(toList());
         }
         return result;
