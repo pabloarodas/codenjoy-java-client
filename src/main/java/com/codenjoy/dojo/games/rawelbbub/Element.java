@@ -48,11 +48,11 @@ public enum Element implements CharElement {
                      "same time. The fired shells are also not visible under the " +
                      "weed. Only prizes can be seen from behind seaweed."),
 
-    RIVER('~',       "The river does not allow to pass through itself without " +
-                     "the PRIZE_WALKING_ON_WATER prize, but the shells fly freely " +
-                     "through the water. Hero stuck in the middle of the water, " +
-                     "after canceling the PRIZE_WALKING_ON_WATER prize, can move " +
-                     "1 cell in the water only every N ticks."),
+    FISHNET('~',     "Fishnet does not allow to pass through itself without " +
+                     "the PRIZE_WALKING_ON_FISHNET prize, but the shells fly freely " +
+                     "through the water. Hero stuck in the middle of the fishnet, " +
+                     "after canceling the PRIZE_WALKING_ON_FISHNET prize, can move " +
+                     "1 cell in the fishnet only every N ticks."),
 
 	WALL('╬', 3,     "A wall that hasn't been shot yet. It takes 3 shots to completely destroy."),
 
@@ -100,19 +100,19 @@ public enum Element implements CharElement {
                            "AI flickers on the field every even tick of the game " +
                            "with this sprite."),
 
-    PRIZE_IMMORTALITY('1',      "A prize that gives the hero temporary invulnerability."),
+    PRIZE_IMMORTALITY('1',        "A prize that gives the hero temporary invulnerability."),
 
-    PRIZE_BREAKING_WALLS('2',   "A prize that allows you to temporarily destroy any walls " +
-                                "with 1 shot, even indestructible ones (but not the border " +
-                                "of the field)."),
+    PRIZE_BREAKING_WALLS('2',     "A prize that allows you to temporarily destroy any walls " +
+                                  "with 1 shot, even indestructible ones (but not the border " +
+                                  "of the field)."),
 
-    PRIZE_WALKING_ON_WATER('3', "A prize that allows the hero to temporarily walk on water."),
+    PRIZE_WALKING_ON_FISHNET('3', "A prize that allows the hero to temporarily walk on fishnet."),
 
-    PRIZE_VISIBILITY('4',       "A prize that allows the hero to temporarily see all " +
-                                "enemies under the trees and their bullets."),
+    PRIZE_VISIBILITY('4',         "A prize that allows the hero to temporarily see all " +
+                                  "enemies and their bullets under the seaweed."),
 
-    PRIZE_NO_SLIDING('5',       "A prize that allows the hero to temporarily not slide " +
-                                "on the ice.");
+    PRIZE_NO_SLIDING('5',         "A prize that allows the hero to temporarily not slide " +
+                                  "on the ice.");
 
     private static List<Element> result = null;
 
