@@ -23,14 +23,13 @@ package com.codenjoy.dojo.games.rawelbbub;
  */
 
 
+import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.printer.CharElement;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
-import static java.util.stream.Collectors.toList;
+import static com.codenjoy.dojo.services.Direction.*;
 
 public enum Element implements CharElement {
 
@@ -120,16 +119,45 @@ public enum Element implements CharElement {
     PRIZE_NO_SLIDING('5',         "A prize that allows the hero to temporarily not slide " +
                                   "on the ice.");
 
-    private static List<Element> result = null;
+    public final static List<Element> icebergs = new LinkedList<>();
+    public final static Map<Element, Map<Direction, Element>> icebergsMap = new LinkedHashMap<>();
 
-    public static Collection<Element> icebergs() {
-        if (result == null) {
-            String prefix = StringUtils.substringBefore(ICEBERG_HUGE.name(), "_");
-            result = Arrays.stream(values())
-                    .filter(element -> element.name().startsWith(prefix))
-                    .collect(toList());
+    static {
+        String prefix = StringUtils.substringBefore(ICEBERG_HUGE.name(), "_");
+        Arrays.stream(values())
+                .filter(element -> element.name().startsWith(prefix))
+                .forEach(icebergs::add);
+
+        transform(ICEBERG_HUGE, LEFT, ICEBERG_MEDIUM_LEFT);
+        transform(ICEBERG_MEDIUM_LEFT, LEFT, ICEBERG_SMALL_LEFT_LEFT);
+        transform(ICEBERG_MEDIUM_RIGHT, LEFT, ICEBERG_SMALL_LEFT_RIGHT);
+        transform(ICEBERG_MEDIUM_UP, LEFT, ICEBERG_SMALL_UP_LEFT);
+        transform(ICEBERG_MEDIUM_DOWN, LEFT, ICEBERG_SMALL_DOWN_LEFT);
+
+        transform(ICEBERG_HUGE, RIGHT, ICEBERG_MEDIUM_RIGHT);
+        transform(ICEBERG_MEDIUM_LEFT, RIGHT, ICEBERG_SMALL_LEFT_RIGHT);
+        transform(ICEBERG_MEDIUM_RIGHT, RIGHT, ICEBERG_SMALL_RIGHT_RIGHT);
+        transform(ICEBERG_MEDIUM_UP, RIGHT, ICEBERG_SMALL_UP_RIGHT);
+        transform(ICEBERG_MEDIUM_DOWN, RIGHT, ICEBERG_SMALL_DOWN_RIGHT);
+
+        transform(ICEBERG_HUGE, UP, ICEBERG_MEDIUM_UP);
+        transform(ICEBERG_MEDIUM_LEFT, UP, ICEBERG_SMALL_UP_LEFT);
+        transform(ICEBERG_MEDIUM_RIGHT, UP, ICEBERG_SMALL_UP_RIGHT);
+        transform(ICEBERG_MEDIUM_UP, UP, ICEBERG_SMALL_UP_UP);
+        transform(ICEBERG_MEDIUM_DOWN, UP, ICEBERG_SMALL_UP_DOWN);
+
+        transform(ICEBERG_HUGE, DOWN, ICEBERG_MEDIUM_DOWN);
+        transform(ICEBERG_MEDIUM_LEFT, DOWN, ICEBERG_SMALL_DOWN_LEFT);
+        transform(ICEBERG_MEDIUM_RIGHT, DOWN, ICEBERG_SMALL_DOWN_RIGHT);
+        transform(ICEBERG_MEDIUM_UP, DOWN, ICEBERG_SMALL_UP_DOWN);
+        transform(ICEBERG_MEDIUM_DOWN, DOWN, ICEBERG_SMALL_DOWN_DOWN);
+    }
+
+    private static void transform(Element from, Direction direction, Element to) {
+        if (!icebergsMap.containsKey(from)) {
+            icebergsMap.put(from, new LinkedHashMap<>());
         }
-        return result;
+        icebergsMap.get(from).put(direction, to);
     }
 
     private final char ch;
