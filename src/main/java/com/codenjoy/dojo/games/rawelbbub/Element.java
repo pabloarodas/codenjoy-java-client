@@ -161,6 +161,13 @@ public enum Element implements CharElement {
         icebergsMap.get(from).put(direction, to);
     }
 
+    public Element destroyFrom(Direction direction) {
+        if (power() == 1) {
+            return Element.ICEBERG_DESTROYED;
+        }
+        return Element.icebergsMap.get(this).get(direction);
+    }
+
     private final char ch;
     private final String info;
     private final int power;
