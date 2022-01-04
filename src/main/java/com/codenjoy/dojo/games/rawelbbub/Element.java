@@ -128,29 +128,30 @@ public enum Element implements CharElement {
                 .filter(element -> element.name().startsWith(prefix))
                 .forEach(icebergs::add);
 
-        transform(ICEBERG_HUGE, LEFT, ICEBERG_MEDIUM_LEFT);
-        transform(ICEBERG_MEDIUM_LEFT, LEFT, ICEBERG_SMALL_LEFT_LEFT);
-        transform(ICEBERG_MEDIUM_RIGHT, LEFT, ICEBERG_SMALL_LEFT_RIGHT);
-        transform(ICEBERG_MEDIUM_UP, LEFT, ICEBERG_SMALL_UP_LEFT);
-        transform(ICEBERG_MEDIUM_DOWN, LEFT, ICEBERG_SMALL_DOWN_LEFT);
+        transform(ICEBERG_HUGE,         LEFT,  ICEBERG_MEDIUM_LEFT);
+        transform(ICEBERG_HUGE,         RIGHT, ICEBERG_MEDIUM_RIGHT);
+        transform(ICEBERG_HUGE,         UP,    ICEBERG_MEDIUM_UP);
+        transform(ICEBERG_HUGE,         DOWN,  ICEBERG_MEDIUM_DOWN);
 
-        transform(ICEBERG_HUGE, RIGHT, ICEBERG_MEDIUM_RIGHT);
-        transform(ICEBERG_MEDIUM_LEFT, RIGHT, ICEBERG_SMALL_LEFT_RIGHT);
+        transform(ICEBERG_MEDIUM_LEFT,  LEFT,  ICEBERG_SMALL_LEFT_LEFT);
+        transform(ICEBERG_MEDIUM_LEFT,  RIGHT, ICEBERG_SMALL_LEFT_RIGHT);
+        transform(ICEBERG_MEDIUM_LEFT,  UP,    ICEBERG_SMALL_UP_LEFT);
+        transform(ICEBERG_MEDIUM_LEFT,  DOWN,  ICEBERG_SMALL_DOWN_LEFT);
+
+        transform(ICEBERG_MEDIUM_RIGHT, LEFT,  ICEBERG_SMALL_LEFT_RIGHT);
         transform(ICEBERG_MEDIUM_RIGHT, RIGHT, ICEBERG_SMALL_RIGHT_RIGHT);
-        transform(ICEBERG_MEDIUM_UP, RIGHT, ICEBERG_SMALL_UP_RIGHT);
+        transform(ICEBERG_MEDIUM_RIGHT, UP,    ICEBERG_SMALL_UP_RIGHT);
+        transform(ICEBERG_MEDIUM_RIGHT, DOWN,  ICEBERG_SMALL_DOWN_RIGHT);
+
+        transform(ICEBERG_MEDIUM_UP,    LEFT,  ICEBERG_SMALL_UP_LEFT);
+        transform(ICEBERG_MEDIUM_UP,    RIGHT, ICEBERG_SMALL_UP_RIGHT);
+        transform(ICEBERG_MEDIUM_UP,    UP,    ICEBERG_SMALL_UP_UP);
+        transform(ICEBERG_MEDIUM_UP,    DOWN,  ICEBERG_SMALL_UP_DOWN);
+
+        transform(ICEBERG_MEDIUM_DOWN, LEFT,  ICEBERG_SMALL_DOWN_LEFT);
         transform(ICEBERG_MEDIUM_DOWN, RIGHT, ICEBERG_SMALL_DOWN_RIGHT);
-
-        transform(ICEBERG_HUGE, UP, ICEBERG_MEDIUM_UP);
-        transform(ICEBERG_MEDIUM_LEFT, UP, ICEBERG_SMALL_UP_LEFT);
-        transform(ICEBERG_MEDIUM_RIGHT, UP, ICEBERG_SMALL_UP_RIGHT);
-        transform(ICEBERG_MEDIUM_UP, UP, ICEBERG_SMALL_UP_UP);
-        transform(ICEBERG_MEDIUM_DOWN, UP, ICEBERG_SMALL_UP_DOWN);
-
-        transform(ICEBERG_HUGE, DOWN, ICEBERG_MEDIUM_DOWN);
-        transform(ICEBERG_MEDIUM_LEFT, DOWN, ICEBERG_SMALL_DOWN_LEFT);
-        transform(ICEBERG_MEDIUM_RIGHT, DOWN, ICEBERG_SMALL_DOWN_RIGHT);
-        transform(ICEBERG_MEDIUM_UP, DOWN, ICEBERG_SMALL_UP_DOWN);
-        transform(ICEBERG_MEDIUM_DOWN, DOWN, ICEBERG_SMALL_DOWN_DOWN);
+        transform(ICEBERG_MEDIUM_DOWN, UP,    ICEBERG_SMALL_UP_DOWN);
+        transform(ICEBERG_MEDIUM_DOWN, DOWN,  ICEBERG_SMALL_DOWN_DOWN);
     }
 
     private static void transform(Element from, Direction direction, Element to) {
