@@ -65,24 +65,16 @@ public class Board extends AbstractBoard<Element> {
         return (list.isEmpty()) ? null : list.get(0);
     }
 
-    public boolean isBarrierAt(Point pt) {
-        return isAt(pt, barriers());
-    }
-
-    public boolean isFishnetAt(Point pt) {
-        return isAt(pt, fishnet());
-    }
-
-    public boolean isTorpedoAt(Point pt) {
-        return isAt(pt, torpedoes());
-    }
-
-    public boolean isEnemyAt(Point pt) {
-        return isAt(pt, enemies());
-    }
-
     public List<Point> getBarriers() {
         return get(barriers());
+    }
+
+    public List<Point> getOtherHeroes() {
+        return get(otherHeroes());
+    }
+
+    public List<Point> getAis() {
+        return get(ais());
     }
 
     public List<Point> getEnemies() {
@@ -97,15 +89,77 @@ public class Board extends AbstractBoard<Element> {
         return get(fishnet());
     }
 
+    public List<Point> getOil() {
+        return get(oil());
+    }
+
+    public List<Point> getIcebergs() {
+        return get(icebergs());
+    }
+
+    public List<Point> getSeaweed() {
+        return get(seaweed());
+    }
+
+    public List<Point> getPrizes() {
+        return get(prizes());
+    }
+
+    public boolean isHeroAt(Point pt) {
+        return isAt(pt, heroes());
+    }
+
+    public boolean isBarrierAt(Point pt) {
+        return isAt(pt, barriers());
+    }
+
+    public boolean isOtherHeroAt(Point pt) {
+        return isAt(pt, otherHeroes());
+    }
+
+    public boolean isAiAt(Point pt) {
+        return isAt(pt, ais());
+    }
+
+    public boolean isEnemyAt(Point pt) {
+        return isAt(pt, enemies());
+    }
+
+    public boolean isTorpedoAt(Point pt) {
+        return isAt(pt, torpedoes());
+    }
+
+    public boolean isFishnetAt(Point pt) {
+        return isAt(pt, fishnet());
+    }
+
+    public boolean isOilAt(Point pt) {
+        return isAt(pt, oil());
+    }
+
+    public boolean isIcebergAt(Point pt) {
+        return isAt(pt, icebergs());
+    }
+
+    public boolean isSeaweedAt(Point pt) {
+        return isAt(pt, seaweed());
+    }
+
+    public boolean isPrizeAt(Point pt) {
+        return isAt(pt, prizes());
+    }
+
     @Override
     public String toString() {
         return String.format("%s\n" +
                         "Hero at: %s\n" +
                         "Enemies at: %s\n" +
-                        "Torpedoes at: %s\n",
+                        "Torpedoes at: %s\n" +
+                        "Prizes at: %s\n",
                 boardAsString(),
                 getHero(),
                 getEnemies(),
-                getTorpedoes());
+                getTorpedoes(),
+                getPrizes());
     }
 }

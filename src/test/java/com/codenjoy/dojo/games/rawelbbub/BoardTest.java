@@ -39,20 +39,20 @@ public class BoardTest {
     @Before
     public void before() {
         board = board(
-                /*14*/"☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
-                /*13*/"☼     »   » « ☼\n" +
-                /*12*/"☼ ╬ ╬?╬ ╬ ╬ ╬?☼\n" +
-                /*11*/"☼ ╬ ╬ ╬☼╬ ╬ ╬ ☼\n" +
-                /*10*/"☼ ╬ ╬ ╬ ╬ ╬ ╬ ☼\n" +
-                /*9*/"☼▲╬ ╬     ╬ ╬ ☼\n" +
-                /*8*/"☼•    ╬ ╬     ☼\n" +
-                /*7*/"☼   ╬     ╬   ☼\n" +
-                /*6*/"☼     ╬ ╬     ☼\n" +
-                /*5*/"☼ ╬ ╬ ╬╬╬ ╬ ╬ ☼\n" +
-                /*4*/"☼˅╬ ╬ ╬ ╬ ╬ ╬ ☼\n" +
-                /*3*/"☼ ╬         ╬ ☼\n" +
-                /*2*/"☼ ╬?  ╬╬╬   ╬ ☼\n" +
-                /*1*/"☼     ╬ ╬     ☼\n" +
+               /*14*/"☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
+               /*13*/"☼  ◘  » ◄ » « ☼\n" +
+               /*12*/"☼ ╦ └?─ ─ ╠ ╥?☼\n" +
+               /*11*/"☼ ╞ └%╠☼╬~╣#╬ ☼\n" +
+               /*10*/"☼ ╞ ╬%┌ ╬~┌#╥ ☼\n" +
+                /*9*/"☼▲╬ ╦%   ~╣#╬!☼\n" +
+                /*8*/"☼•   %╬ ╬~ # 1☼\n" +
+                /*7*/"☼  Ѡ╬     ╩ ¿2☼\n" +
+                /*6*/"☼     ╨ ╬˂   3☼\n" +
+                /*5*/"☼ ┐ ╬ ╬╩╨ ╬ ╬4☼\n" +
+                /*4*/"☼˅╬•╬ ╬ ╬ ╬ ╬5☼\n" +
+                /*3*/"☼ ┐  Ѡ      ┘ ☼\n" +
+                /*2*/"☼•╬?  ╡╬╡ Ѡ ┘ ☼\n" +
+                /*1*/"☼  ▼˃ │ │ ˅ ► ☼\n" +
                 /*0*/"☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n"
                     /*012345678901234*/);
     }
@@ -61,52 +61,53 @@ public class BoardTest {
     public void shouldWorkToString() {
         assertEquals(
                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
-               "☼     »   » « ☼\n" +
-               "☼ ╬ ╬?╬ ╬ ╬ ╬?☼\n" +
-               "☼ ╬ ╬ ╬☼╬ ╬ ╬ ☼\n" +
-               "☼ ╬ ╬ ╬ ╬ ╬ ╬ ☼\n" +
-               "☼▲╬ ╬     ╬ ╬ ☼\n" +
-               "☼•    ╬ ╬     ☼\n" +
-               "☼   ╬     ╬   ☼\n" +
-               "☼     ╬ ╬     ☼\n" +
-               "☼ ╬ ╬ ╬╬╬ ╬ ╬ ☼\n" +
-               "☼˅╬ ╬ ╬ ╬ ╬ ╬ ☼\n" +
-               "☼ ╬         ╬ ☼\n" +
-               "☼ ╬?  ╬╬╬   ╬ ☼\n" +
-               "☼     ╬ ╬     ☼\n" +
+               "☼  ◘  » ◄ » « ☼\n" +
+               "☼ ╦ └?─ ─ ╠ ╥?☼\n" +
+               "☼ ╞ └%╠☼╬~╣#╬ ☼\n" +
+               "☼ ╞ ╬%┌ ╬~┌#╥ ☼\n" +
+               "☼▲╬ ╦%   ~╣#╬!☼\n" +
+               "☼•   %╬ ╬~ # 1☼\n" +
+               "☼  Ѡ╬     ╩ ¿2☼\n" +
+               "☼     ╨ ╬˂   3☼\n" +
+               "☼ ┐ ╬ ╬╩╨ ╬ ╬4☼\n" +
+               "☼˅╬•╬ ╬ ╬ ╬ ╬5☼\n" +
+               "☼ ┐  Ѡ      ┘ ☼\n" +
+               "☼•╬?  ╡╬╡ Ѡ ┘ ☼\n" +
+               "☼  ▼˃ │ │ ˅ ► ☼\n" +
                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
                "\n" +
                "Hero at: [1,9]\n" +
-               "Enemies at: [[1,4], [3,2], [5,12], [6,13], [10,13], [12,13], [13,12]]\n" +
-               "Torpedoes at: [[1,8]]\n", board.toString());
+               "Enemies at: [[1,4], [3,2], [3,13], [4,1], [5,12], [6,13], [9,6], [10,1], [10,13], [12,7], [12,13], [13,12]]\n" +
+               "Torpedoes at: [[1,2], [1,8], [3,4]]\n" +
+               "Prizes at: [[13,4], [13,5], [13,6], [13,7], [13,8], [13,9]]\n", board.toString());
     }
 
     @Test
     public void shouldWork_getAt() {
         assertEquals(Element.OTHER_HERO_DOWN, board.getAt(1, 4));
         assertEquals(Element.REEFS, board.getAt(0, 8));
-        assertEquals(Element.ICEBERG_HUGE, board.getAt(6, 1));
+        assertEquals(Element.ICEBERG_SMALL_LEFT_RIGHT, board.getAt(6, 1));
     }
 
     @Test
     public void shouldWork_getAt_point() {
         assertEquals(Element.OTHER_HERO_DOWN, board.getAt(pt(1, 4)));
         assertEquals(Element.REEFS, board.getAt(pt(0, 8)));
-        assertEquals(Element.ICEBERG_HUGE, board.getAt(pt(6, 1)));
+        assertEquals(Element.ICEBERG_SMALL_LEFT_RIGHT, board.getAt(pt(6, 1)));
     }
 
     @Test
     public void shouldWork_getNear() {
-        assertEquals("[•, ▲,  ,  , ╬,  ,  ,  ]", board.getNear(2, 9).toString());
-        assertEquals("[ , ?,  , ╬, », ☼,  ,  ]", board.getNear(6, 12).toString());
-        assertEquals("[ ,  ,  , ╬, «,  , ?,  ]", board.getNear(12, 12).toString());
+        assertEquals("[•, ▲,  ,  , ╞,  ,  ,  ]", board.getNear(2, 9).toString());
+        assertEquals("[%, ?,  , ╠, », ☼,  ,  ]", board.getNear(6, 12).toString());
+        assertEquals("[#,  ,  , ╬, «,  , ?,  ]", board.getNear(12, 12).toString());
     }
 
     @Test
     public void shouldWork_getNear_point() {
-        assertEquals("[•, ▲,  ,  , ╬,  ,  ,  ]", board.getNear(pt(2, 9)).toString());
-        assertEquals("[ , ?,  , ╬, », ☼,  ,  ]", board.getNear(pt(6, 12)).toString());
-        assertEquals("[ ,  ,  , ╬, «,  , ?,  ]", board.getNear(pt(12, 12)).toString());
+        assertEquals("[•, ▲,  ,  , ╞,  ,  ,  ]", board.getNear(pt(2, 9)).toString());
+        assertEquals("[%, ?,  , ╠, », ☼,  ,  ]", board.getNear(pt(6, 12)).toString());
+        assertEquals("[#,  ,  , ╬, «,  , ?,  ]", board.getNear(pt(12, 12)).toString());
     }
 
     @Test
@@ -123,14 +124,9 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldWork_getEnemies() {
-        assertEquals("[[1,4], [3,2], [5,12], [6,13], [10,13], [12,13], [13,12]]",
-                board.getEnemies().toString());
-    }
-
-    @Test
-    public void shouldWork_getBullets() {
-        assertEquals("[[1,8]]", board.getTorpedoes().toString());
+    public void shouldWork_isGameOver() {
+        assertEquals(false, board.isGameOver());
+        assertEquals(true, board(" ").isGameOver());
     }
 
     @Test
@@ -141,10 +137,31 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldWork_isBulletAt() {
-        assertEquals(true, board.isTorpedoAt(pt(1, 8)));
-        assertEquals(false, board.isTorpedoAt(pt(2, 8)));
-        assertEquals(false, board.isTorpedoAt(pt(-2, -8)));
+    public void shouldWork_isHeroAt_point() {
+        assertEquals(true, board.isHeroAt(pt(1, 9)));
+        assertEquals(true, board.isHeroAt(pt(3, 1)));
+        assertEquals(false, board.isHeroAt(pt(1, 8)));
+
+        assertEquals(false, board(" ").isHeroAt(pt(0, 0)));
+    }
+
+    @Test
+    public void shouldWork_getBarriers() {
+        assertEquals("[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [0,7], [0,8], " +
+                        "[0,9], [0,10], [0,11], [0,12], [0,13], [0,14], [1,0], [1,14], " +
+                        "[2,0], [2,2], [2,3], [2,4], [2,5], [2,9], [2,10], [2,11], " +
+                        "[2,12], [2,14], [3,0], [3,14], [4,0], [4,4], [4,5], [4,7], " +
+                        "[4,9], [4,10], [4,11], [4,12], [4,14], [5,0], [5,14], [6,0], " +
+                        "[6,1], [6,2], [6,4], [6,5], [6,6], [6,8], [6,10], [6,11], " +
+                        "[6,12], [6,14], [7,0], [7,2], [7,5], [7,11], [7,14], [8,0], " +
+                        "[8,1], [8,2], [8,4], [8,5], [8,6], [8,8], [8,10], [8,11], " +
+                        "[8,12], [8,14], [9,0], [9,14], [10,0], [10,4], [10,5], [10,7], " +
+                        "[10,9], [10,10], [10,11], [10,12], [10,14], [11,0], [11,14], " +
+                        "[12,0], [12,2], [12,3], [12,4], [12,5], [12,9], [12,10], [12,11], " +
+                        "[12,12], [12,14], [13,0], [13,14], [14,0], [14,1], [14,2], " +
+                        "[14,3], [14,4], [14,5], [14,6], [14,7], [14,8], [14,9], [14,10], " +
+                        "[14,11], [14,12], [14,13], [14,14]]",
+                board.getBarriers().toString());
     }
 
     @Test
@@ -155,11 +172,144 @@ public class BoardTest {
     }
 
     @Test
+    public void shouldWork_getOtherHeroes() {
+        assertEquals("[[1,4], [4,1], [9,6], [10,1]]",
+                board.getOtherHeroes().toString());
+    }
+
+    @Test
+    public void shouldWork_isOtherHeroAt() {
+        assertEquals(false, board.isOtherHeroAt(pt(1, 8)));
+        assertEquals(true, board.isOtherHeroAt(pt(1, 4)));
+        assertEquals(true, board.isOtherHeroAt(pt(4, 1)));
+        assertEquals(false, board.isOtherHeroAt(pt(-2, 2)));
+    }
+
+    @Test
+    public void shouldWork_getAis() {
+        assertEquals("[[3,2], [3,13], [5,12], [6,13], [10,13], [12,7], [12,13], [13,12]]",
+                board.getAis().toString());
+    }
+
+    @Test
+    public void shouldWork_isAiAt() {
+        assertEquals(false, board.isAiAt(pt(1, 8)));
+        assertEquals(true, board.isAiAt(pt(3, 2)));
+        assertEquals(true, board.isAiAt(pt(3, 13)));
+        assertEquals(false, board.isAiAt(pt(-2, 2)));
+    }
+
+    @Test
+    public void shouldWork_getEnemies() {
+        assertEquals("[[1,4], [3,2], [3,13], [4,1], [5,12], [6,13], [9,6], " +
+                        "[10,1], [10,13], [12,7], [12,13], [13,12]]",
+                board.getEnemies().toString());
+    }
+
+    @Test
+    public void shouldWork_isEnemyAt() {
+        assertEquals(false, board.isEnemyAt(pt(1, 8)));
+        assertEquals(true, board.isEnemyAt(pt(1, 4)));
+        assertEquals(true, board.isEnemyAt(pt(10, 1)));
+        assertEquals(false, board.isEnemyAt(pt(-2, 2)));
+    }
+
+    @Test
+    public void shouldWork_getTorpedoes() {
+        assertEquals("[[1,2], [1,8], [3,4]]",
+                board.getTorpedoes().toString());
+    }
+
+    @Test
+    public void shouldWork_isTorpedoAt() {
+        assertEquals(false, board.isTorpedoAt(pt(1, 9)));
+        assertEquals(true, board.isTorpedoAt(pt(1, 2)));
+        assertEquals(true, board.isTorpedoAt(pt(1, 8)));
+        assertEquals(false, board.isTorpedoAt(pt(-2, 2)));
+    }
+
+    @Test
+    public void shouldWork_getFishnet() {
+        assertEquals("[[9,8], [9,9], [9,10], [9,11]]",
+                board.getFishnet().toString());
+    }
+
+    @Test
+    public void shouldWork_isFishnetAt() {
+        assertEquals(false, board.isFishnetAt(pt(1, 9)));
+        assertEquals(true, board.isFishnetAt(pt(9, 8)));
+        assertEquals(true, board.isFishnetAt(pt(9, 9)));
+        assertEquals(false, board.isFishnetAt(pt(-2, 2)));
+    }
+
+    @Test
+    public void shouldWork_getOil() {
+        assertEquals("[[11,8], [11,9], [11,10], [11,11]]",
+                board.getOil().toString());
+    }
+
+    @Test
+    public void shouldWork_isOilAt() {
+        assertEquals(false, board.isOilAt(pt(1, 9)));
+        assertEquals(true, board.isOilAt(pt(11, 8)));
+        assertEquals(true, board.isOilAt(pt(11, 9)));
+        assertEquals(false, board.isOilAt(pt(-2, 2)));
+    }
+
+    @Test
+    public void shouldWork_getIcebergs() {
+        assertEquals("[[2,2], [2,3], [2,4], [2,5], [2,9], [2,10], [2,11], [2,12], " +
+                        "[4,4], [4,5], [4,7], [4,9], [4,10], [4,11], [4,12], [6,1], " +
+                        "[6,2], [6,4], [6,5], [6,6], [6,8], [6,10], [6,11], [6,12], " +
+                        "[7,2], [7,5], [8,1], [8,2], [8,4], [8,5], [8,6], [8,8], " +
+                        "[8,10], [8,11], [8,12], [10,4], [10,5], [10,7], [10,9], " +
+                        "[10,10], [10,11], [10,12], [12,2], [12,3], [12,4], [12,5], " +
+                        "[12,9], [12,10], [12,11], [12,12]]",
+                board.getIcebergs().toString());
+    }
+
+    @Test
+    public void shouldWork_isIcebergAt() {
+        assertEquals(false, board.isIcebergAt(pt(1, 9)));
+        assertEquals(true, board.isIcebergAt(pt(4, 4)));
+        assertEquals(true, board.isIcebergAt(pt(6, 2)));
+        assertEquals(false, board.isIcebergAt(pt(-2, 2)));
+    }
+
+    @Test
+    public void shouldWork_getSeaweed() {
+        assertEquals("[[5,8], [5,9], [5,10], [5,11]]",
+                board.getSeaweed().toString());
+    }
+
+    @Test
+    public void shouldWork_isSeaweedAt() {
+        assertEquals(false, board.isSeaweedAt(pt(1, 9)));
+        assertEquals(true, board.isSeaweedAt(pt(5, 8)));
+        assertEquals(true, board.isSeaweedAt(pt(5, 9)));
+        assertEquals(false, board.isSeaweedAt(pt(-2, 2)));
+    }
+
+    @Test
+    public void shouldWork_getPrizes() {
+        assertEquals("[[13,4], [13,5], [13,6], [13,7], [13,8], [13,9]]",
+                board.getPrizes().toString());
+    }
+
+    @Test
+    public void shouldWork_isPrizeAt() {
+        assertEquals(false, board.isPrizeAt(pt(1, 9)));
+        assertEquals(true, board.isPrizeAt(pt(13, 4)));
+        assertEquals(true, board.isPrizeAt(pt(13, 5)));
+        assertEquals(false, board.isPrizeAt(pt(-2, 2)));
+    }
+
+    @Test
     public void shouldWork_countNear() {
         assertEquals(0, board.countNear(0, 0, Element.ICEBERG_HUGE));
         assertEquals(1, board.countNear(2, 1, Element.ICEBERG_HUGE));
-        assertEquals(5, board.countNear(5, 5, Element.ICEBERG_HUGE));
-        assertEquals(5, board.countNear(7, 6, Element.ICEBERG_HUGE));
+        assertEquals(4, board.countNear(5, 5, Element.ICEBERG_HUGE));
+        assertEquals(2, board.countNear(7, 6, Element.ICEBERG_HUGE));
 
         assertEquals(1, board.countNear(0, 7, Element.TORPEDO));
         assertEquals(1, board.countNear(0, 8, Element.TORPEDO));
@@ -176,15 +326,15 @@ public class BoardTest {
     public void shouldWork_countNear_point() {
         assertEquals(0, board.countNear(pt(0, 0), Element.ICEBERG_HUGE));
         assertEquals(1, board.countNear(pt(2, 1), Element.ICEBERG_HUGE));
-        assertEquals(5, board.countNear(pt(5, 5), Element.ICEBERG_HUGE));
-        assertEquals(5, board.countNear(pt(7, 6), Element.ICEBERG_HUGE));
+        assertEquals(4, board.countNear(pt(5, 5), Element.ICEBERG_HUGE));
+        assertEquals(2, board.countNear(pt(7, 6), Element.ICEBERG_HUGE));
     }
 
     @Test
     public void shouldWork_isAt_point() {
         assertEquals(true, board.isAt(pt(1, 4), Element.OTHER_HERO_DOWN));
         assertEquals(true, board.isAt(pt(0, 8), Element.REEFS));
-        assertEquals(true, board.isAt(pt(6, 1), Element.ICEBERG_HUGE));
+        assertEquals(false, board.isAt(pt(6, 1), Element.ICEBERG_HUGE));
 
         assertEquals(false, board.isAt(pt(1, 4), Element.AI_LEFT));
         assertEquals(false, board.isAt(pt(0, 8), Element.AI_LEFT));
@@ -192,14 +342,14 @@ public class BoardTest {
 
         assertEquals(true, board.isAt(pt(1, 4), Element.OTHER_HERO_DOWN, Element.AI_LEFT));
         assertEquals(true, board.isAt(pt(0, 8), Element.AI_LEFT, Element.REEFS));
-        assertEquals(true, board.isAt(pt(6, 1), Element.ICEBERG_HUGE, Element.AI_LEFT));
+        assertEquals(false, board.isAt(pt(6, 1), Element.ICEBERG_HUGE, Element.AI_LEFT));
     }
 
     @Test
     public void shouldWork_isAt() {
         assertEquals(true, board.isAt(1, 4, Element.OTHER_HERO_DOWN));
         assertEquals(true, board.isAt(0, 8, Element.REEFS));
-        assertEquals(true, board.isAt(6, 1, Element.ICEBERG_HUGE));
+        assertEquals(false, board.isAt(6, 1, Element.ICEBERG_HUGE));
 
         assertEquals(false, board.isAt(1, 4, Element.AI_LEFT));
         assertEquals(false, board.isAt(0, 8, Element.AI_LEFT));
@@ -207,7 +357,7 @@ public class BoardTest {
 
         assertEquals(true, board.isAt(1, 4, Element.OTHER_HERO_DOWN, Element.AI_LEFT));
         assertEquals(true, board.isAt(0, 8, Element.AI_LEFT, Element.REEFS));
-        assertEquals(true, board.isAt(6, 1, Element.ICEBERG_HUGE, Element.AI_LEFT));
+        assertEquals(false, board.isAt(6, 1, Element.ICEBERG_HUGE, Element.AI_LEFT));
     }
 
     @Test
@@ -222,11 +372,5 @@ public class BoardTest {
         assertEquals(true, board.isNear(pt(1, 1), Element.ICEBERG_HUGE));
         assertEquals(true, board.isNear(pt(9, 3), Element.ICEBERG_HUGE));
         assertEquals(false, board.isNear(pt(12, 7), Element.ICEBERG_HUGE));
-    }
-
-    @Test
-    public void shouldWork_isGameOver() {
-        assertEquals(false, board.isGameOver());
-        assertEquals(true, board(" ").isGameOver());
     }
 }
