@@ -33,7 +33,9 @@ import static com.codenjoy.dojo.services.Direction.*;
 
 public enum Element implements CharElement {
 
-    WATER(' ',       "An empty space where hero can move."),
+    WATER(' ', 0,    "An empty space where hero can move. " +
+                     "If there was an iceberg in this place before, " +
+                     "it can grow again "),
 
     REEFS('☼',       "Underwater reefs. They cannot be destroyed " +
                      "without prize PRIZE_BREAKING_BAD."),
@@ -57,15 +59,15 @@ public enum Element implements CharElement {
 
     ICEBERG_HUGE('╬', 3,              "An iceberg that hasn't been shot yet. It takes 3 shots to completely destroy."),
 
-    ICEBERG_MEDIUM_DOWN('╩', 2,       "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
-    ICEBERG_MEDIUM_UP('╦', 2,         "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
     ICEBERG_MEDIUM_LEFT('╠', 2,       "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
     ICEBERG_MEDIUM_RIGHT('╣', 2,      "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
+    ICEBERG_MEDIUM_UP('╦', 2,         "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
+    ICEBERG_MEDIUM_DOWN('╩', 2,       "Partially destroyed iceberg. For complete destruction, 2 shot is required."),
 
-    ICEBERG_SMALL_DOWN_DOWN('╨', 1,   "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
-    ICEBERG_SMALL_UP_UP('╥', 1,       "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
     ICEBERG_SMALL_LEFT_LEFT('╞', 1,   "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
     ICEBERG_SMALL_RIGHT_RIGHT('╡', 1, "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_UP_UP('╥', 1,       "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
+    ICEBERG_SMALL_DOWN_DOWN('╨', 1,   "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
 
     ICEBERG_SMALL_LEFT_RIGHT('│', 1,  "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
     ICEBERG_SMALL_UP_DOWN('─', 1,     "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
@@ -75,30 +77,31 @@ public enum Element implements CharElement {
     ICEBERG_SMALL_DOWN_LEFT('└', 1,   "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
     ICEBERG_SMALL_DOWN_RIGHT('┘', 1,  "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
 
-    ICEBERG_DESTROYED(' ', 0,         "Completely destroyed iceberg. No different from WATER. " +
-                                      "A new one will appear at this place soon."),
-
-    TORPEDO('•',           "Torpedo - is a self-propelled underwater missile designed to " +
+    TORPEDO_LEFT('•',      "Torpedo - is a self-propelled underwater missile designed to " +
                            "be fired from a submarine and to explode on reaching a target. " +
                            "The target can be an iceberg, another submarine and other " +
-                           "elements under water."),
+                           "elements under water. This torpedo moves to the left."),
+    TORPEDO_RIGHT('¤',     "This torpedo moves to the right."),
+    TORPEDO_UP('ø',        "This torpedo moves to the up."),
+    TORPEDO_DOWN('×',      "This torpedo moves to the down."),
 
-    HERO_UP('▲',           "Your hero is pointing up."),
-    HERO_RIGHT('►',        "Your hero is pointing right."),
-    HERO_DOWN('▼',         "Your hero is pointing down."),
+
     HERO_LEFT('◄',         "Your hero is pointing left."),
+    HERO_RIGHT('►',        "Your hero is pointing right."),
+    HERO_UP('▲',           "Your hero is pointing up."),
+    HERO_DOWN('▼',         "Your hero is pointing down."),
 
-    OTHER_HERO_UP('˄',     "Enemy hero is pointing up."),
-    OTHER_HERO_RIGHT('˃',  "Enemy hero is pointing right."),
-    OTHER_HERO_DOWN('˅',   "Enemy hero is pointing down."),
     OTHER_HERO_LEFT('˂',   "Enemy hero is pointing left."),
+    OTHER_HERO_RIGHT('˃',  "Enemy hero is pointing right."),
+    OTHER_HERO_UP('˄',     "Enemy hero is pointing up."),
+    OTHER_HERO_DOWN('˅',   "Enemy hero is pointing down."),
 
-    AI_UP('?',        "AI is pointing up."),
-    AI_RIGHT('»',     "AI is pointing right."),
-    AI_DOWN('¿',      "AI is pointing down."),
-    AI_LEFT('«',      "AI is pointing left."),
+    AI_LEFT('«',           "AI is pointing left."),
+    AI_RIGHT('»',          "AI is pointing right."),
+    AI_UP('?',             "AI is pointing up."),
+    AI_DOWN('¿',           "AI is pointing down."),
 
-    AI_PRIZE('◘',     "AI can also be a prize, then it is highlighted " +
+    AI_PRIZE('◘',          "AI can also be a prize, then it is highlighted " +
                            "by this sprite every few ticks."),
 
     PRIZE('!',             "The dropped prize after the destruction of the prize " +
@@ -165,17 +168,17 @@ public enum Element implements CharElement {
 
     public Element destroyFrom(Direction direction) {
         if (power() == 1) {
-            return Element.ICEBERG_DESTROYED;
+            return Element.WATER;
         }
         return Element.icebergsMap.get(this).get(direction);
     }
 
     public static Element[] heroes() {
         return new Element[]{
-                HERO_UP,
-                HERO_DOWN,
                 HERO_LEFT,
                 HERO_RIGHT,
+                HERO_UP,
+                HERO_DOWN,
         };
     }
 
@@ -186,15 +189,15 @@ public enum Element implements CharElement {
 
                 ICEBERG_HUGE,
 
-                ICEBERG_MEDIUM_DOWN,
-                ICEBERG_MEDIUM_UP,
                 ICEBERG_MEDIUM_LEFT,
                 ICEBERG_MEDIUM_RIGHT,
+                ICEBERG_MEDIUM_UP,
+                ICEBERG_MEDIUM_DOWN,
 
-                ICEBERG_SMALL_DOWN_DOWN,
-                ICEBERG_SMALL_UP_UP,
                 ICEBERG_SMALL_LEFT_LEFT,
                 ICEBERG_SMALL_RIGHT_RIGHT,
+                ICEBERG_SMALL_UP_UP,
+                ICEBERG_SMALL_DOWN_DOWN,
 
                 ICEBERG_SMALL_LEFT_RIGHT,
                 ICEBERG_SMALL_UP_DOWN,
@@ -208,10 +211,10 @@ public enum Element implements CharElement {
 
     public static Element[] otherHeroes() {
         return new Element[] {
-                OTHER_HERO_UP,
-                OTHER_HERO_DOWN,
                 OTHER_HERO_LEFT,
                 OTHER_HERO_RIGHT,
+                OTHER_HERO_UP,
+                OTHER_HERO_DOWN,
         };
     }
 
@@ -219,10 +222,10 @@ public enum Element implements CharElement {
         return new Element[] {
                 AI_PRIZE,
 
-                AI_UP,
-                AI_DOWN,
                 AI_LEFT,
                 AI_RIGHT,
+                AI_UP,
+                AI_DOWN,
         };
     }
 
@@ -230,21 +233,24 @@ public enum Element implements CharElement {
         return new Element[] {
                 AI_PRIZE,
 
-                AI_UP,
-                AI_DOWN,
                 AI_LEFT,
                 AI_RIGHT,
+                AI_UP,
+                AI_DOWN,
 
-                OTHER_HERO_UP,
-                OTHER_HERO_DOWN,
                 OTHER_HERO_LEFT,
                 OTHER_HERO_RIGHT,
+                OTHER_HERO_UP,
+                OTHER_HERO_DOWN,
         };
     }
 
     public static Element[] torpedoes() {
         return new Element[] {
-                TORPEDO,
+                TORPEDO_LEFT,
+                TORPEDO_RIGHT,
+                TORPEDO_UP,
+                TORPEDO_DOWN,
         };
     }
 
@@ -264,15 +270,15 @@ public enum Element implements CharElement {
         return new Element[] {
                 ICEBERG_HUGE,
 
-                ICEBERG_MEDIUM_DOWN,
-                ICEBERG_MEDIUM_UP,
                 ICEBERG_MEDIUM_LEFT,
                 ICEBERG_MEDIUM_RIGHT,
+                ICEBERG_MEDIUM_UP,
+                ICEBERG_MEDIUM_DOWN,
 
-                ICEBERG_SMALL_DOWN_DOWN,
-                ICEBERG_SMALL_UP_UP,
                 ICEBERG_SMALL_LEFT_LEFT,
                 ICEBERG_SMALL_RIGHT_RIGHT,
+                ICEBERG_SMALL_UP_UP,
+                ICEBERG_SMALL_DOWN_DOWN,
 
                 ICEBERG_SMALL_LEFT_RIGHT,
                 ICEBERG_SMALL_UP_DOWN,
@@ -308,7 +314,7 @@ public enum Element implements CharElement {
             case RIGHT: return Element.OTHER_HERO_RIGHT;
             case UP:    return Element.OTHER_HERO_UP;
             case DOWN:  return Element.OTHER_HERO_DOWN;
-            default:    throw new RuntimeException("Wrong hero state! ");
+            default:    throw new RuntimeException("Wrong hero direction!");
         }
     }
 
@@ -318,7 +324,17 @@ public enum Element implements CharElement {
             case RIGHT: return Element.HERO_RIGHT;
             case UP:    return Element.HERO_UP;
             case DOWN:  return Element.HERO_DOWN;
-            default:    throw new RuntimeException("Wrong hero state! ");
+            default:    throw new RuntimeException("Wrong hero direction!");
+        }
+    }
+
+    public static Element torpedo(Direction direction) {
+        switch (direction) {
+            case LEFT:  return Element.TORPEDO_LEFT;
+            case RIGHT: return Element.TORPEDO_RIGHT;
+            case UP:    return Element.TORPEDO_UP;
+            case DOWN:  return Element.TORPEDO_DOWN;
+            default:    throw new RuntimeException("Wrong torpedo direction!");
         }
     }
 
