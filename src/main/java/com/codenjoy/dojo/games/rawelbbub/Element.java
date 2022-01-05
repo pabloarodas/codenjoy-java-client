@@ -101,8 +101,10 @@ public enum Element implements CharElement {
     AI_UP('?',             "AI is pointing up."),
     AI_DOWN('¿',           "AI is pointing down."),
 
-    AI_PRIZE('◘',          "AI can also be a prize, then it is highlighted " +
-                           "by this sprite every few ticks."),
+    AI_PRIZE_LEFT('{',     "AI with prize is pointing left."),
+    AI_PRIZE_RIGHT('}',    "AI with prize is pointing right."),
+    AI_PRIZE_UP('î',       "AI with prize is pointing up."),
+    AI_PRIZE_DOWN('w',     "AI with prize is pointing down."),
 
     PRIZE('!',             "The dropped prize after the destruction of the prize " +
                            "AI flickers on the field every even tick of the game " +
@@ -220,7 +222,10 @@ public enum Element implements CharElement {
 
     public static Element[] ais() {
         return new Element[] {
-                AI_PRIZE,
+                AI_PRIZE_LEFT,
+                AI_PRIZE_RIGHT,
+                AI_PRIZE_UP,
+                AI_PRIZE_DOWN,
 
                 AI_LEFT,
                 AI_RIGHT,
@@ -231,7 +236,10 @@ public enum Element implements CharElement {
 
     public static Element[] enemies() {
         return new Element[] {
-                AI_PRIZE,
+                AI_PRIZE_LEFT,
+                AI_PRIZE_RIGHT,
+                AI_PRIZE_UP,
+                AI_PRIZE_DOWN,
 
                 AI_LEFT,
                 AI_RIGHT,
@@ -314,7 +322,17 @@ public enum Element implements CharElement {
             case RIGHT: return Element.AI_RIGHT;
             case UP:    return Element.AI_UP;
             case DOWN:  return Element.AI_DOWN;
-            default:    throw new RuntimeException("Wrong ai direction");
+            default:    throw new RuntimeException("Wrong AI direction");
+        }
+    }
+
+    public static Element aiPrize(Direction direction) {
+        switch (direction) {
+            case LEFT:  return Element.AI_PRIZE_LEFT;
+            case RIGHT: return Element.AI_PRIZE_RIGHT;
+            case UP:    return Element.AI_PRIZE_UP;
+            case DOWN:  return Element.AI_PRIZE_DOWN;
+            default:    throw new RuntimeException("Wrong AI prize direction");
         }
     }
 

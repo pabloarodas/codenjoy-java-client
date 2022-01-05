@@ -40,7 +40,7 @@ public class BoardTest {
     public void before() {
         board = board(
                /*14*/"☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
-               /*13*/"☼  ◘  » ◄ » « ☼\n" +
+               /*13*/"☼w{}î » ◄ » « ☼\n" +
                /*12*/"☼ ╦ └?─ ─ ╠ ╥?☼\n" +
                /*11*/"☼ø╞ └%╠☼╬~╣#╬ ☼\n" +
                /*10*/"☼ ╞ ╬%┌ ╬~┌#╥ ☼\n" +
@@ -61,7 +61,7 @@ public class BoardTest {
     public void shouldWorkToString() {
         assertEquals(
                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
-               "☼  ◘  » ◄ » « ☼\n" +
+               "☼w{}î » ◄ » « ☼\n" +
                "☼ ╦ └?─ ─ ╠ ╥?☼\n" +
                "☼ø╞ └%╠☼╬~╣#╬ ☼\n" +
                "☼ ╞ ╬%┌ ╬~┌#╥ ☼\n" +
@@ -77,7 +77,7 @@ public class BoardTest {
                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
                "\n" +
                "Hero at: [1,9]\n" +
-               "Enemies at: [[1,4], [3,2], [3,13], [4,1], [5,12], [6,13], [9,6], [10,1], [10,13], [12,7], [12,13], [13,12]]\n" +
+               "Enemies at: [[1,4], [1,13], [2,13], [3,2], [3,13], [4,1], [4,13], [5,12], [6,13], [9,6], [10,1], [10,13], [12,7], [12,13], [13,12]]\n" +
                "Torpedoes at: [[1,2], [1,6], [1,8], [1,11], [3,4], [7,1], [7,3], [7,9], [13,2]]\n" +
                "Prizes at: [[13,4], [13,5], [13,6], [13,7], [13,8], [13,9]]\n", board.toString());
     }
@@ -188,7 +188,8 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getAis() {
-        assertEquals("[[3,2], [3,13], [5,12], [6,13], [10,13], [12,7], [12,13], [13,12]]",
+        assertEquals("[[1,13], [2,13], [3,2], [3,13], [4,13], [5,12], [6,13], " +
+                        "[10,13], [12,7], [12,13], [13,12]]",
                 board.getAis().toString());
     }
 
@@ -202,8 +203,8 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getEnemies() {
-        assertEquals("[[1,4], [3,2], [3,13], [4,1], [5,12], [6,13], [9,6], " +
-                        "[10,1], [10,13], [12,7], [12,13], [13,12]]",
+        assertEquals("[[1,4], [1,13], [2,13], [3,2], [3,13], [4,1], [4,13], [5,12], " +
+                        "[6,13], [9,6], [10,1], [10,13], [12,7], [12,13], [13,12]]",
                 board.getEnemies().toString());
     }
 
@@ -334,7 +335,7 @@ public class BoardTest {
         assertEquals("[☼, ☼, ☼, ¤, •,  ,  ,  ]", board.getNear(1, 7).toString());
         assertEquals(1, board.countNear(1, 7, Element.TORPEDO_LEFT));
 
-        assertEquals("[☼, ☼, ☼, ø,  , ╞, ╦,  ]", board.getNear(1, 12).toString());
+        assertEquals("[☼, ☼, ☼, ø, w, ╞, ╦, {]", board.getNear(1, 12).toString());
         assertEquals(1, board.countNear(1, 12, Element.TORPEDO_UP));
 
         assertEquals("[┐, ╬, ┐,  ,  ,  , ╬, ╬]", board.getNear(3, 4).toString());
@@ -353,7 +354,7 @@ public class BoardTest {
         assertEquals(0, board.countNear(7, 4, Element.TORPEDO_LEFT));
         assertEquals(1, board.countNear(7, 4, Element.TORPEDO_DOWN));
 
-        assertEquals("[╦,  , ☼,  , ☼, └,  , ☼]", board.getNear(3, 13).toString());
+        assertEquals("[╦, {, ☼,  , ☼, └, î, ☼]", board.getNear(3, 13).toString());
         assertEquals(3, board.countNear(3, 13, Element.REEFS));
 
         assertEquals("[?,  , •,  , ╬,  , Ѡ,  ]", board.getNear(4, 3).toString());
