@@ -119,12 +119,14 @@ public enum Element implements CharElement {
     PRIZE_NO_SLIDING('5',         "A prize that allows the hero to temporarily not slide " +
                                   "on the ice.");
 
+    public final static Map<Character, Element> elements = new LinkedHashMap<>();
     public final static List<Element> icebergs = new LinkedList<>();
     public final static Map<Element, Map<Direction, Element>> icebergsMap = new LinkedHashMap<>();
 
     static {
         String prefix = StringUtils.substringBefore(ICEBERG_HUGE.name(), "_");
         Arrays.stream(values())
+                .peek(element -> elements.put(element.ch, element))
                 .filter(element -> element.name().startsWith(prefix))
                 .forEach(icebergs::add);
 
@@ -168,6 +170,26 @@ public enum Element implements CharElement {
         return Element.icebergsMap.get(this).get(direction);
     }
 
+    public static Element otherHero(Direction direction) {
+        switch (direction) {
+            case LEFT:  return Element.OTHER_HERO_LEFT;
+            case RIGHT: return Element.OTHER_HERO_RIGHT;
+            case UP:    return Element.OTHER_HERO_UP;
+            case DOWN:  return Element.OTHER_HERO_DOWN;
+            default:    throw new RuntimeException("Wrong hero state! ");
+        }
+    }
+
+    public static Element hero(Direction direction) {
+        switch (direction) {
+            case LEFT:  return Element.HERO_LEFT;
+            case RIGHT: return Element.HERO_RIGHT;
+            case UP:    return Element.HERO_UP;
+            case DOWN:  return Element.HERO_DOWN;
+            default:    throw new RuntimeException("Wrong hero state! ");
+        }
+    }
+
     private final char ch;
     private final String info;
     private final int power;
@@ -201,12 +223,12 @@ public enum Element implements CharElement {
         return String.valueOf(ch);
     }
 
+    // TODO использовать этот подход во всех играх
     public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
+        Element result = elements.get(ch);
+        if (result == null) {
+            throw new IllegalArgumentException("No such element for " + ch);
         }
-        throw new IllegalArgumentException("No such element for " + ch);
+        return result;
     }
 }
