@@ -30,6 +30,11 @@ eval_echo() {
     eval $command
 }
 
+color() {
+    message=$1
+    echo "[93m$message[0m"
+}
+
 eval_echo "echo Generating elements for all clients..."
 
 eval_echo "cd .."
@@ -47,5 +52,6 @@ eval_echo "CLIENTS=md,md_header,md_footer,cpp,go,js,php,python,csharp"
 
 eval_echo "$MVNW clean compile exec:java -Dfile.encoding=UTF-8 -Dexec.mainClass=com.codenjoy.dojo.client.generator.ElementGeneratorRunner -Dexec.args='$BASE $GAMES $CLIENTS'"
 
-echo Press Enter to continue
+echo
+color "Press Enter to continue"
 read
