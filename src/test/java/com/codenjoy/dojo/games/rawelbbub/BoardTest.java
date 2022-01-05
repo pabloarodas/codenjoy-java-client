@@ -39,31 +39,11 @@ public class BoardTest {
     @Before
     public void before() {
         board = board(
-                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
-                "☼     »   » « ☼" +
-                "☼ ╬ ╬?╬ ╬ ╬ ╬?☼" +
-                "☼ ╬ ╬ ╬☼╬ ╬ ╬ ☼" +
-                "☼ ╬ ╬ ╬ ╬ ╬ ╬ ☼" +
-                "☼▲╬ ╬     ╬ ╬ ☼" +
-                "☼•    ╬ ╬     ☼" +
-                "☼   ╬     ╬   ☼" +
-                "☼     ╬ ╬     ☼" +
-                "☼ ╬ ╬ ╬╬╬ ╬ ╬ ☼" +
-                "☼˅╬ ╬ ╬ ╬ ╬ ╬ ☼" +
-                "☼ ╬         ╬ ☼" +
-                "☼ ╬?  ╬╬╬   ╬ ☼" +
-                "☼     ╬ ╬     ☼" +
-                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼");
-    }
-
-    @Test
-    public void shouldWorkToString() {
-        assertEquals(
-               /*14*/"☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
-               /*13*/"☼     »   » « ☼\n" +
-               /*12*/"☼ ╬ ╬?╬ ╬ ╬ ╬?☼\n" +
-               /*11*/"☼ ╬ ╬ ╬☼╬ ╬ ╬ ☼\n" +
-               /*10*/"☼ ╬ ╬ ╬ ╬ ╬ ╬ ☼\n" +
+                /*14*/"☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
+                /*13*/"☼     »   » « ☼\n" +
+                /*12*/"☼ ╬ ╬?╬ ╬ ╬ ╬?☼\n" +
+                /*11*/"☼ ╬ ╬ ╬☼╬ ╬ ╬ ☼\n" +
+                /*10*/"☼ ╬ ╬ ╬ ╬ ╬ ╬ ☼\n" +
                 /*9*/"☼▲╬ ╬     ╬ ╬ ☼\n" +
                 /*8*/"☼•    ╬ ╬     ☼\n" +
                 /*7*/"☼   ╬     ╬   ☼\n" +
@@ -73,12 +53,32 @@ public class BoardTest {
                 /*3*/"☼ ╬         ╬ ☼\n" +
                 /*2*/"☼ ╬?  ╬╬╬   ╬ ☼\n" +
                 /*1*/"☼     ╬ ╬     ☼\n" +
-                /*0*/"☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
-                    /*012345678901234*/
-                "\n" +
-                "My tank at: [1,9]\n" +
-                "Enemies at: [[1,4], [3,2], [5,12], [6,13], [10,13], [12,13], [13,12]]\n" +
-                "Bullets at: [[1,8]]\n", board.toString());
+                /*0*/"☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n"
+                    /*012345678901234*/);
+    }
+
+    @Test
+    public void shouldWorkToString() {
+        assertEquals(
+               "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
+               "☼     »   » « ☼\n" +
+               "☼ ╬ ╬?╬ ╬ ╬ ╬?☼\n" +
+               "☼ ╬ ╬ ╬☼╬ ╬ ╬ ☼\n" +
+               "☼ ╬ ╬ ╬ ╬ ╬ ╬ ☼\n" +
+               "☼▲╬ ╬     ╬ ╬ ☼\n" +
+               "☼•    ╬ ╬     ☼\n" +
+               "☼   ╬     ╬   ☼\n" +
+               "☼     ╬ ╬     ☼\n" +
+               "☼ ╬ ╬ ╬╬╬ ╬ ╬ ☼\n" +
+               "☼˅╬ ╬ ╬ ╬ ╬ ╬ ☼\n" +
+               "☼ ╬         ╬ ☼\n" +
+               "☼ ╬?  ╬╬╬   ╬ ☼\n" +
+               "☼     ╬ ╬     ☼\n" +
+               "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼\n" +
+               "\n" +
+               "Hero at: [1,9]\n" +
+               "Enemies at: [[1,4], [3,2], [5,12], [6,13], [10,13], [12,13], [13,12]]\n" +
+               "Torpedoes at: [[1,8]]\n", board.toString());
     }
 
     @Test
@@ -134,24 +134,24 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldWork_getMe() {
-        assertEquals("[1,9]", board.getMe().toString());
+    public void shouldWork_getHero() {
+        assertEquals("[1,9]", board.getHero().toString());
 
-        assertEquals(null, board(" ").getMe());
+        assertEquals(null, board(" ").getHero());
     }
 
     @Test
     public void shouldWork_isBulletAt() {
-        assertEquals(true, board.isTorpedoAt(1, 8));
-        assertEquals(false, board.isTorpedoAt(2, 8));
-        assertEquals(false, board.isTorpedoAt(-2, -8));
+        assertEquals(true, board.isTorpedoAt(pt(1, 8)));
+        assertEquals(false, board.isTorpedoAt(pt(2, 8)));
+        assertEquals(false, board.isTorpedoAt(pt(-2, -8)));
     }
 
     @Test
     public void shouldWork_isBarrierAt() {
-        assertEquals(false, board.isBarrierAt(1, 8));
-        assertEquals(true, board.isBarrierAt(2, 2));
-        assertEquals(true, board.isBarrierAt(-2, 2));
+        assertEquals(false, board.isBarrierAt(pt(1, 8)));
+        assertEquals(true, board.isBarrierAt(pt(2, 2)));
+        assertEquals(false, board.isBarrierAt(pt(-2, 2)));
     }
 
     @Test

@@ -163,6 +163,62 @@ public enum Element implements CharElement {
         icebergsMap.get(from).put(direction, to);
     }
 
+    public static Element[] barriers() {
+        return new Element[] {
+                REEFS,
+                ICEBERG_HUGE,
+                ICEBERG_MEDIUM_DOWN,
+                ICEBERG_MEDIUM_UP,
+                ICEBERG_MEDIUM_LEFT,
+                ICEBERG_MEDIUM_RIGHT,
+                ICEBERG_SMALL_DOWN_DOWN,
+                ICEBERG_SMALL_UP_UP,
+                ICEBERG_SMALL_LEFT_LEFT,
+                ICEBERG_SMALL_RIGHT_RIGHT,
+                ICEBERG_SMALL_LEFT_RIGHT,
+                ICEBERG_SMALL_UP_DOWN,
+                ICEBERG_SMALL_UP_LEFT,
+                ICEBERG_SMALL_UP_RIGHT,
+                ICEBERG_SMALL_DOWN_LEFT,
+                ICEBERG_SMALL_DOWN_RIGHT,
+        };
+    }
+
+    public static Element[] fishnet() {
+        return new Element[] {
+                FISHNET,
+        };
+    }
+
+    public static Element[] torpedoes() {
+        return new Element[] {
+                TORPEDO,
+        };
+    }
+
+    public static Element[] heroes() {
+        return new Element[]{
+                HERO_UP,
+                HERO_DOWN,
+                HERO_LEFT,
+                HERO_RIGHT,
+        };
+    }
+
+    public static Element[] enemies() {
+        return new Element[] {
+                AI_UP,
+                AI_DOWN,
+                AI_LEFT,
+                AI_RIGHT,
+                OTHER_HERO_UP,
+                OTHER_HERO_DOWN,
+                OTHER_HERO_LEFT,
+                OTHER_HERO_RIGHT,
+                AI_PRIZE,
+        };
+    }
+
     public Element destroyFrom(Direction direction) {
         if (power() == 1) {
             return Element.ICEBERG_DESTROYED;

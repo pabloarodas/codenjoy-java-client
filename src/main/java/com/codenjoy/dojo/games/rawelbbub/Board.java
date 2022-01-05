@@ -29,7 +29,6 @@ import com.codenjoy.dojo.services.Point;
 import java.util.List;
 
 import static com.codenjoy.dojo.games.rawelbbub.Element.*;
-import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
  * The class is a wrapper over the board string
@@ -49,71 +48,7 @@ public class Board extends AbstractBoard<Element> {
         return size - 1 - y;
     }
 
-    public boolean isBarrierAt(int x, int y) {
-        if (isOutOfField(x, y)) {
-            return true;
-        }
-
-        return getBarriers().contains(pt(x, y));
-    }
-
-    public List<Point> getBarriers() {
-        return get(REEFS,
-                ICEBERG_HUGE,
-                ICEBERG_MEDIUM_DOWN,
-                ICEBERG_MEDIUM_UP,
-                ICEBERG_MEDIUM_LEFT,
-                ICEBERG_MEDIUM_RIGHT,
-                ICEBERG_SMALL_DOWN_DOWN,
-                ICEBERG_SMALL_UP_UP,
-                ICEBERG_SMALL_LEFT_LEFT,
-                ICEBERG_SMALL_RIGHT_RIGHT,
-                ICEBERG_SMALL_LEFT_RIGHT,
-                ICEBERG_SMALL_UP_DOWN,
-                ICEBERG_SMALL_UP_LEFT,
-                ICEBERG_SMALL_UP_RIGHT,
-                ICEBERG_SMALL_DOWN_LEFT,
-                ICEBERG_SMALL_DOWN_RIGHT);
-    }
-
-    public Point getMe() {
-        List<Point> points = get(HERO_UP,
-                HERO_DOWN,
-                HERO_LEFT,
-                HERO_RIGHT);
-        if (points.isEmpty()) {
-            return null;
-        }
-        return points.get(0);
-    }
-
-    public List<Point> getEnemies() {
-        return get(AI_UP,
-                AI_DOWN,
-                AI_LEFT,
-                AI_RIGHT,
-                OTHER_HERO_UP,
-                OTHER_HERO_DOWN,
-                OTHER_HERO_LEFT,
-                OTHER_HERO_RIGHT,
-                AI_PRIZE);
-    }
-
-    public List<Point> getTorpedoes() {
-        return get(TORPEDO);
-    }
-
-    public List<Point> getFishnet() {
-        return get(FISHNET);
-    }
-
-    public boolean isGameOver() {
-        return get(HERO_UP,
-                HERO_DOWN,
-                HERO_LEFT,
-                HERO_RIGHT).isEmpty();
-    }
-
+    @Override
     public Element getAt(int x, int y) {
         if (isOutOfField(x, y)) {
             return REEFS;
@@ -121,18 +56,55 @@ public class Board extends AbstractBoard<Element> {
         return super.getAt(x, y);
     }
 
-    public boolean isTorpedoAt(int x, int y) {
-        return getAt(x, y).equals(TORPEDO);
+    public boolean isGameOver() {
+        return get(heroes()).isEmpty();
+    }
+
+    public Point getHero() {
+        List<Point> list = get(heroes());
+        return (list.isEmpty()) ? null : list.get(0);
+    }
+
+    public boolean isBarrierAt(Point pt) {
+        return isAt(pt, barriers());
+    }
+
+    public boolean isFishnetAt(Point pt) {
+        return isAt(pt, fishnet());
+    }
+
+    public boolean isTorpedoAt(Point pt) {
+        return isAt(pt, torpedoes());
+    }
+
+    public boolean isEnemyAt(Point pt) {
+        return isAt(pt, enemies());
+    }
+
+    public List<Point> getBarriers() {
+        return get(barriers());
+    }
+
+    public List<Point> getEnemies() {
+        return get(enemies());
+    }
+
+    public List<Point> getTorpedoes() {
+        return get(torpedoes());
+    }
+
+    public List<Point> getFishnet() {
+        return get(fishnet());
     }
 
     @Override
     public String toString() {
         return String.format("%s\n" +
-                        "My tank at: %s\n" +
+                        "Hero at: %s\n" +
                         "Enemies at: %s\n" +
-                        "Bullets at: %s\n",
+                        "Torpedoes at: %s\n",
                 boardAsString(),
-                getMe(),
+                getHero(),
                 getEnemies(),
                 getTorpedoes());
     }
