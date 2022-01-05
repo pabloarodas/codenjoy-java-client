@@ -182,7 +182,7 @@ public enum Element implements CharElement {
     public static Element[] barriers() {
         return new Element[] {
                 REEFS,
-                // FISHNET, TODO add test
+                FISHNET,
 
                 ICEBERG_HUGE,
 
