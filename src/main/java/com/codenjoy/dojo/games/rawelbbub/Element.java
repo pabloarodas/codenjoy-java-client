@@ -308,13 +308,23 @@ public enum Element implements CharElement {
         };
     }
 
+    public static Element ai(Direction direction) {
+        switch (direction) {
+            case LEFT:  return Element.AI_LEFT;
+            case RIGHT: return Element.AI_RIGHT;
+            case UP:    return Element.AI_UP;
+            case DOWN:  return Element.AI_DOWN;
+            default:    throw new RuntimeException("Wrong ai direction");
+        }
+    }
+
     public static Element otherHero(Direction direction) {
         switch (direction) {
             case LEFT:  return Element.OTHER_HERO_LEFT;
             case RIGHT: return Element.OTHER_HERO_RIGHT;
             case UP:    return Element.OTHER_HERO_UP;
             case DOWN:  return Element.OTHER_HERO_DOWN;
-            default:    throw new RuntimeException("Wrong hero direction!");
+            default:    throw new RuntimeException("Wrong hero direction");
         }
     }
 
@@ -324,7 +334,7 @@ public enum Element implements CharElement {
             case RIGHT: return Element.HERO_RIGHT;
             case UP:    return Element.HERO_UP;
             case DOWN:  return Element.HERO_DOWN;
-            default:    throw new RuntimeException("Wrong hero direction!");
+            default:    throw new RuntimeException("Wrong hero direction");
         }
     }
 
@@ -334,7 +344,7 @@ public enum Element implements CharElement {
             case RIGHT: return Element.TORPEDO_RIGHT;
             case UP:    return Element.TORPEDO_UP;
             case DOWN:  return Element.TORPEDO_DOWN;
-            default:    throw new RuntimeException("Wrong torpedo direction!");
+            default:    throw new RuntimeException("Wrong torpedo direction");
         }
     }
 
