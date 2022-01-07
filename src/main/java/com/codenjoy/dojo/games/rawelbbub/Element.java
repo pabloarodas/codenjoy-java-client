@@ -77,6 +77,8 @@ public enum Element implements CharElement {
     ICEBERG_SMALL_DOWN_LEFT('└', 1,   "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
     ICEBERG_SMALL_DOWN_RIGHT('┘', 1,  "Almost destroyed iceberg. For complete destruction, 1 shot is required."),
 
+/// classic mode (turn in a given direction with movement)
+
     TORPEDO_LEFT('•',      "Torpedo - is a self-propelled underwater missile designed to " +
                            "be fired from a submarine and to explode on reaching a target. " +
                            "The target can be an iceberg, another submarine and other " +
@@ -84,7 +86,6 @@ public enum Element implements CharElement {
     TORPEDO_RIGHT('¤',     "This torpedo moves to the right."),
     TORPEDO_UP('ø',        "This torpedo moves to the up."),
     TORPEDO_DOWN('×',      "This torpedo moves to the down."),
-
 
     HERO_LEFT('◄',         "Your hero is pointing left."),
     HERO_RIGHT('►',        "Your hero is pointing right."),
@@ -105,6 +106,25 @@ public enum Element implements CharElement {
     AI_PRIZE_RIGHT('}',    "AI with prize is pointing right."),
     AI_PRIZE_UP('î',       "AI with prize is pointing up."),
     AI_PRIZE_DOWN('w',     "AI with prize is pointing down."),
+
+/// turn based mode (either turn or move)
+
+    TORPEDO_SIDE_LEFT('t',     "This torpedo moves to the left."),
+    TORPEDO_SIDE_RIGHT('T',    "This torpedo moves to the right."),
+
+    HERO_SIDE_LEFT('h',        "Your hero is pointing left."),
+    HERO_SIDE_RIGHT('H',       "Your hero is pointing right."),
+
+    OTHER_HERO_SIDE_LEFT('o',  "Enemy hero is pointing left."),
+    OTHER_HERO_SIDE_RIGHT('O', "Enemy hero is pointing right."),
+
+    AI_SIDE_LEFT('a',          "AI is pointing left."),
+    AI_SIDE_RIGHT('A',         "AI is pointing right."),
+
+    AI_PRIZE_SIDE_LEFT('p',    "AI with prize is pointing left."),
+    AI_PRIZE_SIDE_RIGHT('P',   "AI with prize is pointing right."),
+
+/// prizes
 
     PRIZE('!',             "The dropped prize after the destruction of the prize " +
                            "AI flickers on the field every even tick of the game " +
@@ -316,7 +336,15 @@ public enum Element implements CharElement {
         };
     }
 
-    public static Element ai(Direction direction) {
+    public static Element ai(Direction direction, boolean sideView) {
+        if (sideView) {
+            switch (direction) {
+                case LEFT:  return Element.AI_SIDE_LEFT;
+                case RIGHT: return Element.AI_SIDE_RIGHT;
+                default:    throw new RuntimeException("Wrong AI direction");
+            }
+        }
+
         switch (direction) {
             case LEFT:  return Element.AI_LEFT;
             case RIGHT: return Element.AI_RIGHT;
@@ -326,7 +354,15 @@ public enum Element implements CharElement {
         }
     }
 
-    public static Element aiPrize(Direction direction) {
+    public static Element aiPrize(Direction direction, boolean sideView) {
+        if (sideView) {
+            switch (direction) {
+                case LEFT:  return Element.AI_PRIZE_SIDE_LEFT;
+                case RIGHT: return Element.AI_PRIZE_SIDE_RIGHT;
+                default:    throw new RuntimeException("Wrong AI prize direction");
+            }
+        }
+
         switch (direction) {
             case LEFT:  return Element.AI_PRIZE_LEFT;
             case RIGHT: return Element.AI_PRIZE_RIGHT;
@@ -336,7 +372,15 @@ public enum Element implements CharElement {
         }
     }
 
-    public static Element otherHero(Direction direction) {
+    public static Element otherHero(Direction direction, boolean sideView) {
+        if (sideView) {
+            switch (direction) {
+                case LEFT:  return Element.OTHER_HERO_SIDE_LEFT;
+                case RIGHT: return Element.OTHER_HERO_SIDE_RIGHT;
+                default:    throw new RuntimeException("Wrong hero direction");
+            }
+        }
+
         switch (direction) {
             case LEFT:  return Element.OTHER_HERO_LEFT;
             case RIGHT: return Element.OTHER_HERO_RIGHT;
@@ -346,7 +390,15 @@ public enum Element implements CharElement {
         }
     }
 
-    public static Element hero(Direction direction) {
+    public static Element hero(Direction direction, boolean sideView) {
+        if (sideView) {
+            switch (direction) {
+                case LEFT:  return Element.HERO_SIDE_LEFT;
+                case RIGHT: return Element.HERO_SIDE_RIGHT;
+                default:    throw new RuntimeException("Wrong hero direction");
+            }
+        }
+
         switch (direction) {
             case LEFT:  return Element.HERO_LEFT;
             case RIGHT: return Element.HERO_RIGHT;
@@ -356,7 +408,15 @@ public enum Element implements CharElement {
         }
     }
 
-    public static Element torpedo(Direction direction) {
+    public static Element torpedo(Direction direction, boolean sideView) {
+        if (sideView) {
+            switch (direction) {
+                case LEFT:  return Element.TORPEDO_SIDE_LEFT;
+                case RIGHT: return Element.TORPEDO_SIDE_RIGHT;
+                default:    throw new RuntimeException("Wrong torpedo direction");
+            }
+        }
+
         switch (direction) {
             case LEFT:  return Element.TORPEDO_LEFT;
             case RIGHT: return Element.TORPEDO_RIGHT;
