@@ -32,11 +32,18 @@ public class Command {
 
     public static final String NONE = "";
 
+    public static final String FIRE = ACT();
+
+    // classic mode (turn in a given direction with movement)
     public static final Function<Direction, String> MOVE = Direction::toString;
     public static final String MOVE_LEFT = MOVE.apply(LEFT);
     public static final String MOVE_RIGHT = MOVE.apply(RIGHT);
     public static final String MOVE_UP = MOVE.apply(UP);
     public static final String MOVE_DOWN = MOVE.apply(DOWN);
 
-    public static final String FIRE = ACT();
+    // turn based mode (either turn or move)
+    public static final String MOVE_FORWARD = UP.toString();
+    public static final String MOVE_BACKWARD = DOWN.toString();
+    public static final String TURN_LEFT = LEFT.toString();
+    public static final String TURN_RIGHT = RIGHT.toString();
 }
