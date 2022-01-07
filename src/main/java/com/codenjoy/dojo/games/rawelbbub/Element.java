@@ -146,7 +146,8 @@ public enum Element implements CharElement {
 
     public final static Map<Character, Element> elements = new LinkedHashMap<>();
     public final static List<Element> icebergs = new LinkedList<>();
-    public final static Map<Element, Map<Direction, Element>> icebergsMap = new LinkedHashMap<>();
+    public final static Map<Element, Map<Direction, Element>> destroyIceberg = new LinkedHashMap<>();
+    public final static Map<Element, Element> growIceberg = new LinkedHashMap<>();
 
     static {
         String prefix = StringUtils.substringBefore(ICEBERG_HUGE.name(), "_");
@@ -155,44 +156,74 @@ public enum Element implements CharElement {
                 .filter(element -> element.name().startsWith(prefix))
                 .forEach(icebergs::add);
 
-        transform(ICEBERG_HUGE,         LEFT,  ICEBERG_MEDIUM_LEFT);
-        transform(ICEBERG_HUGE,         RIGHT, ICEBERG_MEDIUM_RIGHT);
-        transform(ICEBERG_HUGE,         UP,    ICEBERG_MEDIUM_UP);
-        transform(ICEBERG_HUGE,         DOWN,  ICEBERG_MEDIUM_DOWN);
+        transformGrow(ICEBERG_HUGE,              ICEBERG_HUGE);
 
-        transform(ICEBERG_MEDIUM_LEFT,  LEFT,  ICEBERG_SMALL_LEFT_LEFT);
-        transform(ICEBERG_MEDIUM_LEFT,  RIGHT, ICEBERG_SMALL_LEFT_RIGHT);
-        transform(ICEBERG_MEDIUM_LEFT,  UP,    ICEBERG_SMALL_UP_LEFT);
-        transform(ICEBERG_MEDIUM_LEFT,  DOWN,  ICEBERG_SMALL_DOWN_LEFT);
+        transformGrow(ICEBERG_MEDIUM_LEFT,       ICEBERG_HUGE);
+        transformGrow(ICEBERG_MEDIUM_RIGHT,      ICEBERG_HUGE);
+        transformGrow(ICEBERG_MEDIUM_UP,         ICEBERG_HUGE);
+        transformGrow(ICEBERG_MEDIUM_DOWN,       ICEBERG_HUGE);
 
-        transform(ICEBERG_MEDIUM_RIGHT, LEFT,  ICEBERG_SMALL_LEFT_RIGHT);
-        transform(ICEBERG_MEDIUM_RIGHT, RIGHT, ICEBERG_SMALL_RIGHT_RIGHT);
-        transform(ICEBERG_MEDIUM_RIGHT, UP,    ICEBERG_SMALL_UP_RIGHT);
-        transform(ICEBERG_MEDIUM_RIGHT, DOWN,  ICEBERG_SMALL_DOWN_RIGHT);
+        transformGrow(ICEBERG_SMALL_LEFT_LEFT,   ICEBERG_MEDIUM_LEFT);
+        transformGrow(ICEBERG_SMALL_RIGHT_RIGHT, ICEBERG_MEDIUM_RIGHT);
+        transformGrow(ICEBERG_SMALL_UP_UP,       ICEBERG_MEDIUM_RIGHT);
+        transformGrow(ICEBERG_SMALL_DOWN_DOWN,   ICEBERG_MEDIUM_DOWN);
 
-        transform(ICEBERG_MEDIUM_UP,    LEFT,  ICEBERG_SMALL_UP_LEFT);
-        transform(ICEBERG_MEDIUM_UP,    RIGHT, ICEBERG_SMALL_UP_RIGHT);
-        transform(ICEBERG_MEDIUM_UP,    UP,    ICEBERG_SMALL_UP_UP);
-        transform(ICEBERG_MEDIUM_UP,    DOWN,  ICEBERG_SMALL_UP_DOWN);
+        transformGrow(ICEBERG_SMALL_LEFT_RIGHT,  ICEBERG_MEDIUM_RIGHT);
+        transformGrow(ICEBERG_SMALL_UP_DOWN,     ICEBERG_MEDIUM_UP);
 
-        transform(ICEBERG_MEDIUM_DOWN, LEFT,  ICEBERG_SMALL_DOWN_LEFT);
-        transform(ICEBERG_MEDIUM_DOWN, RIGHT, ICEBERG_SMALL_DOWN_RIGHT);
-        transform(ICEBERG_MEDIUM_DOWN, UP,    ICEBERG_SMALL_UP_DOWN);
-        transform(ICEBERG_MEDIUM_DOWN, DOWN,  ICEBERG_SMALL_DOWN_DOWN);
+        transformGrow(ICEBERG_SMALL_UP_LEFT,     ICEBERG_MEDIUM_LEFT);
+        transformGrow(ICEBERG_SMALL_UP_RIGHT,    ICEBERG_MEDIUM_RIGHT);
+        transformGrow(ICEBERG_SMALL_DOWN_LEFT,   ICEBERG_MEDIUM_DOWN);
+        transformGrow(ICEBERG_SMALL_DOWN_RIGHT,  ICEBERG_MEDIUM_RIGHT);
+
+        transformGrow(WATER,                     ICEBERG_SMALL_LEFT_RIGHT);
+
+        transformDestroy(ICEBERG_HUGE,         LEFT,  ICEBERG_MEDIUM_LEFT);
+        transformDestroy(ICEBERG_HUGE,         RIGHT, ICEBERG_MEDIUM_RIGHT);
+        transformDestroy(ICEBERG_HUGE,         UP,    ICEBERG_MEDIUM_UP);
+        transformDestroy(ICEBERG_HUGE,         DOWN,  ICEBERG_MEDIUM_DOWN);
+
+        transformDestroy(ICEBERG_MEDIUM_LEFT,  LEFT,  ICEBERG_SMALL_LEFT_LEFT);
+        transformDestroy(ICEBERG_MEDIUM_LEFT,  RIGHT, ICEBERG_SMALL_LEFT_RIGHT);
+        transformDestroy(ICEBERG_MEDIUM_LEFT,  UP,    ICEBERG_SMALL_UP_LEFT);
+        transformDestroy(ICEBERG_MEDIUM_LEFT,  DOWN,  ICEBERG_SMALL_DOWN_LEFT);
+
+        transformDestroy(ICEBERG_MEDIUM_RIGHT, LEFT,  ICEBERG_SMALL_LEFT_RIGHT);
+        transformDestroy(ICEBERG_MEDIUM_RIGHT, RIGHT, ICEBERG_SMALL_RIGHT_RIGHT);
+        transformDestroy(ICEBERG_MEDIUM_RIGHT, UP,    ICEBERG_SMALL_UP_RIGHT);
+        transformDestroy(ICEBERG_MEDIUM_RIGHT, DOWN,  ICEBERG_SMALL_DOWN_RIGHT);
+
+        transformDestroy(ICEBERG_MEDIUM_UP,    LEFT,  ICEBERG_SMALL_UP_LEFT);
+        transformDestroy(ICEBERG_MEDIUM_UP,    RIGHT, ICEBERG_SMALL_UP_RIGHT);
+        transformDestroy(ICEBERG_MEDIUM_UP,    UP,    ICEBERG_SMALL_UP_UP);
+        transformDestroy(ICEBERG_MEDIUM_UP,    DOWN,  ICEBERG_SMALL_UP_DOWN);
+
+        transformDestroy(ICEBERG_MEDIUM_DOWN,  LEFT,  ICEBERG_SMALL_DOWN_LEFT);
+        transformDestroy(ICEBERG_MEDIUM_DOWN,  RIGHT, ICEBERG_SMALL_DOWN_RIGHT);
+        transformDestroy(ICEBERG_MEDIUM_DOWN,  UP,    ICEBERG_SMALL_UP_DOWN);
+        transformDestroy(ICEBERG_MEDIUM_DOWN,  DOWN,  ICEBERG_SMALL_DOWN_DOWN);
     }
 
-    private static void transform(Element from, Direction direction, Element to) {
-        if (!icebergsMap.containsKey(from)) {
-            icebergsMap.put(from, new LinkedHashMap<>());
+    private static void transformGrow(Element from, Element to) {
+        growIceberg.put(from, to);
+    }
+
+    private static void transformDestroy(Element from, Direction direction, Element to) {
+        if (!destroyIceberg.containsKey(from)) {
+            destroyIceberg.put(from, new LinkedHashMap<>());
         }
-        icebergsMap.get(from).put(direction, to);
+        destroyIceberg.get(from).put(direction, to);
     }
 
     public Element destroyFrom(Direction direction) {
         if (power() == 1) {
             return Element.WATER;
         }
-        return Element.icebergsMap.get(this).get(direction);
+        return Element.destroyIceberg.get(this).get(direction);
+    }
+
+    public Element grow() {
+        return Element.growIceberg.get(this);
     }
 
     public static Element[] heroes() {
