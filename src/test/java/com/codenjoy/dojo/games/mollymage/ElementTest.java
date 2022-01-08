@@ -32,23 +32,22 @@ public class ElementTest {
     @Test
     public void testElementProperties() {
         assertEquals("BLAST[҉]                 =blast\n" +
-                    "DEAD_GHOST[x]            =ghost\n" +
-                    "DEAD_HERO[Ѡ]             =hero\n" +
-                    "ENEMY_DEAD_HERO[ø]       =enemyHero\n" +
                     "ENEMY_HERO[ö]            =enemyHero\n" +
-                    "ENEMY_POTION_HERO[Ö]     =enemyHero, potion\n" +
+                    "ENEMY_HERO_DEAD[ø]       =enemyHero\n" +
+                    "ENEMY_HERO_POTION[Ö]     =enemyHero, potion\n" +
                     "GHOST[&]                 =ghost\n" +
+                    "GHOST_DEAD[x]            =ghost\n" +
                     "HERO[☺]                  =hero\n" +
+                    "HERO_DEAD[Ѡ]             =hero\n" +
+                    "HERO_POTION[☻]           =potion, hero\n" +
                     "NONE[ ]                  =\n" +
-                    "OPENING_TREASURE_BOX[H]  =treasureBox\n" +
-                    "OTHER_DEAD_HERO[♣]       =otherHero\n" +
                     "OTHER_HERO[♥]            =otherHero\n" +
-                    "OTHER_POTION_HERO[♠]     =potion, otherHero\n" +
+                    "OTHER_HERO_DEAD[♣]       =otherHero\n" +
+                    "OTHER_HERO_POTION[♠]     =potion, otherHero\n" +
                     "POISON_THROWER[T]        =perk\n" +
                     "POTION_BLAST_RADIUS_INCREASE[+]=perk\n" +
                     "POTION_COUNT_INCREASE[c] =perk\n" +
                     "POTION_EXPLODER[A]       =perk\n" +
-                    "POTION_HERO[☻]           =potion, hero\n" +
                     "POTION_IMMUNE[i]         =perk\n" +
                     "POTION_REMOTE_CONTROL[r] =perk\n" +
                     "POTION_TIMER_1[1]        =potion\n" +
@@ -57,6 +56,7 @@ public class ElementTest {
                     "POTION_TIMER_4[4]        =potion\n" +
                     "POTION_TIMER_5[5]        =potion\n" +
                     "TREASURE_BOX[#]          =treasureBox\n" +
+                    "TREASURE_BOX_OPENING[H]  =treasureBox\n" +
                     "WALL[☼]                  =wall",
                 Utils.elements(Element.values()));
     }

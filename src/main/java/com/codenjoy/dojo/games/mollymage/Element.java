@@ -51,7 +51,7 @@ public enum Element implements CharElement, TeamElement {
 
     TREASURE_BOX('#',          "This is a treasure box, it opens with an explosion."),
 
-    OPENING_TREASURE_BOX('H',  "This is like a treasure box opens looks like, it will " +
+    TREASURE_BOX_OPENING('H',  "This is like a treasure box opens looks like, it will " +
                                "disappear on next move. If it's you did it - you'll " +
                                "get score points. Perhaps a prize will appear."),
 
@@ -62,7 +62,7 @@ public enum Element implements CharElement, TeamElement {
                                "You'd better kill this piece of ... soul, you'll get score " +
                                "points for it."),
 
-    DEAD_GHOST('x',            "This is ghost corpse."),
+    GHOST_DEAD('x',            "This is ghost corpse."),
 
 /// perks
 
@@ -93,9 +93,9 @@ public enum Element implements CharElement, TeamElement {
 
     HERO('☺',                  "This is what your Molly usually looks like."),
 
-    POTION_HERO('☻',           "This is if your Molly is sitting on own potion."),
+    HERO_POTION('☻',           "This is if your Molly is sitting on own potion."),
 
-    DEAD_HERO('Ѡ',             "Oops, your Molly is dead (don't worry, she will appear " +
+    HERO_DEAD('Ѡ',             "Oops, your Molly is dead (don't worry, she will appear " +
                                "somewhere in next move). You're getting penalty points " +
                                "for each death."),
 
@@ -103,9 +103,9 @@ public enum Element implements CharElement, TeamElement {
 
     OTHER_HERO('♥',            "This is what other heroes looks like."),
 
-    OTHER_POTION_HERO('♠',     "This is if other hero is sitting on own potion."),
+    OTHER_HERO_POTION('♠',     "This is if other hero is sitting on own potion."),
 
-    OTHER_DEAD_HERO('♣',       "Other hero corpse (it will disappear shortly, right " +
+    OTHER_HERO_DEAD('♣',       "Other hero corpse (it will disappear shortly, right " +
                                "on the next move). If you've done it you'll get " +
                                "score points."),
 
@@ -113,13 +113,11 @@ public enum Element implements CharElement, TeamElement {
 
     ENEMY_HERO('ö',            "This is what enemy heroes looks like."),
 
-    ENEMY_POTION_HERO('Ö',     "This is if enemy hero is sitting on own potion."),
+    ENEMY_HERO_POTION('Ö',     "This is if enemy hero is sitting on own potion."),
 
-    ENEMY_DEAD_HERO('ø',       "Enemy hero corpse (it will disappear shortly, right " +
+    ENEMY_HERO_DEAD('ø',       "Enemy hero corpse (it will disappear shortly, right " +
                                "on the next move). If you've done it you'll get " +
                                "score points.");
-
-    public static final String POTIONS_CHARS = "12345";
 
     private final char ch;
     private final String info;
@@ -192,24 +190,24 @@ public enum Element implements CharElement, TeamElement {
     public static Element[] heroes() {
         return new Element[]{
                 HERO,
-                POTION_HERO,
-                DEAD_HERO,
+                HERO_POTION,
+                HERO_DEAD,
         };
     }
 
     public static Element[] enemyHeroes() {
         return new Element[]{
                 ENEMY_HERO,
-                ENEMY_POTION_HERO,
-                ENEMY_DEAD_HERO,
+                ENEMY_HERO_POTION,
+                ENEMY_HERO_DEAD,
         };
     }
 
     public static Element[] otherHeroes() {
         return new Element[]{
                 OTHER_HERO,
-                OTHER_POTION_HERO,
-                OTHER_DEAD_HERO,
+                OTHER_HERO_POTION,
+                OTHER_HERO_DEAD,
         };
     }
 
@@ -220,9 +218,9 @@ public enum Element implements CharElement, TeamElement {
                 POTION_TIMER_3,
                 POTION_TIMER_4,
                 POTION_TIMER_5,
-                POTION_HERO,
-                OTHER_POTION_HERO,
-                ENEMY_POTION_HERO,
+                HERO_POTION,
+                OTHER_HERO_POTION,
+                ENEMY_HERO_POTION,
         };
     }
 
@@ -240,7 +238,7 @@ public enum Element implements CharElement, TeamElement {
     public static Element[] ghosts() {
         return new Element[]{
                 GHOST,
-                DEAD_GHOST,
+                GHOST_DEAD,
         };
     }
 
@@ -253,7 +251,7 @@ public enum Element implements CharElement, TeamElement {
     public static Element[] treasureBoxes() {
         return new Element[]{
                 TREASURE_BOX,
-                OPENING_TREASURE_BOX,
+                TREASURE_BOX_OPENING,
         };
     }
 
@@ -266,24 +264,24 @@ public enum Element implements CharElement, TeamElement {
     public static Element[] barriers() {
         return new Element[]{
                 GHOST,
-                //DEAD_GHOST,
+                //GHOST_DEAD,
                 WALL,
                 POTION_TIMER_1,
                 POTION_TIMER_2,
                 POTION_TIMER_3,
                 POTION_TIMER_4,
                 POTION_TIMER_5,
-                POTION_HERO,
-                OTHER_POTION_HERO,
-                ENEMY_POTION_HERO,
+                HERO_POTION,
+                OTHER_HERO_POTION,
+                ENEMY_HERO_POTION,
                 TREASURE_BOX,
-                //OPENING_TREASURE_BOX,
+                //TREASURE_BOX_OPENING,
                 OTHER_HERO,
-                OTHER_POTION_HERO,
-                OTHER_DEAD_HERO,
+                OTHER_HERO_POTION,
+                OTHER_HERO_DEAD,
                 ENEMY_HERO,
-                ENEMY_POTION_HERO,
-                ENEMY_DEAD_HERO,
+                ENEMY_HERO_POTION,
+                ENEMY_HERO_DEAD,
         };
     }
 
@@ -291,8 +289,8 @@ public enum Element implements CharElement, TeamElement {
     public Element otherHero() {
         switch (this) {
             case HERO: return OTHER_HERO;
-            case DEAD_HERO: return OTHER_DEAD_HERO;
-            case POTION_HERO: return OTHER_POTION_HERO;
+            case HERO_DEAD: return OTHER_HERO_DEAD;
+            case HERO_POTION: return OTHER_HERO_POTION;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
@@ -301,8 +299,8 @@ public enum Element implements CharElement, TeamElement {
     public Element enemyHero() {
         switch (this) {
             case HERO: return ENEMY_HERO;
-            case DEAD_HERO: return ENEMY_DEAD_HERO;
-            case POTION_HERO: return ENEMY_POTION_HERO;
+            case HERO_DEAD: return ENEMY_HERO_DEAD;
+            case HERO_POTION: return ENEMY_HERO_POTION;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }

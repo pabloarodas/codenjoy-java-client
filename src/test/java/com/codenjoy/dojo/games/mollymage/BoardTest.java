@@ -81,14 +81,14 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getAt() {
-        assertEquals(Element.POTION_HERO, board.getAt(7, 3));
+        assertEquals(Element.HERO_POTION, board.getAt(7, 3));
         assertEquals(Element.WALL, board.getAt(0, 8));
         assertEquals(Element.GHOST, board.getAt(5, 6));
     }
 
     @Test
     public void shouldWork_getAt_point() {
-        assertEquals(Element.POTION_HERO, board.getAt(pt(7, 3)));
+        assertEquals(Element.HERO_POTION, board.getAt(pt(7, 3)));
         assertEquals(Element.WALL, board.getAt(pt(0, 8)));
         assertEquals(Element.GHOST, board.getAt(pt(5, 6)));
     }
@@ -308,8 +308,8 @@ public class BoardTest {
         assertEquals(true, board.isAt(3, 1, Element.GHOST));
         assertEquals(false, board.isAt(2, 1, Element.GHOST));
 
-        assertEquals(true, board.isAt(3, 1, Element.POTION_HERO, Element.GHOST));
-        assertEquals(false, board.isAt(2, 1, Element.POTION_HERO, Element.GHOST));
+        assertEquals(true, board.isAt(3, 1, Element.HERO_POTION, Element.GHOST));
+        assertEquals(false, board.isAt(2, 1, Element.HERO_POTION, Element.GHOST));
     }
 
     @Test
@@ -317,8 +317,8 @@ public class BoardTest {
         assertEquals(true, board.isAt(pt(3, 1), Element.GHOST));
         assertEquals(false, board.isAt(pt(2, 1), Element.GHOST));
 
-        assertEquals(true, board.isAt(pt(3, 1), Element.POTION_HERO, Element.GHOST));
-        assertEquals(false, board.isAt(pt(2, 1), Element.POTION_HERO, Element.GHOST));
+        assertEquals(true, board.isAt(pt(3, 1), Element.HERO_POTION, Element.GHOST));
+        assertEquals(false, board.isAt(pt(2, 1), Element.HERO_POTION, Element.GHOST));
     }
 
     @Test
