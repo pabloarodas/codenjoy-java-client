@@ -32,8 +32,8 @@ public enum Element implements CharElement {
                                                     "long long long long long long long long long long comment."),
     HERO('☺',                                       "Another short comment."),
     OTHER_HERO('☻',                                 "One more time."),
-    DEAD_HERO('X',                                  ""),
-    OTHER_DEAD_HERO_LONG_LONG_LONG_LONG_LONG('Y',   "Long name."),
+    HERO_DEAD('X',                                  ""),
+    OTHER_HERO_DEAD_LONG_LONG_LONG_LONG_LONG('Y',   "Long name."),
     G('$',                                          "Short name.");
 
     private final char ch;

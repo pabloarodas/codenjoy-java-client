@@ -42,11 +42,11 @@ elements = dict(
 
     OTHER_HERO='☻',
 
-    DEAD_HERO='X',
+    HERO_DEAD='X',
 
         # Long name.
 
-    OTHER_DEAD_HERO_LONG_LONG_LONG_LONG_LONG='Y',
+    OTHER_HERO_DEAD_LONG_LONG_LONG_LONG_LONG='Y',
 
         # Short name.
 

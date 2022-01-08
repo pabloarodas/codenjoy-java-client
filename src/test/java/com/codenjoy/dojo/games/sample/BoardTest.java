@@ -42,8 +42,8 @@ public class BoardTest {
     public void setup() {
          board = board(
             /*6*/"☼☼☼☼☼☼☼\n" +
-            /*5*/"☼  x  ☼\n" +
-            /*4*/"☼ $   ☼\n" +
+            /*5*/"☼  x ♥☼\n" +
+            /*4*/"☼ $  Z☼\n" +
             /*3*/"☼X   Y☼\n" +
             /*2*/"☼ ☺ $ ☼\n" +
             /*1*/"☼  ☻  ☼\n" +
@@ -55,8 +55,8 @@ public class BoardTest {
     public void shouldToString() {
         assertBoard(
                 "☼☼☼☼☼☼☼\n" +
-                "☼  x  ☼\n" +
-                "☼ $   ☼\n" +
+                "☼  x ♥☼\n" +
+                "☼ $  Z☼\n" +
                 "☼X   Y☼\n" +
                 "☼ ☺ $ ☼\n" +
                 "☼  ☻  ☼\n" +
@@ -74,14 +74,16 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getElement() {
-        assertEquals("{ =[[1,1], [1,2], [1,4], [1,5], [2,1], [2,3], [2,5], [3,2], [3,3], [3,4], [4,1], [4,3], [4,4], [4,5], [5,1], [5,2], [5,4], [5,5]], \n" +
-                    "☼=[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [1,0], [1,6], [2,0], [2,6], [3,0], [3,6], [4,0], [4,6], [5,0], [5,6], [6,0], [6,1], [6,2], [6,3], [6,4], [6,5], [6,6]], \n" +
-                    "☺=[[2,2]], \n" +
-                    "☻=[[3,1]], \n" +
-                    "X=[[1,3]], \n" +
-                    "Y=[[5,3]], \n" +
-                    "$=[[2,4], [4,2]], \n" +
-                    "x=[[3,5]]}",
+        assertEquals("{ =[[1,1], [1,2], [1,4], [1,5], [2,1], [2,3], [2,5], [3,2], [3,3], [3,4], [4,1], [4,3], [4,4], [4,5], [5,1], [5,2]], \n" +
+                        "☼=[[0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [1,0], [1,6], [2,0], [2,6], [3,0], [3,6], [4,0], [4,6], [5,0], [5,6], [6,0], [6,1], [6,2], [6,3], [6,4], [6,5], [6,6]], \n" +
+                        "☺=[[2,2]], \n" +
+                        "X=[[1,3]], \n" +
+                        "☻=[[3,1]], \n" +
+                        "Y=[[5,3]], \n" +
+                        "♥=[[5,5]], \n" +
+                        "Z=[[5,4]], \n" +
+                        "$=[[2,4], [4,2]], \n" +
+                        "x=[[3,5]]}",
                 Utils.elements(board, Element.values()));
     }
 
@@ -90,8 +92,8 @@ public class BoardTest {
         assertEquals(Element.WALL, board.getAt(0, 0));
         assertEquals(Element.HERO, board.getAt(2, 2));
         assertEquals(Element.OTHER_HERO, board.getAt(3, 1));
-        assertEquals(Element.DEAD_HERO, board.getAt(1, 3));
-        assertEquals(Element.OTHER_DEAD_HERO, board.getAt(5, 3));
+        assertEquals(Element.HERO_DEAD, board.getAt(1, 3));
+        assertEquals(Element.OTHER_HERO_DEAD, board.getAt(5, 3));
         assertEquals(Element.GOLD, board.getAt(2, 4));
         assertEquals(Element.GOLD, board.getAt(4, 2));
         assertEquals(Element.BOMB, board.getAt(3, 5));
@@ -103,8 +105,8 @@ public class BoardTest {
         assertEquals(Element.WALL, board.getAt(pt(0, 0)));
         assertEquals(Element.HERO, board.getAt(pt(2, 2)));
         assertEquals(Element.OTHER_HERO, board.getAt(pt(3, 1)));
-        assertEquals(Element.DEAD_HERO, board.getAt(pt(1, 3)));
-        assertEquals(Element.OTHER_DEAD_HERO, board.getAt(pt(5, 3)));
+        assertEquals(Element.HERO_DEAD, board.getAt(pt(1, 3)));
+        assertEquals(Element.OTHER_HERO_DEAD, board.getAt(pt(5, 3)));
         assertEquals(Element.GOLD, board.getAt(pt(2, 4)));
         assertEquals(Element.GOLD, board.getAt(pt(4, 2)));
         assertEquals(Element.BOMB, board.getAt(pt(3, 5)));
@@ -113,14 +115,14 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getNear() {
-        assertEquals("[ ,  ,  , $,  ,  , Y,  ]", board.getNear(4, 3).toString());
+        assertEquals("[ ,  ,  , $,  ,  , Y, Z]", board.getNear(4, 3).toString());
         assertEquals("[☼, ☼,  ,  , ☼]", board.getNear(0, 5).toString());
         assertEquals("[☻,  ,  ,  ,  ,  ,  , Y]", board.getNear(4, 2).toString());
     }
 
     @Test
     public void shouldWork_getNearPoint() {
-        assertEquals("[ ,  ,  , $,  ,  , Y,  ]", board.getNear(pt(4, 3)).toString());
+        assertEquals("[ ,  ,  , $,  ,  , Y, Z]", board.getNear(pt(4, 3)).toString());
         assertEquals("[☼, ☼,  ,  , ☼]", board.getNear(pt(0, 5)).toString());
         assertEquals("[☻,  ,  ,  ,  ,  ,  , Y]", board.getNear(pt(4, 2)).toString());
     }

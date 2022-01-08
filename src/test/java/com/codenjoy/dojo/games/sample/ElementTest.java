@@ -32,12 +32,14 @@ public class ElementTest {
     @Test
     public void testElementProperties() {
         assertEquals("BOMB[x]                  =bomb\n" +
-                    "DEAD_HERO[X]             =hero\n" +
+                    "ENEMY_HERO[♥]            =\n" +
+                    "ENEMY_HERO_DEAD[Z]       =\n" +
                     "GOLD[$]                  =gold\n" +
                     "HERO[☺]                  =hero\n" +
+                    "HERO_DEAD[X]             =hero\n" +
                     "NONE[ ]                  =\n" +
-                    "OTHER_DEAD_HERO[Y]       =otherHero\n" +
                     "OTHER_HERO[☻]            =otherHero\n" +
+                    "OTHER_HERO_DEAD[Y]       =otherHero\n" +
                     "WALL[☼]                  =wall",
                 Utils.elements(Element.values()));
     }

@@ -36,17 +36,25 @@ var elements = map[string]rune{
 
     "HERO": '☺',
 
+        // Your hero died. His body will disappear in the next tick.
+
+    "HERO_DEAD": 'X',
+
         // Heroes of other players.
 
     "OTHER_HERO": '☻',
 
-        // Your hero died. His body will disappear in the next tick.
-
-    "DEAD_HERO": 'X',
-
         // Another player's hero died.
 
-    "OTHER_DEAD_HERO": 'Y',
+    "OTHER_HERO_DEAD": 'Y',
+
+        // Heroes of other players in other team.
+
+    "ENEMY_HERO": '♥',
+
+        // Player's Hero from the other team who died.
+
+    "ENEMY_HERO_DEAD": 'Z',
 
         // Gold. It must be picked up.
 

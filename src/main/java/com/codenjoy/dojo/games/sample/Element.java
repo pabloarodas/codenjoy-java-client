@@ -39,13 +39,13 @@ public enum Element implements CharElement, TeamElement {
     WALL('☼',            "Wall you cant walk through."),
 
     HERO('☺',            "Your hero."),
-    DEAD_HERO('X',       "Your hero died. His body will disappear in the next tick."),
+    HERO_DEAD('X',       "Your hero died. His body will disappear in the next tick."),
 
     OTHER_HERO('☻',      "Heroes of other players."),
-    OTHER_DEAD_HERO('Y', "Another player's hero died."),
+    OTHER_HERO_DEAD('Y', "Another player's hero died."),
 
     ENEMY_HERO('♥',      "Heroes of other players in other team."),
-    ENEMY_DEAD_HERO('Z', "Player's Hero from the other team who died."),
+    ENEMY_HERO_DEAD('Z', "Player's Hero from the other team who died."),
 
     GOLD('$',            "Gold. It must be picked up."),
 
@@ -106,14 +106,14 @@ public enum Element implements CharElement, TeamElement {
     public static Element[] heroes() {
         return new Element[]{
                 HERO,
-                DEAD_HERO,
+                HERO_DEAD,
         };
     }
 
     public static Element[] otherHeroes() {
         return new Element[]{
                 OTHER_HERO,
-                OTHER_DEAD_HERO,
+                OTHER_HERO_DEAD,
         };
     }
 
@@ -140,7 +140,7 @@ public enum Element implements CharElement, TeamElement {
                 WALL,
                 BOMB,
                 OTHER_HERO,
-                OTHER_DEAD_HERO,
+                OTHER_HERO_DEAD,
         };
     }
 
@@ -148,7 +148,7 @@ public enum Element implements CharElement, TeamElement {
     public Element otherHero() {
         switch (this) {
             case HERO: return OTHER_HERO;
-            case DEAD_HERO: return OTHER_DEAD_HERO;
+            case HERO_DEAD: return OTHER_HERO_DEAD;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
@@ -157,7 +157,7 @@ public enum Element implements CharElement, TeamElement {
     public Element enemyHero() {
         switch (this) {
             case HERO: return ENEMY_HERO;
-            case DEAD_HERO: return ENEMY_DEAD_HERO;
+            case HERO_DEAD: return ENEMY_HERO_DEAD;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
     }

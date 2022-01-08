@@ -76,11 +76,11 @@ ElementMap Element::initialiseElements() {
 
     result[LL("OTHER_HERO")] = LL('☻');
 
-    result[LL("DEAD_HERO")] = LL('X');
+    result[LL("HERO_DEAD")] = LL('X');
 
         // Long name.
 
-    result[LL("OTHER_DEAD_HERO_LONG_LONG_LONG_LONG_LONG")] = LL('Y');
+    result[LL("OTHER_HERO_DEAD_LONG_LONG_LONG_LONG_LONG")] = LL('Y');
 
         // Short name.
 

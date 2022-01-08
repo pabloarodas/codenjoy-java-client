@@ -49,11 +49,11 @@ namespace Dojo.Games.Test
 
         OTHER_HERO = (short)'☻',
 
-        DEAD_HERO = (short)'X',
+        HERO_DEAD = (short)'X',
 
             // Long name.
 
-        OTHER_DEAD_HERO_LONG_LONG_LONG_LONG_LONG = (short)'Y',
+        OTHER_HERO_DEAD_LONG_LONG_LONG_LONG_LONG = (short)'Y',
 
             // Short name.
 
