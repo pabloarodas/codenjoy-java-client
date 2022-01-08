@@ -25,13 +25,14 @@ package com.codenjoy.dojo.games.rawelbbub;
 
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.codenjoy.dojo.services.printer.TeamElement;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
 import static com.codenjoy.dojo.services.Direction.*;
 
-public enum Element implements CharElement {
+public enum Element implements CharElement, TeamElement {
 
     WATER(' ', 0,    "An empty space where hero can move. " +
                      "If there was an iceberg in this place before, " +
@@ -92,10 +93,15 @@ public enum Element implements CharElement {
     HERO_UP('▲',           "Your hero is pointing up."),
     HERO_DOWN('▼',         "Your hero is pointing down."),
 
-    OTHER_HERO_LEFT('˂',   "Enemy hero is pointing left."),
-    OTHER_HERO_RIGHT('˃',  "Enemy hero is pointing right."),
-    OTHER_HERO_UP('˄',     "Enemy hero is pointing up."),
-    OTHER_HERO_DOWN('˅',   "Enemy hero is pointing down."),
+    OTHER_HERO_LEFT('˂',   "Other hero is pointing left."),
+    OTHER_HERO_RIGHT('˃',  "Other hero is pointing right."),
+    OTHER_HERO_UP('˄',     "Other hero is pointing up."),
+    OTHER_HERO_DOWN('˅',   "Other hero is pointing down."),
+
+    ENEMY_HERO_LEFT('Ð',   "Enemy hero is pointing left."),
+    ENEMY_HERO_RIGHT('£',  "Enemy hero is pointing right."),
+    ENEMY_HERO_UP('Ô',     "Enemy hero is pointing up."),
+    ENEMY_HERO_DOWN('Ç',   "Enemy hero is pointing down."),
 
     AI_LEFT('«',           "AI is pointing left."),
     AI_RIGHT('»',          "AI is pointing right."),
@@ -115,8 +121,11 @@ public enum Element implements CharElement {
     HERO_SIDE_LEFT('h',        "Your hero is pointing left."),
     HERO_SIDE_RIGHT('H',       "Your hero is pointing right."),
 
-    OTHER_HERO_SIDE_LEFT('o',  "Enemy hero is pointing left."),
-    OTHER_HERO_SIDE_RIGHT('O', "Enemy hero is pointing right."),
+    OTHER_HERO_SIDE_LEFT('o',  "Other hero is pointing left."),
+    OTHER_HERO_SIDE_RIGHT('O', "Other hero is pointing right."),
+
+    ENEMY_HERO_SIDE_LEFT('e',  "Enemy hero is pointing left."),
+    ENEMY_HERO_SIDE_RIGHT('E', "Enemy hero is pointing right."),
 
     AI_SIDE_LEFT('a',          "AI is pointing left."),
     AI_SIDE_RIGHT('A',         "AI is pointing right."),
@@ -403,24 +412,6 @@ public enum Element implements CharElement {
         }
     }
 
-    public static Element otherHero(Direction direction, boolean sideView) {
-        if (sideView) {
-            switch (direction) {
-                case LEFT:  return Element.OTHER_HERO_SIDE_LEFT;
-                case RIGHT: return Element.OTHER_HERO_SIDE_RIGHT;
-                default:    throw new RuntimeException("Wrong hero direction");
-            }
-        }
-
-        switch (direction) {
-            case LEFT:  return Element.OTHER_HERO_LEFT;
-            case RIGHT: return Element.OTHER_HERO_RIGHT;
-            case UP:    return Element.OTHER_HERO_UP;
-            case DOWN:  return Element.OTHER_HERO_DOWN;
-            default:    throw new RuntimeException("Wrong hero direction");
-        }
-    }
-
     public static Element hero(Direction direction, boolean sideView) {
         if (sideView) {
             switch (direction) {
@@ -497,5 +488,33 @@ public enum Element implements CharElement {
             throw new IllegalArgumentException("No such element for " + ch);
         }
         return result;
+    }
+
+    @Override
+    public TeamElement otherHero() {
+        switch (this) {
+            case EXPLOSION: return EXPLOSION;
+            case HERO_LEFT: return OTHER_HERO_LEFT;
+            case HERO_RIGHT: return OTHER_HERO_RIGHT;
+            case HERO_UP: return OTHER_HERO_UP;
+            case HERO_DOWN: return OTHER_HERO_DOWN;
+            case HERO_SIDE_LEFT: return OTHER_HERO_SIDE_LEFT;
+            case HERO_SIDE_RIGHT: return OTHER_HERO_SIDE_RIGHT;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
+
+    @Override
+    public TeamElement enemyHero() {
+        switch (this) {
+            case EXPLOSION: return EXPLOSION;
+            case HERO_LEFT: return ENEMY_HERO_LEFT;
+            case HERO_RIGHT: return ENEMY_HERO_RIGHT;
+            case HERO_UP: return ENEMY_HERO_UP;
+            case HERO_DOWN: return ENEMY_HERO_DOWN;
+            case HERO_SIDE_LEFT: return ENEMY_HERO_SIDE_LEFT;
+            case HERO_SIDE_RIGHT: return ENEMY_HERO_SIDE_RIGHT;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
     }
 }
