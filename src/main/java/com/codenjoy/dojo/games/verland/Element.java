@@ -24,10 +24,11 @@ package com.codenjoy.dojo.games.verland;
 
 
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.codenjoy.dojo.services.printer.TeamElement;
 
 import static java.util.Arrays.asList;
 
-public enum Element implements CharElement {
+public enum Element implements CharElement, TeamElement {
 
 /// Мой герой
 
@@ -250,5 +251,23 @@ public enum Element implements CharElement {
                 HERO_CURE,
                 OTHER_HERO_CURE,
         };
+    }
+
+    @Override
+    public Element otherHero() {
+        switch (this) {
+            case HERO: return OTHER_HERO;
+            case HERO_DEAD: return OTHER_HERO_DEAD;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
+
+    @Override
+    public Element enemyHero() {
+        switch (this) {
+            case HERO: return ENEMY_HERO;
+            case HERO_DEAD: return ENEMY_HERO_DEAD;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
     }
 }
