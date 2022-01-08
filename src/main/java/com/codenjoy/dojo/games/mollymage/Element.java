@@ -285,4 +285,22 @@ public enum Element implements CharElement {
                 ENEMY_DEAD_HERO,
         };
     }
+
+    public Element otherHero() {
+        switch (this) {
+            case HERO: return OTHER_HERO;
+            case DEAD_HERO: return OTHER_DEAD_HERO;
+            case POTION_HERO: return OTHER_POTION_HERO;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
+
+    public Element enemyHero() {
+        switch (this) {
+            case HERO: return ENEMY_HERO;
+            case DEAD_HERO: return ENEMY_DEAD_HERO;
+            case POTION_HERO: return ENEMY_POTION_HERO;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
 }

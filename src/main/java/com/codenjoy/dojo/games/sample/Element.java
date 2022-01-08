@@ -38,12 +38,13 @@ public enum Element implements CharElement {
     WALL('☼',            "Wall you cant walk through."),
 
     HERO('☺',            "Your hero."),
-
-    OTHER_HERO('☻',      "Heroes of other players."),
-
     DEAD_HERO('X',       "Your hero died. His body will disappear in the next tick."),
 
+    OTHER_HERO('☻',      "Heroes of other players."),
     OTHER_DEAD_HERO('Y', "Another player's hero died."),
+
+    ENEMY_HERO('♥',      "Heroes of other players in other team."),
+    ENEMY_DEAD_HERO('Z', "Player's Hero from the other team who died."),
 
     GOLD('$',            "Gold. It must be picked up."),
 
@@ -142,4 +143,19 @@ public enum Element implements CharElement {
         };
     }
 
+    public Element otherHero() {
+        switch (this) {
+            case HERO: return OTHER_HERO;
+            case DEAD_HERO: return OTHER_DEAD_HERO;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
+
+    public Element enemyHero() {
+        switch (this) {
+            case HERO: return ENEMY_HERO;
+            case DEAD_HERO: return ENEMY_DEAD_HERO;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
 }
