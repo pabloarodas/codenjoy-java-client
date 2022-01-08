@@ -24,6 +24,7 @@ package com.codenjoy.dojo.games.sample;
 
 
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.codenjoy.dojo.services.printer.TeamElement;
 
 import static java.util.Arrays.asList;
 
@@ -31,7 +32,7 @@ import static java.util.Arrays.asList;
  * Тут указана легенда всех возможных объектов на поле и их состояний.
  * Важно помнить, что для каждой енумной константы надо создать спрайт в папке \src\main\webapp\resources\sprite.
  */
-public enum Element implements CharElement {
+public enum Element implements CharElement, TeamElement {
 
     NONE(' ',            "Empty place where the hero can go."),
 
@@ -143,6 +144,7 @@ public enum Element implements CharElement {
         };
     }
 
+    @Override
     public Element otherHero() {
         switch (this) {
             case HERO: return OTHER_HERO;
@@ -151,6 +153,7 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
 
+    @Override
     public Element enemyHero() {
         switch (this) {
             case HERO: return ENEMY_HERO;

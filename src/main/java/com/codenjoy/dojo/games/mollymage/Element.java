@@ -24,10 +24,11 @@ package com.codenjoy.dojo.games.mollymage;
 
 
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.codenjoy.dojo.services.printer.TeamElement;
 
 import static java.util.Arrays.asList;
 
-public enum Element implements CharElement {
+public enum Element implements CharElement, TeamElement {
 
 /// the potions
 
@@ -286,6 +287,7 @@ public enum Element implements CharElement {
         };
     }
 
+    @Override
     public Element otherHero() {
         switch (this) {
             case HERO: return OTHER_HERO;
@@ -295,6 +297,7 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
 
+    @Override
     public Element enemyHero() {
         switch (this) {
             case HERO: return ENEMY_HERO;

@@ -24,10 +24,11 @@ package com.codenjoy.dojo.games.clifford;
 
 
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.codenjoy.dojo.services.printer.TeamElement;
 
 import static java.util.Arrays.asList;
 
-public enum Element implements CharElement {
+public enum Element implements CharElement, TeamElement {
 
 /// Void
 
@@ -286,6 +287,7 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
 
+    @Override
     public Element otherHero() {
         switch (this) {
             case HERO_DIE: return OTHER_HERO_DIE;
@@ -307,6 +309,7 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
 
+    @Override
     public Element enemyHero() {
         switch (this) {
             case HERO_DIE: return ENEMY_HERO_DIE;
