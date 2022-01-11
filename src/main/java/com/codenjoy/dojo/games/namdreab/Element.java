@@ -186,14 +186,7 @@ public enum Element implements CharElement {
         VERTICAL_DOWN
     }
 
-    public static Element tail(TailDirection direction, boolean isHero) {
-        Element element = heroTail(direction);
-        return isHero
-                ? element
-                : element.enemyHero();
-    }
-
-    private static Element heroTail(TailDirection direction) {
+    public static Element tail(TailDirection direction) {
         switch (direction) {
             case VERTICAL_DOWN:    return TAIL_END_DOWN;
             case VERTICAL_UP:      return TAIL_END_UP;
@@ -202,15 +195,7 @@ public enum Element implements CharElement {
             default:               return OTHER;
         }
     }
-
-    public static Element head(Direction direction, boolean isHero) {
-        Element element = heroHead(direction);
-        return isHero
-                ? element
-                : element.enemyHero();
-    }
-
-    private static Element heroHead(Direction direction) {
+    public static Element head(Direction direction) {
         switch (direction) {
             case DOWN:  return HEAD_DOWN;
             case UP:    return HEAD_UP;
@@ -220,14 +205,7 @@ public enum Element implements CharElement {
         }
     }
 
-    public static Element body(BodyDirection direction, boolean isHero) {
-        Element element = heroBody(direction);
-        return isHero
-                ? element
-                : element.enemyHero();
-    }
-
-    private static Element heroBody(BodyDirection direction) {
+    public static Element body(BodyDirection direction) {
         switch (direction) {
             case HORIZONTAL:        return BODY_HORIZONTAL;
             case VERTICAL:          return BODY_VERTICAL;
