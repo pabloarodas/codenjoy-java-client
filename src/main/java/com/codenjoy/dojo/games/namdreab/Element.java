@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.namdreab;
  */
 
 
+import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
@@ -167,4 +168,137 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("No such element for " + ch);
     }
 
+    public enum BodyDirection {
+
+        HORIZONTAL,
+        VERTICAL,
+        TURNED_LEFT_UP,
+        TURNED_LEFT_DOWN,
+        TURNED_RIGHT_UP,
+        TURNED_RIGHT_DOWN
+    }
+
+    public enum TailDirection {
+
+        HORIZONTAL_RIGHT,
+        HORIZONTAL_LEFT,
+        VERTICAL_UP,
+        VERTICAL_DOWN
+    }
+
+    public static Element tail(TailDirection direction, boolean isHero) {
+        return isHero
+                ? heroTail(direction)
+                : enemyTail(direction);
+    }
+
+    private static Element heroTail(TailDirection direction) {
+        switch (direction) {
+            case VERTICAL_DOWN:
+                return TAIL_END_DOWN;
+            case VERTICAL_UP:
+                return TAIL_END_UP;
+            case HORIZONTAL_LEFT:
+                return TAIL_END_LEFT;
+            case HORIZONTAL_RIGHT:
+                return TAIL_END_RIGHT;
+            default:
+                return OTHER;
+        }
+    }
+
+    private static Element enemyTail(TailDirection direction) {
+        switch (direction) {
+            case VERTICAL_DOWN:
+                return ENEMY_TAIL_END_DOWN;
+            case VERTICAL_UP:
+                return ENEMY_TAIL_END_UP;
+            case HORIZONTAL_LEFT:
+                return ENEMY_TAIL_END_LEFT;
+            case HORIZONTAL_RIGHT:
+                return ENEMY_TAIL_END_RIGHT;
+            default:
+                return OTHER;
+        }
+    }
+
+    public static Element head(Direction direction, boolean isHero) {
+        return isHero
+                ? heroHead(direction)
+                : enemyHead(direction);
+    }
+
+    private static Element heroHead(Direction direction) {
+        switch (direction) {
+            case DOWN:
+                return HEAD_DOWN;
+            case UP:
+                return HEAD_UP;
+            case LEFT:
+                return HEAD_LEFT;
+            case RIGHT:
+                return HEAD_RIGHT;
+            default:
+                return OTHER;
+        }
+    }
+
+    private static Element enemyHead(Direction direction) {
+        switch (direction) {
+            case DOWN:
+                return ENEMY_HEAD_DOWN;
+            case UP:
+                return ENEMY_HEAD_UP;
+            case LEFT:
+                return ENEMY_HEAD_LEFT;
+            case RIGHT:
+                return ENEMY_HEAD_RIGHT;
+            default:
+                return OTHER;
+        }
+    }
+
+    public static Element body(BodyDirection direction, boolean isHero) {
+        return isHero
+                ? heroBody(direction)
+                : enemyBody(direction);
+    }
+
+    private static Element heroBody(BodyDirection direction) {
+        switch (direction) {
+            case HORIZONTAL:
+                return BODY_HORIZONTAL;
+            case VERTICAL:
+                return BODY_VERTICAL;
+            case TURNED_LEFT_DOWN:
+                return BODY_LEFT_DOWN;
+            case TURNED_LEFT_UP:
+                return BODY_LEFT_UP;
+            case TURNED_RIGHT_DOWN:
+                return BODY_RIGHT_DOWN;
+            case TURNED_RIGHT_UP:
+                return BODY_RIGHT_UP;
+            default:
+                return OTHER;
+        }
+    }
+
+    private static Element enemyBody(BodyDirection direction) {
+        switch (direction) {
+            case HORIZONTAL:
+                return ENEMY_BODY_HORIZONTAL;
+            case VERTICAL:
+                return ENEMY_BODY_VERTICAL;
+            case TURNED_LEFT_DOWN:
+                return ENEMY_BODY_LEFT_DOWN;
+            case TURNED_LEFT_UP:
+                return ENEMY_BODY_LEFT_UP;
+            case TURNED_RIGHT_DOWN:
+                return ENEMY_BODY_RIGHT_DOWN;
+            case TURNED_RIGHT_UP:
+                return ENEMY_BODY_RIGHT_UP;
+            default:
+                return OTHER;
+        }
+    }
 }
