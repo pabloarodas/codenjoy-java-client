@@ -45,5 +45,6 @@ eval_echo "MVNW=./mvnw"
 
 eval_echo "$MVNW clean install -DskipTests=true"
 
+echo
 color "Press Enter to continue"
 read
