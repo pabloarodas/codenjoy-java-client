@@ -187,9 +187,10 @@ public enum Element implements CharElement {
     }
 
     public static Element tail(TailDirection direction, boolean isHero) {
+        Element element = heroTail(direction);
         return isHero
-                ? heroTail(direction)
-                : enemyTail(direction);
+                ? element
+                : element.enemyHero();
     }
 
     private static Element heroTail(TailDirection direction) {
@@ -202,20 +203,11 @@ public enum Element implements CharElement {
         }
     }
 
-    private static Element enemyTail(TailDirection direction) {
-        switch (direction) {
-            case VERTICAL_DOWN:    return ENEMY_TAIL_END_DOWN;
-            case VERTICAL_UP:      return ENEMY_TAIL_END_UP;
-            case HORIZONTAL_LEFT:  return ENEMY_TAIL_END_LEFT;
-            case HORIZONTAL_RIGHT: return ENEMY_TAIL_END_RIGHT;
-            default:               return OTHER;
-        }
-    }
-
     public static Element head(Direction direction, boolean isHero) {
+        Element element = heroHead(direction);
         return isHero
-                ? heroHead(direction)
-                : enemyHead(direction);
+                ? element
+                : element.enemyHero();
     }
 
     private static Element heroHead(Direction direction) {
@@ -228,20 +220,11 @@ public enum Element implements CharElement {
         }
     }
 
-    private static Element enemyHead(Direction direction) {
-        switch (direction) {
-            case DOWN:  return ENEMY_HEAD_DOWN;
-            case UP:    return ENEMY_HEAD_UP;
-            case LEFT:  return ENEMY_HEAD_LEFT;
-            case RIGHT: return ENEMY_HEAD_RIGHT;
-            default:    return OTHER;
-        }
-    }
-
     public static Element body(BodyDirection direction, boolean isHero) {
+        Element element = heroBody(direction);
         return isHero
-                ? heroBody(direction)
-                : enemyBody(direction);
+                ? element
+                : element.enemyHero();
     }
 
     private static Element heroBody(BodyDirection direction) {
@@ -252,18 +235,6 @@ public enum Element implements CharElement {
             case TURNED_LEFT_UP:    return BODY_LEFT_UP;
             case TURNED_RIGHT_DOWN: return BODY_RIGHT_DOWN;
             case TURNED_RIGHT_UP:   return BODY_RIGHT_UP;
-            default:                return OTHER;
-        }
-    }
-
-    private static Element enemyBody(BodyDirection direction) {
-        switch (direction) {
-            case HORIZONTAL:        return ENEMY_BODY_HORIZONTAL;
-            case VERTICAL:          return ENEMY_BODY_VERTICAL;
-            case TURNED_LEFT_DOWN:  return ENEMY_BODY_LEFT_DOWN;
-            case TURNED_LEFT_UP:    return ENEMY_BODY_LEFT_UP;
-            case TURNED_RIGHT_DOWN: return ENEMY_BODY_RIGHT_DOWN;
-            case TURNED_RIGHT_UP:   return ENEMY_BODY_RIGHT_UP;
             default:                return OTHER;
         }
     }
