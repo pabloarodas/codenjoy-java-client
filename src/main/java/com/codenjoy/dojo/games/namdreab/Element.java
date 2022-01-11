@@ -194,31 +194,21 @@ public enum Element implements CharElement {
 
     private static Element heroTail(TailDirection direction) {
         switch (direction) {
-            case VERTICAL_DOWN:
-                return TAIL_END_DOWN;
-            case VERTICAL_UP:
-                return TAIL_END_UP;
-            case HORIZONTAL_LEFT:
-                return TAIL_END_LEFT;
-            case HORIZONTAL_RIGHT:
-                return TAIL_END_RIGHT;
-            default:
-                return OTHER;
+            case VERTICAL_DOWN:    return TAIL_END_DOWN;
+            case VERTICAL_UP:      return TAIL_END_UP;
+            case HORIZONTAL_LEFT:  return TAIL_END_LEFT;
+            case HORIZONTAL_RIGHT: return TAIL_END_RIGHT;
+            default:               return OTHER;
         }
     }
 
     private static Element enemyTail(TailDirection direction) {
         switch (direction) {
-            case VERTICAL_DOWN:
-                return ENEMY_TAIL_END_DOWN;
-            case VERTICAL_UP:
-                return ENEMY_TAIL_END_UP;
-            case HORIZONTAL_LEFT:
-                return ENEMY_TAIL_END_LEFT;
-            case HORIZONTAL_RIGHT:
-                return ENEMY_TAIL_END_RIGHT;
-            default:
-                return OTHER;
+            case VERTICAL_DOWN:    return ENEMY_TAIL_END_DOWN;
+            case VERTICAL_UP:      return ENEMY_TAIL_END_UP;
+            case HORIZONTAL_LEFT:  return ENEMY_TAIL_END_LEFT;
+            case HORIZONTAL_RIGHT: return ENEMY_TAIL_END_RIGHT;
+            default:               return OTHER;
         }
     }
 
@@ -230,31 +220,21 @@ public enum Element implements CharElement {
 
     private static Element heroHead(Direction direction) {
         switch (direction) {
-            case DOWN:
-                return HEAD_DOWN;
-            case UP:
-                return HEAD_UP;
-            case LEFT:
-                return HEAD_LEFT;
-            case RIGHT:
-                return HEAD_RIGHT;
-            default:
-                return OTHER;
+            case DOWN:  return HEAD_DOWN;
+            case UP:    return HEAD_UP;
+            case LEFT:  return HEAD_LEFT;
+            case RIGHT: return HEAD_RIGHT;
+            default:    return OTHER;
         }
     }
 
     private static Element enemyHead(Direction direction) {
         switch (direction) {
-            case DOWN:
-                return ENEMY_HEAD_DOWN;
-            case UP:
-                return ENEMY_HEAD_UP;
-            case LEFT:
-                return ENEMY_HEAD_LEFT;
-            case RIGHT:
-                return ENEMY_HEAD_RIGHT;
-            default:
-                return OTHER;
+            case DOWN:  return ENEMY_HEAD_DOWN;
+            case UP:    return ENEMY_HEAD_UP;
+            case LEFT:  return ENEMY_HEAD_LEFT;
+            case RIGHT: return ENEMY_HEAD_RIGHT;
+            default:    return OTHER;
         }
     }
 
@@ -266,39 +246,25 @@ public enum Element implements CharElement {
 
     private static Element heroBody(BodyDirection direction) {
         switch (direction) {
-            case HORIZONTAL:
-                return BODY_HORIZONTAL;
-            case VERTICAL:
-                return BODY_VERTICAL;
-            case TURNED_LEFT_DOWN:
-                return BODY_LEFT_DOWN;
-            case TURNED_LEFT_UP:
-                return BODY_LEFT_UP;
-            case TURNED_RIGHT_DOWN:
-                return BODY_RIGHT_DOWN;
-            case TURNED_RIGHT_UP:
-                return BODY_RIGHT_UP;
-            default:
-                return OTHER;
+            case HORIZONTAL:        return BODY_HORIZONTAL;
+            case VERTICAL:          return BODY_VERTICAL;
+            case TURNED_LEFT_DOWN:  return BODY_LEFT_DOWN;
+            case TURNED_LEFT_UP:    return BODY_LEFT_UP;
+            case TURNED_RIGHT_DOWN: return BODY_RIGHT_DOWN;
+            case TURNED_RIGHT_UP:   return BODY_RIGHT_UP;
+            default:                return OTHER;
         }
     }
 
     private static Element enemyBody(BodyDirection direction) {
         switch (direction) {
-            case HORIZONTAL:
-                return ENEMY_BODY_HORIZONTAL;
-            case VERTICAL:
-                return ENEMY_BODY_VERTICAL;
-            case TURNED_LEFT_DOWN:
-                return ENEMY_BODY_LEFT_DOWN;
-            case TURNED_LEFT_UP:
-                return ENEMY_BODY_LEFT_UP;
-            case TURNED_RIGHT_DOWN:
-                return ENEMY_BODY_RIGHT_DOWN;
-            case TURNED_RIGHT_UP:
-                return ENEMY_BODY_RIGHT_UP;
-            default:
-                return OTHER;
+            case HORIZONTAL:        return ENEMY_BODY_HORIZONTAL;
+            case VERTICAL:          return ENEMY_BODY_VERTICAL;
+            case TURNED_LEFT_DOWN:  return ENEMY_BODY_LEFT_DOWN;
+            case TURNED_LEFT_UP:    return ENEMY_BODY_LEFT_UP;
+            case TURNED_RIGHT_DOWN: return ENEMY_BODY_RIGHT_DOWN;
+            case TURNED_RIGHT_UP:   return ENEMY_BODY_RIGHT_UP;
+            default:                return OTHER;
         }
     }
 }
