@@ -258,79 +258,6 @@ public enum Element implements CharElement, TeamElement {
         return String.valueOf(ch);
     }
 
-    public Element mask() {
-        switch (this) {
-            case HERO_DIE: return HERO_MASK_DIE;
-            case HERO_LADDER: return HERO_MASK_LADDER;
-            case HERO_LEFT: return HERO_MASK_LEFT;
-            case HERO_RIGHT: return HERO_MASK_RIGHT;
-            case HERO_FALL: return HERO_MASK_FALL;
-            case HERO_PIPE: return HERO_MASK_PIPE;
-            case HERO_PIT: return HERO_MASK_PIT;
-
-            case OTHER_HERO_DIE: return OTHER_HERO_MASK_DIE;
-            case OTHER_HERO_LADDER: return OTHER_HERO_MASK_LADDER;
-            case OTHER_HERO_LEFT: return OTHER_HERO_MASK_LEFT;
-            case OTHER_HERO_RIGHT: return OTHER_HERO_MASK_RIGHT;
-            case OTHER_HERO_FALL: return OTHER_HERO_MASK_FALL;
-            case OTHER_HERO_PIPE: return OTHER_HERO_MASK_PIPE;
-            case OTHER_HERO_PIT: return OTHER_HERO_MASK_PIT;
-
-            case ENEMY_HERO_DIE: return ENEMY_HERO_MASK_DIE;
-            case ENEMY_HERO_LADDER: return ENEMY_HERO_MASK_LADDER;
-            case ENEMY_HERO_LEFT: return ENEMY_HERO_MASK_LEFT;
-            case ENEMY_HERO_RIGHT: return ENEMY_HERO_MASK_RIGHT;
-            case ENEMY_HERO_FALL: return ENEMY_HERO_MASK_FALL;
-            case ENEMY_HERO_PIPE: return ENEMY_HERO_MASK_PIPE;
-            case ENEMY_HERO_PIT: return ENEMY_HERO_MASK_PIT;
-        }
-        throw new IllegalArgumentException("Bad hero state: " + this);
-    }
-
-    @Override
-    public Element otherHero() {
-        switch (this) {
-            case HERO_DIE: return OTHER_HERO_DIE;
-            case HERO_LADDER: return OTHER_HERO_LADDER;
-            case HERO_LEFT: return OTHER_HERO_LEFT;
-            case HERO_RIGHT: return OTHER_HERO_RIGHT;
-            case HERO_FALL: return OTHER_HERO_FALL;
-            case HERO_PIPE: return OTHER_HERO_PIPE;
-            case HERO_PIT: return OTHER_HERO_PIT;
-
-            case HERO_MASK_DIE: return OTHER_HERO_MASK_DIE;
-            case HERO_MASK_LADDER: return OTHER_HERO_MASK_LADDER;
-            case HERO_MASK_LEFT: return OTHER_HERO_MASK_LEFT;
-            case HERO_MASK_RIGHT: return OTHER_HERO_MASK_RIGHT;
-            case HERO_MASK_FALL: return OTHER_HERO_MASK_FALL;
-            case HERO_MASK_PIPE: return OTHER_HERO_MASK_PIPE;
-            case HERO_MASK_PIT: return OTHER_HERO_MASK_PIT;
-        }
-        throw new IllegalArgumentException("Bad hero state: " + this);
-    }
-
-    @Override
-    public Element enemyHero() {
-        switch (this) {
-            case HERO_DIE: return ENEMY_HERO_DIE;
-            case HERO_LADDER: return ENEMY_HERO_LADDER;
-            case HERO_LEFT: return ENEMY_HERO_LEFT;
-            case HERO_RIGHT: return ENEMY_HERO_RIGHT;
-            case HERO_FALL: return ENEMY_HERO_FALL;
-            case HERO_PIPE: return ENEMY_HERO_PIPE;
-            case HERO_PIT: return ENEMY_HERO_PIT;
-
-            case HERO_MASK_DIE: return ENEMY_HERO_MASK_DIE;
-            case HERO_MASK_LADDER: return ENEMY_HERO_MASK_LADDER;
-            case HERO_MASK_LEFT: return ENEMY_HERO_MASK_LEFT;
-            case HERO_MASK_RIGHT: return ENEMY_HERO_MASK_RIGHT;
-            case HERO_MASK_FALL: return ENEMY_HERO_MASK_FALL;
-            case HERO_MASK_PIPE: return ENEMY_HERO_MASK_PIPE;
-            case HERO_MASK_PIT: return ENEMY_HERO_PIT;
-        }
-        throw new IllegalArgumentException("Bad hero state: " + this);
-    }
-
     public static Element valueOf(char ch) {
         for (Element element : Element.values()) {
             if (element.ch == ch) {
@@ -612,5 +539,78 @@ public enum Element implements CharElement, TeamElement {
                 ROBBER_PIPE,
                 ROBBER_PIT,
         };
+    }
+
+    public Element mask() {
+        switch (this) {
+            case HERO_DIE:          return HERO_MASK_DIE;
+            case HERO_LADDER:       return HERO_MASK_LADDER;
+            case HERO_LEFT:         return HERO_MASK_LEFT;
+            case HERO_RIGHT:        return HERO_MASK_RIGHT;
+            case HERO_FALL:         return HERO_MASK_FALL;
+            case HERO_PIPE:         return HERO_MASK_PIPE;
+            case HERO_PIT:          return HERO_MASK_PIT;
+
+            case OTHER_HERO_DIE:    return OTHER_HERO_MASK_DIE;
+            case OTHER_HERO_LADDER: return OTHER_HERO_MASK_LADDER;
+            case OTHER_HERO_LEFT:   return OTHER_HERO_MASK_LEFT;
+            case OTHER_HERO_RIGHT:  return OTHER_HERO_MASK_RIGHT;
+            case OTHER_HERO_FALL:   return OTHER_HERO_MASK_FALL;
+            case OTHER_HERO_PIPE:   return OTHER_HERO_MASK_PIPE;
+            case OTHER_HERO_PIT:    return OTHER_HERO_MASK_PIT;
+
+            case ENEMY_HERO_DIE:    return ENEMY_HERO_MASK_DIE;
+            case ENEMY_HERO_LADDER: return ENEMY_HERO_MASK_LADDER;
+            case ENEMY_HERO_LEFT:   return ENEMY_HERO_MASK_LEFT;
+            case ENEMY_HERO_RIGHT:  return ENEMY_HERO_MASK_RIGHT;
+            case ENEMY_HERO_FALL:   return ENEMY_HERO_MASK_FALL;
+            case ENEMY_HERO_PIPE:   return ENEMY_HERO_MASK_PIPE;
+            case ENEMY_HERO_PIT:    return ENEMY_HERO_MASK_PIT;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
+
+    @Override
+    public Element otherHero() {
+        switch (this) {
+            case HERO_DIE:         return OTHER_HERO_DIE;
+            case HERO_LADDER:      return OTHER_HERO_LADDER;
+            case HERO_LEFT:        return OTHER_HERO_LEFT;
+            case HERO_RIGHT:       return OTHER_HERO_RIGHT;
+            case HERO_FALL:        return OTHER_HERO_FALL;
+            case HERO_PIPE:        return OTHER_HERO_PIPE;
+            case HERO_PIT:         return OTHER_HERO_PIT;
+
+            case HERO_MASK_DIE:    return OTHER_HERO_MASK_DIE;
+            case HERO_MASK_LADDER: return OTHER_HERO_MASK_LADDER;
+            case HERO_MASK_LEFT:   return OTHER_HERO_MASK_LEFT;
+            case HERO_MASK_RIGHT:  return OTHER_HERO_MASK_RIGHT;
+            case HERO_MASK_FALL:   return OTHER_HERO_MASK_FALL;
+            case HERO_MASK_PIPE:   return OTHER_HERO_MASK_PIPE;
+            case HERO_MASK_PIT:    return OTHER_HERO_MASK_PIT;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
+
+    @Override
+    public Element enemyHero() {
+        switch (this) {
+            case HERO_DIE:         return ENEMY_HERO_DIE;
+            case HERO_LADDER:      return ENEMY_HERO_LADDER;
+            case HERO_LEFT:        return ENEMY_HERO_LEFT;
+            case HERO_RIGHT:       return ENEMY_HERO_RIGHT;
+            case HERO_FALL:        return ENEMY_HERO_FALL;
+            case HERO_PIPE:        return ENEMY_HERO_PIPE;
+            case HERO_PIT:         return ENEMY_HERO_PIT;
+
+            case HERO_MASK_DIE:    return ENEMY_HERO_MASK_DIE;
+            case HERO_MASK_LADDER: return ENEMY_HERO_MASK_LADDER;
+            case HERO_MASK_LEFT:   return ENEMY_HERO_MASK_LEFT;
+            case HERO_MASK_RIGHT:  return ENEMY_HERO_MASK_RIGHT;
+            case HERO_MASK_FALL:   return ENEMY_HERO_MASK_FALL;
+            case HERO_MASK_PIPE:   return ENEMY_HERO_MASK_PIPE;
+            case HERO_MASK_PIT:    return ENEMY_HERO_PIT;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
     }
 }

@@ -493,12 +493,12 @@ public enum Element implements CharElement, TeamElement {
     @Override
     public TeamElement otherHero() {
         switch (this) {
-            case EXPLOSION: return EXPLOSION;
-            case HERO_LEFT: return OTHER_HERO_LEFT;
-            case HERO_RIGHT: return OTHER_HERO_RIGHT;
-            case HERO_UP: return OTHER_HERO_UP;
-            case HERO_DOWN: return OTHER_HERO_DOWN;
-            case HERO_SIDE_LEFT: return OTHER_HERO_SIDE_LEFT;
+            case EXPLOSION:       return EXPLOSION;
+            case HERO_LEFT:       return OTHER_HERO_LEFT;
+            case HERO_RIGHT:      return OTHER_HERO_RIGHT;
+            case HERO_UP:         return OTHER_HERO_UP;
+            case HERO_DOWN:       return OTHER_HERO_DOWN;
+            case HERO_SIDE_LEFT:  return OTHER_HERO_SIDE_LEFT;
             case HERO_SIDE_RIGHT: return OTHER_HERO_SIDE_RIGHT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
@@ -507,12 +507,12 @@ public enum Element implements CharElement, TeamElement {
     @Override
     public TeamElement enemyHero() {
         switch (this) {
-            case EXPLOSION: return EXPLOSION;
-            case HERO_LEFT: return ENEMY_HERO_LEFT;
-            case HERO_RIGHT: return ENEMY_HERO_RIGHT;
-            case HERO_UP: return ENEMY_HERO_UP;
-            case HERO_DOWN: return ENEMY_HERO_DOWN;
-            case HERO_SIDE_LEFT: return ENEMY_HERO_SIDE_LEFT;
+            case EXPLOSION:       return EXPLOSION;
+            case HERO_LEFT:       return ENEMY_HERO_LEFT;
+            case HERO_RIGHT:      return ENEMY_HERO_RIGHT;
+            case HERO_UP:         return ENEMY_HERO_UP;
+            case HERO_DOWN:       return ENEMY_HERO_DOWN;
+            case HERO_SIDE_LEFT:  return ENEMY_HERO_SIDE_LEFT;
             case HERO_SIDE_RIGHT: return ENEMY_HERO_SIDE_RIGHT;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);

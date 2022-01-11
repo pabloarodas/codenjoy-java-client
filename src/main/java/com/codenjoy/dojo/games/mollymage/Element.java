@@ -288,8 +288,8 @@ public enum Element implements CharElement, TeamElement {
     @Override
     public Element otherHero() {
         switch (this) {
-            case HERO: return OTHER_HERO;
-            case HERO_DEAD: return OTHER_HERO_DEAD;
+            case HERO:        return OTHER_HERO;
+            case HERO_DEAD:   return OTHER_HERO_DEAD;
             case HERO_POTION: return OTHER_HERO_POTION;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);
@@ -298,8 +298,8 @@ public enum Element implements CharElement, TeamElement {
     @Override
     public Element enemyHero() {
         switch (this) {
-            case HERO: return ENEMY_HERO;
-            case HERO_DEAD: return ENEMY_HERO_DEAD;
+            case HERO:        return ENEMY_HERO;
+            case HERO_DEAD:   return ENEMY_HERO_DEAD;
             case HERO_POTION: return ENEMY_HERO_POTION;
         }
         throw new IllegalArgumentException("Bad hero state: " + this);

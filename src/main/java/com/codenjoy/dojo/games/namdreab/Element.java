@@ -267,4 +267,29 @@ public enum Element implements CharElement {
             default:                return OTHER;
         }
     }
+
+    public Element enemyHero() {
+        switch (this) {
+            case HEAD_DOWN:       return ENEMY_HEAD_DOWN;
+            case HEAD_LEFT:       return ENEMY_HEAD_LEFT;
+            case HEAD_RIGHT:      return ENEMY_HEAD_RIGHT;
+            case HEAD_UP:         return ENEMY_HEAD_UP;
+            case HEAD_DEAD:       return ENEMY_HEAD_DEAD;
+            case HEAD_EVIL:       return ENEMY_HEAD_EVIL;
+            case HEAD_FLY:        return ENEMY_HEAD_FLY;
+            case HEAD_SLEEP:      return ENEMY_HEAD_SLEEP;
+            case BODY_HORIZONTAL: return ENEMY_BODY_HORIZONTAL;
+            case BODY_VERTICAL:   return ENEMY_BODY_VERTICAL;
+            case BODY_LEFT_DOWN:  return ENEMY_BODY_LEFT_DOWN;
+            case BODY_LEFT_UP:    return ENEMY_BODY_LEFT_UP;
+            case BODY_RIGHT_DOWN: return ENEMY_BODY_RIGHT_DOWN;
+            case BODY_RIGHT_UP:   return ENEMY_BODY_RIGHT_UP;
+            case TAIL_END_DOWN:   return ENEMY_TAIL_END_DOWN;
+            case TAIL_END_LEFT:   return ENEMY_TAIL_END_LEFT;
+            case TAIL_END_UP:     return ENEMY_TAIL_END_UP;
+            case TAIL_END_RIGHT:  return ENEMY_TAIL_END_RIGHT;
+            case TAIL_INACTIVE:   return ENEMY_TAIL_INACTIVE;
+        }
+        throw new IllegalArgumentException("Bad hero state: " + this);
+    }
 }
