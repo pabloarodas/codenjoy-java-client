@@ -199,15 +199,6 @@ public enum Element implements CharElement {
         return String.valueOf(ch);
     }
 
-    public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
-    }
-
     public boolean isFly() {
         return this == HEAD_FLY
                 || this == ENEMY_HEAD_FLY;

@@ -36,8 +36,8 @@ public class AbstractBoardTest {
     public static AbstractBoard board(String boardString) {
         return (AbstractBoard)new AbstractBoard<Element>(){
             @Override
-            public Element valueOf(char ch) {
-                return Element.valueOf(ch);
+            public Element[] elements() {
+                return Element.values();
             }
         }.forString(boardString);
     }

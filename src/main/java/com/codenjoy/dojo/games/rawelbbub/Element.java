@@ -153,7 +153,6 @@ public enum Element implements CharElement, TeamElement {
     PRIZE_NO_SLIDING('5',         "A prize that allows the hero to temporarily not slide " +
                                   "on the ice.");
 
-    public final static Map<Character, Element> elements = new LinkedHashMap<>();
     public final static List<Element> icebergs = new LinkedList<>();
     public final static Map<Element, Map<Direction, Element>> destroyIceberg = new LinkedHashMap<>();
     public final static Map<Element, Element> growIceberg = new LinkedHashMap<>();
@@ -161,7 +160,6 @@ public enum Element implements CharElement, TeamElement {
     static {
         String prefix = StringUtils.substringBefore(ICEBERG_HUGE.name(), "_");
         Arrays.stream(values())
-                .peek(element -> elements.put(element.ch, element))
                 .filter(element -> element.name().startsWith(prefix))
                 .forEach(icebergs::add);
 
@@ -479,15 +477,6 @@ public enum Element implements CharElement, TeamElement {
     @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    // TODO использовать этот подход во всех играх
-    public static Element valueOf(char ch) {
-        Element result = elements.get(ch);
-        if (result == null) {
-            throw new IllegalArgumentException("No such element for " + ch);
-        }
-        return result;
     }
 
     @Override

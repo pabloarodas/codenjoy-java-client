@@ -24,6 +24,7 @@ package com.codenjoy.dojo.games.tetris;
 
 
 import com.codenjoy.dojo.client.AbstractTextBoard;
+import com.codenjoy.dojo.client.ElementsMap;
 import com.codenjoy.dojo.services.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,6 +42,8 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
  */
 public class Board extends AbstractTextBoard {
 
+    private static final ElementsMap<Element> elements = new ElementsMap<>(Element.values());
+    
     public Point getCurrentFigurePoint() {
         JSONObject point = getJson().getJSONObject("currentFigurePoint");
         int x = point.getInt("x");
@@ -75,7 +78,7 @@ public class Board extends AbstractTextBoard {
 
     private Element getElement(String figureType) {
         char ch = figureType.charAt(0);
-        return Element.valueOf(ch);
+        return elements.get(ch);
     }
 
     public static Board getBoard(String glass, String figureType,

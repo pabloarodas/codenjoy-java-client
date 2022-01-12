@@ -38,13 +38,13 @@ import java.util.List;
 public class Board extends AbstractBoard<Element> {
 
     @Override
-    protected int inversionY(int y) {
-        return size() - 1 - y;
+    public Element[] elements() {
+        return Element.values();
     }
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.of(ch);
+    protected int inversionY(int y) {
+        return size() - 1 - y;
     }
 
     @Override

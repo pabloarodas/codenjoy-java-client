@@ -135,15 +135,6 @@ public enum Element implements CharElement, TeamElement {
         throw new IllegalArgumentException("Value not found for: " + value);
     }
 
-    public static Element valueOf(char ch) {
-        for (Element element : values()) {
-            if (element.ch == ch) {
-                return element;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
-    }
-
     public boolean isHero() {
         return asList(heroes()).contains(this);
     }

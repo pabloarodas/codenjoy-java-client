@@ -45,8 +45,8 @@ public class Board extends AbstractBoard<Element> {
     private final int COUNT_NUMBERS = 3;
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
+    public Element[] elements() {
+        return Element.values();
     }
 
     @Override

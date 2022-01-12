@@ -41,17 +41,17 @@ public class BoardTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void valueOf__shouldThrowIllegalArgumentException__ifElementWithGivenCharDoesntExist() {
+    public void valueOf_shouldThrowIllegalArgumentException_ifElementWithGivenCharDoesntExist() {
         // given
         char givenChar = '%';
-        Board board = new Board();
+        Board board = (Board) new Board().forString(" ");
 
         // when
         board.valueOf(givenChar);
     }
 
     @Test
-    public void getMe__shouldReturnPointWithBikeElement() {
+    public void getMe_shouldReturnPointWithBikeElement() {
         givenBr("■■■■■" +
                 " B > " +
                 "  Ḃ |" +
@@ -63,7 +63,7 @@ public class BoardTest {
     }
 
     @Test
-    public void getMe__shouldReturnPointWithBikeFallenElement() {
+    public void getMe_shouldReturnPointWithBikeFallenElement() {
         givenBr("b■■■■" +
                 "   > " +
                 "  Ḃ |" +
@@ -75,7 +75,7 @@ public class BoardTest {
     }
 
     @Test
-    public void isGameOver__shouldReturnTrueIfThereIsBikeFallenElement() {
+    public void isGameOver_shouldReturnTrueIfThereIsBikeFallenElement() {
         givenBr("■■■■■" +
                 "   > " +
                 "  Ḃ |" +
@@ -87,7 +87,7 @@ public class BoardTest {
     }
 
     @Test
-    public void isGameOver__shouldReturnFalseIfThereIsNoBikeFallenElement() {
+    public void isGameOver_shouldReturnFalseIfThereIsNoBikeFallenElement() {
         givenBr("■■■■■" +
                 " B >I" +
                 "A Ḃ |" +
@@ -99,7 +99,7 @@ public class BoardTest {
     }
 
     @Test
-    public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtRightDirection() {
+    public void checkNearMe_shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtRightDirection() {
         givenBr("■■■■■" +
                 " B>  " +
                 "  Ḃ |" +
@@ -111,7 +111,7 @@ public class BoardTest {
     }
 
     @Test
-    public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtDownDirection() {
+    public void checkNearMe_shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtDownDirection() {
         givenBr("■■■■■" +
                 " Ā   " +
                 " Ḃ | " +
@@ -123,7 +123,7 @@ public class BoardTest {
     }
 
     @Test
-    public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtLeftDirection() {
+    public void checkNearMe_shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtLeftDirection() {
         givenBr("■■■■■" +
                 "╝B>  " +
                 " Ḃ | " +
@@ -135,7 +135,7 @@ public class BoardTest {
     }
 
     @Test
-    public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtUpDirection() {
+    public void checkNearMe_shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtUpDirection() {
         givenBr("■■■■■" +
                 "╝Ī>  " +
                 " Ḃ | " +
@@ -147,7 +147,7 @@ public class BoardTest {
     }
 
     @Test
-    public void checkNearMe__shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtRightRightUpDirection() {
+    public void checkNearMe_shouldReturnTrueIfThereIsOneOfExpectedElementsNearMeAtRightRightUpDirection() {
         givenBr("■■■■■" +
                 " B   " +
                 "  Ḃ>|" +
@@ -159,7 +159,7 @@ public class BoardTest {
     }
 
     @Test
-    public void checkAtMe__shouldReturnTrue__ifAtMeIsGivenElement() {
+    public void checkAtMe_shouldReturnTrue_ifAtMeIsGivenElement() {
         givenBr("■■■■■" +
                 "╝Ī>  " +
                 " Ḃ | " +
@@ -171,7 +171,7 @@ public class BoardTest {
     }
 
     @Test
-    public void checkAtMe__shouldReturnFalse__ifAtMeIsNotGivenElement() {
+    public void checkAtMe_shouldReturnFalse_ifAtMeIsNotGivenElement() {
         givenBr("■■■■■" +
                 "╝Ī>  " +
                 " Ḃ | " +

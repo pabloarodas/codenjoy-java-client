@@ -42,8 +42,8 @@ public class AbstractLayeredBoardTest {
     public static AbstractLayeredBoard board(String boardString) {
         return (AbstractLayeredBoard)new AbstractLayeredBoard<Element>(){
             @Override
-            public Element valueOf(char ch) {
-                return Element.valueOf(ch);
+            public Element[] elements() {
+                return Element.values();
             }
         }.forString(boardString);
     }

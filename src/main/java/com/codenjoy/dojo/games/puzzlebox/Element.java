@@ -63,14 +63,4 @@ public enum Element implements CharElement {
     public String toString() {
         return String.valueOf(ch);
     }
-
-    public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
-    }
-
 }

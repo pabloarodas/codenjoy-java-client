@@ -94,15 +94,6 @@ public class Java implements Template {
                 "    public String toString() {\n" +
                 "        return String.valueOf(ch);\n" +
                 "    }\n" +
-                "\n" +
-                "    public static Element valueOf(char ch) {\n" +
-                "        for (Element el : Element.values()) {\n" +
-                "            if (el.ch == ch) {\n" +
-                "                return el;\n" +
-                "            }\n" +
-                "        }\n" +
-                "        throw new IllegalArgumentException(\"No such element for \" + ch);\n" +
-                "    }\n" +
                 "}\n";
     }
 

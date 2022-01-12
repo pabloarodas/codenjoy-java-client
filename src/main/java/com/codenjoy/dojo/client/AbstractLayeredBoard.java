@@ -24,6 +24,7 @@ package com.codenjoy.dojo.client;
 
 
 import com.codenjoy.dojo.services.Point;
+import com.codenjoy.dojo.services.annotations.PerformanceOptimized;
 import com.codenjoy.dojo.services.printer.CharElement;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,6 +45,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
     protected char[][][] field;
     protected JSONObject source;
     protected List<String> layersString = new LinkedList<>();
+    private ElementsMap<E> elements;
 
     public ClientBoard forString(String boardString) {
         if (boardString.contains(LAYERS)) {
@@ -56,6 +58,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
     }
 
     public ClientBoard forString(String... layers) {
+        elements = (elements != null) ? elements : new ElementsMap<>(elements());
         layersString.clear();
         layersString.addAll(Arrays.asList(layers));
 
@@ -86,7 +89,12 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         return y;
     }
 
-    public abstract E valueOf(char ch);
+    @PerformanceOptimized
+    public E valueOf(char ch) {
+        return elements.get(ch);
+    }
+
+    public abstract E[] elements();
 
     public int size() {
         return size;

@@ -142,15 +142,6 @@ public enum Element implements CharElement, TeamElement {
         return String.valueOf(ch);
     }
 
-    public static Element valueOf(char ch) {
-        for (Element element : Element.values()) {
-            if (element.ch == ch) {
-                return element;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
-    }
-
     public boolean isPotion() {
         return asList(potions()).contains(this);
     }

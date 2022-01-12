@@ -44,8 +44,8 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
 public class Board extends AbstractBoard<Element> {
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
+    public Element[] elements() {
+        return Element.values();
     }
 
     @Override
@@ -238,7 +238,7 @@ public class Board extends AbstractBoard<Element> {
     public String maskOverlay(String source, String mask) {
         StringBuilder result = new StringBuilder(source);
         for (int i = 0; i < result.length(); ++i) {
-            Element el = Element.valueOf(mask.charAt(i));
+            Element el = valueOf(mask.charAt(i));
             if (Element.isWall(el)) {
                 result.setCharAt(i, el.ch());
             }

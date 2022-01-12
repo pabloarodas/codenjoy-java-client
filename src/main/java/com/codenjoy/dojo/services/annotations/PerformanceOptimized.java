@@ -24,6 +24,8 @@ package com.codenjoy.dojo.services.annotations;
 
 import java.lang.annotation.*;
 
+import static java.lang.annotation.ElementType.*;
+
 /**
  * The mark on the method says that the shit
  * in it is the reason for the performance
@@ -38,7 +40,7 @@ import java.lang.annotation.*;
  * P.S. If suddenly you can find a more
  * optimal solution, it will be great!
  */
-@Target(ElementType.METHOD)
+@Target({METHOD, FIELD, CONSTRUCTOR})
 @Retention(RetentionPolicy.CLASS)
 public @interface PerformanceOptimized {
 }

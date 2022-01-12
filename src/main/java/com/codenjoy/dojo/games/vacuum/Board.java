@@ -38,13 +38,13 @@ import static com.codenjoy.dojo.games.vacuum.Element.*;
 public class Board extends AbstractBoard<Element> {
 
     @Override
-    protected int inversionY(int y) {
-        return size() - 1 - y;
+    public Element[] elements() {
+        return Element.values();
     }
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.byCode(ch);
+    protected int inversionY(int y) {
+        return size() - 1 - y;
     }
 
     public Element getAt(int x, int y) {

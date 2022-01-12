@@ -88,15 +88,6 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("Нет такого елемента: " + n);
     }
 
-    public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
-    }
-
     public static Element[] valuesExcept(Element... excluded) {
         List<Element> list = Arrays.asList(excluded);
         return Arrays.stream(values())

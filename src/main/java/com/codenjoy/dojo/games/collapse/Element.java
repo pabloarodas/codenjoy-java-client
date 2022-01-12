@@ -25,11 +25,6 @@ package com.codenjoy.dojo.games.collapse;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
-
 public enum Element implements CharElement {
 
     NONE(' ',    "Пустое место – место которое заполнится фишкой в следующий тик."),
@@ -77,21 +72,18 @@ public enum Element implements CharElement {
         return String.valueOf(ch);
     }
 
-    public static Element[] valuesExcept(Element... excluded) {
-        List<Element> list = Arrays.asList(excluded);
-        return Arrays.stream(values())
-                .filter(el -> !list.contains(el))
-                .collect(toList())
-                .toArray(new Element[0]);
-    }
-
-    public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
+    public static Element[] numbers() {
+        return new Element[]{
+                ONE,
+                TWO,
+                THREE,
+                FOUR,
+                FIVE,
+                SIX,
+                SEVEN,
+                EIGHT,
+                NINE,
+        };
     }
 
     public int number() {

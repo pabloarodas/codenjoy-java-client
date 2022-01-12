@@ -32,6 +32,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -39,9 +40,6 @@ import java.util.regex.Pattern;
 
 public class WebSocketRunner implements Closeable {
 
-    public static final String UTF8 = "UTF-8";
-
-    public static final String DEFAULT_USER = "apofig@gmail.com";
     private static final String LOCALHOST = "127.0.0.1:8080";
     private static final String CONTEXT = "codenjoy-contest";
     public static final String WS_URI_PATTERN = "%s://%s/%s/ws?user=%s&code=%s";
@@ -302,11 +300,7 @@ public class WebSocketRunner implements Closeable {
 
     public static void print(String message) {
         if (PRINT_TO_CONSOLE) {
-            try {
-                new PrintStream(System.out, true, UTF8).println(message);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace(System.out);
-            }
+            new PrintStream(System.out, true, StandardCharsets.UTF_8).println(message);
         }
     }
 

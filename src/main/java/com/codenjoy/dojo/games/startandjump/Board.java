@@ -33,8 +33,8 @@ import com.codenjoy.dojo.client.AbstractBoard;
 public class Board extends AbstractBoard<Element> {
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
+    public Element[] elements() {
+        return Element.values();
     }
 
     // TODO закончить

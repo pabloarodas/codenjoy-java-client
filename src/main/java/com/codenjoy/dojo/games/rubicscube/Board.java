@@ -30,8 +30,8 @@ public class Board extends AbstractBoard<Element> {
     private static final int LAYER1 = 0;
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
+    public Element[] elements() {
+        return Element.values();
     }
 
     @Override

@@ -105,25 +105,12 @@ public enum Element implements CharElement {
         return String.valueOf(ch);
     }
 
-    public static Element valueOf(int number) {
-        return Element.valueOf("_" + String.valueOf(number));
-    }
-
     public static Element[] valuesExcept(Element... excluded) {
         List<Element> list = Arrays.asList(excluded);
         return Arrays.stream(values())
                 .filter(el -> !list.contains(el))
                 .collect(toList())
                 .toArray(new Element[0]);
-    }
-
-    public static Element valueOf(char ch) {
-        for (Element el : Element.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
     }
 
     public int number() {

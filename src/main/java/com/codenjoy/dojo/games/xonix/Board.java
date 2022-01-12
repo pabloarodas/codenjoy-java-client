@@ -38,13 +38,13 @@ import static com.codenjoy.dojo.games.xonix.Element.*;
 public class Board extends AbstractBoard<Element> {
 
     @Override
+    public Element[] elements() {
+        return Element.values();
+    }
+    
+    @Override
     protected int inversionY(int y) {
         return size() - 1 - y;
-    }
-
-    @Override
-    public Element valueOf(char ch) {
-        return Element.byCode(ch);
     }
 
     public Element getAt(int x, int y) {

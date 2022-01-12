@@ -35,10 +35,10 @@ public class AbstractBoardWithSeveralLayersTest {
     private AbstractBoard board;
 
     public static AbstractBoard board(String ...boardString) {
-        return (AbstractBoard)new AbstractBoard<Element>(){
+        return new AbstractBoard<Element>(){
             @Override
-            public Element valueOf(char ch) {
-                return Element.valueOf(ch);
+            public Element[] elements() {
+                return Element.values();
             }
         }.forString(boardString);
     }

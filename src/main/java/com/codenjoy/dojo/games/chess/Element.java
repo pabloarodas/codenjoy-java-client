@@ -118,15 +118,6 @@ public enum Element implements CharElement {
                 .collect(toList());
     }
 
-    public static Element of(char ch) {
-        for (Element element : Element.values()) {
-            if (element.ch == ch) {
-                return element;
-            }
-        }
-        return null;
-    }
-
     public static Element[] pieces() {
         return Arrays.stream(Element.values())
                 .filter(e -> e != SQUARE)

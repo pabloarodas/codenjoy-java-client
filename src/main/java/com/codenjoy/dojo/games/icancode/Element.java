@@ -166,12 +166,6 @@ public enum Element implements CharElement {
         public final static int LAYER3 = 2;
     }
 
-    // optimized for performance
-    private final static Map<Character, Element> elements = new HashMap<>(){{
-        Arrays.stream(Element.values())
-                .forEach(el -> put(el.ch, el));
-    }};
-
     private final char ch;
     private final int layer;
     private final String info;
@@ -212,16 +206,6 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("Bad hero state: " + this);
     }
 
-    public static Element valueOf(char ch) {
-        Element result = elements.get(ch);
-
-        if (result == null) {
-            throw new IllegalArgumentException("No such element for '" + ch + "'");
-        }
-
-        return result;
-    }
-
     public static List<Element> perks() {
         return Arrays.asList(
                 UNSTOPPABLE_LASER_PERK,
@@ -252,5 +236,4 @@ public enum Element implements CharElement {
                 ANGLE_OUT_LEFT,
                 SPACE).contains(el);
     }
-
 }

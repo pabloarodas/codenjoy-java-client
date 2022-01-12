@@ -10,12 +10,12 @@ package com.codenjoy.dojo.client;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -24,23 +24,40 @@ package com.codenjoy.dojo.client;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-enum Element implements CharElement {
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-    ONE('1'), TWO('2'), THREE('3'), FOUR('4'), FIVE('5'), SIX('6'), NONE(' ');
+public class ElementsMap<E extends CharElement> {
 
-    final char ch;
+    private Map<Character, E> characters = new LinkedHashMap<>();
+    private Map<String, E> names = new LinkedHashMap<>();
 
-    Element(char ch) {
-        this.ch = ch;
+    public ElementsMap(E[] elements) {
+        for (E element : elements) {
+            characters.put(element.ch(), element);
+            names.put(element.name(), element);
+        }
     }
 
-    @Override
-    public char ch() {
-        return ch;
+    public E get(char ch) {
+        E result = characters.get(ch);
+        if (result == null) {
+            throw new IllegalArgumentException("No such element for char: " + ch);
+        }
+        return result;
+    }
+
+    public E get(String name) {
+        E result = names.get(name);
+        if (result == null) {
+            throw new IllegalArgumentException("No such element for name: " + name);
+        }
+        return result;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(ch);
+        return characters.toString() + "\n"
+                + names.toString();
     }
 }

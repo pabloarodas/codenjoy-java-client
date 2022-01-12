@@ -124,8 +124,6 @@ public enum Element implements CharElement {
         public final static int LAYER2 = 1;
     }
 
-    public static volatile Dictionary<String, Element> elementsMap;
-
     private final char ch;
     private final int layer;
     private final int index;
@@ -150,28 +148,6 @@ public enum Element implements CharElement {
     @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    public static Element valueOf(char ch) {
-        if (elementsMap == null) {
-            makeElementsMap();
-        }
-
-        Element result = elementsMap.get(String.valueOf(ch));
-
-        if (result == null) {
-            throw new IllegalArgumentException("No such element for '" + ch + "'");
-        }
-
-        return result;
-    }
-
-    private static void makeElementsMap() {
-        elementsMap = new Hashtable<>();
-
-        for (Element el : Element.values()) {
-            elementsMap.put(el.toString(), el);
-        }
     }
 
     public int getLayer() {

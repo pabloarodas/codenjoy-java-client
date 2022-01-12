@@ -32,8 +32,8 @@ import static com.codenjoy.dojo.games.tetris.Element.*;
 public class GlassBoard extends AbstractBoard<Element> {
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
+    public Element[] elements() {
+        return Element.values();
     }
 
     @Override

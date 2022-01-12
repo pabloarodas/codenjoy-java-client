@@ -34,8 +34,8 @@ import java.util.List;
 public class Board extends AbstractBoard<Element> {
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
+    public Element[] elements() {
+        return Element.values();
     }
 
     @Override

@@ -94,19 +94,4 @@ public enum Element implements CharElement {
             remove(Element.MY_HERO);
         }};
     }
-
-    private static Map<Character, Element> elements = new HashMap<>(){{
-        Arrays.stream(Element.values())
-                .forEach(el -> put(el.ch, el));
-    }};
-
-    // optimized for performance
-    public static Element valueOf(char ch) {
-        Element elements = Element.elements.get(ch);
-        if (elements == null) {
-            throw new IllegalArgumentException("No such element for " + ch);
-        }
-        return elements;
-    }
-
 }

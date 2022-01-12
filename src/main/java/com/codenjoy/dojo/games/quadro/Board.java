@@ -35,8 +35,8 @@ import static com.codenjoy.dojo.games.quadro.Element.YELLOW;
 public class Board extends AbstractBoard<Element> {
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
+    public Element[] elements() {
+        return Element.values();
     }
 
     public boolean isYellow(int x, int y) {

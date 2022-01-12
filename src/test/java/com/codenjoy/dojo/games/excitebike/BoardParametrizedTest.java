@@ -62,9 +62,9 @@ public class BoardParametrizedTest {
     }
 
     @Test
-    public void valueOf__shouldReturnCorrectElement() {
+    public void valueOf_shouldReturnCorrectElement() {
         //given
-        Board board = new Board();
+        Board board = (Board)new Board().forString(" ");
 
         //when
         CharElement result = board.valueOf(elementChar);

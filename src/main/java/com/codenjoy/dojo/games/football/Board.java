@@ -42,8 +42,8 @@ public class Board extends AbstractBoard<Element> {
     }
 
     @Override
-    public Element valueOf(char ch) {
-        return Element.valueOf(ch);
+    public Element[] elements() {
+        return Element.values();
     }
 
     public boolean isBarrierAt(int x, int y) {

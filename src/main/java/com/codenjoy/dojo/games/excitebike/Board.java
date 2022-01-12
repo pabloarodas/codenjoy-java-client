@@ -29,9 +29,11 @@ import com.codenjoy.dojo.games.excitebike.element.GameElement;
 import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
+import com.codenjoy.dojo.services.annotations.PerformanceOptimized;
 import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,33 +48,20 @@ public class Board extends AbstractBoard<CharElement> {
     private static final String OTHER_BIKE_PREFIX = "OTHER";
     private static final String FALLEN_BIKE_SUFFIX = "FALLEN";
 
-    // optimized for performance
+    @PerformanceOptimized
     public static final BikeElement[] BIKE_TYPES = Arrays.stream(BikeElement.values())
             .filter(v -> !v.name().contains(OTHER_BIKE_PREFIX))
             .collect(Collectors.toList())
             .toArray(new BikeElement[]{});
 
-    // optimized for performance
-    // TODO заменить символы в Element и укоротить этот массив до 255
-    public static CharElement[] ALL_ELEMENTS; static {
-        if (ALL_ELEMENTS == null) {
-            ALL_ELEMENTS = new CharElement[10000];
-            Arrays.stream(GameElement.values())
-                    .forEach(el -> ALL_ELEMENTS[el.ch()] = el);
-            Arrays.stream(SpringboardElement.values())
-                    .forEach(el -> ALL_ELEMENTS[el.ch()] = el);
-            Arrays.stream(BikeElement.values())
-                    .forEach(el -> ALL_ELEMENTS[el.ch()] = el);
-        }
-    }
-
     @Override
-    public CharElement valueOf(char ch) {
-        CharElement result = ALL_ELEMENTS[ch];
-        if (result == null) {
-            throw new IllegalArgumentException("No such element for " + ch);
-        }
-        return result;
+    @PerformanceOptimized
+    public CharElement[] elements() {
+        return new LinkedList<>(){{
+            addAll(Arrays.asList(GameElement.values()));
+            addAll(Arrays.asList(SpringboardElement.values()));
+            addAll(Arrays.asList(BikeElement.values()));
+        }}.toArray(new CharElement[0]);
     }
 
     public Point getMe() {
