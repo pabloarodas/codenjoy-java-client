@@ -27,7 +27,6 @@ import com.codenjoy.dojo.services.annotations.PerformanceOptimized;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.TeamElement;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -263,16 +262,15 @@ public enum Element implements CharElement, TeamElement {
         return String.valueOf(ch);
     }
 
-    private static Map<Character, Element> map = new LinkedHashMap<>();
-
-    static {
-        Arrays.stream(values())
-                .forEach(element -> map.put(element.ch(), element));
-    }
+    private static Map<Character, Element> characters = new LinkedHashMap<>(){{
+        for (Element element : values()) {
+            put(element.ch(), element);
+        }
+    }};
 
     @PerformanceOptimized
     public static Element valueOf(char ch) {
-        Element result = map.get(ch);
+        Element result = characters.get(ch);
         if (result == null) {
             throw new IllegalArgumentException("No such element for " + ch);
         }
