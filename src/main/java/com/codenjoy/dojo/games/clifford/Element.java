@@ -23,8 +23,13 @@ package com.codenjoy.dojo.games.clifford;
  */
 
 
+import com.codenjoy.dojo.services.annotations.PerformanceOptimized;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.TeamElement;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 
@@ -258,13 +263,20 @@ public enum Element implements CharElement, TeamElement {
         return String.valueOf(ch);
     }
 
+    private static Map<Character, Element> map = new LinkedHashMap<>();
+
+    static {
+        Arrays.stream(values())
+                .forEach(element -> map.put(element.ch(), element));
+    }
+
+    @PerformanceOptimized
     public static Element valueOf(char ch) {
-        for (Element element : Element.values()) {
-            if (element.ch == ch) {
-                return element;
-            }
+        Element result = map.get(ch);
+        if (result == null) {
+            throw new IllegalArgumentException("No such element for " + ch);
         }
-        throw new IllegalArgumentException("No such element for " + ch);
+        return result;
     }
 
     public boolean isClue() {
