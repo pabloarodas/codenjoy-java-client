@@ -208,6 +208,16 @@ public enum Element implements CharElement {
         throw new IllegalArgumentException("No such element for " + ch);
     }
 
+    public boolean isFly() {
+        return this == HEAD_FLY
+                || this == ENEMY_HEAD_FLY;
+    }
+
+    public boolean isEvil() {
+        return this == HEAD_EVIL
+                || this == ENEMY_HEAD_EVIL;
+    }
+
     public enum BodyDirection {
 
         HORIZONTAL,
