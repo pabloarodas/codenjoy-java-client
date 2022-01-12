@@ -25,6 +25,12 @@ package com.codenjoy.dojo.games.namdreab;
 
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
+
+import java.util.Arrays;
+
+import static com.codenjoy.dojo.services.Direction.*;
 
 public enum Element implements CharElement {
 
@@ -138,6 +144,40 @@ public enum Element implements CharElement {
 
     private final char ch;
     private final String info;
+
+    public static Multimap<Direction, Element> parts = LinkedHashMultimap.create();
+
+    private static void part(Element element, Direction... directions) {
+        Arrays.stream(directions)
+                .forEach(direction -> {
+                    parts.put(direction, element);
+                    parts.put(direction, element.enemyHero());
+                });
+    }
+
+    static {
+        part(HEAD_DOWN,       DOWN);
+        part(HEAD_LEFT,       LEFT);
+        part(HEAD_RIGHT,      RIGHT);
+        part(HEAD_UP,         UP);
+        part(HEAD_DEAD,       UP, DOWN, LEFT, RIGHT);
+        part(HEAD_EVIL,       UP, DOWN, LEFT, RIGHT);
+        part(HEAD_FLY,        UP, DOWN, LEFT, RIGHT);
+        part(HEAD_SLEEP,      UP, DOWN, LEFT, RIGHT);
+
+        part(BODY_HORIZONTAL, LEFT, RIGHT);
+        part(BODY_VERTICAL,   UP, DOWN);
+        part(BODY_LEFT_DOWN,  RIGHT, UP);
+        part(BODY_LEFT_UP,    RIGHT, DOWN);
+        part(BODY_RIGHT_DOWN, LEFT, UP);
+        part(BODY_RIGHT_UP,   LEFT, DOWN);
+
+        part(TAIL_END_DOWN,   DOWN);
+        part(TAIL_END_LEFT,   LEFT);
+        part(TAIL_END_UP,     UP);
+        part(TAIL_END_RIGHT,  RIGHT);
+        part(TAIL_INACTIVE,   UP, DOWN, LEFT, RIGHT);
+    }
 
     Element(char ch, String info) {
         this.ch = ch;
