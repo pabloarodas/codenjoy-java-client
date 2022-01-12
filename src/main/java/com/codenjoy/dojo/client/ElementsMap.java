@@ -22,25 +22,37 @@ package com.codenjoy.dojo.client;
  * #L%
  */
 
+import com.codenjoy.dojo.services.annotations.PerformanceOptimized;
 import com.codenjoy.dojo.services.printer.CharElement;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
+@PerformanceOptimized
 public class ElementsMap<E extends CharElement> {
 
-    private Map<Character, E> characters = new LinkedHashMap<>();
+    private CharElement[] characters;
     private Map<String, E> names = new LinkedHashMap<>();
 
     public ElementsMap(E[] elements) {
+        int maxIndex = Arrays.stream(elements)
+                .map(element -> (int)element.ch())
+                .max(Integer::compareTo)
+                .orElse(0);
+        characters = new CharElement[maxIndex + 1];
         for (E element : elements) {
-            characters.put(element.ch(), element);
+            characters[element.ch()] = element;
             names.put(element.name(), element);
         }
     }
 
     public E get(char ch) {
-        E result = characters.get(ch);
+        E result = (E) characters[ch];
         if (result == null) {
             throw new IllegalArgumentException("No such element for char: " + ch);
         }
@@ -57,7 +69,10 @@ public class ElementsMap<E extends CharElement> {
 
     @Override
     public String toString() {
-        return characters.toString() + "\n"
+        return Arrays.stream(characters)
+                .filter(Objects::nonNull)
+                .collect(toList())
+                + "\n"
                 + names.toString();
     }
 }

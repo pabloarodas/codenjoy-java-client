@@ -40,7 +40,7 @@ import static java.lang.annotation.ElementType.*;
  * P.S. If suddenly you can find a more
  * optimal solution, it will be great!
  */
-@Target({METHOD, FIELD, CONSTRUCTOR})
+@Target({METHOD, FIELD, CONSTRUCTOR, TYPE})
 @Retention(RetentionPolicy.CLASS)
 public @interface PerformanceOptimized {
 }
