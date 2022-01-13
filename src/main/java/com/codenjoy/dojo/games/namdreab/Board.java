@@ -51,27 +51,25 @@ public class Board extends AbstractBoard<Element> {
                 TAIL_INACTIVE);
     }
 
+    public boolean isHeroHeadAt(Point pt) {
+        return isAt(pt, heroHead());
+    }
+
     @Override
     protected int inversionY(int y) {
         return size - 1 - y;
     }
 
-    public Point getMe() {
-        return getMyHead().get(0);
+    public Point getHero() {
+        return getHeroHead().get(0);
     }
 
     public boolean isGameOver() {
-        return getMyHead().isEmpty();
+        return getHeroHead().isEmpty();
     }
 
-    private List<Point> getMyHead() {
-        return get(HEAD_DOWN,
-                HEAD_LEFT,
-                HEAD_RIGHT,
-                HEAD_UP,
-                HEAD_SLEEP,
-                HEAD_EVIL,
-                HEAD_FLY);
+    private List<Point> getHeroHead() {
+        return get(heroHead());
     }
 
     public boolean isStoneAt(int x, int y) {

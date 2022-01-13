@@ -184,6 +184,17 @@ public enum Element implements CharElement {
         this.info = info;
     }
 
+    public static Element[] heroHead() {
+        return new Element[]{
+                HEAD_DOWN,
+                HEAD_LEFT,
+                HEAD_RIGHT,
+                HEAD_UP,
+                HEAD_SLEEP,
+                HEAD_EVIL,
+                HEAD_FLY};
+    }
+
     @Override
     public char ch() {
         return ch;
