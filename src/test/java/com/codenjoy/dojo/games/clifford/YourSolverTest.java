@@ -24,24 +24,21 @@ package com.codenjoy.dojo.games.clifford;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class YourSolverTest {
 
-    private Dice dice;
+    private MockDice dice;
     private Solver solver;
 
     @Before
     public void setup() {
-        dice = mock(Dice.class);
+        dice = new MockDice();
         solver = new YourSolver(dice);
     }
 
@@ -50,7 +47,7 @@ public class YourSolverTest {
     }
 
     private void dice(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
+        dice.then(direction.value());
     }
 
     private void assertB(String board, String command) {

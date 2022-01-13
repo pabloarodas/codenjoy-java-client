@@ -23,6 +23,7 @@ package com.codenjoy.dojo.services;
  */
 
 
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,7 +36,6 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 public class PointImplTest {
@@ -560,8 +560,8 @@ public class PointImplTest {
     @Test
     public void shouldGenerateRandom() {
         // given
-        Dice dice = mock(Dice.class);
-        when(dice.next(anyInt())).thenReturn(100, 101);
+        MockDice dice = spy(new MockDice());
+        dice.then(100, 101);
 
         // when
         int size = 24;

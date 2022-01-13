@@ -22,16 +22,15 @@ package com.codenjoy.dojo.games.chess;
  * #L%
  */
 
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 
 public class YourSolverTest {
 
-    private Dice dice = mock(Dice.class);
+    private MockDice dice = new MockDice();
 
     private final YourSolver solver = new YourSolver(dice);
 

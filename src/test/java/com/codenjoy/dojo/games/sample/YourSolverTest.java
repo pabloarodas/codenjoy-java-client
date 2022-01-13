@@ -24,25 +24,22 @@ package com.codenjoy.dojo.games.sample;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class YourSolverTest {
 
-    private Dice dice;
-    private Solver solver;
+    private MockDice dice;
+    private Solver ai;
 
     @Before
     public void setup() {
-        dice = mock(Dice.class);
-        solver = new YourSolver(dice);
+        dice = new MockDice();
+        ai = new YourSolver(dice);
     }
 
     private Board board(String board) {
@@ -50,11 +47,11 @@ public class YourSolverTest {
     }
 
     private void dice(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
+        dice.then(direction.value());
     }
 
     private void assertB(String board, String command) {
-        assertEquals(command, solver.get(board(board)));
+        assertEquals(command, ai.get(board(board)));
     }
 
     // TODO these dummy tests are here for an example, delete it and write your own

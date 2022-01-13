@@ -23,27 +23,24 @@ package com.codenjoy.dojo.games.tetris;
  */
 
 
-import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class YourSolverTest {
 
-    private Dice dice;
+    private MockDice dice;
     private Solver ai;
 
     @Before
     public void setup() {
-        dice = mock(Dice.class);
+        dice = new MockDice();
         ai = new YourSolver(dice);
     }
 
@@ -74,6 +71,6 @@ public class YourSolverTest {
     }
 
     private void dice(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
+        dice.then(direction.value());
     }
 }

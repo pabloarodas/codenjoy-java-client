@@ -22,34 +22,27 @@ package com.codenjoy.dojo.services.dice;
  * #L%
  */
 
-import com.codenjoy.dojo.services.Dice;
-
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.Supplier;
 
-public class NumbersDice implements Dice {
+public class Numbers implements Supplier<Integer> {
 
-    private int defaultValue;
-    private Supplier<Integer> numbers;
+    private List<Integer> numbers;
 
-    public NumbersDice(int defaultValue) {
-        this.numbers = new Numbers();
-        this.defaultValue = defaultValue;
+    public Numbers(Integer... next) {
+        this.numbers = toList(next);
     }
 
-    public void will(Integer... next) {
-        this.numbers = new Numbers(next);
-    }
-
-    public void will(Supplier<Integer> next) {
-        this.numbers = next;
+    private static List<Integer> toList(Integer[] array) {
+        return new LinkedList<>(Arrays.asList(array));
     }
 
     @Override
-    public int next(int n) {
-        Integer value = numbers.get();
-        if (value == null) {
-            return defaultValue;
-        }
-        return value;
+    public Integer get() {
+        return numbers.isEmpty()
+                ? null
+                : numbers.remove(0);
     }
 }

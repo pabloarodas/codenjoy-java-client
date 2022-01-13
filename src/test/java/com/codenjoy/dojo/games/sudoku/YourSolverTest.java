@@ -24,23 +24,20 @@ package com.codenjoy.dojo.games.sudoku;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.sudoku.Board;
-import com.codenjoy.dojo.games.sudoku.YourSolver;
-import com.codenjoy.dojo.services.Dice;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 
 public class YourSolverTest {
 
-    private Dice dice;
+    private MockDice dice;
     private Solver ai;
 
     @Before
     public void setup() {
-        dice = mock(Dice.class);
+        dice = new MockDice();
         ai = new YourSolver(dice);
     }
 

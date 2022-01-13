@@ -23,19 +23,21 @@ package com.codenjoy.dojo.services.dice;
  */
 
 import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.dice.NumbersDice;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static com.codenjoy.dojo.services.dice.MockDiceTest.list;
+import static com.codenjoy.dojo.services.dice.MockDiceTest.next;
+import static org.junit.Assert.assertEquals;
 
 public class NumbersDiceTest {
 
     @Test
     public void shouldReturnAllNumbers_thenDefaultValue() {
         // given
-        Dice dice = new NumbersDice(Arrays.asList(1, 2, 3, 4, 5), -1);
+        NumbersDice dice = new NumbersDice(-1);
+        dice.will(1, 2, 3, 4, 5);
 
         // when then
         assertEquals(1, dice.next(100));
@@ -50,9 +52,30 @@ public class NumbersDiceTest {
     }
 
     @Test
+    public void shouldReturnAllNumbers_thenDefaultValue_caseSupplier() {
+        // given
+        NumbersDice dice = new NumbersDice(-1);
+        List<Integer> list = list(1, 2, 3, 4, 5);
+        
+        // when 
+        dice.will(() -> next(list));
+
+        // then
+        assertEquals(1, dice.next(100));
+        assertEquals(2, dice.next(100));
+        assertEquals(3, dice.next(100));
+        assertEquals(4, dice.next(100));
+        assertEquals(5, dice.next(100));
+        assertEquals(-1, dice.next(100));
+        assertEquals(-1, dice.next(100));
+        assertEquals(-1, dice.next(100));
+        assertEquals(-1, dice.next(100));
+    }
+
+    @Test
     public void shouldReturnDefaultValue_whenEmpty() {
         // given
-        Dice dice = new NumbersDice(Arrays.asList(), -100);
+        Dice dice = new NumbersDice(-100);
 
         // when then
         assertEquals(-100, dice.next(100));

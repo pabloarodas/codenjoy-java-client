@@ -24,25 +24,22 @@ package com.codenjoy.dojo.games.reversi;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.LengthToXY;
 import com.codenjoy.dojo.services.Point;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public abstract class AbstractSolverTest {
 
-    protected Dice dice;
+    protected MockDice dice;
     protected Solver ai;
 
     @Before
     public void setup() {
-        dice = mock(Dice.class);
+        dice = new MockDice();
         ai = getSolver();
     }
 
@@ -73,6 +70,6 @@ public abstract class AbstractSolverTest {
     }
 
     private void dice(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
+        dice.then(direction.value());
     }
 }

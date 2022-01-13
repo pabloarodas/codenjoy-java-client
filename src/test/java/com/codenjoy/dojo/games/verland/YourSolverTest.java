@@ -23,18 +23,15 @@ package com.codenjoy.dojo.games.verland;
  */
 
 
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class YourSolverTest {
 
-    private Dice dice = mock(Dice.class);
+    private MockDice dice = new MockDice();
     private final YourSolver solver = new YourSolver(dice);
 
     private Board board(String board) {
@@ -42,7 +39,7 @@ public class YourSolverTest {
     }
 
     private void dice(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
+        dice.then(direction.value());
     }
 
     private void assertB(String board, String command) {

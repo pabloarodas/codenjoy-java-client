@@ -24,27 +24,22 @@ package com.codenjoy.dojo.games.xonix;
 
 
 import com.codenjoy.dojo.client.Solver;
-import com.codenjoy.dojo.games.xonix.Board;
-import com.codenjoy.dojo.games.xonix.YourSolver;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.codenjoy.dojo.services.Direction.RIGHT;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class YourSolverTest {
 
-    private Dice dice;
+    private MockDice dice;
     private Solver ai;
 
     @Before
     public void setup() {
-        dice = mock(Dice.class);
+        dice = new MockDice();
         mockDirection(Direction.UP);
         ai = new YourSolver(dice);
     }
@@ -98,6 +93,6 @@ public class YourSolverTest {
     }
 
     private void mockDirection(Direction direction) {
-        when(dice.next(anyInt())).thenReturn(direction.value());
+        dice.then(direction.value());
     }
 }

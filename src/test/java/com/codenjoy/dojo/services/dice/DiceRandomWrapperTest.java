@@ -22,25 +22,20 @@ package com.codenjoy.dojo.services.dice;
  * #L%
  */
 
-import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.dice.DiceRandomWrapper;
 import org.junit.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
 
 public class DiceRandomWrapperTest {
 
     @Test
     public void test() {
         // given
-        Dice dice = mock(Dice.class);
+        MockDice dice = new MockDice();
         Random random = new DiceRandomWrapper(dice);
-        when(dice.next(anyInt())).thenReturn(24);
+        dice.then(24);
 
         // when then
         assertEquals(-1155484576, random.nextInt());
