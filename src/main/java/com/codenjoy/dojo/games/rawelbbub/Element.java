@@ -216,6 +216,7 @@ public enum Element implements CharElement, TeamElement {
     }
 
     private static void transformDestroy(Element from, Direction direction, Element to) {
+        // TODO do not use map.containsKey just check that map.get() != null
         if (!destroyIceberg.containsKey(from)) {
             destroyIceberg.put(from, new LinkedHashMap<>());
         }
