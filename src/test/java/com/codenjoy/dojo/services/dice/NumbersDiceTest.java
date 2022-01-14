@@ -58,7 +58,10 @@ public class NumbersDiceTest {
         List<Integer> list = list(1, 2, 3, 4, 5);
         
         // when 
-        dice.will(() -> next(list));
+        dice.will(max -> {
+            assertEquals(Integer.valueOf(100), max);
+            return next(list);
+        });
 
         // then
         assertEquals(1, dice.next(100));

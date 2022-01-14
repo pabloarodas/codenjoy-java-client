@@ -59,7 +59,10 @@ public class MockDiceTest {
         List<Integer> list = list(1, 2, 3, 4, 5);
 
         // when
-        dice.then(() -> next(list));
+        dice.then(max -> {
+            assertEquals(Integer.valueOf(100), max);
+            return next(list);
+        });
 
         // then
         assertEquals(1, dice.next(100));
@@ -164,10 +167,22 @@ public class MockDiceTest {
         List<Integer> list4 = list(31, 32, 33);
 
         // when
-        dice.then(() -> next(list1));
-        dice.whenThen(101, () -> next(list2));
-        dice.whenThen(102, () -> next(list3));
-        dice.whenThen(103, () -> next(list4));
+        dice.then(max -> {
+            assertEquals(Integer.valueOf(100), max);
+            return next(list1);
+        });
+        dice.whenThen(101, max -> {
+            assertEquals(Integer.valueOf(101), max);
+            return next(list2);
+        });
+        dice.whenThen(102, max -> {
+            assertEquals(Integer.valueOf(102), max);
+            return next(list3);
+        });
+        dice.whenThen(103, max -> {
+            assertEquals(Integer.valueOf(103), max);
+            return next(list4);
+        });
 
         // then
         assertEquals(1, dice.next(100));

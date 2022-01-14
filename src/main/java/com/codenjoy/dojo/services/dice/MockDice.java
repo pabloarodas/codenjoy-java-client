@@ -27,7 +27,7 @@ import com.codenjoy.dojo.services.Dice;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class MockDice implements Dice {
 
@@ -42,7 +42,7 @@ public class MockDice implements Dice {
         whenThen(null, numbers);
     }
 
-    public void then(Supplier<Integer> next) {
+    public void then(Function<Integer, Integer> next) {
         whenThen(null, next);
     }
 
@@ -54,11 +54,11 @@ public class MockDice implements Dice {
         map.put(when, numbers(then));
     }
 
-    public void whenThen(Integer when, Supplier<Integer> next) {
+    public void whenThen(Integer when, Function<Integer, Integer> next) {
         map.put(when, numbers(next));
     }
 
-    private NumbersDice numbers(Supplier<Integer> next) {
+    private NumbersDice numbers(Function<Integer, Integer> next) {
         int defaultValue = 0;
         NumbersDice result = new NumbersDice(defaultValue);
         result.will(next);
@@ -73,10 +73,10 @@ public class MockDice implements Dice {
     }
 
     @Override
-    public int next(int n) {
-        NumbersDice numbers = map.get(n);
+    public int next(int next) {
+        NumbersDice numbers = map.get(next);
         return numbers != null
-                ? numbers.next(n)
-                : def().next(n);
+                ? numbers.next(next)
+                : def().next(next);
     }
 }

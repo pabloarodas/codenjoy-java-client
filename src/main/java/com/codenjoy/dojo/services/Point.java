@@ -33,6 +33,7 @@ import java.util.stream.Stream;
  * realized from of this interface.
  */
 public interface Point extends Comparable<Point> {
+
     /**
      * @return Current X coordinate.
      */
@@ -133,5 +134,20 @@ public interface Point extends Comparable<Point> {
 
     default Stream<Integer> stream() {
         return Arrays.stream(new Integer[]{getX(), getY()});
+    }
+
+    static boolean equals(Object o1, Object o2) {
+        if (o1 == o2) {
+            return true;
+        }
+
+        try {
+            Point pt1 = (Point) o1;
+            Point pt2 = (Point) o2;
+
+            return pt1.itsMe(pt2);
+        } catch (Exception exception) {
+            return false;
+        }
     }
 }

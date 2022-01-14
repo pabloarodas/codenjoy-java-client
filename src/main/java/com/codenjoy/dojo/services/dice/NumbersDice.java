@@ -24,12 +24,12 @@ package com.codenjoy.dojo.services.dice;
 
 import com.codenjoy.dojo.services.Dice;
 
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class NumbersDice implements Dice {
 
     private int defaultValue;
-    private Supplier<Integer> numbers;
+    private Function<Integer, Integer> numbers;
 
     public NumbersDice(int defaultValue) {
         this.numbers = new Numbers();
@@ -40,13 +40,13 @@ public class NumbersDice implements Dice {
         this.numbers = new Numbers(next);
     }
 
-    public void will(Supplier<Integer> next) {
+    public void will(Function<Integer, Integer> next) {
         this.numbers = next;
     }
 
     @Override
-    public int next(int n) {
-        Integer value = numbers.get();
+    public int next(int max) {
+        Integer value = numbers.apply(max);
         if (value == null) {
             return defaultValue;
         }

@@ -48,8 +48,8 @@ public class PointImpl implements Point, Comparable<Point> {
         this(-1, -1);
     }
 
-    public PointImpl(Point point) {
-        this(point.getX(), point.getY());
+    public PointImpl(Point pt) {
+        this(pt.getX(), pt.getY());
     }
 
     public PointImpl(JSONObject json) {
@@ -124,15 +124,7 @@ public class PointImpl implements Point, Comparable<Point> {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
-
-        try {
-            return ((PointImpl)o).itsMe(x, y);
-        } catch (Exception e) {
-            return false;
-        }
+        return Point.equals(this, o);
     }
 
     @Override

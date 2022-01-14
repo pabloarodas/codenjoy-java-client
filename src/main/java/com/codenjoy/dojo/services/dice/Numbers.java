@@ -25,9 +25,9 @@ package com.codenjoy.dojo.services.dice;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-public class Numbers implements Supplier<Integer> {
+public class Numbers implements Function<Integer, Integer> {
 
     private List<Integer> numbers;
 
@@ -40,7 +40,7 @@ public class Numbers implements Supplier<Integer> {
     }
 
     @Override
-    public Integer get() {
+    public Integer apply(Integer max) {
         return numbers.isEmpty()
                 ? null
                 : numbers.remove(0);
