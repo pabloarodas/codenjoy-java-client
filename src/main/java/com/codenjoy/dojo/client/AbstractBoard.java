@@ -167,13 +167,13 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
      *     right-down, right-up) {x,y} point.
      */
     public int countNear(int x, int y, E element) {
-        int count = 0;
+        int result = 0;
 
         for (int layer = 0; layer < countLayers(); ++layer) {
-            count += layer(layer).countNear(x, y, element);
+            result += layer(layer).countNear(x, y, element);
         }
 
-        return count;
+        return result;
     }
 
     public int countNear(Point pt, E element){
