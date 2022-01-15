@@ -43,6 +43,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
 
     protected int size;
     private char[][][] field;
+    private AbstractLayeredBoard.GetLayer[] layers;
     protected JSONObject source;
     protected List<String> layersString = new LinkedList<>();
     private ElementsMap<E> elements;
@@ -65,9 +66,11 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         String board = layers[0].replaceAll("\n", "");
         size = (int) Math.sqrt(board.length());
         field = new char[layers.length][size][size];
+        this.layers = new AbstractLayeredBoard.GetLayer[layers.length];
 
         for (int layer = 0; layer < layers.length; ++layer) {
             board = layers[layer].replaceAll("\n", "");
+            this.layers[layer] = new GetLayer(layer);
 
             char[] temp = board.toCharArray();
             for (int y = 0; y < size; y++) {
@@ -112,8 +115,12 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         return size;
     }
 
+    @PerformanceOptimized
     protected GetLayer layer(int layer) {
-        return new GetLayer(layer);
+        if (layer >= layers.length) {
+            throw new IllegalArgumentException("There are only " + layers.length + " layers");
+        }
+        return layers[layer];
     }
 
     public class GetLayer {
@@ -123,6 +130,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         /**
          * @param layer Layer number (from 0).
          */
+        @PerformanceOptimized
         public GetLayer(int layer) {
             layerField = field[layer];
         }
