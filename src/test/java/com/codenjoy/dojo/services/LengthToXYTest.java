@@ -23,7 +23,6 @@ package com.codenjoy.dojo.services;
  */
 
 
-import com.codenjoy.dojo.services.LengthToXY;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -40,10 +39,10 @@ public class LengthToXYTest {
         assertEquals(5*5 - 1, xy.getLength(4, 0));
         assertEquals(4, xy.getLength(4, 4));
 
-        assertEquals("[0,0]", xy.getXY(xy.getLength(0, 0)).toString());
-        assertEquals("[0,4]", xy.getXY(xy.getLength(0, 4)).toString());
+        assertEquals("[0,0]", xy.point(xy.getLength(0, 0)).toString());
+        assertEquals("[0,4]", xy.point(xy.getLength(0, 4)).toString());
 
-        assertEquals("[4,0]", xy.getXY(xy.getLength(4, 0)).toString());
-        assertEquals("[4,4]", xy.getXY(xy.getLength(4, 4)).toString());
+        assertEquals("[4,0]", xy.point(xy.getLength(4, 0)).toString());
+        assertEquals("[4,4]", xy.point(xy.getLength(4, 4)).toString());
     }
 }
