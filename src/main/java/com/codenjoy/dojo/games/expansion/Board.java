@@ -34,6 +34,7 @@ import java.util.List;
 
 import static com.codenjoy.dojo.games.expansion.Element.*;
 import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER1;
+import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER2;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
@@ -69,14 +70,14 @@ public class Board extends AbstractBoard<Element> {
      * @return All barriers on the map.
      */
     public List<Point> barriers() {
-        return get(LAYER1, barriers);
+        return layer(LAYER1).get(barriers);
     }
 
     /**
      * @return All barriers on the map.
      */
     public List<Point> holes() {
-        return get(LAYER1, HOLE);
+        return layer(LAYER1).get(HOLE);
     }
 
     /**
@@ -85,7 +86,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Is Hole on the way?
      */
     public boolean isHoleAt(int x, int y) {
-        return isAt(LAYER1, x, y, HOLE);
+        return layer(LAYER1).isAt(x, y, HOLE);
     }
 
     /**
@@ -218,7 +219,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible Walls.
      */
     public List<Point> getWalls() {
-        return get(LAYER1,
+        return layer(LAYER1).get(
                 ANGLE_IN_LEFT,
                 Element.WALL_FRONT,
                 ANGLE_IN_RIGHT,
@@ -238,35 +239,35 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible Breaks.
      */
     public List<Point> getBreaks() {
-        return get(LAYER1, Element.BREAK);
+        return layer(LAYER1).get(Element.BREAK);
     }
 
     /**
      * @return Returns list of coordinates for all visible Holes.
      */
     public List<Point> getHoles() {
-        return get(LAYER1, Element.HOLE);
+        return layer(LAYER1).get(Element.HOLE);
     }
 
     /**
      * @return Returns list of coordinates for all visible Exit points.
      */
     public List<Point> getExits() {
-        return get(LAYER1, Element.EXIT);
+        return layer(LAYER1).get(Element.EXIT);
     }
 
     /**
      * @return Returns list of coordinates for all visible Start points.
      */
     public List<Point> getBases() {
-        return get(LAYER1, Element.BASE1, Element.BASE2, Element.BASE3, Element.BASE4);
+        return layer(LAYER1).get(Element.BASE1, Element.BASE2, BASE3, BASE4);
     }
 
     /**
      * @return Returns list of coordinates for all visible Gold.
      */
     public List<Point> getGold() {
-        return get(LAYER1, Element.GOLD);
+        return layer(LAYER1).get(GOLD);
     }
 
     /**
@@ -277,8 +278,8 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public List<Point> getFreeSpaces() {
-        List<Point> empty = get(Element.Layers.LAYER2, Element.EMPTY);
-        List<Point> floor = get(LAYER1, Element.FLOOR);
+        List<Point> empty = layer(LAYER2).get(EMPTY);
+        List<Point> floor = layer(LAYER1).get(FLOOR);
         List<Point> result = new LinkedList<>();
         for (Point pt : floor) {
             for (Point pt2 : empty) {
@@ -309,8 +310,8 @@ public class Board extends AbstractBoard<Element> {
                 "    0    1    2    3    4    5    6    7    8    9" +
                 "    0    1    2    3    4    5    6    7    8    9    0";
 
-        String[] layer1 = boardAsString(LAYER1).split("\n");
-        String[] layer2 = boardAsString(Element.Layers.LAYER2).split("\n");
+        String[] layer1 = layer(LAYER1).boardAsString().split("\n");
+        String[] layer2 = layer(LAYER2).boardAsString().split("\n");
         String[] layer3 = Utils.injectNN(getForcesString()).split("\n");
 
         int[][] array = getForcesArray(getForcesString());

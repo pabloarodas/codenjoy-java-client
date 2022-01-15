@@ -68,7 +68,7 @@ public class AbstractBoardTest {
                 "[1, 2, 3, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 1, 1, 1]]",
-                Arrays.deepToString(board.field(0)));
+                Arrays.deepToString(board.field()));
     }
 
     @Test

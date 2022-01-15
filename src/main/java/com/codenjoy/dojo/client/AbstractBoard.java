@@ -47,7 +47,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
     public List<Point> get(E... elements) {
         List<Point> result = new LinkedList<>();
         for (int layer = 0; layer < countLayers(); ++layer) {
-            result.addAll(get(layer, elements));
+            result.addAll(layer(layer).get(elements));
         }
         return result;
     }
@@ -58,7 +58,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
      */
     public Point getFirst(E... elements) {
         for (int layer = 0; layer < countLayers(); ++layer) {
-            Point pt = getFirst(layer, elements);
+            Point pt = layer(layer).getFirst(elements);
             if (pt != null) {
                 return pt;
             }
@@ -71,9 +71,8 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         List<E> at = getAllAt(x, y);
         if (at.isEmpty()) {
             return null;
-        } else {
-            return at.get(0);
         }
+        return at.get(0);
     }
 
     public E getAt(Point pt) {
@@ -83,7 +82,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
     public List<E> getAllAt(int x, int y) {
         List<E> result = new LinkedList<>();
         for (int layer = 0; layer < countLayers(); ++layer) {
-            result.add(getAt(layer, x, y));
+            result.add(layer(layer).getAt(x, y));
         }
         return result;
     }
@@ -91,7 +90,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
     protected List<Character> field(int x, int y) {
         return new LinkedList<>(){{
             for (int layer = 0; layer < countLayers(); ++layer) {
-                add(field(layer, x, y));                
+                add(layer(layer).field(x, y));
             }             
         }};
     }
@@ -106,7 +105,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
             if (layer > 0) {
                 result.append('\n');
             }
-            result.append(boardAsString(layer));
+            result.append(layer(layer).boardAsString());
         }
         return result.toString();
     }
@@ -125,7 +124,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         }
 
         for (int layer = 0; layer < countLayers(); ++layer) {
-            E found = getAt(layer, x, y);
+            E found = layer(layer).getAt(x, y);
             for (E element : elements) {
                 if (isEquals(found, element)) {
                     return true;
@@ -148,7 +147,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
      */
     public boolean isNear(int x, int y, E element) {
         for (int layer = 0; layer < countLayers(); ++layer) {
-            if (isNear(layer, x, y, element)) {
+            if (layer(layer).isNear(x, y, element)) {
                 return true;
             }
         }
@@ -171,7 +170,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         int count = 0;
 
         for (int layer = 0; layer < countLayers(); ++layer) {
-            count += countNear(layer, x, y, element);
+            count += layer(layer).countNear(x, y, element);
         }
 
         return count;
@@ -191,7 +190,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         List<E> result = new LinkedList<>();
 
         for (int layer = 0; layer < countLayers(); ++layer) {
-            result.addAll(getNear(layer, x, y));
+            result.addAll(layer(layer).getNear(x, y));
         }
 
         return result;
@@ -202,11 +201,11 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
     }
 
     public void set(int x, int y, char ch) {
-        set(0, x, y, ch);
+        layer(0).set(x, y, ch);
     }
 
     // TODO используется только в 2048.AISolver попробовать убрать оттуда и инкапсулировать поле
     public char[][] field() {
-        return field(0);
+        return layer(0).field();
     }
 }

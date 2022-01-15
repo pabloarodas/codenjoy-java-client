@@ -59,8 +59,8 @@ public class Board extends AbstractBoard<Element> {
      * @return Is it possible to go through the cell with {x,y} coordinates.
      */
     public boolean isBarrierAt(int x, int y) {
-        return !isAt(LAYER1, x, y, FLOOR, START, EXIT, GOLD, HOLE)
-                || !isAt(LAYER2, x, y, EMPTY, GOLD,
+        return !layer(LAYER1).isAt(x, y, FLOOR, START, EXIT, GOLD, HOLE)
+                || !layer(LAYER2).isAt(x, y, EMPTY, GOLD,
                         LASER_DOWN, LASER_UP, LASER_LEFT, LASER_RIGHT,
                         ROBO_OTHER, ROBO_OTHER_FLYING, ROBO_OTHER_FALLING, ROBO_OTHER_LASER,
                         ROBO, ROBO_FLYING, ROBO_FALLING, ROBO_LASER);
@@ -72,7 +72,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Is Hole on the way?
      */
     public boolean isHoleAt(int x, int y) {
-        return isAt(LAYER1, x, y, HOLE);
+        return layer(LAYER1).isAt(x, y, HOLE);
     }
 
     /**
@@ -80,12 +80,12 @@ public class Board extends AbstractBoard<Element> {
      */
     public Point getHero() {
         List<Point> points = new LinkedList<>() {{
-            addAll(Board.this.get(LAYER2,
-                    ROBO_FALLING,
-                    ROBO_LASER,
-                    ROBO));
-            addAll(Board.this.get(LAYER3,
-                    ROBO_FLYING));
+            addAll(Board.this.layer(LAYER2)
+                    .get(ROBO_FALLING,
+                            ROBO_LASER,
+                            ROBO));
+            addAll(Board.this.layer(LAYER3).
+                    get(ROBO_FLYING));
         }};
 
         if (points.isEmpty()) {
@@ -98,13 +98,13 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible enemy Robots.
      */
     public List<Point> getOtherHeroes() {
-        return new LinkedList<Point>(){{
-            addAll(Board.this.get(LAYER2,
-                    ROBO_OTHER_FALLING,
-                    ROBO_OTHER_LASER,
-                    ROBO_OTHER));
-            addAll(Board.this.get(LAYER2,
-                    ROBO_OTHER_FLYING));
+        return new LinkedList<>(){{
+            addAll(Board.this.layer(LAYER2)
+                    .get(ROBO_OTHER_FALLING,
+                        ROBO_OTHER_LASER,
+                        ROBO_OTHER));
+            addAll(Board.this.layer(LAYER2)
+                    .get(ROBO_OTHER_FLYING));
         }};
     }
 
@@ -112,7 +112,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible LaserMachines.
      */
     public List<Point> getLaserMachines() {
-        return get(LAYER1,
+        return layer(LAYER1).get(
                 LASER_MACHINE_CHARGING_LEFT,
                 LASER_MACHINE_CHARGING_RIGHT,
                 LASER_MACHINE_CHARGING_UP,
@@ -128,7 +128,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible Lasers.
      */
     public List<Point> getLasers() {
-        return get(LAYER2,
+        return layer(LAYER2).get(
                 LASER_LEFT,
                 LASER_RIGHT,
                 LASER_UP,
@@ -139,7 +139,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible Walls.
      */
     public List<Point> getWalls() {
-        return get(LAYER1,
+        return layer(LAYER1).get(
                 ANGLE_IN_LEFT,
                 WALL_FRONT,
                 ANGLE_IN_RIGHT,
@@ -159,15 +159,14 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible Boxes.
      */
     public List<Point> getBoxes() {
-        return get(LAYER2,
-                BOX);
+        return layer(LAYER2).get(BOX);
     }
 
     /**
      * @return Returns list of coordinates for all visible Holes.
      */
     public List<Point> getHoles() {
-        return get(LAYER1,
+        return layer(LAYER1).get(
                 HOLE,
                 ROBO_FALLING,
                 ROBO_OTHER_FALLING);
@@ -188,28 +187,28 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible Exit points.
      */
     public List<Point> getExits() {
-        return get(LAYER1, EXIT);
+        return layer(LAYER1).get(EXIT);
     }
 
     /**
      * @return Returns list of coordinates for all visible Start points.
      */
     public List<Point> getStarts() {
-        return get(LAYER1, START);
+        return layer(LAYER1).get(START);
     }
 
     /**
      * @return Returns list of coordinates for all visible Gold.
      */
     public List<Point> getGold() {
-        return get(LAYER1, GOLD);
+        return layer(LAYER1).get(GOLD);
     }
 
     /**
      * @return Returns list of coordinates for all visible Zombies (even die).
      */
     public List<Point> getZombies() {
-        return get(LAYER2,
+        return layer(LAYER2).get(
                 FEMALE_ZOMBIE,
                 MALE_ZOMBIE,
                 ZOMBIE_DIE);
@@ -219,7 +218,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all perks.
      */
     public List<Point> getPerks() {
-        return get(LAYER1,
+        return layer(LAYER1).get(
                 UNSTOPPABLE_LASER_PERK,
                 DEATH_RAY_PERK,
                 UNLIMITED_FIRE_PERK,
@@ -232,7 +231,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Checks if your robot is alive.
      */
     public boolean isMeAlive() {
-        return get(LAYER2, ROBO_FALLING, ROBO_LASER).isEmpty();
+        return layer(LAYER2).get(ROBO_FALLING, ROBO_LASER).isEmpty();
     }
 
     public String maskOverlay(String source, String mask) {
@@ -252,9 +251,9 @@ public class Board extends AbstractBoard<Element> {
         String temp = "0123456789012345678901234567890";
 
         StringBuilder builder = new StringBuilder();
-        String[] layer1 = boardAsString(LAYER1).split("\n");
-        String[] layer2 = boardAsString(LAYER2).split("\n");
-        String[] layer3 = boardAsString(LAYER3).split("\n");
+        String[] layer1 = layer(LAYER1).boardAsString().split("\n");
+        String[] layer2 = layer(LAYER2).boardAsString().split("\n");
+        String[] layer3 = layer(LAYER3).boardAsString().split("\n");
 
         String numbers = temp.substring(0, layer1.length);
         String space = StringUtils.leftPad("", layer1.length - 5);

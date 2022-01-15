@@ -66,14 +66,14 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         size = (int) Math.sqrt(board.length());
         field = new char[layers.length][size][size];
 
-        for (int i = 0; i < layers.length; ++i) {
-            board = layers[i].replaceAll("\n", "");
+        for (int layer = 0; layer < layers.length; ++layer) {
+            board = layers[layer].replaceAll("\n", "");
 
             char[] temp = board.toCharArray();
             for (int y = 0; y < size; y++) {
                 int dy = y * size;
                 for (int x = 0; x < size; x++) {
-                    field[i][inversionX(x)][inversionY(y)] = temp[dy + x];
+                    field[layer][inversionX(x)][inversionY(y)] = temp[dy + x];
                 }
             }
         }
@@ -89,6 +89,18 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         return y;
     }
 
+    /**
+     * Метод уточняет, что являетсяся оперделением "вокруг" героя.
+     * @return true - если стоит не учитывать диагональные углы.
+     */
+    protected boolean withoutCorners() {
+        return false;
+    }
+
+    protected boolean isEquals(E e1, E e2) {
+        return e1 == e2;
+    }
+
     @PerformanceOptimized
     public E valueOf(char ch) {
         return elements.get(ch);
@@ -100,206 +112,201 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         return size;
     }
 
-    private void getAnd(Function<Point, Boolean> function, int numLayer, E... elements) {
-        for (int x = 0; x < size; x++) {
-            for (int y = 0; y < size; y++) {
-                E value = fieldElement(numLayer, x, y);
-                for (E element : elements) {
-                    if (isEquals(value, element)) {
-                        if (!function.apply(pt(x, y))) return;
+    protected GetLayer layer(int layer) {
+        return new GetLayer(layer);
+    }
+
+    public class GetLayer {
+
+        private char[][] layerField;
+
+        /**
+         * @param layer Layer number (from 0).
+         */
+        public GetLayer(int layer) {
+            layerField = field[layer];
+        }
+
+        public E fieldElement(int x, int y) {
+            return valueOf(layerField[x][y]);
+        }
+
+        private void getAnd(Function<Point, Boolean> function, E... elements) {
+            for (int x = 0; x < size; x++) {
+                for (int y = 0; y < size; y++) {
+                    E value = fieldElement(x, y);
+                    for (E element : elements) {
+                        if (isEquals(value, element)) {
+                            if (!function.apply(pt(x, y))) return;
+                        }
                     }
                 }
             }
         }
-    }
 
-    /**
-     * @param numLayer Layer number (from 0).
-     * @param elements List of elements that we try to find.
-     * @return All positions of element specified.
-     */
-    protected List<Point> get(int numLayer, E... elements) {
-        List<Point> result = new LinkedList<>();
-        getAnd(pt -> { result.add(pt); return true; }, numLayer, elements);
-        return result;
-    }
+        /**
+         * @param elements List of elements that we try to find.
+         * @return All positions of element specified.
+         */
+        public List<Point> get(E... elements) {
+            List<Point> result = new LinkedList<>();
+            getAnd(pt -> { result.add(pt); return true; }, elements);
+            return result;
+        }
 
-    /**
-     * @param numLayer Layer number (from 0).
-     * @param elements List of elements that we try to find.
-     * @return First found position of element specified.
-     */
-    protected Point getFirst(int numLayer, E... elements) {
-        AtomicReference<Point> result = new AtomicReference<>();
-        getAnd(pt -> { result.set(pt); return false; }, numLayer, elements);
-        return result.get();
-    }
+        /**
+         * @param elements List of elements that we try to find.
+         * @return First found position of element specified.
+         */
+        public Point getFirst(E... elements) {
+            AtomicReference<Point> result = new AtomicReference<>();
+            getAnd(pt -> { result.set(pt); return false; }, elements);
+            return result.get();
+        }
 
-    /**
-     * Says if at given position (X, Y) at given layer has given element.
-     *
-     * @param numLayer Layer number (from 0).
-     * @param x        X coordinate.
-     * @param y        Y coordinate.
-     * @param element  Element that we try to detect on this point.
-     * @return true is element was found.
-     */
-    protected boolean isAt(int numLayer, int x, int y, E element) {
-        if (isOutOf(x, y)) {
+        /**
+         * Says if at given position (X, Y) at given layer has given element.
+         *
+         * @param x        X coordinate.
+         * @param y        Y coordinate.
+         * @param element  Element that we try to detect on this point.
+         * @return true is element was found.
+         */
+        public boolean isAt(int x, int y, E element) {
+            if (isOutOf(x, y)) {
+                return false;
+            }
+            return isEquals(getAt(x, y), element);
+        }
+
+        /**
+         * @param x        X coordinate.
+         * @param y        Y coordinate.
+         * @return Returns element at position specified.
+         */
+        public E getAt(int x, int y) {
+            return fieldElement(x, y);
+        }
+
+        public char field(int x, int y) {
+            return layerField[x][y];
+        }
+
+        public String boardAsString() {
+            StringBuilder result = new StringBuilder();
+            for (int y = 0; y < size; y++) {
+                for (int x = 0; x < size; x++) {
+                    result.append(field(inversionX(x), inversionY(y)));
+                }
+                result.append("\n");
+            }
+            return result.toString();
+        }
+
+        /**
+         * Says if at given position (X, Y) at given layer has given elements.
+         *
+         * @param x        X coordinate.
+         * @param y        Y coordinate.
+         * @param elements List of elements that we try to detect on this point.
+         * @return true is any of this elements was found.
+         */
+        public boolean isAt(int x, int y, E... elements) {
+            for (E element : elements) {
+                if (isAt(x, y, element)) {
+                    return true;
+                }
+            }
             return false;
         }
-        return isEquals(getAt(numLayer, x, y), element);
-    }
 
-    protected boolean isEquals(E e1, E e2) {
-        return e1 == e2;
-    }
-
-    /**
-     * @param numLayer Layer number (from 0).
-     * @param x        X coordinate.
-     * @param y        Y coordinate.
-     * @return Returns element at position specified.
-     */
-    protected E getAt(int numLayer, int x, int y) {
-        return fieldElement(numLayer, x, y);
-    }
-
-    protected E fieldElement(int numLayer, int x, int y) {
-        return valueOf(field[numLayer][x][y]);
-    }
-
-    protected char field(int numLayer, int x, int y) {
-        return field[numLayer][x][y];
-    }
-
-    protected String boardAsString(int numLayer) {
-        StringBuilder result = new StringBuilder();
-        for (int y = 0; y < size; y++) {
-            for (int x = 0; x < size; x++) {
-                result.append(field(numLayer, inversionX(x), inversionY(y)));
+        /**
+         * Says if near (at left, right, down, up,
+         * left-down, left-up, right-down, right-up)
+         * given position (X, Y) at given layer exists given element.
+         *
+         * @param x        X coordinate.
+         * @param y        Y coordinate.
+         * @param element  Element that we try to detect on near point.
+         * @return true is element was found.
+         */
+        public boolean isNear(int x, int y, E element) {
+            if (isOutOf(x, y)) {
+                return false;
             }
-            result.append("\n");
+            return countNear(x, y, element) > 0;
         }
-        return result.toString();
+
+        /**
+         * @param x        X coordinate.
+         * @param y        Y coordinate.
+         * @param element  Element that we try to detect on near point.
+         * @return Returns count of elements with type specified near
+         * (at left, right, down, up,
+         * left-down, left-up, right-down, right-up) {x,y} point.
+         */
+        public int countNear(int x, int y, E element) {
+            if (isOutOf(x, y)) {
+                return 0;
+            }
+            return (int) getNear(x, y).stream()
+                    .filter( it -> isEquals(it, element))
+                    .count();
+        }
+
+        /**
+         * @param x        X coordinate.
+         * @param y        Y coordinate.
+         * @return All elements around
+         * (at left, right, down, up,
+         * left-down, left-up, right-down, right-up) position.
+         */
+        public List<E> getNear(int x, int y) {
+            List<E> result = new LinkedList<>();
+
+            int radius = 1;
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dy = -radius; dy <= radius; dy++) {
+                    if (isOutOf(x + dx, y + dy)) {
+                        continue;
+                    }
+                    if (dx == 0 && dy == 0) {
+                        continue;
+                    }
+                    if (withoutCorners() && (dx != 0 && dy != 0)) {
+                        continue;
+                    }
+                    result.add(getAt(x + dx, y + dy));
+                }
+            }
+
+            return result;
+        }
+
+        public void set(int x, int y, char ch) {
+            layerField[x][y] = ch;
+        }
+
+        public char[][] field() {
+            return layerField;
+        }
     }
 
-    protected int countLayers() {
+    public int countLayers() {
         return field.length;
     }
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder("Board:");
-        for (int i = 0; i < countLayers(); i++) {
-            result.append("\n").append(boardAsString(i));
+        for (int layer = 0; layer < countLayers(); layer++) {
+            result.append("\n").append(layer(layer).boardAsString());
         }
         return result.toString();
     }
 
-    /**
-     * Says if at given position (X, Y) at given layer has given elements.
-     *
-     * @param numLayer Layer number (from 0).
-     * @param x        X coordinate.
-     * @param y        Y coordinate.
-     * @param elements List of elements that we try to detect on this point.
-     * @return true is any of this elements was found.
-     */
-    protected boolean isAt(int numLayer, int x, int y, E... elements) {
-        for (E element : elements) {
-            if (isAt(numLayer, x, y, element)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Says if near (at left, right, down, up,
-     * left-down, left-up, right-down, right-up)
-     * given position (X, Y) at given layer exists given element.
-     *
-     * @param numLayer Layer number (from 0).
-     * @param x        X coordinate.
-     * @param y        Y coordinate.
-     * @param element  Element that we try to detect on near point.
-     * @return true is element was found.
-     */
-    protected boolean isNear(int numLayer, int x, int y, E element) {
-        if (isOutOf(x, y)) {
-            return false;
-        }
-		return countNear(numLayer, x, y, element) > 0;
-    }
-
-
-    /**
-     * @param numLayer Layer number (from 0).
-     * @param x        X coordinate.
-     * @param y        Y coordinate.
-     * @param element  Element that we try to detect on near point.
-     * @return Returns count of elements with type specified near
-     * (at left, right, down, up,
-     * left-down, left-up, right-down, right-up) {x,y} point.
-     */
-    protected int countNear(int numLayer, int x, int y, E element) {
-        if (isOutOf(x, y)) {
-            return 0;
-        }
-        return (int) getNear(numLayer, x, y).stream()
-                .filter( it -> isEquals(it, element))
-                .count();
-    }
-
-    /**
-     * @param numLayer Layer number (from 0).
-     * @param x        X coordinate.
-     * @param y        Y coordinate.
-     * @return All elements around
-     * (at left, right, down, up,
-     * left-down, left-up, right-down, right-up) position.
-     */
-    protected List<E> getNear(int numLayer, int x, int y) {
-        List<E> result = new LinkedList<>();
-
-        int radius = 1;
-        for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -radius; dy <= radius; dy++) {
-                if (isOutOf(x + dx, y + dy)) {
-                    continue;
-                }
-                if (dx == 0 && dy == 0) {
-                    continue;
-                }
-                if (withoutCorners() && (dx != 0 && dy != 0)) {
-                    continue;
-                }
-                result.add(getAt(numLayer, x + dx, y + dy));
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Метод уточняет, что являетсяся оперделением "вокруг" героя.
-     * @return true - если стоит не учитывать диагональные углы.
-     */
-    protected boolean withoutCorners() {
-        return false;
-    }
-
     public boolean isOutOf(int x, int y) {
         return Point.isOutOf(x, y, size);
-    }
-
-    protected void set(int numLayer, int x, int y, char ch) {
-        field[numLayer][x][y] = ch;
-    }
-
-    protected char[][] field(int numLayer) {
-        return field[numLayer];
     }
 
     public List<String> getLayersString() {

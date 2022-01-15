@@ -78,7 +78,7 @@ public class AbstractBoardWithSeveralLayersTest {
                 "[1, 2, 3, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 1, 1, 1]]",
-                Arrays.deepToString(board.field(0)));
+                Arrays.deepToString(board.field()));
     }
 
     @Test
@@ -238,7 +238,7 @@ public class AbstractBoardWithSeveralLayersTest {
                 board.get(THREE).toString());
 
         // when
-        board.set(0, 1, 1, THREE.ch());
+        board.layer(0).set(1, 1, THREE.ch());
 
         // then
         assertEquals("[[1,1], [1,2], [2,2]]",
@@ -252,7 +252,7 @@ public class AbstractBoardWithSeveralLayersTest {
                 board.get(THREE).toString());
 
         // when
-        board.set(1, 1, 1, THREE.ch());
+        board.layer(1).set(1, 1, THREE.ch());
 
         // then
         assertEquals("[[1,2], [2,2], [1,1]]", // TODO think about order

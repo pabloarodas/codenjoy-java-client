@@ -27,8 +27,6 @@ import com.codenjoy.dojo.client.AbstractBoard;
 
 public class Board extends AbstractBoard<Element> {
 
-    private static final int LAYER1 = 0;
-
     @Override
     public Element[] elements() {
         return Element.values();
@@ -39,11 +37,10 @@ public class Board extends AbstractBoard<Element> {
         StringBuilder result = new StringBuilder();
         for (int y = 0; y < size - 3; y++) {
             for (int x = 0; x < size; x++) {
-                result.append(field(LAYER1, x, y));
+                result.append(field(x, y));
             }
             result.append("\n");
         }
         return result.toString();
     }
-
 }
