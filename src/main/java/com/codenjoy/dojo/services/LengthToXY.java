@@ -74,7 +74,7 @@ public class LengthToXY { // TODO есть точно такой же в com.cod
         }
 
         public boolean isOutOf(int x, int y) {
-            return pt(x, y).isOutOf(getSize());
+            return Point.isOutOf(x, y, size);
         }
 
         public String getMap() {

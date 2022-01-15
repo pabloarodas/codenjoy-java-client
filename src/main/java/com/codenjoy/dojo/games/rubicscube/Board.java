@@ -39,7 +39,7 @@ public class Board extends AbstractBoard<Element> {
         StringBuffer result = new StringBuffer();
         for (int y = 0; y < size - 3; y++) {
             for (int x = 0; x < size; x++) {
-                result.append(field[LAYER1][x][y]);
+                result.append(field(LAYER1, x, y));
             }
             result.append("\n");
         }

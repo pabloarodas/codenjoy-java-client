@@ -208,7 +208,6 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
     }
 
     public char[][] getField() {
-        return field[0];
+        return getField(0);
     }
-
 }

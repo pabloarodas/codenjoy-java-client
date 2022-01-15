@@ -42,7 +42,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
     public static final String LAYERS = "layers";
 
     protected int size;
-    protected char[][][] field;
+    private char[][][] field;
     protected JSONObject source;
     protected List<String> layersString = new LinkedList<>();
     private ElementsMap<E> elements;
