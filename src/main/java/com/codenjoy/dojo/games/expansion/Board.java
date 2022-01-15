@@ -32,6 +32,8 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.codenjoy.dojo.games.expansion.Element.*;
+import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER1;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
@@ -60,28 +62,21 @@ public class Board extends AbstractBoard<Element> {
      * @return Is it possible to go through the cell with {x,y} coordinates.
      */
     public boolean isBarrierAt(int x, int y) {
-        return barriers().contains(pt(x, y));
+        return isAt(x, y, barriers);
     }
 
     /**
      * @return All barriers on the map.
      */
     public List<Point> barriers() {
-        return get(Element.Layers.LAYER1,
-                Element.SPACE, Element.BREAK,
-                Element.ANGLE_IN_LEFT, Element.WALL_FRONT,
-                Element.ANGLE_IN_RIGHT, Element.WALL_RIGHT, Element.ANGLE_BACK_RIGHT,
-                Element.WALL_BACK, Element.ANGLE_BACK_LEFT, Element.WALL_LEFT,
-                Element.WALL_BACK_ANGLE_LEFT, Element.WALL_BACK_ANGLE_RIGHT,
-                Element.ANGLE_OUT_RIGHT, Element.ANGLE_OUT_LEFT);
+        return get(LAYER1, barriers);
     }
 
     /**
      * @return All barriers on the map.
      */
     public List<Point> holes() {
-        return get(Element.Layers.LAYER1,
-                Element.HOLE);
+        return get(LAYER1, HOLE);
     }
 
     /**
@@ -90,7 +85,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Is Hole on the way?
      */
     public boolean isHoleAt(int x, int y) {
-        return isAt(Element.Layers.LAYER1, x, y, Element.HOLE);
+        return isAt(LAYER1, x, y, HOLE);
     }
 
     /**
@@ -223,10 +218,10 @@ public class Board extends AbstractBoard<Element> {
      * @return Returns list of coordinates for all visible Walls.
      */
     public List<Point> getWalls() {
-        return get(Element.Layers.LAYER1,
-                Element.ANGLE_IN_LEFT,
+        return get(LAYER1,
+                ANGLE_IN_LEFT,
                 Element.WALL_FRONT,
-                Element.ANGLE_IN_RIGHT,
+                ANGLE_IN_RIGHT,
                 Element.WALL_RIGHT,
                 Element.ANGLE_BACK_RIGHT,
                 Element.WALL_BACK,
@@ -236,42 +231,42 @@ public class Board extends AbstractBoard<Element> {
                 Element.WALL_BACK_ANGLE_RIGHT,
                 Element.ANGLE_OUT_RIGHT,
                 Element.ANGLE_OUT_LEFT,
-                Element.SPACE);
+                SPACE);
     }
 
     /**
      * @return Returns list of coordinates for all visible Breaks.
      */
     public List<Point> getBreaks() {
-        return get(Element.Layers.LAYER1, Element.BREAK);
+        return get(LAYER1, Element.BREAK);
     }
 
     /**
      * @return Returns list of coordinates for all visible Holes.
      */
     public List<Point> getHoles() {
-        return get(Element.Layers.LAYER1, Element.HOLE);
+        return get(LAYER1, Element.HOLE);
     }
 
     /**
      * @return Returns list of coordinates for all visible Exit points.
      */
     public List<Point> getExits() {
-        return get(Element.Layers.LAYER1, Element.EXIT);
+        return get(LAYER1, Element.EXIT);
     }
 
     /**
      * @return Returns list of coordinates for all visible Start points.
      */
     public List<Point> getBases() {
-        return get(Element.Layers.LAYER1, Element.BASE1, Element.BASE2, Element.BASE3, Element.BASE4);
+        return get(LAYER1, Element.BASE1, Element.BASE2, Element.BASE3, Element.BASE4);
     }
 
     /**
      * @return Returns list of coordinates for all visible Gold.
      */
     public List<Point> getGold() {
-        return get(Element.Layers.LAYER1, Element.GOLD);
+        return get(LAYER1, Element.GOLD);
     }
 
     /**
@@ -283,7 +278,7 @@ public class Board extends AbstractBoard<Element> {
 
     public List<Point> getFreeSpaces() {
         List<Point> empty = get(Element.Layers.LAYER2, Element.EMPTY);
-        List<Point> floor = get(Element.Layers.LAYER1, Element.FLOOR);
+        List<Point> floor = get(LAYER1, Element.FLOOR);
         List<Point> result = new LinkedList<>();
         for (Point pt : floor) {
             for (Point pt2 : empty) {
@@ -299,7 +294,7 @@ public class Board extends AbstractBoard<Element> {
         StringBuilder result = new StringBuilder(source);
         for (int i = 0; i < result.length(); ++i) {
             Element el = valueOf(mask.charAt(i));
-            if (Element.isWall(el)) {
+            if (el.isWall()) {
                 result.setCharAt(i, el.ch());
             }
         }
@@ -314,7 +309,7 @@ public class Board extends AbstractBoard<Element> {
                 "    0    1    2    3    4    5    6    7    8    9" +
                 "    0    1    2    3    4    5    6    7    8    9    0";
 
-        String[] layer1 = boardAsString(Element.Layers.LAYER1).split("\n");
+        String[] layer1 = boardAsString(LAYER1).split("\n");
         String[] layer2 = boardAsString(Element.Layers.LAYER2).split("\n");
         String[] layer3 = Utils.injectNN(getForcesString()).split("\n");
 

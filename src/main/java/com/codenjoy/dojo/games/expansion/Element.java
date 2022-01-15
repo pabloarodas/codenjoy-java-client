@@ -25,10 +25,6 @@ package com.codenjoy.dojo.games.expansion;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Hashtable;
-
 import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER1;
 import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER2;
 
@@ -154,9 +150,9 @@ public enum Element implements CharElement {
         return layer;
     }
 
-    // TODO duplicate logic with ElementsMapper but we cant add it to client because a lot of dependencies
-    public static boolean isWall(Element el) {
-        return Arrays.asList(ANGLE_IN_LEFT,
+    public boolean isWall() {
+        return is(
+                ANGLE_IN_LEFT,
                 WALL_FRONT,
                 ANGLE_IN_RIGHT,
                 WALL_RIGHT,
@@ -168,7 +164,24 @@ public enum Element implements CharElement {
                 WALL_BACK_ANGLE_RIGHT,
                 ANGLE_OUT_RIGHT,
                 ANGLE_OUT_LEFT,
-                SPACE).contains(el);
+                SPACE);
     }
+
+    public static final Element[] barriers = new Element[] {
+            SPACE,
+            BREAK,
+            ANGLE_IN_LEFT,
+            WALL_FRONT,
+            ANGLE_IN_RIGHT,
+            WALL_RIGHT,
+            ANGLE_BACK_RIGHT,
+            WALL_BACK,
+            ANGLE_BACK_LEFT,
+            WALL_LEFT,
+            WALL_BACK_ANGLE_LEFT,
+            WALL_BACK_ANGLE_RIGHT,
+            ANGLE_OUT_RIGHT,
+            ANGLE_OUT_LEFT,
+    };
 
 }
