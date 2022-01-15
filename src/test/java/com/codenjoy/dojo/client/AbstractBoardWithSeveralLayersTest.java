@@ -72,13 +72,13 @@ public class AbstractBoardWithSeveralLayersTest {
     }
 
     @Test
-    public void shouldWork_getField() {
+    public void shouldWork_field() {
         assertEquals(
                 "[[1, 1, 1, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 1, 1, 1]]",
-                Arrays.deepToString(board.getField(0)));
+                Arrays.deepToString(board.field(0)));
     }
 
     @Test

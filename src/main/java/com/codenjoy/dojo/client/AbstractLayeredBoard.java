@@ -295,7 +295,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         field[numLayer][x][y] = ch;
     }
 
-    protected char[][] getField(int numLayer) {
+    protected char[][] field(int numLayer) {
         return field[numLayer];
     }
 

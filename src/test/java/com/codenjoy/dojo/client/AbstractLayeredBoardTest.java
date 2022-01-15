@@ -102,21 +102,21 @@ public class AbstractLayeredBoardTest {
                 "[1, 2, 3, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 1, 1, 1]]",
-                Arrays.deepToString(board.getField(LAYER_1)));
+                Arrays.deepToString(board.field(LAYER_1)));
 
         assertEquals(
                 "[[ ,  ,  ,  ], " +
                 "[ , 4,  ,  ], " +
                 "[ ,  , 4,  ], " +
                 "[ ,  ,  ,  ]]",
-                Arrays.deepToString(board.getField(LAYER_2)));
+                Arrays.deepToString(board.field(LAYER_2)));
 
         assertEquals(
                 "[[ ,  ,  ,  ], " +
                 "[ ,  , 5,  ], " +
                 "[ , 5,  ,  ], " +
                 "[ ,  ,  ,  ]]",
-                Arrays.deepToString(board.getField(LAYER_3)));
+                Arrays.deepToString(board.field(LAYER_3)));
     }
 
     @Test
@@ -154,20 +154,20 @@ public class AbstractLayeredBoardTest {
     }
 
     @Test
-    public void shouldWork_getField() {
+    public void shouldWork_field() {
         assertEquals(
                 "[[1, 1, 1, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 1, 1, 1]]",
-                Arrays.deepToString(board.getField(LAYER_1)));
+                Arrays.deepToString(board.field(LAYER_1)));
 
         assertEquals(
                 "[[ ,  ,  ,  ], " +
                 "[ , 4,  ,  ], " +
                 "[ ,  , 4,  ], " +
                 "[ ,  ,  ,  ]]",
-                Arrays.deepToString(board.getField(LAYER_2)));
+                Arrays.deepToString(board.field(LAYER_2)));
     }
 
     @Test
