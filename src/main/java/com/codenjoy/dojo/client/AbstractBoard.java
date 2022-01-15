@@ -205,6 +205,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         set(0, x, y, ch);
     }
 
+    // TODO используется только в 2048.AISolver попробовать убрать оттуда и инкапсулировать поле
     public char[][] field() {
         return field(0);
     }

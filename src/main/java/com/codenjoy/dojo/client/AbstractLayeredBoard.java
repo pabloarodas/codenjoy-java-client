@@ -43,6 +43,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
 
     protected int size;
     private char[][][] field;
+    private CharElement[][][] elementsField;
     protected JSONObject source;
     protected List<String> layersString = new LinkedList<>();
     private ElementsMap<E> elements;
@@ -65,6 +66,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         String board = layers[0].replaceAll("\n", "");
         size = (int) Math.sqrt(board.length());
         field = new char[layers.length][size][size];
+        elementsField = new CharElement[layers.length][size][size];
 
         for (int i = 0; i < layers.length; ++i) {
             board = layers[i].replaceAll("\n", "");
@@ -161,8 +163,28 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         return fieldElement(numLayer, x, y);
     }
 
+    @PerformanceOptimized
     protected E fieldElement(int numLayer, int x, int y) {
-        return valueOf(field[numLayer][x][y]);
+        // метод используется как оптимальная версия получения элемента с кешированием
+        // уже пропаршеных элементов в матрице-зеркале elementsField
+        E result;
+        CharElement[] line = null;
+        // если у нас есть оптимизированные данные в elementsField
+        if (elementsField != null) {
+            // пытаемся оттуда досать элемент, если его уже получали раньше
+            line = elementsField[numLayer][x];
+            E element = (E) line[y];
+            if (element != null) {
+                return element;
+            }
+        }
+        // иначе парсим по старинке
+        result = valueOf(field[numLayer][x][y]);
+        if (elementsField != null) {
+            // ну и сохраняем на будущее
+            line[y] = result;
+        }
+        return result;
     }
 
     protected char field(int numLayer, int x, int y) {
@@ -292,9 +314,14 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
 
     protected void set(int numLayer, int x, int y, char ch) {
         field[numLayer][x][y] = ch;
+        elementsField[numLayer][x][y] = valueOf(ch);
     }
 
     protected char[][] field(int numLayer) {
+        // зануляем, потому что этим методом нарушена инкапсуляция,
+        // а значит в этом случае мы более не можем гарантировать целостность
+        // двух матриц: elementsField и field
+        elementsField = null;
         return field[numLayer];
     }
 
