@@ -26,8 +26,6 @@ package com.codenjoy.dojo.games.verland;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.TeamElement;
 
-import static java.util.Arrays.asList;
-
 public enum Element implements CharElement, TeamElement {
 
 /// Мой герой
@@ -136,39 +134,39 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isHero() {
-        return asList(heroes).contains(this);
+        return  is(heroes);
     }
 
     public boolean isOtherHero() {
-        return asList(otherHeroes).contains(this);
+        return  is(otherHeroes);
     }
 
     public boolean isEnemyHeroes() {
-        return asList(enemyHeroes).contains(this);
+        return  is(enemyHeroes);
     }
 
     public boolean isPathless() {
-        return asList(pathless).contains(this);
+        return  is(pathless);
     }
 
     public boolean isInfections() {
-        return asList(infections).contains(this);
+        return  is(infections);
     }
 
     public boolean isHidden() {
-        return asList(hidden).contains(this);
+        return  is(hidden);
     }
 
     public boolean isContagions() {
-        return asList(contagions).contains(this);
+        return  is(contagions);
     }
 
     public boolean isHealing() {
-        return asList(healing).contains(this);
+        return  is(healing);
     }
 
     public boolean isCure() {
-        return asList(cure).contains(this);
+        return  is(cure);
     }
 
     public static final Element[] heroes = new Element[]{

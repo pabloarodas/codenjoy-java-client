@@ -26,8 +26,6 @@ package com.codenjoy.dojo.games.mollymage;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.TeamElement;
 
-import static java.util.Arrays.asList;
-
 public enum Element implements CharElement, TeamElement {
 
 /// the potions
@@ -143,39 +141,39 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isPotion() {
-        return asList(potions).contains(this);
+        return  is(potions);
     }
 
     public boolean isHero() {
-        return asList(heroes).contains(this);
+        return  is(heroes);
     }
 
     public boolean isEnemyHero() {
-        return asList(enemyHeroes).contains(this);
+        return  is(enemyHeroes);
     }
 
     public boolean isOtherHero() {
-        return asList(otherHeroes).contains(this);
+        return  is(otherHeroes);
     }
 
     public boolean isPerk() {
-        return asList(perks).contains(this);
+        return  is(perks);
     }
 
     public boolean isGhost() {
-        return asList(ghosts).contains(this);
+        return  is(ghosts);
     }
 
     public boolean isWall() {
-        return asList(walls).contains(this);
+        return  is(walls);
     }
 
     public boolean isTreasureBox() {
-        return asList(treasureBoxes).contains(this);
+        return  is(treasureBoxes);
     }
 
     public boolean isBlast() {
-        return asList(blasts).contains(this);
+        return  is(blasts);
     }
 
     public static final Element[] heroes = new Element[]{

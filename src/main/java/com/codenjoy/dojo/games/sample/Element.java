@@ -26,8 +26,6 @@ package com.codenjoy.dojo.games.sample;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.TeamElement;
 
-import static java.util.Arrays.asList;
-
 /**
  * Тут указана легенда всех возможных объектов на поле и их состояний.
  * Важно помнить, что для каждой енумной константы надо создать спрайт в папке \src\main\webapp\resources\sprite.
@@ -75,23 +73,23 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isHero() {
-        return asList(heroes).contains(this);
+        return  is(heroes);
     }
 
     public boolean isOtherHero() {
-        return asList(otherHeroes).contains(this);
+        return  is(otherHeroes);
     }
 
     public boolean isWall() {
-        return asList(walls).contains(this);
+        return  is(walls);
     }
 
     public boolean isGold() {
-        return asList(gold).contains(this);
+        return  is(gold);
     }
 
     public boolean isBomb() {
-        return asList(bombs).contains(this);
+        return  is(bombs);
     }
 
     public static final Element[] heroes = new Element[]{

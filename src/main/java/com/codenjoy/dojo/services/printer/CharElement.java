@@ -37,4 +37,13 @@ public interface CharElement {
     default String info() {
         return StringUtils.EMPTY;
     }
+
+    default boolean is(CharElement... elements) {
+        for (CharElement element : elements) {
+            if (element == this) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

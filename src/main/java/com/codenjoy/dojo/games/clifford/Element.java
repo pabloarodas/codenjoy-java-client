@@ -26,8 +26,6 @@ package com.codenjoy.dojo.games.clifford;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.TeamElement;
 
-import static java.util.Arrays.asList;
-
 public enum Element implements CharElement, TeamElement {
 
 /// Void
@@ -259,59 +257,59 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isClue() {
-        return asList(clues).contains(this);
+        return  is(clues);
     }
 
     public boolean isMaskPotion() {
-        return asList(maskPotions).contains(this);
+        return is(maskPotions);
     }
 
     public boolean isBackWay() {
-        return asList(backWays).contains(this);
+        return is(backWays);
     }
 
     public boolean isLadder() {
-        return asList(ladders).contains(this);
+        return is(ladders);
     }
 
     public boolean isWall() {
-        return asList(walls).contains(this);
+        return  is(walls);
     }
 
     public boolean isHero() {
-        return asList(heroes).contains(this);
+        return  is(heroes);
     }
 
     public boolean isOtherHero() {
-        return asList(otherHeroes).contains(this);
+        return  is(otherHeroes);
     }
 
     public boolean isEnemyHero() {
-        return asList(enemyHeroes).contains(this);
+        return  is(enemyHeroes);
     }
 
     public boolean isRobber() {
-        return asList(robbers).contains(this);
+        return  is(robbers);
     }
 
     public boolean isPipe() {
-        return asList(pipes).contains(this);
+        return  is(pipes);
     }
 
     public boolean isPit() {
-        return asList(pits).contains(this);
+        return  is(pits);
     }
 
     public boolean isBullet() {
-        return asList(bullets).contains(this);
+        return  is(bullets);
     }
 
     public boolean isDoor() {
-        return asList(doors).contains(this);
+        return  is(doors);
     }
 
     public boolean isKey() {
-        return asList(keys).contains(this);
+        return  is(keys);
     }
 
     public static final Element[] clues = new Element[]{
