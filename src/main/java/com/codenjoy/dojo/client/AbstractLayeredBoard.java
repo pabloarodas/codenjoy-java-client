@@ -105,17 +105,12 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
             for (int y = 0; y < size; y++) {
                 for (E element : elements) {
                     E value = fieldElement(numLayer, x, y);
-                    if (equals(value, element)) {
+                    if (value == element) {
                         if (!function.apply(pt(x, y))) return;
                     }
                 }
             }
         }
-    }
-
-    public static boolean equals(Object a, Object b) {
-        return (a == null && b == null)
-                || (a != null && a.equals(b));
     }
 
     /**
