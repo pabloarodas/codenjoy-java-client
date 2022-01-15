@@ -61,7 +61,7 @@ public class LengthToXY {
             xy = new LengthToXY(size);
         }
 
-        public int getSize() {
+        public int size() {
             return size;
         }
 
