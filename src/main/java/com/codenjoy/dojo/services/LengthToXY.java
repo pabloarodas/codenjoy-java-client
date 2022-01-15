@@ -40,7 +40,7 @@ public class LengthToXY {
         return pt(length % size, size - 1 - length / size);
     }
 
-    public int getLength(int x, int y) {
+    public int length(int x, int y) {
         return (size - 1 - y) * size + x;
     }
 
@@ -65,12 +65,12 @@ public class LengthToXY {
         }
 
         public char getAt(int x, int y) {
-            int length = xy.getLength(x, y);
+            int length = xy.length(x, y);
             return map[length];
         }
 
         public char setAt(int x, int y, char ch) {
-            int length = xy.getLength(x, y);
+            int length = xy.length(x, y);
             char old = map[length];
             map[length] = ch;
             return old;

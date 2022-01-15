@@ -33,16 +33,16 @@ public class LengthToXYTest {
     public void test() {
         LengthToXY xy = new LengthToXY(5);
 
-        assertEquals(5*5 - 5, xy.getLength(0, 0));
-        assertEquals(0, xy.getLength(0, 4));
+        assertEquals(5*5 - 5, xy.length(0, 0));
+        assertEquals(0, xy.length(0, 4));
 
-        assertEquals(5*5 - 1, xy.getLength(4, 0));
-        assertEquals(4, xy.getLength(4, 4));
+        assertEquals(5*5 - 1, xy.length(4, 0));
+        assertEquals(4, xy.length(4, 4));
 
-        assertEquals("[0,0]", xy.point(xy.getLength(0, 0)).toString());
-        assertEquals("[0,4]", xy.point(xy.getLength(0, 4)).toString());
+        assertEquals("[0,0]", xy.point(xy.length(0, 0)).toString());
+        assertEquals("[0,4]", xy.point(xy.length(0, 4)).toString());
 
-        assertEquals("[4,0]", xy.point(xy.getLength(4, 0)).toString());
-        assertEquals("[4,4]", xy.point(xy.getLength(4, 4)).toString());
+        assertEquals("[4,0]", xy.point(xy.length(4, 0)).toString());
+        assertEquals("[4,4]", xy.point(xy.length(4, 4)).toString());
     }
 }
