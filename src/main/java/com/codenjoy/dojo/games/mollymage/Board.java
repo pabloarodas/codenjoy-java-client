@@ -28,7 +28,9 @@ import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.codenjoy.dojo.games.mollymage.Element.*;
 import static com.codenjoy.dojo.services.Direction.*;
@@ -108,7 +110,7 @@ public class Board extends AbstractBoard<Element> {
 
     public List<Point> getFutureBlasts() {
         List<Point> result = new ArrayList<>();
-        List<Point> barriers = getBarriers();
+        Set<Point> barriers = new HashSet<>(getBarriers());
 
         for (Point pt : get(POTION_TIMER_1)) {
             result.addAll(getFutureBlasts(barriers, pt, RIGHT));
@@ -119,7 +121,7 @@ public class Board extends AbstractBoard<Element> {
         return result;
     }
 
-    private List<Point> getFutureBlasts(List<Point> barriers, Point pt, Direction direction) {
+    private List<Point> getFutureBlasts(Set<Point> barriers, Point pt, Direction direction) {
         List<Point> result = new ArrayList<>();
         for (int index = 0; index < BLAST_RANGE; index++) {
             pt = direction.change(pt);
