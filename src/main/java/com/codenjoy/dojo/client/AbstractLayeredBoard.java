@@ -105,7 +105,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
             for (int y = 0; y < size; y++) {
                 E value = fieldElement(numLayer, x, y);
                 for (E element : elements) {
-                    if (value == element) {
+                    if (isEquals(value, element)) {
                         if (!function.apply(pt(x, y))) return;
                     }
                 }
@@ -148,7 +148,11 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         if (isOutOf(x, y)) {
             return false;
         }
-        return getAt(numLayer, x, y).equals(element);
+        return isEquals(getAt(numLayer, x, y), element);
+    }
+
+    protected boolean isEquals(E e1, E e2) {
+        return e1 == e2;
     }
 
     /**
@@ -244,7 +248,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
             return 0;
         }
         return (int) getNear(numLayer, x, y).stream()
-                .filter( it -> it.equals(element))
+                .filter( it -> isEquals(it, element))
                 .count();
     }
 
