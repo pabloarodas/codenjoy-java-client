@@ -141,39 +141,39 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isPotion() {
-        return  is(potions);
+        return is(potions);
     }
 
     public boolean isHero() {
-        return  is(heroes);
+        return is(heroes);
     }
 
     public boolean isEnemyHero() {
-        return  is(enemyHeroes);
+        return is(enemyHeroes);
     }
 
     public boolean isOtherHero() {
-        return  is(otherHeroes);
+        return is(otherHeroes);
     }
 
     public boolean isPerk() {
-        return  is(perks);
+        return is(perks);
     }
 
     public boolean isGhost() {
-        return  is(ghosts);
+        return is(ghosts);
     }
 
     public boolean isWall() {
-        return  is(walls);
+        return is(walls);
     }
 
     public boolean isTreasureBox() {
-        return  is(treasureBoxes);
+        return is(treasureBoxes);
     }
 
     public boolean isBlast() {
-        return  is(blasts);
+        return is(blasts);
     }
 
     public static final Element[] heroes = new Element[]{

@@ -73,23 +73,23 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isHero() {
-        return  is(heroes);
+        return is(heroes);
     }
 
     public boolean isOtherHero() {
-        return  is(otherHeroes);
+        return is(otherHeroes);
     }
 
     public boolean isWall() {
-        return  is(walls);
+        return is(walls);
     }
 
     public boolean isGold() {
-        return  is(gold);
+        return is(gold);
     }
 
     public boolean isBomb() {
-        return  is(bombs);
+        return is(bombs);
     }
 
     public static final Element[] heroes = new Element[]{

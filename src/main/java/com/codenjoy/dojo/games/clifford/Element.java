@@ -257,7 +257,7 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isClue() {
-        return  is(clues);
+        return is(clues);
     }
 
     public boolean isMaskPotion() {
@@ -273,43 +273,43 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isWall() {
-        return  is(walls);
+        return is(walls);
     }
 
     public boolean isHero() {
-        return  is(heroes);
+        return is(heroes);
     }
 
     public boolean isOtherHero() {
-        return  is(otherHeroes);
+        return is(otherHeroes);
     }
 
     public boolean isEnemyHero() {
-        return  is(enemyHeroes);
+        return is(enemyHeroes);
     }
 
     public boolean isRobber() {
-        return  is(robbers);
+        return is(robbers);
     }
 
     public boolean isPipe() {
-        return  is(pipes);
+        return is(pipes);
     }
 
     public boolean isPit() {
-        return  is(pits);
+        return is(pits);
     }
 
     public boolean isBullet() {
-        return  is(bullets);
+        return is(bullets);
     }
 
     public boolean isDoor() {
-        return  is(doors);
+        return is(doors);
     }
 
     public boolean isKey() {
-        return  is(keys);
+        return is(keys);
     }
 
     public static final Element[] clues = new Element[]{
