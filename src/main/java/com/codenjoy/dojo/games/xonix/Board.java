@@ -48,7 +48,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Element getAt(int x, int y) {
-        if (isOutOfField(x, y)) {
+        if (isOutOf(x, y)) {
             return null;
         }
         return super.getAt(x, y);

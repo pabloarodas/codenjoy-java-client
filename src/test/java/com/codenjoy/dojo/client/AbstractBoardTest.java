@@ -113,15 +113,15 @@ public class AbstractBoardTest {
 
     @Test
     public void shouldWork_isOutOfField() {
-        assertEquals(true, board.isOutOfField(-1, 1));
-        assertEquals(true, board.isOutOfField(1, -1));
-        assertEquals(true, board.isOutOfField(4, 1));
-        assertEquals(true, board.isOutOfField(1, 4));
+        assertEquals(true, board.isOutOf(-1, 1));
+        assertEquals(true, board.isOutOf(1, -1));
+        assertEquals(true, board.isOutOf(4, 1));
+        assertEquals(true, board.isOutOf(1, 4));
 
-        assertEquals(false, board.isOutOfField(0, 1));
-        assertEquals(false, board.isOutOfField(1, 0));
-        assertEquals(false, board.isOutOfField(3, 1));
-        assertEquals(false, board.isOutOfField(1, 3));
+        assertEquals(false, board.isOutOf(0, 1));
+        assertEquals(false, board.isOutOf(1, 0));
+        assertEquals(false, board.isOutOf(3, 1));
+        assertEquals(false, board.isOutOf(1, 3));
     }
 
     @Test

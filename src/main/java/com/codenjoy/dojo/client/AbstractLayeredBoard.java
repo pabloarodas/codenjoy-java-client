@@ -150,7 +150,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
      * @return true is element was found.
      */
     protected boolean isAt(int numLayer, int x, int y, E element) {
-        if (pt(x, y).isOutOf(size)) {
+        if (isOutOf(x, y)) {
             return false;
         }
         return getAt(numLayer, x, y).equals(element);
@@ -165,11 +165,11 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
     protected E getAt(int numLayer, int x, int y) {
         return valueOf(field(numLayer, x, y));
     }
-    
+
     protected char field(int numLayer, int x, int y) {
         return field[numLayer][x][y];
     }
-    
+
     protected String boardAsString(int numLayer) {
         StringBuilder result = new StringBuilder();
         for (int y = 0; y < size; y++) {
@@ -224,7 +224,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
      * @return true is element was found.
      */
     protected boolean isNear(int numLayer, int x, int y, E element) {
-        if (pt(x, y).isOutOf(size)) {
+        if (isOutOf(x, y)) {
             return false;
         }
 		return countNear(numLayer, x, y, element) > 0;
@@ -241,7 +241,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
      * left-down, left-up, right-down, right-up) {x,y} point.
      */
     protected int countNear(int numLayer, int x, int y, E element) {
-        if (pt(x, y).isOutOf(size)) {
+        if (isOutOf(x, y)) {
             return 0;
         }
         return (int) getNear(numLayer, x, y).stream()
@@ -263,7 +263,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         int radius = 1;
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dy = -radius; dy <= radius; dy++) {
-                if (pt(x + dx, y + dy).isOutOf(size)) {
+                if (isOutOf(x + dx, y + dy)) {
                     continue;
                 }
                 if (dx == 0 && dy == 0) {
@@ -287,8 +287,8 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         return false;
     }
 
-    public boolean isOutOfField(int x, int y) {
-        return pt(x, y).isOutOf(size);
+    public boolean isOutOf(int x, int y) {
+        return Point.isOutOf(x, y, size);
     }
 
     protected void set(int numLayer, int x, int y, char ch) {

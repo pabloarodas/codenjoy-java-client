@@ -50,7 +50,7 @@ public class Board extends AbstractBoard<Element> {
 
     @Override
     public Element getAt(int x, int y) {
-        if (isOutOfField(x, y)) {
+        if (isOutOf(x, y)) {
             return REEFS;
         }
         return super.getAt(x, y);

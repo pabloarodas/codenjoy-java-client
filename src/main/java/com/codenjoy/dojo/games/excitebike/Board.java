@@ -106,7 +106,7 @@ public class Board extends AbstractBoard<CharElement> {
             return false;
         }
         Point atDirection = direction.change(hero);
-        return isOutOfField(atDirection.getX(), atDirection.getY());
+        return isOutOf(atDirection.getX(), atDirection.getY());
     }
 
     @Override
