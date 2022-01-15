@@ -97,7 +97,7 @@ public class BoardTest {
 
     @Test
     public void shouldGetMe() {
-        assertEquals("[2,8]", board.getMe().toString());
+        assertEquals("[2,8]", board.getHero().toString());
     }
 
     @Test

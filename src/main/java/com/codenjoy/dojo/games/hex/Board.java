@@ -29,6 +29,7 @@ import com.codenjoy.dojo.services.Point;
 import java.util.Collection;
 import java.util.List;
 
+import static com.codenjoy.dojo.games.hex.Element.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
@@ -45,23 +46,23 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public List<Point> getBarriers() {
-        return get(Element.WALL,
-                Element.MY_HERO,
-                Element.HERO1,
-                Element.HERO2,
-                Element.HERO3,
-                Element.HERO4,
-                Element.HERO5,
-                Element.HERO6,
-                Element.HERO7,
-                Element.HERO8,
-                Element.HERO9,
-                Element.HERO10,
-                Element.HERO11);
+        return get(WALL,
+                MY_HERO,
+                HERO1,
+                HERO2,
+                HERO3,
+                HERO4,
+                HERO5,
+                HERO6,
+                HERO7,
+                HERO8,
+                HERO9,
+                HERO10,
+                HERO11);
     }
 
     public Collection<Point> getWalls() {
-        return get(Element.WALL);
+        return get(WALL);
     }
 
     public boolean isBarrierAt(int x, int y) {
@@ -70,6 +71,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isGameOver() {
-        return get(Element.MY_HERO).isEmpty() || get(Element.NONE).isEmpty();
+        return getFirst(MY_HERO) == null
+                || getFirst(NONE) == null;
     }
 }

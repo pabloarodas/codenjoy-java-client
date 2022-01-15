@@ -35,6 +35,6 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isGameOver() {
-        return get(EMPTY).isEmpty();
+        return getFirst(EMPTY) == null;
     }
 }

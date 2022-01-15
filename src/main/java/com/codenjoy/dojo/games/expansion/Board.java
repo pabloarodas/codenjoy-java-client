@@ -278,7 +278,7 @@ public class Board extends AbstractBoard<Element> {
      * @return Checks if you have no forces.
      */
     public boolean isGameOver() {
-        return get(getMyForcesColor()).isEmpty();
+        return getFirst(getMyForcesColor()) == null;
     }
 
     public List<Point> getFreeSpaces() {

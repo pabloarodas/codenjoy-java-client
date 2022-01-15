@@ -25,8 +25,6 @@ package com.codenjoy.dojo.games.spacerace;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
-import java.util.List;
-
 import static com.codenjoy.dojo.games.spacerace.Element.*;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
@@ -46,17 +44,15 @@ public class Board extends AbstractBoard<Element> {
         return isAt(x, y, WALL);
     }
 
-    public Point getMe() {
-        List<Point> list = get(DEAD_HERO, HERO);
-        if (list.isEmpty()){
-            return pt(1, 1);
-        } else {
-            return list.get(0);
-        }
+    public Point getHero() {
+        Point result = getFirst(DEAD_HERO, HERO);
+        return (result == null)
+                ? pt(1, 1)
+                : result;
     }
 
     public boolean isGameOver() {
-        return !get(DEAD_HERO).isEmpty();
+        return getFirst(DEAD_HERO) != null;
     }
 
     public boolean isBombAt(int x, int y) {

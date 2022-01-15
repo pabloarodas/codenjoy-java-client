@@ -26,8 +26,6 @@ package com.codenjoy.dojo.games.namdreab;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
-import java.util.List;
-
 import static com.codenjoy.dojo.games.namdreab.Element.*;
 
 /**
@@ -60,16 +58,12 @@ public class Board extends AbstractBoard<Element> {
         return size - 1 - y;
     }
 
-    public Point getHero() {
-        return getHeroHead().get(0);
+    public Point getHeroHead() {
+        return getFirst(heroHead());
     }
 
     public boolean isGameOver() {
-        return getHeroHead().isEmpty();
-    }
-
-    private List<Point> getHeroHead() {
-        return get(heroHead());
+        return getHeroHead() == null;
     }
 
     public boolean isStoneAt(int x, int y) {

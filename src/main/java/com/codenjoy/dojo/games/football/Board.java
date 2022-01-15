@@ -50,14 +50,14 @@ public class Board extends AbstractBoard<Element> {
         return isAt(x, y, WALL);
     }
 
-    public Point getMe() {
-        return get(HERO, HERO_W_BALL).get(0);
+    public Point getHero() {
+        return getFirst(HERO, HERO_W_BALL);
     }
     
     public Point getBall() {
-        return get(BALL, STOPPED_BALL, 
+        return getFirst(BALL, STOPPED_BALL,
                     HERO_W_BALL, ENEMY_W_BALL,
-                    HITED_GOAL, HITED_MY_GOAL).get(0);
+                    HITED_GOAL, HITED_MY_GOAL);
     }
     
     public Point getMyGoal() {
@@ -73,7 +73,7 @@ public class Board extends AbstractBoard<Element> {
     }
     
     public boolean isGameOver() {
-        return !get(HITED_GOAL, HITED_MY_GOAL).isEmpty();
+        return getFirst(HITED_GOAL, HITED_MY_GOAL) != null;
     }
 
 }

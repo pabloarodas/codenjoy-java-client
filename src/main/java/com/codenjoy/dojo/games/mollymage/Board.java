@@ -68,12 +68,11 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isGameOver() {
-        return !get(HERO_DEAD).isEmpty();
+        return getFirst(HERO_DEAD) != null;
     }
 
     public Point getHero() {
-        List<Point> list = get(heroes());
-        return (list.isEmpty()) ? null : list.get(0);
+        return getFirst(heroes());
     }
 
     public List<Point> getOtherHeroes() {

@@ -59,7 +59,7 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals("[1,1]", board.getMe().toString());
+        assertEquals("[1,1]", board.getHero().toString());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals("[0,0]", board.getMe().toString());
+        assertEquals("[0,0]", board.getHero().toString());
     }
 
     @Test

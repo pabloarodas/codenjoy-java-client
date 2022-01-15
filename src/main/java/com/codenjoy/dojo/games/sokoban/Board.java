@@ -45,8 +45,8 @@ public class Board extends AbstractBoard<Element> {
         return isAt(x, y, WALL);
     }
 
-    public Point getMe() {
-        return get(HERO).get(0);
+    public Point getHero() {
+        return getFirst(HERO);
     }
 
     /**

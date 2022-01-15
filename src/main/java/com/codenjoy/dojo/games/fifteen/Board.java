@@ -42,7 +42,7 @@ public class Board extends AbstractBoard<Element> {
         return isAt(x, y, Element.WALL);
     }
 
-    public Point getMe() {
-        return get(Element.HERO).get(0);
+    public Point getHero() {
+        return getFirst(Element.HERO);
     }
 }

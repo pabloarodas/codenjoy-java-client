@@ -78,8 +78,8 @@ public class Board extends AbstractBoard<Element> {
     /**
      * @return Returns position of your robot.
      */
-    public Point getMe() {
-        List<Point> points = new LinkedList<Point>() {{
+    public Point getHero() {
+        List<Point> points = new LinkedList<>() {{
             addAll(Board.this.get(LAYER2,
                     ROBO_FALLING,
                     ROBO_LASER,
@@ -270,7 +270,7 @@ public class Board extends AbstractBoard<Element> {
 
             switch (i) {
                 case 0:
-                    builder.append(" Robots: " + getMe() + "," + listToString(getOtherHeroes()));
+                    builder.append(" Robots: " + getHero() + "," + listToString(getOtherHeroes()));
                     break;
                 case 1:
                     builder.append(" Gold: " + listToString(getGold()));

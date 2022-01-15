@@ -64,19 +64,19 @@ public class Board extends AbstractBoard<CharElement> {
         }}.toArray(new CharElement[0]);
     }
 
-    public Point getMe() {
+    public Point getHero() {
         return getFirst(BIKE_TYPES);
     }
 
     public boolean isGameOver() {
-        Point me = getMe();
+        Point me = getHero();
         return me == null || Arrays.stream(BikeElement.values())
                 .filter(v -> !v.name().contains(OTHER_BIKE_PREFIX) && v.name().contains(FALLEN_BIKE_SUFFIX))
                 .anyMatch(v -> isAt(me, v));
     }
 
     public boolean checkNearMe(List<Direction> directions, CharElement... elements) {
-        Point point = getMe();
+        Point point = getHero();
         if (point == null) {
             return false;
         }
@@ -87,25 +87,25 @@ public class Board extends AbstractBoard<CharElement> {
     }
 
     public boolean checkNearMe(Direction direction, CharElement... elements) {
-        Point me = getMe();
-        if (me == null) {
+        Point hero = getHero();
+        if (hero == null) {
             return false;
         }
-        Point atDirection = direction.change(me);
+        Point atDirection = direction.change(hero);
         return isAt(atDirection.getX(), atDirection.getY(), elements);
     }
 
     public boolean checkAtMe(CharElement... elements) {
-        Point me = getMe();
-        return me != null && isAt(me, elements);
+        Point hero = getHero();
+        return hero != null && isAt(hero, elements);
     }
 
     public boolean isOutOfFieldRelativeToMe(Direction direction) {
-        Point me = getMe();
-        if (me == null) {
+        Point hero = getHero();
+        if (hero == null) {
             return false;
         }
-        Point atDirection = direction.change(me);
+        Point atDirection = direction.change(hero);
         return isOutOfField(atDirection.getX(), atDirection.getY());
     }
 

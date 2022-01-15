@@ -38,13 +38,12 @@ public class Board extends AbstractBoard<Element> {
         return isAt(x, y, WALL);
     }
 
-    public Point getMe() {
-        return get(DEAD_HERO,
-                HERO).get(0);
+    public Point getHero() {
+        return getFirst(DEAD_HERO, HERO);
     }
 
     public boolean isGameOver() {
-        return !get(DEAD_HERO).isEmpty();
+        return getFirst(DEAD_HERO) != null;
     }
 
     public boolean isBombAt(int x, int y) {

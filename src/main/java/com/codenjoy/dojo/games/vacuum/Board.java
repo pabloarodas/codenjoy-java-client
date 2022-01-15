@@ -74,7 +74,7 @@ public class Board extends AbstractBoard<Element> {
                         "Limiters: %s\n" +
                         "Switches: %s",
                 boardAsString(),
-                getMe(),
+                getHero(),
                 getStartPoint(),
                 getBarriers(),
                 getDust(),
@@ -84,16 +84,16 @@ public class Board extends AbstractBoard<Element> {
                 getSwitches());
     }
 
-    public Point getMe() {
-        return get(VACUUM).get(0);
+    public Point getHero() {
+        return getFirst(VACUUM);
     }
 
     public Point getStartPoint() {
-        List<Point> points = get(START);
-        if (!points.isEmpty()) {
-            return points.get(0);
+        Point start = getFirst(START);
+        if (start != null) {
+            return start;
         }
-        return getMe();
+        return getHero();
     }
 
     public List<Point> getBarriers() {

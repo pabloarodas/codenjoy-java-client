@@ -77,11 +77,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Point getHero() {
-        List<Point> heroes = get(HERO);
-        if (heroes.isEmpty()) {
-            return null;
-        }
-        return heroes.get(0);
+        return getFirst(HERO);
     }
 
     public List<Point> getSea() {
