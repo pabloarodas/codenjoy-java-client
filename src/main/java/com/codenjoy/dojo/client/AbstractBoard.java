@@ -29,8 +29,6 @@ import com.codenjoy.dojo.services.printer.CharElement;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.codenjoy.dojo.services.PointImpl.pt;
-
 public abstract class AbstractBoard<E extends CharElement> extends AbstractLayeredBoard<E> {
 
     public ClientBoard forString(String boardString) {
@@ -121,17 +119,13 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
      * @return true is any of this elements was found.
      */
     public boolean isAt(int x, int y, E... elements) {
-        return isAt(pt(x, y), elements);
-    }
-
-    public boolean isAt(Point pt, E... elements) {
-        if (pt.isOutOf(size)) {
+        if (isOutOf(x, y)) {
             // TODO за пределами поля должны быть барьеры
             return false;
         }
 
         for (int layer = 0; layer < countLayers(); ++layer) {
-            E found = getAt(layer, pt.getX(), pt.getY());
+            E found = getAt(layer, x, y);
             for (E element : elements) {
                 if (found.equals(element)) {
                     return true;
@@ -139,6 +133,10 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
             }
         }
         return false;
+    }
+
+    public boolean isAt(Point pt, E... elements) {
+        return isAt(pt.getX(), pt.getY(), elements);
     }
 
     /**
