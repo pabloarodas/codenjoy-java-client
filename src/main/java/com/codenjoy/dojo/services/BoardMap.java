@@ -22,36 +22,55 @@ package com.codenjoy.dojo.services;
  * #L%
  */
 
+import static org.apache.commons.lang3.StringUtils.repeat;
+
 public class BoardMap { // TODO test me
 
-    private LengthToXY xy;
-    private char[] map;
+    public LengthToXY xy; // TODO make private
+    private String map;
     private int size;
 
-    public BoardMap(String map) {
-        this.map = map.toCharArray();
-        size = (int) Math.sqrt(map.length());
+    public BoardMap(int size) {
+        this.size = size;
         xy = new LengthToXY(size);
+        map = repeat(' ', size * size);
     }
 
-    public BoardMap(int size) {
-        map = new char[size * size];
+    public BoardMap(String map) {
+        size = (int) Math.sqrt(map.length());
         xy = new LengthToXY(size);
+        this.map = map;
     }
 
     public int size() {
         return size;
     }
 
+    // TODO используется только в japanese - порефачить там
+    public void resize(int newSize) {
+        BoardMap boardMap = new BoardMap(newSize);
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                boardMap.setAt(x, y, this.getAt(x, y));
+            }
+        }
+        this.size = boardMap.size();
+        this.map = boardMap.map();
+        this.xy = boardMap.xy();
+    }
+
     public char getAt(int x, int y) {
-        int length = xy.length(x, y);
-        return map[length];
+        return map.charAt(xy.length(x, y));
     }
 
     public char setAt(int x, int y, char ch) {
         int length = xy.length(x, y);
-        char old = map[length];
-        map[length] = ch;
+        char old = map.charAt(length);
+        map = map.substring(0, length)
+                + ch
+                + ((length + 1 < length())
+                       ? map.substring(length + 1)
+                       : "");
         return old;
     }
 
@@ -60,6 +79,14 @@ public class BoardMap { // TODO test me
     }
 
     public String map() {
-        return new String(map);
+        return map;
+    }
+
+    public int length() {
+        return map.length();
+    }
+
+    public LengthToXY xy() {
+        return xy;
     }
 }
