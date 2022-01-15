@@ -26,9 +26,9 @@ package com.codenjoy.dojo.games.rawelbbub;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.TeamElement;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.codenjoy.dojo.services.Direction.*;
 
@@ -153,16 +153,10 @@ public enum Element implements CharElement, TeamElement {
     PRIZE_NO_SLIDING('5',         "A prize that allows the hero to temporarily not slide " +
                                   "on the ice.");
 
-    public final static List<Element> icebergs = new LinkedList<>();
     public final static Map<Element, Map<Direction, Element>> destroyIceberg = new LinkedHashMap<>();
     public final static Map<Element, Element> growIceberg = new LinkedHashMap<>();
 
     static {
-        String prefix = StringUtils.substringBefore(ICEBERG_HUGE.name(), "_");
-        Arrays.stream(values())
-                .filter(element -> element.name().startsWith(prefix))
-                .forEach(icebergs::add);
-
         transformGrow(ICEBERG_HUGE,              ICEBERG_HUGE);
 
         transformGrow(ICEBERG_MEDIUM_LEFT,       ICEBERG_HUGE);
@@ -234,146 +228,125 @@ public enum Element implements CharElement, TeamElement {
         return Element.growIceberg.get(this);
     }
 
-    public static Element[] heroes() {
-        return new Element[]{
-                HERO_LEFT,
-                HERO_RIGHT,
-                HERO_UP,
-                HERO_DOWN,
-        };
-    }
+    public static final Element[] heroes = new Element[]{
+            HERO_LEFT,
+            HERO_RIGHT,
+            HERO_UP,
+            HERO_DOWN,
+    };
 
-    public static Element[] barriers() {
-        return new Element[] {
-                REEFS,
-                FISHNET,
+    public static final Element[] barriers = new Element[]{
+            REEFS,
+            FISHNET,
 
-                ICEBERG_HUGE,
+            ICEBERG_HUGE,
 
-                ICEBERG_MEDIUM_LEFT,
-                ICEBERG_MEDIUM_RIGHT,
-                ICEBERG_MEDIUM_UP,
-                ICEBERG_MEDIUM_DOWN,
+            ICEBERG_MEDIUM_LEFT,
+            ICEBERG_MEDIUM_RIGHT,
+            ICEBERG_MEDIUM_UP,
+            ICEBERG_MEDIUM_DOWN,
 
-                ICEBERG_SMALL_LEFT_LEFT,
-                ICEBERG_SMALL_RIGHT_RIGHT,
-                ICEBERG_SMALL_UP_UP,
-                ICEBERG_SMALL_DOWN_DOWN,
+            ICEBERG_SMALL_LEFT_LEFT,
+            ICEBERG_SMALL_RIGHT_RIGHT,
+            ICEBERG_SMALL_UP_UP,
+            ICEBERG_SMALL_DOWN_DOWN,
 
-                ICEBERG_SMALL_LEFT_RIGHT,
-                ICEBERG_SMALL_UP_DOWN,
+            ICEBERG_SMALL_LEFT_RIGHT,
+            ICEBERG_SMALL_UP_DOWN,
 
-                ICEBERG_SMALL_UP_LEFT,
-                ICEBERG_SMALL_UP_RIGHT,
-                ICEBERG_SMALL_DOWN_LEFT,
-                ICEBERG_SMALL_DOWN_RIGHT,
-        };
-    }
+            ICEBERG_SMALL_UP_LEFT,
+            ICEBERG_SMALL_UP_RIGHT,
+            ICEBERG_SMALL_DOWN_LEFT,
+            ICEBERG_SMALL_DOWN_RIGHT,
+    };
 
-    public static Element[] otherHeroes() {
-        return new Element[] {
-                OTHER_HERO_LEFT,
-                OTHER_HERO_RIGHT,
-                OTHER_HERO_UP,
-                OTHER_HERO_DOWN,
-        };
-    }
+    public static final Element[] otherHeroes = new Element[]{
+            OTHER_HERO_LEFT,
+            OTHER_HERO_RIGHT,
+            OTHER_HERO_UP,
+            OTHER_HERO_DOWN,
+    };
 
-    public static Element[] ais() {
-        return new Element[] {
-                AI_PRIZE_LEFT,
-                AI_PRIZE_RIGHT,
-                AI_PRIZE_UP,
-                AI_PRIZE_DOWN,
+    public static final Element[] ais = new Element[]{
+            AI_PRIZE_LEFT,
+            AI_PRIZE_RIGHT,
+            AI_PRIZE_UP,
+            AI_PRIZE_DOWN,
 
-                AI_LEFT,
-                AI_RIGHT,
-                AI_UP,
-                AI_DOWN,
-        };
-    }
+            AI_LEFT,
+            AI_RIGHT,
+            AI_UP,
+            AI_DOWN,
+    };
 
-    public static Element[] enemies() {
-        return new Element[] {
-                AI_PRIZE_LEFT,
-                AI_PRIZE_RIGHT,
-                AI_PRIZE_UP,
-                AI_PRIZE_DOWN,
+    public static final Element[] enemies = new Element[]{
+            AI_PRIZE_LEFT,
+            AI_PRIZE_RIGHT,
+            AI_PRIZE_UP,
+            AI_PRIZE_DOWN,
 
-                AI_LEFT,
-                AI_RIGHT,
-                AI_UP,
-                AI_DOWN,
+            AI_LEFT,
+            AI_RIGHT,
+            AI_UP,
+            AI_DOWN,
 
-                OTHER_HERO_LEFT,
-                OTHER_HERO_RIGHT,
-                OTHER_HERO_UP,
-                OTHER_HERO_DOWN,
-        };
-    }
+            OTHER_HERO_LEFT,
+            OTHER_HERO_RIGHT,
+            OTHER_HERO_UP,
+            OTHER_HERO_DOWN,
+    };
 
-    public static Element[] torpedoes() {
-        return new Element[] {
-                TORPEDO_LEFT,
-                TORPEDO_RIGHT,
-                TORPEDO_UP,
-                TORPEDO_DOWN,
-        };
-    }
+    public static final Element[] torpedoes = new Element[]{
+            TORPEDO_LEFT,
+            TORPEDO_RIGHT,
+            TORPEDO_UP,
+            TORPEDO_DOWN,
+    };
 
-    public static Element[] fishnet() {
-        return new Element[] {
-                FISHNET,
-        };
-    }
+    public static final Element[] fishnet = new Element[]{
+            FISHNET,
+    };
 
-    public static Element[] oil() {
-        return new Element[] {
-                OIL,
-        };
-    }
+    public static final Element[] oil = new Element[]{
+            OIL,
+    };
 
-    public static Element[] icebergs() {
-        return new Element[] {
-                ICEBERG_HUGE,
+    public static final Element[] icebergs = new Element[]{
+            ICEBERG_HUGE,
 
-                ICEBERG_MEDIUM_LEFT,
-                ICEBERG_MEDIUM_RIGHT,
-                ICEBERG_MEDIUM_UP,
-                ICEBERG_MEDIUM_DOWN,
+            ICEBERG_MEDIUM_LEFT,
+            ICEBERG_MEDIUM_RIGHT,
+            ICEBERG_MEDIUM_UP,
+            ICEBERG_MEDIUM_DOWN,
 
-                ICEBERG_SMALL_LEFT_LEFT,
-                ICEBERG_SMALL_RIGHT_RIGHT,
-                ICEBERG_SMALL_UP_UP,
-                ICEBERG_SMALL_DOWN_DOWN,
+            ICEBERG_SMALL_LEFT_LEFT,
+            ICEBERG_SMALL_RIGHT_RIGHT,
+            ICEBERG_SMALL_UP_UP,
+            ICEBERG_SMALL_DOWN_DOWN,
 
-                ICEBERG_SMALL_LEFT_RIGHT,
-                ICEBERG_SMALL_UP_DOWN,
+            ICEBERG_SMALL_LEFT_RIGHT,
+            ICEBERG_SMALL_UP_DOWN,
 
-                ICEBERG_SMALL_UP_LEFT,
-                ICEBERG_SMALL_UP_RIGHT,
-                ICEBERG_SMALL_DOWN_LEFT,
-                ICEBERG_SMALL_DOWN_RIGHT,
-        };
-    }
+            ICEBERG_SMALL_UP_LEFT,
+            ICEBERG_SMALL_UP_RIGHT,
+            ICEBERG_SMALL_DOWN_LEFT,
+            ICEBERG_SMALL_DOWN_RIGHT,
+    };
 
-    public static Element[] seaweed() {
-        return new Element[] {
-                SEAWEED,
-        };
-    }
 
-    public static Element[] prizes() {
-        return new Element[] {
-                PRIZE,
+    public static final Element[] seaweed = new Element[]{
+            SEAWEED,
+    };
 
-                PRIZE_IMMORTALITY,
-                PRIZE_BREAKING_BAD,
-                PRIZE_WALKING_ON_FISHNET,
-                PRIZE_VISIBILITY,
-                PRIZE_NO_SLIDING,
-        };
-    }
+    public static final Element[] prizes = new Element[]{
+            PRIZE,
+
+            PRIZE_IMMORTALITY,
+            PRIZE_BREAKING_BAD,
+            PRIZE_WALKING_ON_FISHNET,
+            PRIZE_VISIBILITY,
+            PRIZE_NO_SLIDING,
+    };
 
     public static Element ai(Direction direction, boolean sideView) {
         if (sideView) {

@@ -136,113 +136,93 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isHero() {
-        return asList(heroes()).contains(this);
+        return asList(heroes).contains(this);
     }
 
     public boolean isOtherHero() {
-        return asList(otherHeroes()).contains(this);
+        return asList(otherHeroes).contains(this);
     }
 
     public boolean isEnemyHeroes() {
-        return asList(enemyHeroes()).contains(this);
+        return asList(enemyHeroes).contains(this);
     }
 
     public boolean isPathless() {
-        return asList(pathless()).contains(this);
+        return asList(pathless).contains(this);
     }
 
     public boolean isInfections() {
-        return asList(infections()).contains(this);
+        return asList(infections).contains(this);
     }
 
     public boolean isHidden() {
-        return asList(hidden()).contains(this);
+        return asList(hidden).contains(this);
     }
 
     public boolean isContagions() {
-        return asList(contagions()).contains(this);
+        return asList(contagions).contains(this);
     }
 
     public boolean isHealing() {
-        return asList(healing()).contains(this);
+        return asList(healing).contains(this);
     }
 
     public boolean isCure() {
-        return asList(cure()).contains(this);
+        return asList(cure).contains(this);
     }
 
-    public static Element[] heroes() {
-        return new Element[]{
-                HERO_DEAD,
-                HERO,
-        };
-    }
+    public static final Element[] heroes = new Element[]{
+            HERO_DEAD,
+            HERO,
+    };
 
-    public static Element[] otherHeroes() {
-        return new Element[]{
-                OTHER_HERO_DEAD,
-                OTHER_HERO,
-        };
-    }
+    public static final Element[] otherHeroes = new Element[]{
+            OTHER_HERO_DEAD,
+            OTHER_HERO,
+    };
 
-    public static Element[] enemyHeroes() {
-        return new Element[]{
-                ENEMY_HERO_DEAD,
-                ENEMY_HERO,
-        };
-    }
+    public static final Element[] enemyHeroes = new Element[]{
+            ENEMY_HERO_DEAD,
+            ENEMY_HERO,
+    };
 
-    public static Element[] pathless() {
-        return new Element[]{
-                PATHLESS,
-        };
-    }
+    public static final Element[] pathless = new Element[]{
+            PATHLESS,
+    };
 
-    public static Element[] infections() {
-        return new Element[]{
-                INFECTION,
-        };
-    }
+    public static final Element[] infections = new Element[]{
+            INFECTION,
+    };
 
-    public static Element[] hidden() {
-        return new Element[]{
-                HIDDEN,
-        };
-    }
+    public static final Element[] hidden = new Element[]{
+            HIDDEN,
+    };
 
-    public static Element[] clear() {
-        return new Element[]{
-                CLEAR,
-        };
-    }
+    public static final Element[] clear = new Element[]{
+            CLEAR,
+    };
 
-    public static Element[] contagions() {
-        return new Element[]{
-                CONTAGION_ONE,
-                CONTAGION_TWO,
-                CONTAGION_THREE,
-                CONTAGION_FOUR,
-                CONTAGION_FIVE,
-                CONTAGION_SIX,
-                CONTAGION_SEVEN,
-                CONTAGION_EIGHT,
-        };
-    }
+    public static final Element[] contagions = new Element[]{
+            CONTAGION_ONE,
+            CONTAGION_TWO,
+            CONTAGION_THREE,
+            CONTAGION_FOUR,
+            CONTAGION_FIVE,
+            CONTAGION_SIX,
+            CONTAGION_SEVEN,
+            CONTAGION_EIGHT,
+    };
 
-    public static Element[] healing() {
-        return new Element[]{
-                HERO_HEALING,
-                OTHER_HERO_HEALING,
-                ENEMY_HERO_HEALING,
-        };
-    }
+    public static final Element[] healing = new Element[]{
+            HERO_HEALING,
+            OTHER_HERO_HEALING,
+            ENEMY_HERO_HEALING,
+    };
 
-    public static Element[] cure() {
-        return new Element[]{
-                HERO_CURE,
-                OTHER_HERO_CURE,
-        };
-    }
+    public static final Element[] cure = new Element[]{
+            HERO_CURE,
+            OTHER_HERO_CURE,
+    };
 
     @Override
     public Element otherHero() {

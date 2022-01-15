@@ -259,278 +259,246 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isClue() {
-        return asList(clues()).contains(this);
+        return asList(clues).contains(this);
     }
 
     public boolean isMaskPotion() {
-        return asList(maskPotions()).contains(this);
+        return asList(maskPotions).contains(this);
     }
 
     public boolean isBackWay() {
-        return asList(backWays()).contains(this);
+        return asList(backWays).contains(this);
     }
 
     public boolean isLadder() {
-        return asList(ladders()).contains(this);
+        return asList(ladders).contains(this);
     }
 
     public boolean isWall() {
-        return asList(walls()).contains(this);
+        return asList(walls).contains(this);
     }
 
     public boolean isHero() {
-        return asList(heroes()).contains(this);
+        return asList(heroes).contains(this);
     }
 
     public boolean isOtherHero() {
-        return asList(otherHeroes()).contains(this);
+        return asList(otherHeroes).contains(this);
     }
 
     public boolean isEnemyHero() {
-        return asList(enemyHeroes()).contains(this);
+        return asList(enemyHeroes).contains(this);
     }
 
     public boolean isRobber() {
-        return asList(robbers()).contains(this);
+        return asList(robbers).contains(this);
     }
 
     public boolean isPipe() {
-        return asList(pipes()).contains(this);
+        return asList(pipes).contains(this);
     }
 
     public boolean isPit() {
-        return asList(pits()).contains(this);
+        return asList(pits).contains(this);
     }
 
     public boolean isBullet() {
-        return asList(bullets()).contains(this);
+        return asList(bullets).contains(this);
     }
 
     public boolean isDoor() {
-        return asList(doors()).contains(this);
+        return asList(doors).contains(this);
     }
 
     public boolean isKey() {
-        return asList(keys()).contains(this);
+        return asList(keys).contains(this);
     }
 
-    public static Element[] clues() {
-        return new Element[]{
-                CLUE_KNIFE,
-                CLUE_GLOVE,
-                CLUE_RING,
-        };
-    }
+    public static final Element[] clues = new Element[]{
+            CLUE_KNIFE,
+            CLUE_GLOVE,
+            CLUE_RING,
+    };
 
-    public static Element[] backWays() {
-        return new Element[]{
-                BACKWAY,
-        };
-    }
+    public static final Element[] backWays = new Element[]{
+            BACKWAY,
+    };
 
-    public static Element[] maskPotions() {
-        return new Element[]{
-                MASK_POTION,
-        };
-    }
+    public static final Element[] maskPotions = new Element[]{
+            MASK_POTION,
+    };
 
-    public static Element[] ladders() {
-        return new Element[]{
-                LADDER,
-                HERO_LADDER,
-                HERO_MASK_LADDER,
-                OTHER_HERO_LADDER,
-                OTHER_HERO_MASK_LADDER,
-                ENEMY_HERO_LADDER,
-                ENEMY_HERO_MASK_LADDER,
-                ROBBER_LADDER,
-        };
-    }
+    public static final Element[] ladders = new Element[]{
+            LADDER,
+            HERO_LADDER,
+            HERO_MASK_LADDER,
+            OTHER_HERO_LADDER,
+            OTHER_HERO_MASK_LADDER,
+            ENEMY_HERO_LADDER,
+            ENEMY_HERO_MASK_LADDER,
+            ROBBER_LADDER,
+    };
 
-    public static Element[] walls() {
-        return new Element[]{
-                BRICK,
-                STONE,
-        };
-    }
+    public static final Element[] walls = new Element[]{
+            BRICK,
+            STONE,
+    };
 
-    public static Element[] heroes() {
-        return new Element[]{
-                HERO_DIE,
-                HERO_LADDER,
-                HERO_LEFT,
-                HERO_RIGHT,
-                HERO_FALL,
-                HERO_PIPE,
-                HERO_PIT,
+    public static final Element[] heroes = new Element[]{
+            HERO_DIE,
+            HERO_LADDER,
+            HERO_LEFT,
+            HERO_RIGHT,
+            HERO_FALL,
+            HERO_PIPE,
+            HERO_PIT,
 
-                HERO_MASK_DIE,
-                HERO_MASK_LADDER,
-                HERO_MASK_LEFT,
-                HERO_MASK_RIGHT,
-                HERO_MASK_FALL,
-                HERO_MASK_PIPE,
-                HERO_MASK_PIT,
-        };
-    }
+            HERO_MASK_DIE,
+            HERO_MASK_LADDER,
+            HERO_MASK_LEFT,
+            HERO_MASK_RIGHT,
+            HERO_MASK_FALL,
+            HERO_MASK_PIPE,
+            HERO_MASK_PIT,
+    };
 
-    public static Element[] heroDie() {
-        return new Element[]{
-                HERO_DIE,
-                HERO_MASK_DIE,
-        };
-    }
+    public static final Element[] heroDie = new Element[]{
+            HERO_DIE,
+            HERO_MASK_DIE,
+    };
 
-    public static Element[] robbers() {
-        return new Element[]{
-                ROBBER_LADDER,
-                ROBBER_LEFT,
-                ROBBER_RIGHT,
-                ROBBER_FALL,
-                ROBBER_PIPE,
-                ROBBER_PIT,
-        };
-    }
+    public static final Element[] robbers = new Element[]{
+            ROBBER_LADDER,
+            ROBBER_LEFT,
+            ROBBER_RIGHT,
+            ROBBER_FALL,
+            ROBBER_PIPE,
+            ROBBER_PIT,
+    };
 
-    public static Element[] otherHeroes() {
-        return new Element[]{
-                OTHER_HERO_DIE,
-                OTHER_HERO_LADDER,
-                OTHER_HERO_LEFT,
-                OTHER_HERO_RIGHT,
-                OTHER_HERO_FALL,
-                OTHER_HERO_PIPE,
-                OTHER_HERO_PIT,
+    public static final Element[] otherHeroes = new Element[]{
+            OTHER_HERO_DIE,
+            OTHER_HERO_LADDER,
+            OTHER_HERO_LEFT,
+            OTHER_HERO_RIGHT,
+            OTHER_HERO_FALL,
+            OTHER_HERO_PIPE,
+            OTHER_HERO_PIT,
 
-                OTHER_HERO_MASK_DIE,
-                OTHER_HERO_MASK_LADDER,
-                OTHER_HERO_MASK_LEFT,
-                OTHER_HERO_MASK_RIGHT,
-                OTHER_HERO_MASK_FALL,
-                OTHER_HERO_MASK_PIPE,
-                OTHER_HERO_MASK_PIT,
-        };
-    }
+            OTHER_HERO_MASK_DIE,
+            OTHER_HERO_MASK_LADDER,
+            OTHER_HERO_MASK_LEFT,
+            OTHER_HERO_MASK_RIGHT,
+            OTHER_HERO_MASK_FALL,
+            OTHER_HERO_MASK_PIPE,
+            OTHER_HERO_MASK_PIT,
+    };
 
-    public static Element[] enemyHeroes() {
-        return new Element[]{
-                ENEMY_HERO_DIE,
-                ENEMY_HERO_LADDER,
-                ENEMY_HERO_LEFT,
-                ENEMY_HERO_RIGHT,
-                ENEMY_HERO_FALL,
-                ENEMY_HERO_PIPE,
-                ENEMY_HERO_PIT,
+    public static final Element[] enemyHeroes =  new Element[]{
+            ENEMY_HERO_DIE,
+            ENEMY_HERO_LADDER,
+            ENEMY_HERO_LEFT,
+            ENEMY_HERO_RIGHT,
+            ENEMY_HERO_FALL,
+            ENEMY_HERO_PIPE,
+            ENEMY_HERO_PIT,
 
-                ENEMY_HERO_MASK_DIE,
-                ENEMY_HERO_MASK_LADDER,
-                ENEMY_HERO_MASK_LEFT,
-                ENEMY_HERO_MASK_RIGHT,
-                ENEMY_HERO_MASK_FALL,
-                ENEMY_HERO_MASK_PIPE,
-                ENEMY_HERO_MASK_PIT,
-        };
-    }
+            ENEMY_HERO_MASK_DIE,
+            ENEMY_HERO_MASK_LADDER,
+            ENEMY_HERO_MASK_LEFT,
+            ENEMY_HERO_MASK_RIGHT,
+            ENEMY_HERO_MASK_FALL,
+            ENEMY_HERO_MASK_PIPE,
+            ENEMY_HERO_MASK_PIT,
+    };
 
-    public static Element[] pipes() {
-        return new Element[]{
-                PIPE,
-                HERO_PIPE,
-                HERO_MASK_PIPE,
-                OTHER_HERO_PIPE,
-                OTHER_HERO_MASK_PIPE,
-                ENEMY_HERO_PIPE,
-                ENEMY_HERO_MASK_PIPE,
-                ROBBER_PIPE,
-        };
-    }
+    public static final Element[] pipes = new Element[]{
+            PIPE,
+            HERO_PIPE,
+            HERO_MASK_PIPE,
+            OTHER_HERO_PIPE,
+            OTHER_HERO_MASK_PIPE,
+            ENEMY_HERO_PIPE,
+            ENEMY_HERO_MASK_PIPE,
+            ROBBER_PIPE,
+    };
 
-    public static Element[] pits() {
-        return new Element[]{
-                CRACK_PIT,
-                PIT_FILL_1,
-                PIT_FILL_2,
-                PIT_FILL_3,
-                PIT_FILL_4,
-                HERO_PIT,
-                HERO_MASK_PIT,
-                OTHER_HERO_PIT,
-                OTHER_HERO_MASK_PIT,
-                ENEMY_HERO_PIT,
-                ENEMY_HERO_MASK_PIT,
-                ROBBER_PIT,
-        };
-    }
+    public static final Element[] pits = new Element[]{
+            CRACK_PIT,
+            PIT_FILL_1,
+            PIT_FILL_2,
+            PIT_FILL_3,
+            PIT_FILL_4,
+            HERO_PIT,
+            HERO_MASK_PIT,
+            OTHER_HERO_PIT,
+            OTHER_HERO_MASK_PIT,
+            ENEMY_HERO_PIT,
+            ENEMY_HERO_MASK_PIT,
+            ROBBER_PIT,
+    };
 
-    public static Element[] bullets() {
-        return new Element[]{
-                BULLET,
-        };
-    }
+    public static final Element[] bullets = new Element[]{
+            BULLET,
+    };
 
-    public static Element[] doors() {
-        return new Element[]{
-                OPENED_DOOR_GOLD,
-                OPENED_DOOR_SILVER,
-                OPENED_DOOR_BRONZE,
-                CLOSED_DOOR_GOLD,
-                CLOSED_DOOR_SILVER,
-                CLOSED_DOOR_BRONZE,
-        };
-    }
+    public static final Element[] doors = new Element[]{
+            OPENED_DOOR_GOLD,
+            OPENED_DOOR_SILVER,
+            OPENED_DOOR_BRONZE,
+            CLOSED_DOOR_GOLD,
+            CLOSED_DOOR_SILVER,
+            CLOSED_DOOR_BRONZE,
+    };
 
-    public static Element[] keys() {
-        return new Element[]{
-                KEY_GOLD,
-                KEY_SILVER,
-                KEY_BRONZE,
-        };
-    }
+    public static final Element[] keys = new Element[]{
+            KEY_GOLD,
+            KEY_SILVER,
+            KEY_BRONZE,
+    };
 
-    public static Element[] barriers() {
-        return new Element[]{
-                BRICK,
-                STONE,
-                CLOSED_DOOR_GOLD,
-                CLOSED_DOOR_SILVER,
-                CLOSED_DOOR_BRONZE,
-                BULLET,
-                ENEMY_HERO_DIE,
-                ENEMY_HERO_LADDER,
-                ENEMY_HERO_LEFT,
-                ENEMY_HERO_RIGHT,
-                ENEMY_HERO_FALL,
-                ENEMY_HERO_PIPE,
-                ENEMY_HERO_PIT,
-                ENEMY_HERO_MASK_DIE,
-                ENEMY_HERO_MASK_LADDER,
-                ENEMY_HERO_MASK_LEFT,
-                ENEMY_HERO_MASK_RIGHT,
-                ENEMY_HERO_MASK_FALL,
-                ENEMY_HERO_MASK_PIPE,
-                ENEMY_HERO_MASK_PIT,
-                OTHER_HERO_DIE,
-                OTHER_HERO_LADDER,
-                OTHER_HERO_LEFT,
-                OTHER_HERO_RIGHT,
-                OTHER_HERO_FALL,
-                OTHER_HERO_PIPE,
-                OTHER_HERO_PIT,
-                OTHER_HERO_MASK_DIE,
-                OTHER_HERO_MASK_LADDER,
-                OTHER_HERO_MASK_LEFT,
-                OTHER_HERO_MASK_RIGHT,
-                OTHER_HERO_MASK_FALL,
-                OTHER_HERO_MASK_PIPE,
-                OTHER_HERO_MASK_PIT,
-                ROBBER_LADDER,
-                ROBBER_LEFT,
-                ROBBER_RIGHT,
-                ROBBER_FALL,
-                ROBBER_PIPE,
-                ROBBER_PIT,
-        };
-    }
+    public static final Element[] barriers = new Element[]{
+            BRICK,
+            STONE,
+            CLOSED_DOOR_GOLD,
+            CLOSED_DOOR_SILVER,
+            CLOSED_DOOR_BRONZE,
+            BULLET,
+            ENEMY_HERO_DIE,
+            ENEMY_HERO_LADDER,
+            ENEMY_HERO_LEFT,
+            ENEMY_HERO_RIGHT,
+            ENEMY_HERO_FALL,
+            ENEMY_HERO_PIPE,
+            ENEMY_HERO_PIT,
+            ENEMY_HERO_MASK_DIE,
+            ENEMY_HERO_MASK_LADDER,
+            ENEMY_HERO_MASK_LEFT,
+            ENEMY_HERO_MASK_RIGHT,
+            ENEMY_HERO_MASK_FALL,
+            ENEMY_HERO_MASK_PIPE,
+            ENEMY_HERO_MASK_PIT,
+            OTHER_HERO_DIE,
+            OTHER_HERO_LADDER,
+            OTHER_HERO_LEFT,
+            OTHER_HERO_RIGHT,
+            OTHER_HERO_FALL,
+            OTHER_HERO_PIPE,
+            OTHER_HERO_PIT,
+            OTHER_HERO_MASK_DIE,
+            OTHER_HERO_MASK_LADDER,
+            OTHER_HERO_MASK_LEFT,
+            OTHER_HERO_MASK_RIGHT,
+            OTHER_HERO_MASK_FALL,
+            OTHER_HERO_MASK_PIPE,
+            OTHER_HERO_MASK_PIT,
+            ROBBER_LADDER,
+            ROBBER_LEFT,
+            ROBBER_RIGHT,
+            ROBBER_FALL,
+            ROBBER_PIPE,
+            ROBBER_PIT,
+    };
 
     public Element mask() {
         switch (this) {

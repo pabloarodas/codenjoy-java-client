@@ -56,119 +56,119 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isGameOver() {
-        return getFirst(heroDie()) != null;
+        return getFirst(heroDie) != null;
     }
 
     public Point getHero() {
-        return getFirst(heroes());
+        return getFirst(heroes);
     }
 
     public List<Point> getOtherHeroes() {
-        return get(otherHeroes());
+        return get(otherHeroes);
     }
 
     public List<Point> getEnemyHeroes() {
-        return get(enemyHeroes());
+        return get(enemyHeroes);
     }
 
     public List<Point> getRobbers() {
-        return get(robbers());
+        return get(robbers);
     }
 
     public List<Point> getClues() {
-        return get(clues());
+        return get(clues);
     }
 
     public List<Point> getBackWays() {
-        return get(backWays());
+        return get(backWays);
     }
 
     public List<Point> getMaskPotions() {
-        return get(maskPotions());
+        return get(maskPotions);
     }
 
     public List<Point> getWalls() {
-        return get(walls());
+        return get(walls);
     }
 
     public List<Point> getLadders() {
-        return get(ladders());
+        return get(ladders);
     }
 
     public List<Point> getPipes() {
-        return get(pipes());
+        return get(pipes);
     }
 
     public List<Point> getPits() {
-        return get(pits());
+        return get(pits);
     }
 
     public List<Point> getDoors() {
-        return get(doors());
+        return get(doors);
     }
 
     public List<Point> getKeys() {
-        return get(keys());
+        return get(keys);
     }
 
     public List<Point> getBarriers() {
-        return get(barriers());
+        return get(barriers);
     }
 
     public boolean isHeroAt(Point pt) {
-        return isAt(pt, heroes());
+        return isAt(pt, heroes);
     }
 
     public boolean isOtherHeroAt(Point pt) {
-        return isAt(pt, otherHeroes());
+        return isAt(pt, otherHeroes);
     }
 
     public boolean isEnemyHeroAt(Point pt) {
-        return isAt(pt, enemyHeroes());
+        return isAt(pt, enemyHeroes);
     }
 
     public boolean isRobberAt(Point pt) {
-        return isAt(pt, robbers());
+        return isAt(pt, robbers);
     }
 
     public boolean isClueAt(Point pt) {
-        return isAt(pt, clues());
+        return isAt(pt, clues);
     }
 
     public boolean isBackWayAt(Point pt) {
-        return isAt(pt, backWays());
+        return isAt(pt, backWays);
     }
 
     public boolean isMaskPotionAt(Point pt) {
-        return isAt(pt, maskPotions());
+        return isAt(pt, maskPotions);
     }
 
     public boolean isWallAt(Point pt) {
-        return isAt(pt, walls());
+        return isAt(pt, walls);
     }
 
     public boolean isLadderAt(Point pt) {
-        return isAt(pt, ladders());
+        return isAt(pt, ladders);
     }
 
     public boolean isPipeAt(Point pt) {
-        return isAt(pt, pipes());
+        return isAt(pt, pipes);
     }
 
     public boolean isPitAt(Point pt) {
-        return isAt(pt, pits());
+        return isAt(pt, pits);
     }
 
     public boolean isDoorAt(Point pt) {
-        return isAt(pt, doors());
+        return isAt(pt, doors);
     }
 
     public boolean isKeyAt(Point pt) {
-        return isAt(pt, keys());
+        return isAt(pt, keys);
     }
 
     public boolean isBarrierAt(Point pt) {
-        return isAt(pt, barriers());
+        return isAt(pt, barriers);
     }
 
     @Override

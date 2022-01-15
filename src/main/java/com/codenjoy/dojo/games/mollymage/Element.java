@@ -143,138 +143,118 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isPotion() {
-        return asList(potions()).contains(this);
+        return asList(potions).contains(this);
     }
 
     public boolean isHero() {
-        return asList(heroes()).contains(this);
+        return asList(heroes).contains(this);
     }
 
     public boolean isEnemyHero() {
-        return asList(enemyHeroes()).contains(this);
+        return asList(enemyHeroes).contains(this);
     }
 
     public boolean isOtherHero() {
-        return asList(otherHeroes()).contains(this);
+        return asList(otherHeroes).contains(this);
     }
 
     public boolean isPerk() {
-        return asList(perks()).contains(this);
+        return asList(perks).contains(this);
     }
 
     public boolean isGhost() {
-        return asList(ghosts()).contains(this);
+        return asList(ghosts).contains(this);
     }
 
     public boolean isWall() {
-        return asList(walls()).contains(this);
+        return asList(walls).contains(this);
     }
 
     public boolean isTreasureBox() {
-        return asList(treasureBoxes()).contains(this);
+        return asList(treasureBoxes).contains(this);
     }
 
     public boolean isBlast() {
-        return asList(blasts()).contains(this);
+        return asList(blasts).contains(this);
     }
 
-    public static Element[] heroes() {
-        return new Element[]{
-                HERO,
-                HERO_POTION,
-                HERO_DEAD,
-        };
-    }
+    public static final Element[] heroes = new Element[]{
+            HERO,
+            HERO_POTION,
+            HERO_DEAD,
+    };
 
-    public static Element[] enemyHeroes() {
-        return new Element[]{
-                ENEMY_HERO,
-                ENEMY_HERO_POTION,
-                ENEMY_HERO_DEAD,
-        };
-    }
+    public static final Element[] enemyHeroes = new Element[]{
+            ENEMY_HERO,
+            ENEMY_HERO_POTION,
+            ENEMY_HERO_DEAD,
+    };
 
-    public static Element[] otherHeroes() {
-        return new Element[]{
-                OTHER_HERO,
-                OTHER_HERO_POTION,
-                OTHER_HERO_DEAD,
-        };
-    }
+    public static final Element[] otherHeroes = new Element[]{
+            OTHER_HERO,
+            OTHER_HERO_POTION,
+            OTHER_HERO_DEAD,
+    };
 
-    public static Element[] potions() {
-        return new Element[]{
-                POTION_TIMER_1,
-                POTION_TIMER_2,
-                POTION_TIMER_3,
-                POTION_TIMER_4,
-                POTION_TIMER_5,
-                HERO_POTION,
-                OTHER_HERO_POTION,
-                ENEMY_HERO_POTION,
-        };
-    }
+    public static final Element[] potions = new Element[]{
+            POTION_TIMER_1,
+            POTION_TIMER_2,
+            POTION_TIMER_3,
+            POTION_TIMER_4,
+            POTION_TIMER_5,
+            HERO_POTION,
+            OTHER_HERO_POTION,
+            ENEMY_HERO_POTION,
+    };
 
-    public static Element[] perks() {
-        return new Element[]{
-                POTION_BLAST_RADIUS_INCREASE,
-                POTION_COUNT_INCREASE,
-                POTION_IMMUNE,
-                POTION_REMOTE_CONTROL,
-                POISON_THROWER,
-                POTION_EXPLODER,
-        };
-    }
+    public static final Element[] perks = new Element[]{
+            POTION_BLAST_RADIUS_INCREASE,
+            POTION_COUNT_INCREASE,
+            POTION_IMMUNE,
+            POTION_REMOTE_CONTROL,
+            POISON_THROWER,
+            POTION_EXPLODER,
+    };
 
-    public static Element[] ghosts() {
-        return new Element[]{
-                GHOST,
-                GHOST_DEAD,
-        };
-    }
+    public static final Element[] ghosts = new Element[]{
+            GHOST,
+            GHOST_DEAD,
+    };
 
-    public static Element[] walls() {
-        return new Element[]{
-                WALL,
-        };
-    }
+    public static final Element[] walls = new Element[]{
+            WALL,
+    };
 
-    public static Element[] treasureBoxes() {
-        return new Element[]{
-                TREASURE_BOX,
-                TREASURE_BOX_OPENING,
-        };
-    }
+    public static final Element[] treasureBoxes = new Element[]{
+            TREASURE_BOX,
+            TREASURE_BOX_OPENING,
+    };
 
-    public static Element[] blasts() {
-        return new Element[]{
-                BLAST,
-        };
-    }
+    public static final Element[] blasts = new Element[]{
+            BLAST,
+    };
 
-    public static Element[] barriers() {
-        return new Element[]{
-                GHOST,
-                //GHOST_DEAD,
-                WALL,
-                POTION_TIMER_1,
-                POTION_TIMER_2,
-                POTION_TIMER_3,
-                POTION_TIMER_4,
-                POTION_TIMER_5,
-                HERO_POTION,
-                OTHER_HERO_POTION,
-                ENEMY_HERO_POTION,
-                TREASURE_BOX,
-                //TREASURE_BOX_OPENING,
-                OTHER_HERO,
-                OTHER_HERO_POTION,
-                OTHER_HERO_DEAD,
-                ENEMY_HERO,
-                ENEMY_HERO_POTION,
-                ENEMY_HERO_DEAD,
-        };
-    }
+    public static final Element[] barriers = new Element[]{
+            GHOST,
+            //GHOST_DEAD,
+            WALL,
+            POTION_TIMER_1,
+            POTION_TIMER_2,
+            POTION_TIMER_3,
+            POTION_TIMER_4,
+            POTION_TIMER_5,
+            HERO_POTION,
+            OTHER_HERO_POTION,
+            ENEMY_HERO_POTION,
+            TREASURE_BOX,
+            //TREASURE_BOX_OPENING,
+            OTHER_HERO,
+            OTHER_HERO_POTION,
+            OTHER_HERO_DEAD,
+            ENEMY_HERO,
+            ENEMY_HERO_POTION,
+            ENEMY_HERO_DEAD,
+    };
 
     @Override
     public Element otherHero() {

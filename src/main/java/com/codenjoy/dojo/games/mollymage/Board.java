@@ -72,39 +72,39 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Point getHero() {
-        return getFirst(heroes());
+        return getFirst(heroes);
     }
 
     public List<Point> getOtherHeroes() {
-        return get(otherHeroes());
+        return get(otherHeroes);
     }
 
     public List<Point> getEnemyHeroes() {
-        return get(enemyHeroes());
+        return get(enemyHeroes);
     }
 
     public List<Point> getGhosts() {
-        return get(ghosts());
+        return get(ghosts);
     }
 
     public List<Point> getWalls() {
-        return get(walls());
+        return get(walls);
     }
 
     public List<Point> getTreasureBoxes() {
-        return get(treasureBoxes());
+        return get(treasureBoxes);
     }
 
     public List<Point> getPotions() {
-        return get(potions());
+        return get(potions);
     }
 
     public List<Point> getPerks() {
-        return get(perks());
+        return get(perks);
     }
 
     public List<Point> getBlasts() {
-        return get(blasts());
+        return get(blasts);
     }
 
     public List<Point> getFutureBlasts() {
@@ -136,43 +136,43 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public List<Point> getBarriers() {
-        return get(barriers());
+        return get(barriers);
     }
 
     public boolean isHeroAt(Point pt) {
-        return isAt(pt, heroes());
+        return isAt(pt, heroes);
     }
 
     public boolean isOtherHeroAt(Point pt) {
-        return isAt(pt, otherHeroes());
+        return isAt(pt, otherHeroes);
     }
 
     public boolean isEnemyHeroAt(Point pt) {
-        return isAt(pt, enemyHeroes());
+        return isAt(pt, enemyHeroes);
     }
 
     public boolean isGhostAt(Point pt) {
-        return isAt(pt, ghosts());
+        return isAt(pt, ghosts);
     }
 
     public boolean isWallAt(Point pt) {
-        return isAt(pt, walls());
+        return isAt(pt, walls);
     }
 
     public boolean isTreasureBoxAt(Point pt) {
-        return isAt(pt, treasureBoxes());
+        return isAt(pt, treasureBoxes);
     }
 
     public boolean isPotionAt(Point pt) {
-        return isAt(pt, potions());
+        return isAt(pt, potions);
     }
 
     public boolean isPerkAt(Point pt) {
-        return isAt(pt, perks());
+        return isAt(pt, perks);
     }
 
     public boolean isBlastAt(Point pt) {
-        return isAt(pt, blasts());
+        return isAt(pt, blasts);
     }
 
     public boolean isFutureBlastAt(Point pt) {
@@ -180,7 +180,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isBarrierAt(Point pt) {
-        return isAt(pt, barriers());
+        return isAt(pt, barriers);
     }
 
     @Override

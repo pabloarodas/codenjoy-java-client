@@ -60,51 +60,51 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Point getHero() {
-        return getFirst(heroes());
+        return getFirst(heroes);
     }
 
     public List<Point> getOtherHeroes() {
-        return get(otherHeroes());
+        return get(otherHeroes);
     }
 
     public List<Point> getWalls() {
-        return get(walls());
+        return get(walls);
     }
 
     public List<Point> getBombs() {
-        return get(bombs());
+        return get(bombs);
     }
 
     public List<Point> getGold() {
-        return get(gold());
+        return get(gold);
     }
 
     public List<Point> getBarriers() {
-       return get(barriers());
+       return get(barriers);
     }
 
     public boolean isHeroAt(Point pt) {
-        return isAt(pt, heroes());
+        return isAt(pt, heroes);
     }
 
     public boolean isOtherHeroAt(Point pt) {
-        return isAt(pt, otherHeroes());
+        return isAt(pt, otherHeroes);
     }
 
     public boolean isWallAt(Point pt) {
-        return isAt(pt, walls());
+        return isAt(pt, walls);
     }
 
     public boolean isBombAt(Point pt) {
-        return isAt(pt, bombs());
+        return isAt(pt, bombs);
     }
 
     public boolean isGoldAt(Point pt) {
-        return isAt(pt, gold());
+        return isAt(pt, gold);
     }
 
     public boolean isBarrierAt(Point pt) {
-        return isAt(pt, barriers());
+        return isAt(pt, barriers);
     }
 
     @Override

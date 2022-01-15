@@ -49,7 +49,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Point getHero() {
-        return getFirst(heroes());
+        return getFirst(heroes);
     }
 
     public Element getAt(int x, int y) {
@@ -68,75 +68,75 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public List<Point> getOtherHeroes() {
-        return get(otherHeroes());
+        return get(otherHeroes);
     }
 
     public List<Point> getEnemyHeroes() {
-        return get(enemyHeroes());
+        return get(enemyHeroes);
     }
 
     public List<Point> getContagions() {
-        return get(contagions());
+        return get(contagions);
     }
 
     public List<Point> getHealing() {
-        return get(healing());
+        return get(healing);
     }
 
     public List<Point> getCure() {
-        return get(cure());
+        return get(cure);
     }
 
     public List<Point> getPathless() {
-        return get(pathless());
+        return get(pathless);
     }
 
     public List<Point> getInfections() {
-        return get(infections());
+        return get(infections);
     }
 
     public List<Point> getHidden() {
-        return get(hidden());
+        return get(hidden);
     }
 
     public List<Point> getClear() {
-        return get(clear());
+        return get(clear);
     }
 
     public boolean isHeroAt(Point pt) {
-        return isAt(pt, heroes());
+        return isAt(pt, heroes);
     }
 
     public boolean isOtherHeroAt(Point pt) {
-        return isAt(pt, otherHeroes());
+        return isAt(pt, otherHeroes);
     }
 
     public boolean isEnemyHeroAt(Point pt) {
-        return isAt(pt, enemyHeroes());
+        return isAt(pt, enemyHeroes);
     }
 
     public boolean isContagionAt(Point pt) {
-        return isAt(pt, contagions());
+        return isAt(pt, contagions);
     }
 
     public boolean isPathlessAt(Point pt) {
-        return isAt(pt, pathless());
+        return isAt(pt, pathless);
     }
 
     public boolean isInfectionsAt(Point pt) {
-        return isAt(pt, infections());
+        return isAt(pt, infections);
     }
 
     public boolean isHiddenAt(Point pt) {
-        return isAt(pt, hidden());
+        return isAt(pt, hidden);
     }
 
     public boolean isClearAt(Point pt) {
-        return isAt(pt, clear());
+        return isAt(pt, clear);
     }
 
     public int countContagions(Point pt) {
-        return isAt(pt, contagions())
+        return isAt(pt, contagions)
                 ? getAt(pt).value()
                 : 0;
     }

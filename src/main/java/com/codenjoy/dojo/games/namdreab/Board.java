@@ -50,7 +50,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isHeroHeadAt(Point pt) {
-        return isAt(pt, heroHead());
+        return isAt(pt, heroHead);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Point getHeroHead() {
-        return getFirst(heroHead());
+        return getFirst(heroHead);
     }
 
     public boolean isGameOver() {

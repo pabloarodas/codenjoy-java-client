@@ -75,65 +75,53 @@ public enum Element implements CharElement, TeamElement {
     }
 
     public boolean isHero() {
-        return asList(heroes()).contains(this);
+        return asList(heroes).contains(this);
     }
 
     public boolean isOtherHero() {
-        return asList(otherHeroes()).contains(this);
+        return asList(otherHeroes).contains(this);
     }
 
     public boolean isWall() {
-        return asList(walls()).contains(this);
+        return asList(walls).contains(this);
     }
 
     public boolean isGold() {
-        return asList(gold()).contains(this);
+        return asList(gold).contains(this);
     }
 
     public boolean isBomb() {
-        return asList(bombs()).contains(this);
+        return asList(bombs).contains(this);
     }
 
-    public static Element[] heroes() {
-        return new Element[]{
-                HERO,
-                HERO_DEAD,
-        };
-    }
+    public static final Element[] heroes = new Element[]{
+            HERO,
+            HERO_DEAD,
+    };
 
-    public static Element[] otherHeroes() {
-        return new Element[]{
-                OTHER_HERO,
-                OTHER_HERO_DEAD,
-        };
-    }
+    public static final Element[] otherHeroes = new Element[]{
+            OTHER_HERO,
+            OTHER_HERO_DEAD,
+    };
 
-    public static Element[] walls() {
-        return new Element[]{
-                WALL,
-        };
-    }
+    public static final Element[] walls = new Element[]{
+            WALL,
+    };
 
-    public static Element[] gold() {
-        return new Element[]{
-                GOLD,
-        };
-    }
+    public static final Element[] gold = new Element[]{
+            GOLD,
+    };
 
-    public static Element[] bombs() {
-        return new Element[]{
-                BOMB,
-        };
-    }
+    public static final Element[] bombs = new Element[]{
+            BOMB,
+    };
 
-    public static Element[] barriers() {
-        return new Element[]{
-                WALL,
-                BOMB,
-                OTHER_HERO,
-                OTHER_HERO_DEAD,
-        };
-    }
+    public static final Element[] barriers = new Element[]{
+            WALL,
+            BOMB,
+            OTHER_HERO,
+            OTHER_HERO_DEAD,
+    };
 
     @Override
     public Element otherHero() {

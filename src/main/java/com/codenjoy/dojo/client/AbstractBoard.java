@@ -24,13 +24,10 @@ package com.codenjoy.dojo.client;
 
 
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.annotations.PerformanceOptimized;
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
@@ -135,7 +132,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
 
         for (int layer = 0; layer < countLayers(); ++layer) {
             E found = getAt(layer, pt.getX(), pt.getY());
-                for (E element : elements) {
+            for (E element : elements) {
                 if (found.equals(element)) {
                     return true;
                 }

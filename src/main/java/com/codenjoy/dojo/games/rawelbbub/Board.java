@@ -61,91 +61,91 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Point getHero() {
-        return getFirst(heroes());
+        return getFirst(heroes);
     }
 
     public List<Point> getBarriers() {
-        return get(barriers());
+        return get(barriers);
     }
 
     public List<Point> getOtherHeroes() {
-        return get(otherHeroes());
+        return get(otherHeroes);
     }
 
     public List<Point> getAis() {
-        return get(ais());
+        return get(ais);
     }
 
     public List<Point> getEnemies() {
-        return get(enemies());
+        return get(enemies);
     }
 
     public List<Point> getTorpedoes() {
-        return get(torpedoes());
+        return get(torpedoes);
     }
 
     public List<Point> getFishnet() {
-        return get(fishnet());
+        return get(fishnet);
     }
 
     public List<Point> getOil() {
-        return get(oil());
+        return get(oil);
     }
 
     public List<Point> getIcebergs() {
-        return get(icebergs());
+        return get(icebergs);
     }
 
     public List<Point> getSeaweed() {
-        return get(seaweed());
+        return get(seaweed);
     }
 
     public List<Point> getPrizes() {
-        return get(prizes());
+        return get(prizes);
     }
 
     public boolean isHeroAt(Point pt) {
-        return isAt(pt, heroes());
+        return isAt(pt, heroes);
     }
 
     public boolean isBarrierAt(Point pt) {
-        return isAt(pt, barriers());
+        return isAt(pt, barriers);
     }
 
     public boolean isOtherHeroAt(Point pt) {
-        return isAt(pt, otherHeroes());
+        return isAt(pt, otherHeroes);
     }
 
     public boolean isAiAt(Point pt) {
-        return isAt(pt, ais());
+        return isAt(pt, ais);
     }
 
     public boolean isEnemyAt(Point pt) {
-        return isAt(pt, enemies());
+        return isAt(pt, enemies);
     }
 
     public boolean isTorpedoAt(Point pt) {
-        return isAt(pt, torpedoes());
+        return isAt(pt, torpedoes);
     }
 
     public boolean isFishnetAt(Point pt) {
-        return isAt(pt, fishnet());
+        return isAt(pt, fishnet);
     }
 
     public boolean isOilAt(Point pt) {
-        return isAt(pt, oil());
+        return isAt(pt, oil);
     }
 
     public boolean isIcebergAt(Point pt) {
-        return isAt(pt, icebergs());
+        return isAt(pt, icebergs);
     }
 
     public boolean isSeaweedAt(Point pt) {
-        return isAt(pt, seaweed());
+        return isAt(pt, seaweed);
     }
 
     public boolean isPrizeAt(Point pt) {
-        return isAt(pt, prizes());
+        return isAt(pt, prizes);
     }
 
     @Override
