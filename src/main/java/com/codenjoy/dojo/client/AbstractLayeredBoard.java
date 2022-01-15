@@ -147,8 +147,9 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
 
         private void getAnd(Function<Point, Boolean> function, E... elements) {
             for (int x = 0; x < size; x++) {
+                char[] line = layerField[x];
                 for (int y = 0; y < size; y++) {
-                    E value = fieldElement(x, y);
+                    E value = valueOf(line[y]);
                     for (E element : elements) {
                         if (isEquals(value, element)) {
                             if (!function.apply(pt(x, y))) return;
