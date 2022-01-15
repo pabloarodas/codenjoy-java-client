@@ -25,6 +25,8 @@ package com.codenjoy.dojo.games.pong;
 import com.codenjoy.dojo.client.AbstractBoard;
 import com.codenjoy.dojo.services.Point;
 
+import java.util.List;
+
 import static com.codenjoy.dojo.games.pong.Element.BALL;
 import static com.codenjoy.dojo.games.pong.Element.HERO;
 
@@ -35,8 +37,8 @@ public class Board extends AbstractBoard<Element> {
         return Element.values();
     }
 
-    public Point getHero() {
-        return getFirst(HERO);
+    public List<Point> getHero() {
+        return get(HERO);
     }
 
     public Point getBall() {
