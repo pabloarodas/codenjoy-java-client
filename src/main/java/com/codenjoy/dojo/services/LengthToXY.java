@@ -26,6 +26,7 @@ package com.codenjoy.dojo.services;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 public class LengthToXY { // TODO есть точно такой же в com.codenjoy.dojo.client; только вертикально зеркальный
+
     private int size;
 
     public LengthToXY(int size) {
@@ -46,19 +47,21 @@ public class LengthToXY { // TODO есть точно такой же в com.cod
     public static class Map { // TODO test me
         private LengthToXY xy;
         private char[] map;
+        private int size;
 
         public Map(String map) {
             this.map = map.toCharArray();
-            xy = new LengthToXY(getSize());
+            size = (int) Math.sqrt(map.length());
+            xy = new LengthToXY(size);
         }
 
         public Map(int size) {
             map = new char[size*size];
-            xy = new LengthToXY(getSize());
+            xy = new LengthToXY(size);
         }
 
         public int getSize() {
-            return (int) Math.sqrt(map.length);
+            return size;
         }
 
         public char getAt(int x, int y) {
