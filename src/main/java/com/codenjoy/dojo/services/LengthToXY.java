@@ -45,6 +45,7 @@ public class LengthToXY {
     }
 
     public static class Map { // TODO test me
+
         private LengthToXY xy;
         private char[] map;
         private int size;
@@ -56,7 +57,7 @@ public class LengthToXY {
         }
 
         public Map(int size) {
-            map = new char[size*size];
+            map = new char[size * size];
             xy = new LengthToXY(size);
         }
 
@@ -80,7 +81,7 @@ public class LengthToXY {
             return Point.isOutOf(x, y, size);
         }
 
-        public String getMap() {
+        public String map() {
             return new String(map);
         }
     }
