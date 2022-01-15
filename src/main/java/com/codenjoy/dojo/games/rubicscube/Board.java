@@ -36,7 +36,7 @@ public class Board extends AbstractBoard<Element> {
 
     @Override
     public String toString() {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (int y = 0; y < size - 3; y++) {
             for (int x = 0; x < size; x++) {
                 result.append(field(LAYER1, x, y));

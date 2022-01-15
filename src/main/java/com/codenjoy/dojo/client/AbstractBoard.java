@@ -101,7 +101,7 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
     }
 
     public String boardAsString() {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (int layer = 0; layer < countLayers(); ++layer) {
             if (layer > 0) {
                 result.append('\n');

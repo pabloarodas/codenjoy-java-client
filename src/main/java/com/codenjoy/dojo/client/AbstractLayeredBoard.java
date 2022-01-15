@@ -104,7 +104,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
                 for (E element : elements) {
-                    E value = valueOf(field(numLayer, x, y));
+                    E value = fieldElement(numLayer, x, y);
                     if (equals(value, element)) {
                         if (!function.apply(pt(x, y))) return;
                     }
@@ -163,7 +163,11 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
      * @return Returns element at position specified.
      */
     protected E getAt(int numLayer, int x, int y) {
-        return valueOf(field(numLayer, x, y));
+        return fieldElement(numLayer, x, y);
+    }
+
+    protected E fieldElement(int numLayer, int x, int y) {
+        return valueOf(field[numLayer][x][y]);
     }
 
     protected char field(int numLayer, int x, int y) {
