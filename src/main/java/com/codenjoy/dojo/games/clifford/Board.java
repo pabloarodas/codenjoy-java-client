@@ -112,7 +112,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public List<Point> getBarriers() {
-        return get(barriers);
+        return get2(barriers2);
     }
 
     public boolean isHeroAt(Point pt) {
@@ -120,15 +120,15 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isOtherHeroAt(Point pt) {
-        return isAt(pt, otherHeroes);
+        return isAt2(pt, otherHeroes2);
     }
 
     public boolean isEnemyHeroAt(Point pt) {
-        return isAt(pt, enemyHeroes);
+        return isAt2(pt, enemyHeroes2);
     }
 
     public boolean isRobberAt(Point pt) {
-        return isAt(pt, robbers);
+        return isAt2(pt, robbers2);
     }
 
     public boolean isClueAt(Point pt) {
@@ -144,15 +144,15 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isWallAt(Point pt) {
-        return isAt(pt, walls);
+        return isAt2(pt, walls2);
     }
 
     public boolean isLadderAt(Point pt) {
-        return isAt(pt, ladders);
+        return isAt2(pt, ladders2);
     }
 
     public boolean isPipeAt(Point pt) {
-        return isAt(pt, pipes);
+        return isAt2(pt, pipes2);
     }
 
     public boolean isPitAt(Point pt) {
@@ -168,7 +168,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public boolean isBarrierAt(Point pt) {
-        return isAt(pt, barriers);
+        return isAt2(pt, barriers2);
     }
 
     @Override
