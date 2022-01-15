@@ -37,7 +37,7 @@ public class Board extends AbstractBoard<Element> {
         StringBuilder result = new StringBuilder();
         for (int y = 0; y < size - 3; y++) {
             for (int x = 0; x < size; x++) {
-                result.append(field(x, y));
+                result.append(layer(0).field(x, y));
             }
             result.append("\n");
         }
