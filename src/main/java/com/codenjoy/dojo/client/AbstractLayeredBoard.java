@@ -32,7 +32,6 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
@@ -159,17 +158,6 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
             }
         }
 
-        private void getAnd2(Function<Point, Boolean> function, Set<E> elements) {
-            for (int x = 0; x < size; x++) {
-                for (int y = 0; y < size; y++) {
-                    E value = fieldElement(x, y);
-                    if (elements.contains(value)) {
-                        if (!function.apply(pt(x, y))) return;
-                    }
-                }
-            }
-        }
-
         /**
          * @param elements List of elements that we try to find.
          * @return All positions of element specified.
@@ -177,12 +165,6 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
         public List<Point> get(E... elements) {
             List<Point> result = new LinkedList<>();
             getAnd(pt -> { result.add(pt); return true; }, elements);
-            return result;
-        }
-
-        public List<Point> get2(Set<E> elements) {
-            List<Point> result = new LinkedList<>();
-            getAnd2(pt -> { result.add(pt); return true; }, elements);
             return result;
         }
 

@@ -28,7 +28,6 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public abstract class AbstractBoard<E extends CharElement> extends AbstractLayeredBoard<E> {
 
@@ -49,14 +48,6 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         List<Point> result = new LinkedList<>();
         for (int layer = 0; layer < countLayers(); ++layer) {
             result.addAll(layer(layer).get(elements));
-        }
-        return result;
-    }
-
-    public List<Point> get2(Set<E> elements) {
-        List<Point> result = new LinkedList<>();
-        for (int layer = 0; layer < countLayers(); ++layer) {
-            result.addAll(layer(layer).get2(elements));
         }
         return result;
     }
@@ -143,28 +134,8 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
         return false;
     }
 
-    public boolean isAt2(int x, int y, Set<E> elements) {
-        if (isOutOf(x, y)) {
-            // TODO за пределами поля должны быть барьеры
-            return false;
-        }
-
-        for (int layer = 0; layer < countLayers(); ++layer) {
-            E found = layer(layer).getAt(x, y);
-            if (elements.contains(found)) {
-                return true;
-            }
-
-        }
-        return false;
-    }
-
     public boolean isAt(Point pt, E... elements) {
         return isAt(pt.getX(), pt.getY(), elements);
-    }
-
-    public boolean isAt2(Point pt, Set<E> elements) {
-        return isAt2(pt.getX(), pt.getY(), elements);
     }
 
     /**

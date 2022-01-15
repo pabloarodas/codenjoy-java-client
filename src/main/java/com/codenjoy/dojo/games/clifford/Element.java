@@ -26,9 +26,6 @@ package com.codenjoy.dojo.games.clifford;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.printer.TeamElement;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public enum Element implements CharElement, TeamElement {
 
 /// Void
@@ -342,24 +339,6 @@ public enum Element implements CharElement, TeamElement {
             ENEMY_HERO_MASK_LADDER,
     };
 
-    public static final Set<Element> ladders2 = new HashSet<>(){{
-            add(LADDER);
-
-            add(HERO_LADDER);
-            add(OTHER_HERO_LADDER);
-            add(ROBBER_LADDER);
-            add(ENEMY_HERO_LADDER);
-
-            add(HERO_MASK_LADDER);
-            add(OTHER_HERO_MASK_LADDER);
-            add(ENEMY_HERO_MASK_LADDER);
-    }};
-
-    public static final Set<Element> walls2 = new HashSet<>(){{
-            add(STONE);
-            add(BRICK);
-    }};
-
     public static final Element[] walls = new Element[]{
             STONE,
             BRICK,
@@ -397,15 +376,6 @@ public enum Element implements CharElement, TeamElement {
             ROBBER_PIT,
     };
 
-    public static final Set<Element> robbers2 = new HashSet<>(){{
-            add(ROBBER_LEFT);
-            add(ROBBER_RIGHT);
-            add(ROBBER_LADDER);
-            add(ROBBER_PIPE);
-            add(ROBBER_FALL);
-            add(ROBBER_PIT);
-    }};
-
     public static final Element[] otherHeroes = new Element[]{
             OTHER_HERO_LEFT,
             OTHER_HERO_RIGHT,
@@ -423,24 +393,6 @@ public enum Element implements CharElement, TeamElement {
             OTHER_HERO_MASK_PIT,
             OTHER_HERO_MASK_DIE,
     };
-
-    public static final Set<Element> otherHeroes2 = new HashSet<>(){{
-            add(OTHER_HERO_LEFT);
-            add(OTHER_HERO_RIGHT);
-            add(OTHER_HERO_LADDER);
-            add(OTHER_HERO_PIPE);
-            add(OTHER_HERO_FALL);
-            add(OTHER_HERO_PIT);
-            add(OTHER_HERO_DIE);
-
-            add(OTHER_HERO_MASK_LEFT);
-            add(OTHER_HERO_MASK_RIGHT);
-            add(OTHER_HERO_MASK_LADDER);
-            add(OTHER_HERO_MASK_PIPE);
-            add(OTHER_HERO_MASK_FALL);
-            add(OTHER_HERO_MASK_PIT);
-            add(OTHER_HERO_MASK_DIE);
-    }};
 
     public static final Element[] enemyHeroes =  new Element[]{
             ENEMY_HERO_LEFT,
@@ -460,24 +412,6 @@ public enum Element implements CharElement, TeamElement {
             ENEMY_HERO_MASK_DIE,
     };
 
-    public static final Set<Element> enemyHeroes2 =  new HashSet<>(){{
-            add(ENEMY_HERO_LEFT);
-            add(ENEMY_HERO_RIGHT);
-            add(ENEMY_HERO_LADDER);
-            add(ENEMY_HERO_PIPE);
-            add(ENEMY_HERO_FALL);
-            add(ENEMY_HERO_PIT);
-            add(ENEMY_HERO_DIE);
-
-            add(ENEMY_HERO_MASK_LEFT);
-            add(ENEMY_HERO_MASK_RIGHT);
-            add(ENEMY_HERO_MASK_LADDER);
-            add(ENEMY_HERO_MASK_PIPE);
-            add(ENEMY_HERO_MASK_FALL);
-            add(ENEMY_HERO_MASK_PIT);
-            add(ENEMY_HERO_MASK_DIE);
-    }};
-
     public static final Element[] pipes = new Element[]{
             PIPE,
 
@@ -490,19 +424,6 @@ public enum Element implements CharElement, TeamElement {
             OTHER_HERO_MASK_PIPE,
             ENEMY_HERO_MASK_PIPE,
     };
-
-    public static final Set<Element> pipes2 = new HashSet<>(){{
-            add(PIPE);
-
-            add(HERO_PIPE);
-            add(OTHER_HERO_PIPE);
-            add(ROBBER_PIPE);
-            add(ENEMY_HERO_PIPE);
-
-            add(HERO_MASK_PIPE);
-            add(OTHER_HERO_MASK_PIPE);
-            add(ENEMY_HERO_MASK_PIPE);
-    }};
 
     public static final Element[] pits = new Element[]{
             CRACK_PIT,
@@ -588,54 +509,6 @@ public enum Element implements CharElement, TeamElement {
             ENEMY_HERO_MASK_PIT,
             ENEMY_HERO_MASK_DIE,
     };
-
-    public static final Set<Element> barriers2 = new HashSet<>(){{
-            add(STONE);
-            add(BRICK);
-            add(CLOSED_DOOR_GOLD);
-            add(CLOSED_DOOR_SILVER);
-            add(CLOSED_DOOR_BRONZE);
-            add(BULLET);
-
-            add(ROBBER_LEFT);
-            add(ROBBER_RIGHT);
-            add(ROBBER_LADDER);
-            add(ROBBER_PIPE);
-            add(ROBBER_FALL);
-            add(ROBBER_PIT);
-
-            add(OTHER_HERO_LEFT);
-            add(OTHER_HERO_RIGHT);
-            add(OTHER_HERO_LADDER);
-            add(OTHER_HERO_PIPE);
-            add(OTHER_HERO_FALL);
-            add(OTHER_HERO_PIT);
-            add(OTHER_HERO_DIE);
-
-            add(ENEMY_HERO_LEFT);
-            add(ENEMY_HERO_RIGHT);
-            add(ENEMY_HERO_LADDER);
-            add(ENEMY_HERO_PIPE);
-            add(ENEMY_HERO_FALL);
-            add(ENEMY_HERO_PIT);
-            add(ENEMY_HERO_DIE);
-
-            add(OTHER_HERO_MASK_LEFT);
-            add(OTHER_HERO_MASK_RIGHT);
-            add(OTHER_HERO_MASK_LADDER);
-            add(OTHER_HERO_MASK_PIPE);
-            add(OTHER_HERO_MASK_FALL);
-            add(OTHER_HERO_MASK_PIT);
-            add(OTHER_HERO_MASK_DIE);
-
-            add(ENEMY_HERO_MASK_LEFT);
-            add(ENEMY_HERO_MASK_RIGHT);
-            add(ENEMY_HERO_MASK_LADDER);
-            add(ENEMY_HERO_MASK_PIPE);
-            add(ENEMY_HERO_MASK_FALL);
-            add(ENEMY_HERO_MASK_PIT);
-            add(ENEMY_HERO_MASK_DIE);
-    }};
 
     public Element mask() {
         switch (this) {
