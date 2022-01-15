@@ -155,19 +155,19 @@ public class PointImplTest {
         Point pt = pt(1, 5);
 
         // when then
-        assertFalse(pt.isOutOf(0, 0, 20));
-        assertFalse(pt.isOutOf(1, 0, 20));
-        assertTrue(pt.isOutOf(2, 0, 20));
-        assertTrue(pt.isOutOf(3, 0, 20));
+        assertFalse(pt.isOutOfExclude(0, 0, 20));
+        assertFalse(pt.isOutOfExclude(1, 0, 20));
+        assertTrue(pt.isOutOfExclude(2, 0, 20));
+        assertTrue(pt.isOutOfExclude(3, 0, 20));
 
-        assertFalse(pt.isOutOf(0, 0, 20));
-        assertFalse(pt.isOutOf(0, 1, 20));
-        assertFalse(pt.isOutOf(0, 2, 20));
-        assertFalse(pt.isOutOf(0, 3, 20));
-        assertFalse(pt.isOutOf(0, 4, 20));
-        assertFalse(pt.isOutOf(0, 5, 20));
-        assertTrue(pt.isOutOf(0, 6, 20));
-        assertTrue(pt.isOutOf(0, 7, 20));
+        assertFalse(pt.isOutOfExclude(0, 0, 20));
+        assertFalse(pt.isOutOfExclude(0, 1, 20));
+        assertFalse(pt.isOutOfExclude(0, 2, 20));
+        assertFalse(pt.isOutOfExclude(0, 3, 20));
+        assertFalse(pt.isOutOfExclude(0, 4, 20));
+        assertFalse(pt.isOutOfExclude(0, 5, 20));
+        assertTrue(pt.isOutOfExclude(0, 6, 20));
+        assertTrue(pt.isOutOfExclude(0, 7, 20));
     }
 
     @Test
@@ -176,19 +176,19 @@ public class PointImplTest {
         Point pt = pt(10, 15);
 
         // when then
-        assertFalse(pt.isOutOf(0, 0, 20));
-        assertFalse(pt.isOutOf(0, 1, 20));
-        assertFalse(pt.isOutOf(0, 2, 20));
-        assertFalse(pt.isOutOf(0, 3, 20));
-        assertFalse(pt.isOutOf(0, 4, 20));
-        assertTrue(pt.isOutOf(0, 5, 20));
-        assertTrue(pt.isOutOf(0, 6, 20));
-        assertTrue(pt.isOutOf(0, 7, 20));
+        assertFalse(pt.isOutOfExclude(0, 0, 20));
+        assertFalse(pt.isOutOfExclude(0, 1, 20));
+        assertFalse(pt.isOutOfExclude(0, 2, 20));
+        assertFalse(pt.isOutOfExclude(0, 3, 20));
+        assertFalse(pt.isOutOfExclude(0, 4, 20));
+        assertTrue(pt.isOutOfExclude(0, 5, 20));
+        assertTrue(pt.isOutOfExclude(0, 6, 20));
+        assertTrue(pt.isOutOfExclude(0, 7, 20));
 
-        assertFalse(pt.isOutOf(8, 0, 20));
-        assertFalse(pt.isOutOf(9, 0, 20));
-        assertTrue(pt.isOutOf(10, 0, 20));
-        assertTrue(pt.isOutOf(11, 0, 20));
+        assertFalse(pt.isOutOfExclude(8, 0, 20));
+        assertFalse(pt.isOutOfExclude(9, 0, 20));
+        assertTrue(pt.isOutOfExclude(10, 0, 20));
+        assertTrue(pt.isOutOfExclude(11, 0, 20));
     }
 
     @Test
