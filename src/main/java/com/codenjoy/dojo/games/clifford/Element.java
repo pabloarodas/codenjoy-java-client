@@ -163,7 +163,7 @@ public enum Element implements CharElement, TeamElement {
 
     ENEMY_HERO_MASK_FALL('r',   "Enemy shadow-hero is falling."),
 
-    ENEMY_HERO_MASK_PIPE('t',    "Enemy shadow-hero is crawling along the pipe."),
+    ENEMY_HERO_MASK_PIPE('t',   "Enemy shadow-hero is crawling along the pipe."),
 
     ENEMY_HERO_MASK_PIT('v',    "Enemy shadow-hero in the pit."),
 
@@ -328,36 +328,38 @@ public enum Element implements CharElement, TeamElement {
 
     public static final Element[] ladders = new Element[]{
             LADDER,
+
             HERO_LADDER,
-            HERO_MASK_LADDER,
             OTHER_HERO_LADDER,
-            OTHER_HERO_MASK_LADDER,
-            ENEMY_HERO_LADDER,
-            ENEMY_HERO_MASK_LADDER,
             ROBBER_LADDER,
+            ENEMY_HERO_LADDER,
+
+            HERO_MASK_LADDER,
+            OTHER_HERO_MASK_LADDER,
+            ENEMY_HERO_MASK_LADDER,
     };
 
     public static final Element[] walls = new Element[]{
-            BRICK,
             STONE,
+            BRICK,
     };
 
     public static final Element[] heroes = new Element[]{
-            HERO_DIE,
-            HERO_LADDER,
             HERO_LEFT,
             HERO_RIGHT,
-            HERO_FALL,
+            HERO_LADDER,
             HERO_PIPE,
+            HERO_FALL,
             HERO_PIT,
+            HERO_DIE,
 
-            HERO_MASK_DIE,
-            HERO_MASK_LADDER,
             HERO_MASK_LEFT,
             HERO_MASK_RIGHT,
-            HERO_MASK_FALL,
+            HERO_MASK_LADDER,
             HERO_MASK_PIPE,
+            HERO_MASK_FALL,
             HERO_MASK_PIT,
+            HERO_MASK_DIE,
     };
 
     public static final Element[] heroDie = new Element[]{
@@ -366,59 +368,61 @@ public enum Element implements CharElement, TeamElement {
     };
 
     public static final Element[] robbers = new Element[]{
-            ROBBER_LADDER,
             ROBBER_LEFT,
             ROBBER_RIGHT,
-            ROBBER_FALL,
+            ROBBER_LADDER,
             ROBBER_PIPE,
+            ROBBER_FALL,
             ROBBER_PIT,
     };
 
     public static final Element[] otherHeroes = new Element[]{
-            OTHER_HERO_DIE,
-            OTHER_HERO_LADDER,
             OTHER_HERO_LEFT,
             OTHER_HERO_RIGHT,
-            OTHER_HERO_FALL,
+            OTHER_HERO_LADDER,
             OTHER_HERO_PIPE,
+            OTHER_HERO_FALL,
             OTHER_HERO_PIT,
+            OTHER_HERO_DIE,
 
-            OTHER_HERO_MASK_DIE,
-            OTHER_HERO_MASK_LADDER,
             OTHER_HERO_MASK_LEFT,
             OTHER_HERO_MASK_RIGHT,
-            OTHER_HERO_MASK_FALL,
+            OTHER_HERO_MASK_LADDER,
             OTHER_HERO_MASK_PIPE,
+            OTHER_HERO_MASK_FALL,
             OTHER_HERO_MASK_PIT,
+            OTHER_HERO_MASK_DIE,
     };
 
     public static final Element[] enemyHeroes =  new Element[]{
-            ENEMY_HERO_DIE,
-            ENEMY_HERO_LADDER,
             ENEMY_HERO_LEFT,
             ENEMY_HERO_RIGHT,
-            ENEMY_HERO_FALL,
+            ENEMY_HERO_LADDER,
             ENEMY_HERO_PIPE,
+            ENEMY_HERO_FALL,
             ENEMY_HERO_PIT,
+            ENEMY_HERO_DIE,
 
-            ENEMY_HERO_MASK_DIE,
-            ENEMY_HERO_MASK_LADDER,
             ENEMY_HERO_MASK_LEFT,
             ENEMY_HERO_MASK_RIGHT,
-            ENEMY_HERO_MASK_FALL,
+            ENEMY_HERO_MASK_LADDER,
             ENEMY_HERO_MASK_PIPE,
+            ENEMY_HERO_MASK_FALL,
             ENEMY_HERO_MASK_PIT,
+            ENEMY_HERO_MASK_DIE,
     };
 
     public static final Element[] pipes = new Element[]{
             PIPE,
+
             HERO_PIPE,
-            HERO_MASK_PIPE,
             OTHER_HERO_PIPE,
-            OTHER_HERO_MASK_PIPE,
-            ENEMY_HERO_PIPE,
-            ENEMY_HERO_MASK_PIPE,
             ROBBER_PIPE,
+            ENEMY_HERO_PIPE,
+
+            HERO_MASK_PIPE,
+            OTHER_HERO_MASK_PIPE,
+            ENEMY_HERO_MASK_PIPE,
     };
 
     public static final Element[] pits = new Element[]{
@@ -427,13 +431,15 @@ public enum Element implements CharElement, TeamElement {
             PIT_FILL_2,
             PIT_FILL_3,
             PIT_FILL_4,
+
             HERO_PIT,
-            HERO_MASK_PIT,
             OTHER_HERO_PIT,
-            OTHER_HERO_MASK_PIT,
-            ENEMY_HERO_PIT,
-            ENEMY_HERO_MASK_PIT,
             ROBBER_PIT,
+            ENEMY_HERO_PIT,
+
+            HERO_MASK_PIT,
+            OTHER_HERO_MASK_PIT,
+            ENEMY_HERO_MASK_PIT,
     };
 
     public static final Element[] bullets = new Element[]{
@@ -441,12 +447,13 @@ public enum Element implements CharElement, TeamElement {
     };
 
     public static final Element[] doors = new Element[]{
-            OPENED_DOOR_GOLD,
-            OPENED_DOOR_SILVER,
-            OPENED_DOOR_BRONZE,
             CLOSED_DOOR_GOLD,
             CLOSED_DOOR_SILVER,
             CLOSED_DOOR_BRONZE,
+
+            OPENED_DOOR_GOLD,
+            OPENED_DOOR_SILVER,
+            OPENED_DOOR_BRONZE,
     };
 
     public static final Element[] keys = new Element[]{
@@ -456,46 +463,51 @@ public enum Element implements CharElement, TeamElement {
     };
 
     public static final Element[] barriers = new Element[]{
-            BRICK,
             STONE,
+            BRICK,
             CLOSED_DOOR_GOLD,
             CLOSED_DOOR_SILVER,
             CLOSED_DOOR_BRONZE,
             BULLET,
-            ENEMY_HERO_DIE,
-            ENEMY_HERO_LADDER,
-            ENEMY_HERO_LEFT,
-            ENEMY_HERO_RIGHT,
-            ENEMY_HERO_FALL,
-            ENEMY_HERO_PIPE,
-            ENEMY_HERO_PIT,
-            ENEMY_HERO_MASK_DIE,
-            ENEMY_HERO_MASK_LADDER,
-            ENEMY_HERO_MASK_LEFT,
-            ENEMY_HERO_MASK_RIGHT,
-            ENEMY_HERO_MASK_FALL,
-            ENEMY_HERO_MASK_PIPE,
-            ENEMY_HERO_MASK_PIT,
-            OTHER_HERO_DIE,
-            OTHER_HERO_LADDER,
-            OTHER_HERO_LEFT,
-            OTHER_HERO_RIGHT,
-            OTHER_HERO_FALL,
-            OTHER_HERO_PIPE,
-            OTHER_HERO_PIT,
-            OTHER_HERO_MASK_DIE,
-            OTHER_HERO_MASK_LADDER,
-            OTHER_HERO_MASK_LEFT,
-            OTHER_HERO_MASK_RIGHT,
-            OTHER_HERO_MASK_FALL,
-            OTHER_HERO_MASK_PIPE,
-            OTHER_HERO_MASK_PIT,
-            ROBBER_LADDER,
+
             ROBBER_LEFT,
             ROBBER_RIGHT,
-            ROBBER_FALL,
+            ROBBER_LADDER,
             ROBBER_PIPE,
+            ROBBER_FALL,
             ROBBER_PIT,
+
+            OTHER_HERO_LEFT,
+            OTHER_HERO_RIGHT,
+            OTHER_HERO_LADDER,
+            OTHER_HERO_PIPE,
+            OTHER_HERO_FALL,
+            OTHER_HERO_PIT,
+            OTHER_HERO_DIE,
+
+            ENEMY_HERO_LEFT,
+            ENEMY_HERO_RIGHT,
+            ENEMY_HERO_LADDER,
+            ENEMY_HERO_PIPE,
+            ENEMY_HERO_FALL,
+            ENEMY_HERO_PIT,
+            ENEMY_HERO_DIE,
+
+            OTHER_HERO_MASK_LEFT,
+            OTHER_HERO_MASK_RIGHT,
+            OTHER_HERO_MASK_LADDER,
+            OTHER_HERO_MASK_PIPE,
+            OTHER_HERO_MASK_FALL,
+            OTHER_HERO_MASK_PIT,
+            OTHER_HERO_MASK_DIE,
+
+            ENEMY_HERO_MASK_LEFT,
+            ENEMY_HERO_MASK_RIGHT,
+            ENEMY_HERO_MASK_LADDER,
+            ENEMY_HERO_MASK_PIPE,
+            ENEMY_HERO_MASK_FALL,
+            ENEMY_HERO_MASK_PIT,
+            ENEMY_HERO_MASK_DIE,
     };
 
     public Element mask() {
