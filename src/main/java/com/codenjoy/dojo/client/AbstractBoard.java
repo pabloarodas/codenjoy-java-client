@@ -88,11 +88,11 @@ public abstract class AbstractBoard<E extends CharElement> extends AbstractLayer
     }
 
     protected List<Character> field(int x, int y) {
-        return new LinkedList<>(){{
-            for (int layer = 0; layer < countLayers(); ++layer) {
-                add(layer(layer).field(x, y));
-            }             
-        }};
+        List<Character> result = new LinkedList<>();
+        for (int layer = 0; layer < countLayers(); ++layer) {
+            result.add(layer(layer).field(x, y));
+        }
+        return result;
     }
 
     public List<E> getAllAt(Point pt) {
