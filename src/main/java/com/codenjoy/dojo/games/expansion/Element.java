@@ -25,8 +25,8 @@ package com.codenjoy.dojo.games.expansion;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER1;
-import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER2;
+import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.LAYER1;
+import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.LAYER2;
 
 public enum Element implements CharElement {
 
@@ -115,11 +115,6 @@ public enum Element implements CharElement {
         }
     }
 
-    public static class Layers {
-        public final static int LAYER1 = 0;
-        public final static int LAYER2 = 1;
-    }
-
     private final char ch;
     private final int layer;
     private final int index;
@@ -139,6 +134,11 @@ public enum Element implements CharElement {
     @Override
     public char ch() {
         return ch;
+    }
+
+    @Override
+    public String info() {
+        return info;
     }
 
     @Override

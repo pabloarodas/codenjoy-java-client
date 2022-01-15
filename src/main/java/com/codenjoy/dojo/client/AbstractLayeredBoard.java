@@ -43,7 +43,7 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
 
     protected int size;
     private char[][][] field;
-    private AbstractLayeredBoard.GetLayer[] layers;
+    private GetLayer[] layers;
     protected JSONObject source;
     protected List<String> layersString = new LinkedList<>();
     private ElementsMap<E> elements;
@@ -113,6 +113,12 @@ public abstract class AbstractLayeredBoard<E extends CharElement> implements Cli
 
     public int size() {
         return size;
+    }
+
+    public static class Layers {
+        public final static int LAYER1 = 0;
+        public final static int LAYER2 = 1;
+        public final static int LAYER3 = 2;
     }
 
     @PerformanceOptimized

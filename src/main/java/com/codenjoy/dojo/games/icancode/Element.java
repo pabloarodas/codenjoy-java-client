@@ -26,11 +26,9 @@ package com.codenjoy.dojo.games.icancode;
 import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static com.codenjoy.dojo.games.icancode.Element.Layers.*;
+import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.*;
 
 public enum Element implements CharElement {
 
@@ -159,12 +157,6 @@ public enum Element implements CharElement {
     FOG(LAYER1, 'F',                    ""),
 
     BACKGROUND(LAYER2, 'G',             "");
-
-    public static class Layers {
-        public final static int LAYER1 = 0;
-        public final static int LAYER2 = 1;
-        public final static int LAYER3 = 2;
-    }
 
     private final char ch;
     private final int layer;

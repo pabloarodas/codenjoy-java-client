@@ -32,9 +32,9 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.LAYER1;
+import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.LAYER2;
 import static com.codenjoy.dojo.games.expansion.Element.*;
-import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER1;
-import static com.codenjoy.dojo.games.expansion.Element.Layers.LAYER2;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**

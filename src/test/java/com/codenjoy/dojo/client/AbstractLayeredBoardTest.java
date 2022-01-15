@@ -28,14 +28,10 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.*;
 import static org.junit.Assert.assertEquals;
 
 public class AbstractLayeredBoardTest {
-
-    public static final int LAYER_1 = 0;
-    public static final int LAYER_2 = 1;
-    public static final int LAYER_3 = 2;
-    public static final int LAYER_4 = 3;
 
     private AbstractLayeredBoard board;
 
@@ -102,21 +98,21 @@ public class AbstractLayeredBoardTest {
                 "[1, 2, 3, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 1, 1, 1]]",
-                Arrays.deepToString(board.layer(LAYER_1).field()));
+                Arrays.deepToString(board.layer(LAYER1).field()));
 
         assertEquals(
                 "[[ ,  ,  ,  ], " +
                 "[ , 4,  ,  ], " +
                 "[ ,  , 4,  ], " +
                 "[ ,  ,  ,  ]]",
-                Arrays.deepToString(board.layer(LAYER_2).field()));
+                Arrays.deepToString(board.layer(LAYER2).field()));
 
         assertEquals(
                 "[[ ,  ,  ,  ], " +
                 "[ ,  , 5,  ], " +
                 "[ , 5,  ,  ], " +
                 "[ ,  ,  ,  ]]",
-                Arrays.deepToString(board.layer(LAYER_3).field()));
+                Arrays.deepToString(board.layer(LAYER3).field()));
     }
 
     @Test
@@ -160,79 +156,81 @@ public class AbstractLayeredBoardTest {
                 "[1, 2, 3, 1], " +
                 "[1, 2, 3, 1], " +
                 "[1, 1, 1, 1]]",
-                Arrays.deepToString(board.layer(LAYER_1).field()));
+                Arrays.deepToString(board.layer(LAYER1).field()));
 
         assertEquals(
                 "[[ ,  ,  ,  ], " +
                 "[ , 4,  ,  ], " +
                 "[ ,  , 4,  ], " +
                 "[ ,  ,  ,  ]]",
-                Arrays.deepToString(board.layer(LAYER_2).field()));
+                Arrays.deepToString(board.layer(LAYER2).field()));
     }
 
     @Test
     public void shouldWork_getAt_layer1() {
-        assertEquals(Element.ONE, board.layer(LAYER_1).getAt( 0, 0));
-        assertEquals(Element.TWO, board.layer(LAYER_1).getAt( 2, 1));
-        assertEquals(Element.THREE, board.layer(LAYER_1).getAt( 2, 2));
+        assertEquals(Element.ONE, board.layer(LAYER1).getAt( 0, 0));
+        assertEquals(Element.TWO, board.layer(LAYER1).getAt( 2, 1));
+        assertEquals(Element.THREE, board.layer(LAYER1).getAt( 2, 2));
     }
 
     @Test
     public void shouldWork_getAt_layer2() {
-        assertEquals(Element.FOUR, board.layer(LAYER_2).getAt( 2, 2));
-        assertEquals(Element.NONE, board.layer(LAYER_2).getAt( 1, 2));
+        assertEquals(Element.FOUR, board.layer(LAYER2).getAt( 2, 2));
+        assertEquals(Element.NONE, board.layer(LAYER2).getAt( 1, 2));
     }
 
     @Test
     public void shouldWork_isAt_layer1() {
-        assertEquals(true, board.layer(LAYER_1).isAt( 0, 0, Element.ONE));
-        assertEquals(false, board.layer(LAYER_1).isAt( 1, 1, Element.ONE));
-        assertEquals(false, board.layer(LAYER_1).isAt( 2, 2, Element.ONE));
+        AbstractLayeredBoard.GetLayer layer = board.layer(LAYER1);
 
-        assertEquals(true, board.layer(LAYER_1).isAt( 1, 1, Element.TWO, Element.THREE));
-        assertEquals(true, board.layer(LAYER_1).isAt( 2, 2, Element.TWO, Element.THREE));
-        assertEquals(false, board.layer(LAYER_1).isAt( 2, 2, Element.TWO, Element.ONE));
+        assertEquals(true, layer.isAt( 0, 0, Element.ONE));
+        assertEquals(false, layer.isAt( 1, 1, Element.ONE));
+        assertEquals(false, layer.isAt( 2, 2, Element.ONE));
+
+        assertEquals(true, layer.isAt( 1, 1, Element.TWO, Element.THREE));
+        assertEquals(true, layer.isAt( 2, 2, Element.TWO, Element.THREE));
+        assertEquals(false, layer.isAt( 2, 2, Element.TWO, Element.ONE));
     }
 
     @Test
     public void shouldWork_isAt_layer2() {
-        assertEquals(true, board.layer(LAYER_2).isAt( 1, 1, Element.FOUR));
-        assertEquals(false, board.layer(LAYER_2).isAt( 1, 2, Element.FOUR));
-        assertEquals(false, board.layer(LAYER_2).isAt( 2, 2, Element.NONE));
+        assertEquals(true, board.layer(LAYER2).isAt( 1, 1, Element.FOUR));
+        assertEquals(false, board.layer(LAYER2).isAt( 1, 2, Element.FOUR));
+        assertEquals(false, board.layer(LAYER2).isAt( 2, 2, Element.NONE));
 
-        assertEquals(true, board.layer(LAYER_2).isAt( 1, 1, Element.FOUR, Element.NONE));
-        assertEquals(true, board.layer(LAYER_2).isAt( 2, 2, Element.FOUR, Element.NONE));
-        assertEquals(false, board.layer(LAYER_2).isAt( 2, 2, Element.TWO, Element.ONE));
+        assertEquals(true, board.layer(LAYER2).isAt( 1, 1, Element.FOUR, Element.NONE));
+        assertEquals(true, board.layer(LAYER2).isAt( 2, 2, Element.FOUR, Element.NONE));
+        assertEquals(false, board.layer(LAYER2).isAt( 2, 2, Element.TWO, Element.ONE));
     }
 
     @Test
     public void shouldWork_isNear_layer1() {
-        assertEquals(true, board.layer(LAYER_1).isNear( 1, 1, Element.ONE));
-        assertEquals(false, board.layer(LAYER_1).isNear( 5, 5, Element.TWO));
+        assertEquals(true, board.layer(LAYER1).isNear( 1, 1, Element.ONE));
+        assertEquals(false, board.layer(LAYER1).isNear( 5, 5, Element.TWO));
     }
 
     @Test
     public void shouldWork_isNear_layer2() {
-        assertEquals(true, board.layer(LAYER_2).isNear( 1, 1, Element.NONE));
-        assertEquals(false, board.layer(LAYER_2).isNear( 0, 3, Element.FOUR));
+        assertEquals(true, board.layer(LAYER2).isNear( 1, 1, Element.NONE));
+        assertEquals(false, board.layer(LAYER2).isNear( 0, 3, Element.FOUR));
     }
 
     @Test
     public void shouldWork_getNear_layer1() {
-        assertEquals("[1, 1, 1, 1, 3, 1, 2, 3]", board.layer(LAYER_1).getNear( 1, 1).toString());
-        assertEquals("[2, 3, 1, 2, 1, 1, 1, 1]", board.layer(LAYER_1).getNear( 2, 2).toString());
-        assertEquals("[3, 1, 1]", board.layer(LAYER_1).getNear( 3, 3).toString());
-        assertEquals("[]", board.layer(LAYER_1).getNear( 5, 5).toString());
-        assertEquals("[1]", board.layer(LAYER_1).getNear( -1, -1).toString());
+        assertEquals("[1, 1, 1, 1, 3, 1, 2, 3]", board.layer(LAYER1).getNear( 1, 1).toString());
+        assertEquals("[2, 3, 1, 2, 1, 1, 1, 1]", board.layer(LAYER1).getNear( 2, 2).toString());
+        assertEquals("[3, 1, 1]", board.layer(LAYER1).getNear( 3, 3).toString());
+        assertEquals("[]", board.layer(LAYER1).getNear( 5, 5).toString());
+        assertEquals("[1]", board.layer(LAYER1).getNear( -1, -1).toString());
     }
 
     @Test
     public void shouldWork_getNear_layer2() {
-        assertEquals("[ ,  ,  ,  ,  ,  ,  , 4]", board.layer(LAYER_2).getNear( 1, 1).toString());
-        assertEquals("[4,  ,  ,  ,  ,  ,  ,  ]", board.layer(LAYER_2).getNear( 2, 2).toString());
-        assertEquals("[4,  ,  ]", board.layer(LAYER_2).getNear( 3, 3).toString());
-        assertEquals("[]", board.layer(LAYER_2).getNear( 5, 5).toString());
-        assertEquals("[ ]", board.layer(LAYER_2).getNear( -1, -1).toString());
+        assertEquals("[ ,  ,  ,  ,  ,  ,  , 4]", board.layer(LAYER2).getNear( 1, 1).toString());
+        assertEquals("[4,  ,  ,  ,  ,  ,  ,  ]", board.layer(LAYER2).getNear( 2, 2).toString());
+        assertEquals("[4,  ,  ]", board.layer(LAYER2).getNear( 3, 3).toString());
+        assertEquals("[]", board.layer(LAYER2).getNear( 5, 5).toString());
+        assertEquals("[ ]", board.layer(LAYER2).getNear( -1, -1).toString());
     }
 
     @Test
@@ -250,60 +248,60 @@ public class AbstractLayeredBoardTest {
 
     @Test
     public void shouldWork_countNear_layer1() {
-        assertEquals(2, board.layer(LAYER_1).countNear( 0, 0, Element.ONE));
-        assertEquals(1, board.layer(LAYER_1).countNear( 0, 0, Element.TWO));
-        assertEquals(0, board.layer(LAYER_1).countNear( 0, 0, Element.THREE));
+        assertEquals(2, board.layer(LAYER1).countNear( 0, 0, Element.ONE));
+        assertEquals(1, board.layer(LAYER1).countNear( 0, 0, Element.TWO));
+        assertEquals(0, board.layer(LAYER1).countNear( 0, 0, Element.THREE));
 
-        assertEquals(5, board.layer(LAYER_1).countNear( 1, 1, Element.ONE));
-        assertEquals(1, board.layer(LAYER_1).countNear( 1, 1, Element.TWO));
-        assertEquals(2, board.layer(LAYER_1).countNear( 1, 1, Element.THREE));
+        assertEquals(5, board.layer(LAYER1).countNear( 1, 1, Element.ONE));
+        assertEquals(1, board.layer(LAYER1).countNear( 1, 1, Element.TWO));
+        assertEquals(2, board.layer(LAYER1).countNear( 1, 1, Element.THREE));
 
-        assertEquals(5, board.layer(LAYER_1).countNear( 2, 2, Element.ONE));
-        assertEquals(2, board.layer(LAYER_1).countNear( 2, 2, Element.TWO));
-        assertEquals(1, board.layer(LAYER_1).countNear( 2, 2, Element.THREE));
+        assertEquals(5, board.layer(LAYER1).countNear( 2, 2, Element.ONE));
+        assertEquals(2, board.layer(LAYER1).countNear( 2, 2, Element.TWO));
+        assertEquals(1, board.layer(LAYER1).countNear( 2, 2, Element.THREE));
 
-        assertEquals(2, board.layer(LAYER_1).countNear( 3, 3, Element.ONE));
-        assertEquals(0, board.layer(LAYER_1).countNear( 3, 3, Element.TWO));
-        assertEquals(1, board.layer(LAYER_1).countNear( 3, 3, Element.THREE));
+        assertEquals(2, board.layer(LAYER1).countNear( 3, 3, Element.ONE));
+        assertEquals(0, board.layer(LAYER1).countNear( 3, 3, Element.TWO));
+        assertEquals(1, board.layer(LAYER1).countNear( 3, 3, Element.THREE));
 
-        assertEquals(0, board.layer(LAYER_1).countNear( -1, -1, Element.THREE));
+        assertEquals(0, board.layer(LAYER1).countNear( -1, -1, Element.THREE));
     }
 
     @Test
     public void shouldWork_countNear_layer2() {
-        assertEquals(0, board.layer(LAYER_2).countNear( 0, 0, Element.ONE));
-        assertEquals(1, board.layer(LAYER_2).countNear( 0, 0, Element.FOUR));
-        assertEquals(2, board.layer(LAYER_2).countNear( 0, 0, Element.NONE));
+        assertEquals(0, board.layer(LAYER2).countNear( 0, 0, Element.ONE));
+        assertEquals(1, board.layer(LAYER2).countNear( 0, 0, Element.FOUR));
+        assertEquals(2, board.layer(LAYER2).countNear( 0, 0, Element.NONE));
 
-        assertEquals(0, board.layer(LAYER_2).countNear( 1, 1, Element.ONE));
-        assertEquals(1, board.layer(LAYER_2).countNear( 1, 1, Element.FOUR));
-        assertEquals(7, board.layer(LAYER_2).countNear( 1, 1, Element.NONE));
+        assertEquals(0, board.layer(LAYER2).countNear( 1, 1, Element.ONE));
+        assertEquals(1, board.layer(LAYER2).countNear( 1, 1, Element.FOUR));
+        assertEquals(7, board.layer(LAYER2).countNear( 1, 1, Element.NONE));
 
-        assertEquals(0, board.layer(LAYER_2).countNear( 2, 1, Element.ONE));
-        assertEquals(2, board.layer(LAYER_2).countNear( 2, 1, Element.FOUR));
-        assertEquals(6, board.layer(LAYER_2).countNear( 2, 1, Element.NONE));
+        assertEquals(0, board.layer(LAYER2).countNear( 2, 1, Element.ONE));
+        assertEquals(2, board.layer(LAYER2).countNear( 2, 1, Element.FOUR));
+        assertEquals(6, board.layer(LAYER2).countNear( 2, 1, Element.NONE));
 
-        assertEquals(0, board.layer(LAYER_2).countNear( 3, 3, Element.ONE));
-        assertEquals(1, board.layer(LAYER_2).countNear( 3, 3, Element.FOUR));
-        assertEquals(2, board.layer(LAYER_2).countNear( 3, 3, Element.NONE));
+        assertEquals(0, board.layer(LAYER2).countNear( 3, 3, Element.ONE));
+        assertEquals(1, board.layer(LAYER2).countNear( 3, 3, Element.FOUR));
+        assertEquals(2, board.layer(LAYER2).countNear( 3, 3, Element.NONE));
 
-        assertEquals(0, board.layer(LAYER_2).countNear( -1, -1, Element.THREE));
+        assertEquals(0, board.layer(LAYER2).countNear( -1, -1, Element.THREE));
     }
 
     @Test
     public void shouldWork_oneElement_get_layer1() {
         assertEquals("[[0,0], [0,1], [0,2], [0,3], [1,0], [1,3], " +
                         "[2,0], [2,3], [3,0], [3,1], [3,2], [3,3]]",
-                board.layer(LAYER_1).get( Element.ONE).toString());
+                board.layer(LAYER1).get( Element.ONE).toString());
 
         assertEquals("[[1,1], [2,1]]",
-                board.layer(LAYER_1).get( Element.TWO).toString());
+                board.layer(LAYER1).get( Element.TWO).toString());
 
         assertEquals("[[1,2], [2,2]]",
-                board.layer(LAYER_1).get( Element.THREE).toString());
+                board.layer(LAYER1).get( Element.THREE).toString());
 
         assertEquals("[]",
-                board.layer(LAYER_1).get( Element.NONE).toString());
+                board.layer(LAYER1).get( Element.NONE).toString());
     }
 
     @Test
@@ -311,61 +309,61 @@ public class AbstractLayeredBoardTest {
         assertEquals("[[0,0], [0,1], [0,2], [0,3], [1,0], [1,1], " +
                         "[1,2], [1,3], [2,0], [2,1], [2,2], [2,3], " +
                         "[3,0], [3,1], [3,2], [3,3]]",
-                board.layer(LAYER_1).get( Element.ONE, Element.TWO, Element.THREE).toString());
+                board.layer(LAYER1).get( Element.ONE, Element.TWO, Element.THREE).toString());
     }
 
     @Test
     public void shouldWork_oneElement_get_layer2() {
         assertEquals("[]",
-                board.layer(LAYER_2).get( Element.ONE).toString());
+                board.layer(LAYER2).get( Element.ONE).toString());
 
         assertEquals("[[0,0], [0,1], [0,2], [0,3], " +
                         "[1,0], [1,2], [1,3], " +
                         "[2,0], [2,1], [2,3], " +
                         "[3,0], [3,1], [3,2], [3,3]]",
-                board.layer(LAYER_2).get( Element.NONE).toString());
+                board.layer(LAYER2).get( Element.NONE).toString());
 
         assertEquals("[[1,1], [2,2]]",
-                board.layer(LAYER_2).get( Element.FOUR).toString());
+                board.layer(LAYER2).get( Element.FOUR).toString());
     }
 
     @Test
     public void shouldWork_severalElements_getFirst_layer2() {
         assertEquals("[0,0]",
-                board.layer(LAYER_2).getFirst( Element.ONE, Element.NONE, Element.FOUR).toString());
+                board.layer(LAYER2).getFirst( Element.ONE, Element.NONE, Element.FOUR).toString());
     }
 
     @Test
     public void shouldWork_oneElement_getFirst_layer1() {
         assertEquals("[0,0]",
-                board.layer(LAYER_1).getFirst( Element.ONE).toString());
+                board.layer(LAYER1).getFirst( Element.ONE).toString());
 
         assertEquals("[1,1]",
-                board.layer(LAYER_1).getFirst( Element.TWO).toString());
+                board.layer(LAYER1).getFirst( Element.TWO).toString());
 
         assertEquals("[1,2]",
-                board.layer(LAYER_1).getFirst( Element.THREE).toString());
+                board.layer(LAYER1).getFirst( Element.THREE).toString());
 
         assertEquals(null,
-                board.layer(LAYER_1).getFirst( Element.NONE));
+                board.layer(LAYER1).getFirst( Element.NONE));
     }
 
     @Test
     public void shouldWork_severalElements_getFirst_layer1() {
         assertEquals("[0,0]",
-                board.layer(LAYER_1).getFirst( Element.ONE, Element.TWO, Element.THREE).toString());
+                board.layer(LAYER1).getFirst( Element.ONE, Element.TWO, Element.THREE).toString());
     }
 
     @Test
     public void shouldWork_oneElement_getFirst_layer2() {
         assertEquals(null,
-                board.layer(LAYER_2).getFirst( Element.ONE));
+                board.layer(LAYER2).getFirst( Element.ONE));
 
         assertEquals("[0,0]",
-                board.layer(LAYER_2).getFirst( Element.NONE).toString());
+                board.layer(LAYER2).getFirst( Element.NONE).toString());
 
         assertEquals("[1,1]",
-                board.layer(LAYER_2).getFirst( Element.FOUR).toString());
+                board.layer(LAYER2).getFirst( Element.FOUR).toString());
     }
 
     @Test
@@ -373,7 +371,7 @@ public class AbstractLayeredBoardTest {
         assertEquals("[[0,0], [0,1], [0,2], [0,3], [1,0], " +
                         "[1,1], [1,2], [1,3], [2,0], [2,1], " +
                         "[2,2], [2,3], [3,0], [3,1], [3,2], [3,3]]",
-                board.layer(LAYER_2).get( Element.ONE, Element.NONE, Element.FOUR).toString());
+                board.layer(LAYER2).get( Element.ONE, Element.NONE, Element.FOUR).toString());
     }
 
     @Test
@@ -385,27 +383,27 @@ public class AbstractLayeredBoardTest {
     public void shouldWork_set_layer1() {
         // given
         assertEquals("[[1,2], [2,2]]",
-                board.layer(LAYER_1).get( Element.THREE).toString());
+                board.layer(LAYER1).get( Element.THREE).toString());
 
         // when
-        board.layer(LAYER_1).set( 1, 1, Element.THREE.ch());
+        board.layer(LAYER1).set( 1, 1, Element.THREE.ch());
 
         // then
         assertEquals("[[1,1], [1,2], [2,2]]",
-                board.layer(LAYER_1).get( Element.THREE).toString());
+                board.layer(LAYER1).get( Element.THREE).toString());
     }
 
     @Test
     public void shouldWork_set_layer2() {
         // given
         assertEquals("[]",
-                board.layer(LAYER_2).get( Element.THREE).toString());
+                board.layer(LAYER2).get( Element.THREE).toString());
 
         // when
-        board.layer(LAYER_2).set( 1, 1, Element.THREE.ch());
+        board.layer(LAYER2).set( 1, 1, Element.THREE.ch());
 
         // then
         assertEquals("[[1,1]]",
-                board.layer(LAYER_2).get( Element.THREE).toString());
+                board.layer(LAYER2).get( Element.THREE).toString());
     }
 }
