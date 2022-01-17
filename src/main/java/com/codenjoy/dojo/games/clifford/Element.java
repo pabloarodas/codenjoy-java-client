@@ -231,7 +231,9 @@ public enum Element implements CharElement, TeamElement {
 
     MASK_POTION('m',            "Disguise potion - endow the hero with " +
                                 "additional abilities. The hero goes into " +
-                                "shadow mode.");
+                                "shadow mode."),
+
+    AMMO_CLIP('⁂',                "Ammo clip - additional ammo for hero's gun");
 
     private final char ch;
     private final String info;
@@ -310,6 +312,10 @@ public enum Element implements CharElement, TeamElement {
 
     public boolean isKey() {
         return is(keys);
+    }
+
+    public boolean isAmmoClip() {
+        return is(ammoClips);
     }
 
     public static final Element[] clues = new Element[]{
@@ -444,6 +450,10 @@ public enum Element implements CharElement, TeamElement {
 
     public static final Element[] bullets = new Element[]{
             BULLET,
+    };
+
+    public static final Element[] ammoClips = new Element[]{
+            AMMO_CLIP,
     };
 
     public static final Element[] doors = new Element[]{

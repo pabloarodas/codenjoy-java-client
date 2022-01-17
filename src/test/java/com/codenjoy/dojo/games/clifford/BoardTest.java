@@ -152,7 +152,8 @@ public class BoardTest {
                         "H=[[2,5], [2,6]], \n" +
                         "~=[[4,3], [5,3], [6,3]], \n" +
                         "W=[[7,4]], \n" +
-                        "m=[[1,4]]}",
+                        "m=[[1,4]], \n" +
+                        "⁂=[]}",
                 Utils.elements(board, Element.values()));
     }
 
