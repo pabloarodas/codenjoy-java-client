@@ -233,7 +233,7 @@ public enum Element implements CharElement, TeamElement {
                                 "additional abilities. The hero goes into " +
                                 "shadow mode."),
 
-    AMMO_CLIP('Ѧ',                "Ammo clip - additional ammo for hero's gun");
+    AMMO_CLIP('Ѧ',              "Ammo clip - additional ammo for hero's gun");
 
     private final char ch;
     private final String info;
