@@ -153,7 +153,7 @@ public class BoardTest {
                         "~=[[4,3], [5,3], [6,3]], \n" +
                         "W=[[7,4]], \n" +
                         "m=[[1,4]], \n" +
-                        "⁂=[]}",
+                        "Ѧ=[]}",
                 Utils.elements(board, Element.values()));
     }
 

@@ -345,7 +345,7 @@ public enum Element implements CharElement {
 
         // Ammo clip - additional ammo for hero's gun
 
-    AMMO_CLIP('⁂');
+    AMMO_CLIP('Ѧ');
 
     private final char ch;
 

@@ -39,7 +39,7 @@ public class ElementTest {
 
     @Test
     public void testElementProperties() {
-        assertEquals("AMMO_CLIP[⁂]             =ammoClip\n" +
+        assertEquals("AMMO_CLIP[Ѧ]             =ammoClip\n" +
                         "BACKWAY[W]               =backWay\n" +
                         "BRICK[#]                 =wall\n" +
                         "BULLET[•]                =bullet\n" +
