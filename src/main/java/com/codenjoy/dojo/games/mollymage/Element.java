@@ -27,101 +27,136 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-/// the potions
+        // After Molly set the potion, the timer starts (5 ticks).
 
-    POTION_TIMER_5('5',        "After Molly set the potion, the timer starts (5 ticks)."),
+    POTION_TIMER_5('5'),
 
-    POTION_TIMER_4('4',        "This potion will blow up after 4 ticks."),
+        // This potion will blow up after 4 ticks.
 
-    POTION_TIMER_3('3',        "This after 3..."),
+    POTION_TIMER_4('4'),
 
-    POTION_TIMER_2('2',        "Two.."),
+        // This after 3...
 
-    POTION_TIMER_1('1',        "One."),
+    POTION_TIMER_3('3'),
 
-    BLAST('҉',                  "Boom! this is what is potion does, everything that is " +
-                               "destroyable got destroyed."),
+        // Two..
 
-/// walls
+    POTION_TIMER_2('2'),
 
-    WALL('☼',                  "Indestructible wall - it will not fall from potion."),
+        // One.
 
-    TREASURE_BOX('#',          "This is a treasure box, it opens with an explosion."),
+    POTION_TIMER_1('1'),
 
-    TREASURE_BOX_OPENING('H',  "This is like a treasure box opens looks like, it will " +
-                               "disappear on next move. If it's you did it - you'll " +
-                               "get score points. Perhaps a prize will appear."),
+        // Boom! this is what is potion does, everything that is
+        // destroyable got destroyed.
 
-/// soulless creatures
+    BLAST('҉'),
 
-    GHOST('&',                 "This guys runs over the board randomly and gets in the way " +
-                               "all the time. If it will touch Molly - she will die. " +
-                               "You'd better kill this piece of ... soul, you'll get score " +
-                               "points for it."),
+        // Indestructible wall - it will not fall from potion.
 
-    GHOST_DEAD('x',            "This is ghost corpse."),
+    WALL('☼'),
 
-/// perks
+        // This is a treasure box, it opens with an explosion.
 
-    POTION_BLAST_RADIUS_INCREASE('+', "Temporarily increase potion radius blast. " +
-                                      "Applicable only to new potions."),
+    TREASURE_BOX('#'),
 
-    POTION_COUNT_INCREASE('c', "Temporarily increase available potions count. " +
-                               "Number of extra potions can be set in settings*."),
+        // This is like a treasure box opens looks like, it will
+        // disappear on next move. If it's you did it - you'll get
+        // score points. Perhaps a prize will appear.
 
-    POTION_REMOTE_CONTROL('r', "Next several potions would be with remote control. " +
-                               "Activating by command ACT. Number of RC triggers " +
-                               "is limited and can be set in settings*."),
+    TREASURE_BOX_OPENING('H'),
 
-    POTION_IMMUNE('i',         "Temporarily gives you immunity from potion blasts " +
-                               "(own potion and others as well)."),
+        // This guys runs over the board randomly and gets in the way
+        // all the time. If it will touch Molly - she will die. You'd
+        // better kill this piece of ... soul, you'll get score points
+        // for it.
 
-    POISON_THROWER('T',        "Hero can shoot by poison cloud. Using: ACT(1)+Direction. " +
-                               "Temporary."),
+    GHOST('&'),
 
-    POTION_EXPLODER('A',       "Hero can explode all potions on the field. " +
-                               "Using: ACT(2). Temporary."),
+        // This is ghost corpse.
 
-/// a void
+    GHOST_DEAD('x'),
 
-    NONE(' ',                  "A void. This is the only place where you can move your Molly."),
+        // Temporarily increase potion radius blast. Applicable only to
+        // new potions.
 
-/// your Molly
+    POTION_BLAST_RADIUS_INCREASE('+'),
 
-    HERO('☺',                  "This is what your Molly usually looks like."),
+        // Temporarily increase available potions count. Number of
+        // extra potions can be set in settings*.
 
-    HERO_POTION('☻',           "This is if your Molly is sitting on own potion."),
+    POTION_COUNT_INCREASE('c'),
 
-    HERO_DEAD('Ѡ',             "Oops, your Molly is dead (don't worry, she will appear " +
-                               "somewhere in next move). You're getting penalty points " +
-                               "for each death."),
+        // Next several potions would be with remote control.
+        // Activating by command ACT. Number of RC triggers is limited
+        // and can be set in settings*.
 
-/// other players heroes
+    POTION_REMOTE_CONTROL('r'),
 
-    OTHER_HERO('♥',            "This is what other heroes looks like."),
+        // Temporarily gives you immunity from potion blasts (own
+        // potion and others as well).
 
-    OTHER_HERO_POTION('♠',     "This is if other hero is sitting on own potion."),
+    POTION_IMMUNE('i'),
 
-    OTHER_HERO_DEAD('♣',       "Other hero corpse (it will disappear shortly, right " +
-                               "on the next move). If you've done it you'll get " +
-                               "score points."),
+        // Hero can shoot by poison cloud. Using: ACT(1)+Direction.
+        // Temporary.
 
-/// enemy players heroes
+    POISON_THROWER('T'),
 
-    ENEMY_HERO('ö',            "This is what enemy heroes looks like."),
+        // Hero can explode all potions on the field. Using: ACT(2).
+        // Temporary.
 
-    ENEMY_HERO_POTION('Ö',     "This is if enemy hero is sitting on own potion."),
+    POTION_EXPLODER('A'),
 
-    ENEMY_HERO_DEAD('ø',       "Enemy hero corpse (it will disappear shortly, right " +
-                               "on the next move). If you've done it you'll get " +
-                               "score points.");
+        // A void. This is the only place where you can move your
+        // Molly.
+
+    NONE(' '),
+
+        // This is what your Molly usually looks like.
+
+    HERO('☺'),
+
+        // This is if your Molly is sitting on own potion.
+
+    HERO_POTION('☻'),
+
+        // Oops, your Molly is dead (don't worry, she will appear
+        // somewhere in next move). You're getting penalty points for
+        // each death.
+
+    HERO_DEAD('Ѡ'),
+
+        // This is what other heroes looks like.
+
+    OTHER_HERO('♥'),
+
+        // This is if other hero is sitting on own potion.
+
+    OTHER_HERO_POTION('♠'),
+
+        // Other hero corpse (it will disappear shortly, right on the
+        // next move). If you've done it you'll get score points.
+
+    OTHER_HERO_DEAD('♣'),
+
+        // This is what enemy heroes looks like.
+
+    ENEMY_HERO('ö'),
+
+        // This is if enemy hero is sitting on own potion.
+
+    ENEMY_HERO_POTION('Ö'),
+
+        // Enemy hero corpse (it will disappear shortly, right on the
+        // next move). If you've done it you'll get score points.
+
+    ENEMY_HERO_DEAD('ø');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
@@ -130,13 +165,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
     }
-
 }
