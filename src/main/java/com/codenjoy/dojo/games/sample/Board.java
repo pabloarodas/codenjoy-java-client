@@ -28,7 +28,9 @@ import com.codenjoy.dojo.services.Point;
 
 import java.util.List;
 
-import static com.codenjoy.dojo.games.sample.Element.*;
+import static com.codenjoy.dojo.games.sample.Element.HERO_DEAD;
+import static com.codenjoy.dojo.games.sample.Element.WALL;
+import static com.codenjoy.dojo.games.sample.ElementUtils.*;
 
 /**
  * Класс, обрабатывающий строковое представление доски.

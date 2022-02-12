@@ -31,16 +31,16 @@ public class ElementTest {
 
     @Test
     public void testElementProperties() {
-        assertEquals("BOMB[x]                  =bomb\n" +
-                    "ENEMY_HERO[♥]            =\n" +
-                    "ENEMY_HERO_DEAD[Z]       =\n" +
+        assertEquals("BOMB[x]                  =bombs, barriers\n" +
+                    "ENEMY_HERO[♥]            =enemyHeroes\n" +
+                    "ENEMY_HERO_DEAD[Z]       =enemyHeroes\n" +
                     "GOLD[$]                  =gold\n" +
-                    "HERO[☺]                  =hero\n" +
-                    "HERO_DEAD[X]             =hero\n" +
-                    "NONE[ ]                  =\n" +
-                    "OTHER_HERO[☻]            =otherHero\n" +
-                    "OTHER_HERO_DEAD[Y]       =otherHero\n" +
-                    "WALL[☼]                  =wall",
-                Utils.elements(Element.values()));
+                    "HERO[☺]                  =heroes\n" +
+                    "HERO_DEAD[X]             =heroes\n" +
+                    "NONE[ ]                  =none\n" +
+                    "OTHER_HERO[☻]            =otherHeroes, barriers\n" +
+                    "OTHER_HERO_DEAD[Y]       =otherHeroes, barriers\n" +
+                    "WALL[☼]                  =walls, barriers\n",
+                Utils.elements(Element.values(), ElementUtils.class));
     }
 }

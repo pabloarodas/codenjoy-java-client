@@ -31,7 +31,7 @@ public class ElementTest {
 
     @Test
     public void testElementProperties() {
-        assertEquals("CLEAR[ ]                 =\n" +
+        assertEquals("CLEAR[ ]                 =clear\n" +
                     "CONTAGION_EIGHT[8]       =contagions\n" +
                     "CONTAGION_FIVE[5]        =contagions\n" +
                     "CONTAGION_FOUR[4]        =contagions\n" +
@@ -43,17 +43,17 @@ public class ElementTest {
                     "ENEMY_HERO[♣]            =enemyHeroes\n" +
                     "ENEMY_HERO_DEAD[Z]       =enemyHeroes\n" +
                     "ENEMY_HERO_HEALING[z]    =healing\n" +
-                    "HERO[♥]                  =hero\n" +
+                    "HERO[♥]                  =heroes\n" +
                     "HERO_CURE[!]             =cure\n" +
-                    "HERO_DEAD[X]             =hero\n" +
+                    "HERO_DEAD[X]             =heroes\n" +
                     "HERO_HEALING[x]          =healing\n" +
                     "HIDDEN[*]                =hidden\n" +
                     "INFECTION[o]             =infections\n" +
-                    "OTHER_HERO[♠]            =otherHero\n" +
+                    "OTHER_HERO[♠]            =otherHeroes\n" +
                     "OTHER_HERO_CURE[+]       =cure\n" +
-                    "OTHER_HERO_DEAD[Y]       =otherHero\n" +
+                    "OTHER_HERO_DEAD[Y]       =otherHeroes\n" +
                     "OTHER_HERO_HEALING[y]    =healing\n" +
-                    "PATHLESS[☼]              =pathless",
-                Utils.elements(Element.values()));
+                    "PATHLESS[☼]              =pathless\n",
+                Utils.elements(Element.values(), ElementUtils.class));
     }
 }

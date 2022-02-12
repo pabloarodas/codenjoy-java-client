@@ -29,6 +29,7 @@ import com.codenjoy.dojo.services.Point;
 import java.util.List;
 
 import static com.codenjoy.dojo.games.verland.Element.*;
+import static com.codenjoy.dojo.games.verland.ElementUtils.*;
 
 /**
  * The class is a wrapper over the board string

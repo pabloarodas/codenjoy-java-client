@@ -22,9 +22,9 @@ package com.codenjoy.dojo.services.printer;
  * #L%
  */
 
-public interface TeamElement {
+public interface TeamElement<E extends CharElement> {
 
-    TeamElement otherHero();
+    E otherHero(E element);
 
-    TeamElement enemyHero();
+    E enemyHero(E element);
 }

@@ -24,9 +24,8 @@ package com.codenjoy.dojo.games.verland;
 
 
 import com.codenjoy.dojo.services.printer.CharElement;
-import com.codenjoy.dojo.services.printer.TeamElement;
 
-public enum Element implements CharElement, TeamElement {
+public enum Element implements CharElement {
 
 /// Мой герой
 
@@ -124,119 +123,4 @@ public enum Element implements CharElement, TeamElement {
         return String.valueOf(ch);
     }
 
-    public static Element valueOf(int value) {
-        for (Element element : values()) {
-            if (element.value == value) {
-                return element;
-            }
-        }
-        throw new IllegalArgumentException("Value not found for: " + value);
-    }
-
-    public boolean isHero() {
-        return is(heroes);
-    }
-
-    public boolean isOtherHero() {
-        return is(otherHeroes);
-    }
-
-    public boolean isEnemyHeroes() {
-        return is(enemyHeroes);
-    }
-
-    public boolean isPathless() {
-        return is(pathless);
-    }
-
-    public boolean isInfections() {
-        return is(infections);
-    }
-
-    public boolean isHidden() {
-        return is(hidden);
-    }
-
-    public boolean isContagions() {
-        return is(contagions);
-    }
-
-    public boolean isHealing() {
-        return is(healing);
-    }
-
-    public boolean isCure() {
-        return is(cure);
-    }
-
-    public static final Element[] heroes = new Element[]{
-            HERO_DEAD,
-            HERO,
-    };
-
-    public static final Element[] otherHeroes = new Element[]{
-            OTHER_HERO_DEAD,
-            OTHER_HERO,
-    };
-
-    public static final Element[] enemyHeroes = new Element[]{
-            ENEMY_HERO_DEAD,
-            ENEMY_HERO,
-    };
-
-    public static final Element[] pathless = new Element[]{
-            PATHLESS,
-    };
-
-    public static final Element[] infections = new Element[]{
-            INFECTION,
-    };
-
-    public static final Element[] hidden = new Element[]{
-            HIDDEN,
-    };
-
-    public static final Element[] clear = new Element[]{
-            CLEAR,
-    };
-
-    public static final Element[] contagions = new Element[]{
-            CONTAGION_ONE,
-            CONTAGION_TWO,
-            CONTAGION_THREE,
-            CONTAGION_FOUR,
-            CONTAGION_FIVE,
-            CONTAGION_SIX,
-            CONTAGION_SEVEN,
-            CONTAGION_EIGHT,
-    };
-
-    public static final Element[] healing = new Element[]{
-            HERO_HEALING,
-            OTHER_HERO_HEALING,
-            ENEMY_HERO_HEALING,
-    };
-
-    public static final Element[] cure = new Element[]{
-            HERO_CURE,
-            OTHER_HERO_CURE,
-    };
-
-    @Override
-    public Element otherHero() {
-        switch (this) {
-            case HERO:      return OTHER_HERO;
-            case HERO_DEAD: return OTHER_HERO_DEAD;
-        }
-        throw new IllegalArgumentException("Bad hero state: " + this);
-    }
-
-    @Override
-    public Element enemyHero() {
-        switch (this) {
-            case HERO:      return ENEMY_HERO;
-            case HERO_DEAD: return ENEMY_HERO_DEAD;
-        }
-        throw new IllegalArgumentException("Bad hero state: " + this);
-    }
 }

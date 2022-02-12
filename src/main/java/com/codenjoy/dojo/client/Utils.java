@@ -26,10 +26,11 @@ package com.codenjoy.dojo.client;
 import com.codenjoy.dojo.services.printer.CharElement;
 import org.apache.commons.text.StringEscapeUtils;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.json.SortedJSONObject;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toMap;
 import static org.apache.commons.lang3.StringUtils.rightPad;
@@ -76,32 +77,49 @@ public class Utils {
         return result.toString();
     }
 
-    public static String elements(CharElement[] elements) {
-        return split(elementsMap(elements), "}, \n")
+    public static String elements(CharElement[] elements, Class clazz) {
+        return split(elementsMap(elements, clazz), "}, \n")
                 .replaceAll("[\"{}]", "")
                 .replace(":true", "")
                 .replace(", ", "")
                 .replace(",", ", ");
     }
 
-    public static Map<String, String> elementsMap(CharElement[] elements) {
-        return Arrays.stream(elements)
-                .map(element -> {
-                    JSONObject json = new JSONObject(element);
-                    new LinkedList<>(json.keySet()).forEach(key -> {
-                        if (!json.getBoolean(key)) {
-                            json.remove(key);
-                        }
-                    });
-
-                    return new AbstractMap.SimpleEntry<>(
-                            rightPad(element.name() + "[" + element.ch() + "]", 25),
-                            json.toString());
+    public static Map<String, String> elementsMap(CharElement[] elements, Class clazz) {
+        Object instance = newInstance(clazz);
+        return Arrays.stream(clazz.getDeclaredFields())
+                .filter(filed -> filed.getType().equals(elements.getClass()))
+                .flatMap(filed -> {
+                    try {
+                        return Arrays.stream((CharElement[]) filed.get(instance))
+                                .map(el -> new AbstractMap.SimpleEntry<>(toString(el), filed.getName()));
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
                 })
-                .sorted(Map.Entry.comparingByKey())
-                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (value1, value2) -> value2,
-                        LinkedHashMap::new));
+                .sorted(Comparator.comparing(AbstractMap.SimpleEntry::getKey))
+                .collect(Collectors.groupingBy(
+                        AbstractMap.SimpleEntry::getKey,
+                        LinkedHashMap::new,
+                        Collector.of(() -> new StringBuilder(),
+                                (all, value) -> all.append(value.getValue()).append(","),
+                                (all1, all2) -> all1,
+                                (StringBuilder result) ->
+                                        result.deleteCharAt(result.length() - 1)
+                                                .append("\n")
+                                                .toString())));
+    }
+
+    private static String toString(CharElement element) {
+        return rightPad(element.name() + "[" + element.ch() + "]", 25);
+    }
+
+    private static Object newInstance(Class clazz) {
+        try {
+            return clazz.getConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static <E extends CharElement> String elements(AbstractBoard<E> board, E[] elements) {

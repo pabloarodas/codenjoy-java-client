@@ -31,33 +31,33 @@ public class ElementTest {
 
     @Test
     public void testElementProperties() {
-        assertEquals("BLAST[҉]                 =blast\n" +
-                    "ENEMY_HERO[ö]            =enemyHero\n" +
-                    "ENEMY_HERO_DEAD[ø]       =enemyHero\n" +
-                    "ENEMY_HERO_POTION[Ö]     =enemyHero, potion\n" +
-                    "GHOST[&]                 =ghost\n" +
-                    "GHOST_DEAD[x]            =ghost\n" +
-                    "HERO[☺]                  =hero\n" +
-                    "HERO_DEAD[Ѡ]             =hero\n" +
-                    "HERO_POTION[☻]           =potion, hero\n" +
-                    "NONE[ ]                  =\n" +
-                    "OTHER_HERO[♥]            =otherHero\n" +
-                    "OTHER_HERO_DEAD[♣]       =otherHero\n" +
-                    "OTHER_HERO_POTION[♠]     =potion, otherHero\n" +
-                    "POISON_THROWER[T]        =perk\n" +
-                    "POTION_BLAST_RADIUS_INCREASE[+]=perk\n" +
-                    "POTION_COUNT_INCREASE[c] =perk\n" +
-                    "POTION_EXPLODER[A]       =perk\n" +
-                    "POTION_IMMUNE[i]         =perk\n" +
-                    "POTION_REMOTE_CONTROL[r] =perk\n" +
-                    "POTION_TIMER_1[1]        =potion\n" +
-                    "POTION_TIMER_2[2]        =potion\n" +
-                    "POTION_TIMER_3[3]        =potion\n" +
-                    "POTION_TIMER_4[4]        =potion\n" +
-                    "POTION_TIMER_5[5]        =potion\n" +
-                    "TREASURE_BOX[#]          =treasureBox\n" +
-                    "TREASURE_BOX_OPENING[H]  =treasureBox\n" +
-                    "WALL[☼]                  =wall",
-                Utils.elements(Element.values()));
+        assertEquals("BLAST[҉]                 =blasts\n" +
+                    "ENEMY_HERO[ö]            =enemyHeroes, barriers\n" +
+                    "ENEMY_HERO_DEAD[ø]       =enemyHeroes, barriers\n" +
+                    "ENEMY_HERO_POTION[Ö]     =enemyHeroes, potions, barriers, barriers\n" +
+                    "GHOST[&]                 =ghosts, barriers\n" +
+                    "GHOST_DEAD[x]            =ghosts\n" +
+                    "HERO[☺]                  =heroes\n" +
+                    "HERO_DEAD[Ѡ]             =heroes\n" +
+                    "HERO_POTION[☻]           =heroes, potions, barriers\n" +
+                    "NONE[ ]                  =none\n" +
+                    "OTHER_HERO[♥]            =otherHeroes, barriers\n" +
+                    "OTHER_HERO_DEAD[♣]       =otherHeroes, barriers\n" +
+                    "OTHER_HERO_POTION[♠]     =otherHeroes, potions, barriers, barriers\n" +
+                    "POISON_THROWER[T]        =perks\n" +
+                    "POTION_BLAST_RADIUS_INCREASE[+]=perks\n" +
+                    "POTION_COUNT_INCREASE[c] =perks\n" +
+                    "POTION_EXPLODER[A]       =perks\n" +
+                    "POTION_IMMUNE[i]         =perks\n" +
+                    "POTION_REMOTE_CONTROL[r] =perks\n" +
+                    "POTION_TIMER_1[1]        =potions, barriers\n" +
+                    "POTION_TIMER_2[2]        =potions, barriers\n" +
+                    "POTION_TIMER_3[3]        =potions, barriers\n" +
+                    "POTION_TIMER_4[4]        =potions, barriers\n" +
+                    "POTION_TIMER_5[5]        =potions, barriers\n" +
+                    "TREASURE_BOX[#]          =treasureBoxes, barriers\n" +
+                    "TREASURE_BOX_OPENING[H]  =treasureBoxes\n" +
+                    "WALL[☼]                  =walls, barriers\n",
+                Utils.elements(Element.values(), ElementUtils.class));
     }
 }

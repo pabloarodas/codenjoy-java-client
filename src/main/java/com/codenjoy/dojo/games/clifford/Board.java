@@ -27,7 +27,8 @@ import com.codenjoy.dojo.services.Point;
 
 import java.util.List;
 
-import static com.codenjoy.dojo.games.clifford.Element.*;
+import static com.codenjoy.dojo.games.clifford.Element.STONE;
+import static com.codenjoy.dojo.games.clifford.ElementUtils.*;
 
 /**
  * The class is a wrapper over the board string

@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.codenjoy.dojo.games.mollymage.Element.*;
+import static com.codenjoy.dojo.games.mollymage.ElementUtils.*;
 import static com.codenjoy.dojo.services.Direction.*;
 
 /**

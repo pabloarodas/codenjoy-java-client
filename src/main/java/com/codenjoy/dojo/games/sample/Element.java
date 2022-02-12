@@ -24,13 +24,12 @@ package com.codenjoy.dojo.games.sample;
 
 
 import com.codenjoy.dojo.services.printer.CharElement;
-import com.codenjoy.dojo.services.printer.TeamElement;
 
 /**
  * Тут указана легенда всех возможных объектов на поле и их состояний.
  * Важно помнить, что для каждой енумной константы надо создать спрайт в папке \src\main\webapp\resources\sprite.
  */
-public enum Element implements CharElement, TeamElement {
+public enum Element implements CharElement {
 
     NONE(' ',            "Empty place where the hero can go."),
 
@@ -72,70 +71,4 @@ public enum Element implements CharElement, TeamElement {
         return String.valueOf(ch);
     }
 
-    public boolean isHero() {
-        return is(heroes);
-    }
-
-    public boolean isOtherHero() {
-        return is(otherHeroes);
-    }
-
-    public boolean isWall() {
-        return is(walls);
-    }
-
-    public boolean isGold() {
-        return is(gold);
-    }
-
-    public boolean isBomb() {
-        return is(bombs);
-    }
-
-    public static final Element[] heroes = new Element[]{
-            HERO,
-            HERO_DEAD,
-    };
-
-    public static final Element[] otherHeroes = new Element[]{
-            OTHER_HERO,
-            OTHER_HERO_DEAD,
-    };
-
-    public static final Element[] walls = new Element[]{
-            WALL,
-    };
-
-    public static final Element[] gold = new Element[]{
-            GOLD,
-    };
-
-    public static final Element[] bombs = new Element[]{
-            BOMB,
-    };
-
-    public static final Element[] barriers = new Element[]{
-            WALL,
-            BOMB,
-            OTHER_HERO,
-            OTHER_HERO_DEAD,
-    };
-
-    @Override
-    public Element otherHero() {
-        switch (this) {
-            case HERO:      return OTHER_HERO;
-            case HERO_DEAD: return OTHER_HERO_DEAD;
-        }
-        throw new IllegalArgumentException("Bad hero state: " + this);
-    }
-
-    @Override
-    public Element enemyHero() {
-        switch (this) {
-            case HERO:      return ENEMY_HERO;
-            case HERO_DEAD: return ENEMY_HERO_DEAD;
-        }
-        throw new IllegalArgumentException("Bad hero state: " + this);
-    }
 }
