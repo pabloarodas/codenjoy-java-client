@@ -56,7 +56,7 @@ public class ElementGenerator {
             "namdreab", "vacuum");
 
     public static final List<String> WITH_PROPERTIES = Arrays.asList(
-            "sample", "clifford", "mollymage", "rawelbbub",
+            "a2048", "sample", "clifford", "mollymage", "rawelbbub",
             "verland");
 
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
@@ -191,11 +191,14 @@ public class ElementGenerator {
 
     private Map<CharElement, String> loadInfo(CharElement[] elements) {
         if (gameProperties.load(base + "../games/${game-canonical}", canonicalGame)) {
-            return loadInfoFromElement(elements, element ->
-                    gameProperties.get(element.name()));
-        } else {
-            return loadInfoFromElement(elements, CharElement::info);
+            try {
+                return loadInfoFromElement(elements, element ->
+                        gameProperties.get(element.name()));
+            } catch (Exception e) {
+                // do nothing
+            }
         }
+        return loadInfoFromElement(elements, CharElement::info);
     }
 
     private Map<CharElement, String> loadInfoFromElement(CharElement[] elements, Function<CharElement, String> getInfo) {
