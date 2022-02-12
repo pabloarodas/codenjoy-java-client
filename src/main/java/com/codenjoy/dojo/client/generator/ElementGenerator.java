@@ -54,6 +54,9 @@ public class ElementGenerator {
             "a2048", "clifford", "kata", "knibert",
             "namdreab", "vacuum");
 
+    public static final List<String> WITH_PROPERTIES = Arrays.asList(
+            "sample", "clifford");
+
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
     public static final String INFO_PROPERTIES = "../games/${game-canonical}/src/main/webapp/resources/${game}/help/info.properties";
 
@@ -101,8 +104,8 @@ public class ElementGenerator {
         //      не удалять эту строчку
         if (game.equals("icancode") && language.equals("js")) return;
 
-        // TODO пока что перевел на properties только sample
-        if (language.equals("java") && !game.equals("sample")) return;
+        // TODO пока что перевел на properties не все игры
+        if (language.equals("java") && !WITH_PROPERTIES.contains(game)) return;
 
         String data = build(elements());
 

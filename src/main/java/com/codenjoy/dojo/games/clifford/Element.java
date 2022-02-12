@@ -10,12 +10,12 @@ package com.codenjoy.dojo.games.clifford;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -27,217 +27,326 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-/// Void
+        // Empty space - where the hero can move.
 
-    NONE(' ',                   "Empty space - where the hero can move."),
+    NONE(' '),
 
-/// Bricks
+        // A wall where you can shoot a hole.
 
-    BRICK('#',                  "A wall where you can shoot a hole."),
+    BRICK('#'),
 
-    PIT_FILL_1('1',             "The wall is restored over time. When the " +
-                                "process begins, we see a timer."),
+        // The wall is restored over time. When the process begins, we
+        // see a timer.
 
-    PIT_FILL_2('2',             "The wall is restored over time. When the " +
-                                "process begins, we see a timer."),
+    PIT_FILL_1('1'),
 
-    PIT_FILL_3('3',             "The wall is restored over time. When the " +
-                                "process begins, we see a timer."),
+        // The wall is restored over time. When the process begins, we
+        // see a timer.
 
-    PIT_FILL_4('4',             "The wall is restored over time. When the " +
-                                "process begins, we see a timer."),
+    PIT_FILL_2('2'),
 
-    STONE('☼',                  "Indestructible wall - It cannot be destroyed " +
-                                "with a shot."),
+        // The wall is restored over time. When the process begins, we
+        // see a timer.
 
-    CRACK_PIT('*',              "At the moment of the shot, we see the wall " +
-                                "like this."),
+    PIT_FILL_3('3'),
 
-/// Clues
+        // The wall is restored over time. When the process begins, we
+        // see a timer.
 
-    CLUE_KNIFE('$',             "Clue knife. Collect a series of clues to " +
-                                "get the maximum points."),
+    PIT_FILL_4('4'),
 
-    CLUE_GLOVE('&',             "Clue glove. Collect a series of clues to " +
-                                "get the maximum points."),
+        // Indestructible wall - It cannot be destroyed with a shot.
 
-    CLUE_RING('@',              "Clue ring. Collect a series of clues to " +
-                                "get the maximum points."),
+    STONE('☼'),
 
-/// Your hero
+        // At the moment of the shot, we see the wall like this.
 
-    HERO_DIE('O',               "Your hero is dead. In the next tick, it will " +
-                                "disappear and appear in a new location."),
+    CRACK_PIT('*'),
 
-    HERO_LADDER('A',            "Your hero is climbing the ladder."),
+        // Clue knife. Collect a series of clues to get the maximum
+        // points.
 
-    HERO_LEFT('◄',              "Your hero runs to the left."),
+    CLUE_KNIFE('$'),
 
-    HERO_RIGHT('►',             "Your hero runs to the right."),
+        // Clue glove. Collect a series of clues to get the maximum
+        // points.
 
-    HERO_FALL('U',              "Your hero is falling."),
+    CLUE_GLOVE('&'),
 
-    HERO_PIPE('I',              "Your hero is crawling along the pipe."),
+        // Clue ring. Collect a series of clues to get the maximum
+        // points.
 
-    HERO_PIT('E',               "Your hero in the pit."),
+    CLUE_RING('@'),
 
-/// Your hero in shadow mode
+        // Your hero is dead. In the next tick, it will disappear and
+        // appear in a new location.
 
-    HERO_MASK_DIE('o',          "Your shadow-hero is dead. In the next tick, " +
-                                "it will disappear and appear in a new location."),
+    HERO_DIE('O'),
 
-    HERO_MASK_LADDER('a',       "Your shadow-hero is climbing the ladder."),
+        // Your hero is climbing the ladder.
 
-    HERO_MASK_LEFT('h',         "Your shadow-hero runs to the left."),
+    HERO_LADDER('A'),
 
-    HERO_MASK_RIGHT('w',        "Your shadow-hero runs to the right."),
+        // Your hero runs to the left.
 
-    HERO_MASK_FALL('u',         "Your shadow-hero is falling."),
+    HERO_LEFT('◄'),
 
-    HERO_MASK_PIPE('i',         "Your shadow-hero is crawling along the pipe."),
+        // Your hero runs to the right.
 
-    HERO_MASK_PIT('e',          "Your shadow-hero in the pit."),
+    HERO_RIGHT('►'),
 
-/// Other heroes
+        // Your hero is falling.
 
-    OTHER_HERO_DIE('C',         "Other hero is dead. In the next tick, it will " +
-                                "disappear and appear in a new location."),
+    HERO_FALL('U'),
 
-    OTHER_HERO_LADDER('D',      "Other hero is climbing the ladder."),
+        // Your hero is crawling along the pipe.
 
-    OTHER_HERO_LEFT('«',        "Other hero runs to the left."),
+    HERO_PIPE('I'),
 
-    OTHER_HERO_RIGHT('»',       "Other hero runs to the right."),
+        // Your hero in the pit.
 
-    OTHER_HERO_FALL('F',        "Other hero is falling."),
+    HERO_PIT('E'),
 
-    OTHER_HERO_PIPE('J',        "Other hero is crawling along the pipe."),
+        // Your shadow-hero is dead. In the next tick, it will
+        // disappear and appear in a new location.
 
-    OTHER_HERO_PIT('K',         "Other hero in the pit."),
+    HERO_MASK_DIE('o'),
 
-/// Other heroes in shadow mode
+        // Your shadow-hero is climbing the ladder.
 
-    OTHER_HERO_MASK_DIE('c',    "Other shadow-hero is dead. In the next tick, " +
-                                "it will disappear and appear in a new location."),
+    HERO_MASK_LADDER('a'),
 
-    OTHER_HERO_MASK_LADDER('d', "Other shadow-hero is climbing the ladder."),
+        // Your shadow-hero runs to the left.
 
-    OTHER_HERO_MASK_LEFT('Z',   "Other shadow-hero runs to the left."),
+    HERO_MASK_LEFT('h'),
 
-    OTHER_HERO_MASK_RIGHT('z',  "Other shadow-hero runs to the right."),
+        // Your shadow-hero runs to the right.
 
-    OTHER_HERO_MASK_FALL('f',   "Other shadow-hero is falling."),
+    HERO_MASK_RIGHT('w'),
 
-    OTHER_HERO_MASK_PIPE('j',   "Other shadow-hero is crawling along the pipe."),
+        // Your shadow-hero is falling.
 
-    OTHER_HERO_MASK_PIT('k',    "Other shadow-hero in the pit."),
+    HERO_MASK_FALL('u'),
 
-/// Enemy heroes
+        // Your shadow-hero is crawling along the pipe.
 
-    ENEMY_HERO_DIE('L',         "Enemy hero is dead. In the next tick, it will " +
-                                "disappear and appear in a new location."),
+    HERO_MASK_PIPE('i'),
 
-    ENEMY_HERO_LADDER('N',      "Enemy hero is climbing the ladder."),
+        // Your shadow-hero in the pit.
 
-    ENEMY_HERO_LEFT('P',        "Enemy hero runs to the left."),
+    HERO_MASK_PIT('e'),
 
-    ENEMY_HERO_RIGHT('Q',       "Enemy hero runs to the right."),
+        // Other hero is dead. In the next tick, it will disappear and
+        // appear in a new location.
 
-    ENEMY_HERO_FALL('R',        "Enemy hero is falling."),
+    OTHER_HERO_DIE('C'),
 
-    ENEMY_HERO_PIPE('T',        "Enemy hero is crawling along the pipe."),
+        // Other hero is climbing the ladder.
 
-    ENEMY_HERO_PIT('V',         "Enemy hero in the pit."),
+    OTHER_HERO_LADDER('D'),
 
-/// Enemy heroes in shadow mode
+        // Other hero runs to the left.
 
-    ENEMY_HERO_MASK_DIE('l',    "Enemy shadow-hero is dead. In the next tick, " +
-                                "it will disappear and appear in a new location."),
+    OTHER_HERO_LEFT('«'),
 
-    ENEMY_HERO_MASK_LADDER('n', "Enemy shadow-hero is climbing the ladder."),
+        // Other hero runs to the right.
 
-    ENEMY_HERO_MASK_LEFT('p',   "Enemy shadow-hero runs to the left."),
+    OTHER_HERO_RIGHT('»'),
 
-    ENEMY_HERO_MASK_RIGHT('q',  "Enemy shadow-hero runs to the right."),
+        // Other hero is falling.
 
-    ENEMY_HERO_MASK_FALL('r',   "Enemy shadow-hero is falling."),
+    OTHER_HERO_FALL('F'),
 
-    ENEMY_HERO_MASK_PIPE('t',   "Enemy shadow-hero is crawling along the pipe."),
+        // Other hero is crawling along the pipe.
 
-    ENEMY_HERO_MASK_PIT('v',    "Enemy shadow-hero in the pit."),
+    OTHER_HERO_PIPE('J'),
 
-// Robbers (dummy AI-bots)
+        // Other hero in the pit.
 
-    ROBBER_LADDER('X',          "Robber is climbing the ladder."),
+    OTHER_HERO_PIT('K'),
 
-    ROBBER_LEFT(')',            "Robber runs to the left. Robber picks up the " +
-                                "nearest prey and hunts for it until it overtakes it."),
+        // Other shadow-hero is dead. In the next tick, it will
+        // disappear and appear in a new location.
 
-    ROBBER_RIGHT('(',           "Robber runs to the right. Robber picks up the " +
-                                "nearest prey and hunts for it until it overtakes it."),
+    OTHER_HERO_MASK_DIE('c'),
 
-    ROBBER_FALL('x',            "Robber is falling."),
+        // Other shadow-hero is climbing the ladder.
 
-    ROBBER_PIPE('Y',            "Robber is crawling along the pipe."),
+    OTHER_HERO_MASK_LADDER('d'),
 
-    ROBBER_PIT('y',             "Robber in the pit."),
+        // Other shadow-hero runs to the left.
 
-/// Doors and keys
+    OTHER_HERO_MASK_LEFT('Z'),
 
-    OPENED_DOOR_GOLD('g',       "Opened golden gates. Can only be locked " +
-                                "with a golden key."),
+        // Other shadow-hero runs to the right.
 
-    OPENED_DOOR_SILVER('s',     "Opened silver gates. Can only be locked " +
-                                "with a silver key."),
+    OTHER_HERO_MASK_RIGHT('z'),
 
-    OPENED_DOOR_BRONZE('b',     "Opened bronze gates. Can only be locked " +
-                                "with a bronze key."),
+        // Other shadow-hero is falling.
 
-    CLOSED_DOOR_GOLD('G',       "Closed golden gates. Can only be opened " +
-                                "with a golden key."),
+    OTHER_HERO_MASK_FALL('f'),
 
-    CLOSED_DOOR_SILVER('S',     "Closed silver gates. Can only be opened " +
-                                "with a silver key."),
+        // Other shadow-hero is crawling along the pipe.
 
-    CLOSED_DOOR_BRONZE('B',     "Closed bronze gates. Can only be opened " +
-                                "with a bronze key."),
+    OTHER_HERO_MASK_PIPE('j'),
 
-    KEY_GOLD('+',               "Golden key. Helps open/close golden gates. " +
-                                "The key can only be used once."),
+        // Other shadow-hero in the pit.
 
-    KEY_SILVER('-',             "Silver key. Helps open/close silver gates. " +
-                                "The key can only be used once."),
+    OTHER_HERO_MASK_PIT('k'),
 
-    KEY_BRONZE('!',             "Bronze key. Helps open/close bronze gates. " +
-                                "The key can only be used once."),
+        // Enemy hero is dead. In the next tick, it will disappear and
+        // appear in a new location.
 
-/// Other stuff
+    ENEMY_HERO_DIE('L'),
 
-    BULLET('•',                 "Bullet. After the shot by the hero, the bullet " +
-                                "flies until it meets an obstacle. The bullet " +
-                                "kills the hero. It ricochets from the indestructible " +
-                                "wall (no more than 1 time). The bullet destroys " +
-                                "the destructible wall."),
+        // Enemy hero is climbing the ladder.
 
-    LADDER('H',                 "Ladder - the hero can move along the level " +
-                                "along it."),
+    ENEMY_HERO_LADDER('N'),
 
-    PIPE('~',                   "Pipe - the hero can also move along the " +
-                                "level along it, but only horizontally."),
+        // Enemy hero runs to the left.
 
-    BACKWAY('W',                "Back door - allows the hero to secretly " +
-                                "move to another random place on the map."),
+    ENEMY_HERO_LEFT('P'),
 
-    MASK_POTION('m',            "Disguise potion - endow the hero with " +
-                                "additional abilities. The hero goes into " +
-                                "shadow mode.");
+        // Enemy hero runs to the right.
+
+    ENEMY_HERO_RIGHT('Q'),
+
+        // Enemy hero is falling.
+
+    ENEMY_HERO_FALL('R'),
+
+        // Enemy hero is crawling along the pipe.
+
+    ENEMY_HERO_PIPE('T'),
+
+        // Enemy hero in the pit.
+
+    ENEMY_HERO_PIT('V'),
+
+        // Enemy shadow-hero is dead. In the next tick, it will
+        // disappear and appear in a new location.
+
+    ENEMY_HERO_MASK_DIE('l'),
+
+        // Enemy shadow-hero is climbing the ladder.
+
+    ENEMY_HERO_MASK_LADDER('n'),
+
+        // Enemy shadow-hero runs to the left.
+
+    ENEMY_HERO_MASK_LEFT('p'),
+
+        // Enemy shadow-hero runs to the right.
+
+    ENEMY_HERO_MASK_RIGHT('q'),
+
+        // Enemy shadow-hero is falling.
+
+    ENEMY_HERO_MASK_FALL('r'),
+
+        // Enemy shadow-hero is crawling along the pipe.
+
+    ENEMY_HERO_MASK_PIPE('t'),
+
+        // Enemy shadow-hero in the pit.
+
+    ENEMY_HERO_MASK_PIT('v'),
+
+        // Robber is climbing the ladder.
+
+    ROBBER_LADDER('X'),
+
+        // Robber runs to the left. Robber picks up the nearest prey
+        // and hunts for it until it overtakes it.
+
+    ROBBER_LEFT(')'),
+
+        // Robber runs to the right. Robber picks up the nearest prey
+        // and hunts for it until it overtakes it.
+
+    ROBBER_RIGHT('('),
+
+        // Robber is falling.
+
+    ROBBER_FALL('x'),
+
+        // Robber is crawling along the pipe.
+
+    ROBBER_PIPE('Y'),
+
+        // Robber in the pit.
+
+    ROBBER_PIT('y'),
+
+        // Opened golden gates. Can only be locked with a golden key.
+
+    OPENED_DOOR_GOLD('g'),
+
+        // Opened silver gates. Can only be locked with a silver key.
+
+    OPENED_DOOR_SILVER('s'),
+
+        // Opened bronze gates. Can only be locked with a bronze key.
+
+    OPENED_DOOR_BRONZE('b'),
+
+        // Closed golden gates. Can only be opened with a golden key.
+
+    CLOSED_DOOR_GOLD('G'),
+
+        // Closed silver gates. Can only be opened with a silver key.
+
+    CLOSED_DOOR_SILVER('S'),
+
+        // Closed bronze gates. Can only be opened with a bronze key.
+
+    CLOSED_DOOR_BRONZE('B'),
+
+        // Golden key. Helps open/close golden gates. The key can only
+        // be used once.
+
+    KEY_GOLD('+'),
+
+        // Silver key. Helps open/close silver gates. The key can only
+        // be used once.
+
+    KEY_SILVER('-'),
+
+        // Bronze key. Helps open/close bronze gates. The key can only
+        // be used once.
+
+    KEY_BRONZE('!'),
+
+        // Bullet. After the shot by the hero, the bullet flies until
+        // it meets an obstacle. The bullet kills the hero. It
+        // ricochets from the indestructible wall (no more than 1
+        // time). The bullet destroys the destructible wall.
+
+    BULLET('•'),
+
+        // Ladder - the hero can move along the level along it.
+
+    LADDER('H'),
+
+        // Pipe - the hero can also move along the level along it, but
+        // only horizontally.
+
+    PIPE('~'),
+
+        // Back door - allows the hero to secretly move to another
+        // random place on the map.
+
+    BACKWAY('W'),
+
+        // Disguise potion - endow the hero with additional abilities.
+        // The hero goes into shadow mode.
+
+    MASK_POTION('m');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
@@ -246,13 +355,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-    
-    @Override
     public String toString() {
         return String.valueOf(ch);
     }
-
 }
