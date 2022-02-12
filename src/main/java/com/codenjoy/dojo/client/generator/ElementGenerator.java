@@ -25,14 +25,15 @@ package com.codenjoy.dojo.client.generator;
 import com.codenjoy.dojo.client.generator.language.Go;
 import com.codenjoy.dojo.games.sample.Element;
 import com.codenjoy.dojo.services.printer.CharElement;
+import com.codenjoy.dojo.services.properties.GameProperties;
 import com.codenjoy.dojo.utils.SmokeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
-import java.io.FileReader;
 import java.util.*;
 import java.util.function.Function;
 
+import static com.codenjoy.dojo.services.properties.GameProperties.getGame;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static org.apache.commons.lang3.StringUtils.capitalize;
@@ -59,7 +60,7 @@ public class ElementGenerator {
             "verland");
 
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
-    public static final String INFO_PROPERTIES = "../games/${game-canonical}/src/main/webapp/resources/${game}/help/info.properties";
+    public static final GameProperties gameProperties = new GameProperties();
 
     private final String game;
     private final String canonicalGame;
@@ -86,10 +87,6 @@ public class ElementGenerator {
             }
         }
         return game;
-    }
-
-    public static String getGame(String canonicalGame) {
-        return canonicalGame.replaceAll("[-_.]", "");
     }
 
     public String generate() {
@@ -193,13 +190,10 @@ public class ElementGenerator {
     }
 
     private Map<CharElement, String> loadInfo(CharElement[] elements) {
-        try {
-            File file = new File(base + replace(INFO_PROPERTIES));
-            Properties properties = new Properties();
-            properties.load(new FileReader(file.getAbsolutePath()));
+        if (gameProperties.load(base + "../games/${game-canonical}", canonicalGame)) {
             return loadInfoFromElement(elements, element ->
-                    properties.getProperty(String.format("game.%s.element.%s", game, element.name())));
-        } catch (Exception exception) {
+                    gameProperties.get(element.name()));
+        } else {
             return loadInfoFromElement(elements, CharElement::info);
         }
     }
@@ -229,12 +223,10 @@ public class ElementGenerator {
     }
 
     private String replace(String template) {
-        return template
+        return GameProperties
+                .replace(template, canonicalGame)
                 .replace("${tag}", "#" + "%L") // because of warning in the mvn compile in phase lecense header generation
-                .replace("${language}", language)
-                .replace("${game}", game)
-                .replace("${game-canonical}", canonicalGame)
-                .replace("${game-capitalize}", capitalize(game));
+                .replace("${language}", language);
     }
 
     private List<String> splitLength(String text, int length) {
