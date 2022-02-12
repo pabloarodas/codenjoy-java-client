@@ -1,5 +1,3 @@
-package com.codenjoy.dojo.games.sample;
-
 /*-
  * #%L
  * Codenjoy - it's a dojo-like platform from developers to developers.
@@ -10,76 +8,97 @@ package com.codenjoy.dojo.games.sample;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
 
+//include "Element.h"
 
-import com.codenjoy.dojo.services.printer.CharElement;
+Element::Element(Char el) {
+    elem.first = valueOf(el);
+    elem.second = el;
+}
 
-public enum Element implements CharElement {
+Element::Element(String name) {
+    elem.second = Elements.at(name);
+    elem.first = name;
+}
+
+Char Element::ch() {
+    return elem.second;
+}
+
+String Element::name() {
+    return elem.first;
+}
+
+Char Element::getChar() const {
+    return elem.second;
+}
+
+String Element::valueOf(Char ch) const {
+    for (auto i : Elements) {
+        if (i.second == ch) return i.first;
+    }
+    throw std::invalid_argument("Element::valueOf(Char ch): No such Element for " + ch);
+}
+
+bool Element::operator==(const Element& el) const {
+    return elem == el.elem;
+}
+
+ElementMap Element::initialiseElements() {
+    ElementMap result;
 
         // Empty place where the hero can go.
 
-    NONE(' '),
+    result[LL("NONE")] = LL(' ');
 
         // Wall you cant walk through.
 
-    WALL('☼'),
+    result[LL("WALL")] = LL('☼');
 
         // Your hero.
 
-    HERO('☺'),
+    result[LL("HERO")] = LL('☺');
 
         // Your hero died. His body will disappear in the next tick.
 
-    HERO_DEAD('X'),
+    result[LL("HERO_DEAD")] = LL('X');
 
         // Heroes of other players.
 
-    OTHER_HERO('☻'),
+    result[LL("OTHER_HERO")] = LL('☻');
 
         // Another player's hero died.
 
-    OTHER_HERO_DEAD('Y'),
+    result[LL("OTHER_HERO_DEAD")] = LL('Y');
 
         // Heroes of other players in other team.
 
-    ENEMY_HERO('♥'),
+    result[LL("ENEMY_HERO")] = LL('♥');
 
         // Player's Hero from the other team who died.
 
-    ENEMY_HERO_DEAD('Z'),
+    result[LL("ENEMY_HERO_DEAD")] = LL('Z');
 
         // Gold. It must be picked up.
 
-    GOLD('$'),
+    result[LL("GOLD")] = LL('$');
 
         // Bomb planted by the hero. You can blow up on it.
 
-    BOMB('x');
+    result[LL("BOMB")] = LL('x');
 
-    private final char ch;
+    return result;
+};
 
-    Element(char ch) {
-        this.ch = ch;
-    }
-
-    @Override
-    public char ch() {
-        return ch;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(ch);
-    }
-}
+const ElementMap Element::Elements = Element::initialiseElements();

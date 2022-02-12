@@ -34,89 +34,116 @@ public class ElementGeneratorTest {
     @Rule
     public TestName test = new TestName();
 
-    @Test
-    public void shouldGenerate_sampleGame_goLanguage() {
-        assertEquals(new ElementGenerator("sample", "go").generate());
-    }
+    private String base = ".."; // чтобы указывало на CodingDojo/clients/
 
     @Test
     public void shouldGenerate_testGame_goLanguage() {
-        assertEquals(new ElementGenerator("test", "go").generate());
+        assertEquals(new ElementGenerator("test", "go", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_cppLanguage() {
-        assertEquals(new ElementGenerator("test", "cpp").generate());
+        assertEquals(new ElementGenerator("test", "cpp", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_jsLanguage() {
-        assertEquals(new ElementGenerator("test", "js").generate());
+        assertEquals(new ElementGenerator("test", "js", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_phpLanguage() {
-        assertEquals(new ElementGenerator("test", "php").generate());
+        assertEquals(new ElementGenerator("test", "php", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_javaLanguage() {
-        assertEquals(new ElementGenerator("test", "java").generate());
+        assertEquals(new ElementGenerator("test", "java", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_pythonLanguage() {
-        assertEquals(new ElementGenerator("test", "python").generate());
+        assertEquals(new ElementGenerator("test", "python", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("test", "md").generate());
+        assertEquals(new ElementGenerator("test", "md", base).generate());
     }
 
     @Test
     public void shouldGenerate_testAnotherGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("test-another", "md").generate());
+        assertEquals(new ElementGenerator("test-another", "md", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_markdownHeaderLanguage() {
-        assertEquals(new ElementGenerator("test", "md_header").generate());
+        assertEquals(new ElementGenerator("test", "md_header", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_markdownFooterLanguage() {
-        assertEquals(new ElementGenerator("test", "md_footer").generate());
+        assertEquals(new ElementGenerator("test", "md_footer", base).generate());
     }
 
     @Test
     public void shouldGenerate_testGame_csharpLanguage() {
-        assertEquals(new ElementGenerator("test", "csharp").generate());
+        assertEquals(new ElementGenerator("test", "csharp", base).generate());
+    }
+
+    @Test
+    public void shouldGenerate_sampleGame_goLanguage() {
+        assertEquals(new ElementGenerator("sample", "go", base).generate());
+    }
+
+    @Test
+    public void shouldGenerate_sampleGame_cppLanguage() {
+        assertEquals(new ElementGenerator("sample", "cpp", base).generate());
+    }
+
+    @Test
+    public void shouldGenerate_sampleGame_jsLanguage() {
+        assertEquals(new ElementGenerator("sample", "js", base).generate());
+    }
+
+    @Test
+    public void shouldGenerate_sampleGame_phpLanguage() {
+        assertEquals(new ElementGenerator("sample", "php", base).generate());
+    }
+
+    @Test
+    public void shouldGenerate_sampleGame_javaLanguage() {
+        assertEquals(new ElementGenerator("sample", "java", base).generate());
+    }
+
+    @Test
+    public void shouldGenerate_sampleGame_pythonLanguage() {
+        assertEquals(new ElementGenerator("sample", "python", base).generate());
     }
 
     @Test
     public void shouldGenerate_sampleGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("sample", "md").generate());
+        assertEquals(new ElementGenerator("sample", "md", base).generate());
     }
 
     @Test
     public void shouldGenerate_mollymageGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("mollymage", "md").generate());
+        assertEquals(new ElementGenerator("mollymage", "md", base).generate());
     }
 
     @Test
     public void shouldGenerate_mollymageGame_javaLanguage() {
-        assertEquals(new ElementGenerator("mollymage", "java").generate());
+        assertEquals(new ElementGenerator("mollymage", "java", base).generate());
     }
 
     @Test
     public void shouldGenerate_cliffordGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("clifford", "md").generate());
+        assertEquals(new ElementGenerator("clifford", "md", base).generate());
     }
 
     @Test
     public void shouldGenerate_cliffordGame_javaLanguage() {
-        assertEquals(new ElementGenerator("clifford", "java").generate());
+        assertEquals(new ElementGenerator("clifford", "java", base).generate());
     }
 
     private void assertEquals(String actual) {

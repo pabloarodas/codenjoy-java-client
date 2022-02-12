@@ -29,11 +29,12 @@ import com.codenjoy.dojo.utils.SmokeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.FileReader;
+import java.util.*;
+import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 import static org.apache.commons.lang3.StringUtils.capitalize;
 
 public class ElementGenerator {
@@ -54,6 +55,7 @@ public class ElementGenerator {
             "namdreab", "vacuum");
 
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
+    public static final String INFO_PROPERTIES = "../games/${game-canonical}/src/main/webapp/resources/${game}/help/info.properties";
 
     private final String game;
     private final String canonicalGame;
@@ -61,10 +63,12 @@ public class ElementGenerator {
     private final boolean subrepo;
     private final String language;
     private final Template template;
+    private String base;
 
-    public ElementGenerator(String game, String language) {
+    public ElementGenerator(String game, String language, String inputBase) {
         this.canonicalGame = game;
         this.game = getGame(game);
+        base = getBase(inputBase);
 
         this.language = language;
         this.template = template();
@@ -88,13 +92,8 @@ public class ElementGenerator {
         return build(elements());
     }
 
-    public void generateToFile(String base) {
-        String data = build(elements());
-        String preffix = "/";
-        if ("CodingDojo".equals(new File(base).getAbsoluteFile().getName())) {
-            preffix = "/clients/";
-        }
-        File dest = new File(base + preffix + replace(template.file()));
+    public void generateToFile() {
+        File dest = new File(base + replace(template.file()));
         System.out.printf("Store '%s-%s' in file: '%s'\n",
                 game, language, dest.getAbsolutePath());
 
@@ -102,7 +101,20 @@ public class ElementGenerator {
         //      не удалять эту строчку
         if (game.equals("icancode") && language.equals("js")) return;
 
+        // TODO пока что перевел на properties только sample
+        if (language.equals("java") && !game.equals("sample")) return;
+
+        String data = build(elements());
+
         SmokeUtils.saveToFile(dest, data);
+    }
+
+    private String getBase(String inputBase) {
+        String preffix = "/";
+        if ("CodingDojo".equals(new File(inputBase).getAbsoluteFile().getName())) {
+            preffix = "/clients/";
+        }
+        return inputBase + preffix;
     }
 
     private CharElement[] elements() {
@@ -133,18 +145,17 @@ public class ElementGenerator {
 
         String header = replace(template.header(locales()));
 
+        Map<CharElement, String> infos = loadInfo(elements);
+
         List<String> lines = Arrays.stream(elements)
-                .map(el -> replace(template.line(subrepo), el))
+                .map(el -> replace(template.line(subrepo), el, infos))
                 .collect(toList());
 
-        List<List<String>> infos = Arrays.stream(elements)
-                .map(el -> splitLength(el.info(), COMMENT_MAX_LENGTH))
-                .collect(toList());
-
+        List<String> infosList = new LinkedList<>(infos.values());
         StringBuilder body = new StringBuilder();
         for (int index = 0; index < lines.size(); index++) {
             if (template.printComment()) {
-                List<String> comments = infos.get(index);
+                List<String> comments = splitLength(infosList.get(index), COMMENT_MAX_LENGTH);
                 if (!comments.isEmpty()) {
                     comments.forEach(comment ->
                             body.append('\n')
@@ -177,6 +188,26 @@ public class ElementGenerator {
                 + footer;
     }
 
+    private Map<CharElement, String> loadInfo(CharElement[] elements) {
+        try {
+            File file = new File(base + replace(INFO_PROPERTIES));
+            Properties properties = new Properties();
+            properties.load(new FileReader(file.getAbsolutePath()));
+            return loadInfoFromElement(elements, element ->
+                    properties.getProperty(String.format("game.%s.element.%s", game, element.name())));
+        } catch (Exception exception) {
+            return loadInfoFromElement(elements, CharElement::info);
+        }
+    }
+
+    private Map<CharElement, String> loadInfoFromElement(CharElement[] elements, Function<CharElement, String> getInfo) {
+        return Arrays.stream(elements)
+                .map(element -> new AbstractMap.SimpleEntry<>(element, getInfo.apply(element)))
+                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (value1, value2) -> value2,
+                        LinkedHashMap::new));
+    }
+
     private List<String> locales() {
         if (ENGLISH_PRESENT.contains(canonicalGame)) {
             return Arrays.asList("ru", "en");
@@ -185,12 +216,12 @@ public class ElementGenerator {
         }
     }
 
-    private String replace(String template, CharElement element) {
+    private String replace(String template, CharElement element, Map<CharElement, String> infos) {
         return replace(template)
                 .replace("${element-lower}", element.name().toLowerCase())
                 .replace("${element}", element.name())
                 .replace("${char}", String.valueOf(element.ch()))
-                .replace("${info}", element.info());
+                .replace("${info}", (StringUtils.isEmpty(element.info()) ? infos.get(element) : element.info()));
     }
 
     private String replace(String template) {
