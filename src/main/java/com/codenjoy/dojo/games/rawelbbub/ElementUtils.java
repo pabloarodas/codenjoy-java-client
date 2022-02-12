@@ -35,6 +35,7 @@ public class ElementUtils {
 
     public final static Map<Element, Map<Direction, Element>> destroyIceberg = new LinkedHashMap<>();
     public final static Map<Element, Element> growIceberg = new LinkedHashMap<>();
+    public final static Map<Element, Integer> power = new LinkedHashMap<>();
 
     static {
         transformGrow(ICEBERG_HUGE,              ICEBERG_HUGE);
@@ -83,6 +84,27 @@ public class ElementUtils {
         transformDestroy(ICEBERG_MEDIUM_DOWN,  RIGHT, ICEBERG_SMALL_DOWN_RIGHT);
         transformDestroy(ICEBERG_MEDIUM_DOWN,  UP,    ICEBERG_SMALL_UP_DOWN);
         transformDestroy(ICEBERG_MEDIUM_DOWN,  DOWN,  ICEBERG_SMALL_DOWN_DOWN);
+
+        power.put(WATER, 0);
+        power.put(ICEBERG_HUGE, 3);
+
+        power.put(ICEBERG_MEDIUM_LEFT, 2);
+        power.put(ICEBERG_MEDIUM_RIGHT, 2);
+        power.put(ICEBERG_MEDIUM_UP, 2);
+        power.put(ICEBERG_MEDIUM_DOWN, 2);
+
+        power.put(ICEBERG_SMALL_LEFT_LEFT, 1);
+        power.put(ICEBERG_SMALL_RIGHT_RIGHT, 1);
+        power.put(ICEBERG_SMALL_UP_UP, 1);
+        power.put(ICEBERG_SMALL_DOWN_DOWN, 1);
+
+        power.put(ICEBERG_SMALL_LEFT_RIGHT, 1);
+        power.put(ICEBERG_SMALL_UP_DOWN, 1);
+
+        power.put(ICEBERG_SMALL_UP_LEFT, 1);
+        power.put(ICEBERG_SMALL_UP_RIGHT, 1);
+        power.put(ICEBERG_SMALL_DOWN_LEFT, 1);
+        power.put(ICEBERG_SMALL_DOWN_RIGHT, 1);
     }
 
     private static void transformGrow(Element from, Element to) {
@@ -98,7 +120,7 @@ public class ElementUtils {
     }
 
     public static Element destroyFrom(Element element, Direction direction) {
-        if (element.power() == 1) {
+        if (power.get(element) == 1) {
             return Element.WATER;
         }
         return destroyIceberg.get(element).get(direction);
