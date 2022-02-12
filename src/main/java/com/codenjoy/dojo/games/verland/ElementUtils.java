@@ -2,9 +2,31 @@ package com.codenjoy.dojo.games.verland;
 
 import com.codenjoy.dojo.services.printer.TeamElement;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import static com.codenjoy.dojo.games.verland.Element.*;
 
 public class ElementUtils {
+
+    private static final Map<Element, Integer> contagionsCount = new LinkedHashMap<>();
+
+    static {
+        contagionsCount.put(CLEAR, 0);
+        contagionsCount.put(CONTAGION_ONE, 1);
+        contagionsCount.put(CONTAGION_TWO, 2);
+        contagionsCount.put(CONTAGION_THREE, 3);
+        contagionsCount.put(CONTAGION_FOUR, 4);
+        contagionsCount.put(CONTAGION_FIVE, 5);
+        contagionsCount.put(CONTAGION_SIX, 6);
+        contagionsCount.put(CONTAGION_SEVEN, 7);
+        contagionsCount.put(CONTAGION_EIGHT, 8);
+    }
+
+    public static int contagions(Element element) {
+        Integer count = contagionsCount.get(element);
+        return count == null ? 0 : count;
+    }
 
     public static final Element[] heroes = new Element[]{
             HERO_DEAD,

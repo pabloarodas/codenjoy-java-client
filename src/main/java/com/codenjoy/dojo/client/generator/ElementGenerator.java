@@ -55,7 +55,8 @@ public class ElementGenerator {
             "namdreab", "vacuum");
 
     public static final List<String> WITH_PROPERTIES = Arrays.asList(
-            "sample", "clifford", "mollymage", "rawelbbub");
+            "sample", "clifford", "mollymage", "rawelbbub",
+            "verland");
 
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
     public static final String INFO_PROPERTIES = "../games/${game-canonical}/src/main/webapp/resources/${game}/help/info.properties";

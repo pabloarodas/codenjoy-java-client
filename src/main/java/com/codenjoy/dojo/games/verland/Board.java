@@ -138,7 +138,7 @@ public class Board extends AbstractBoard<Element> {
 
     public int countContagions(Point pt) {
         return isAt(pt, contagions)
-                ? getAt(pt).value()
+                ? ElementUtils.contagions(getAt(pt))
                 : 0;
     }
 
