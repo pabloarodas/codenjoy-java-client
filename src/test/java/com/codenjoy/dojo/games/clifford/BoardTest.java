@@ -47,7 +47,7 @@ public class BoardTest {
                 /*5*/"☼ H  1 G☼\n" +
                 /*4*/"☼m   & W☼\n" +
                 /*3*/"☼ + ~~~ ☼\n" +
-                /*2*/"☼Z3 S   ☼\n" +
+                /*2*/"☼Z3 S  M☼\n" +
                 /*1*/"☼ @@  X ☼\n" +
                 /*0*/"☼☼☼☼☼☼☼☼☼\n");
                     /*012345678*/
@@ -62,7 +62,7 @@ public class BoardTest {
                 "☼ H  1 G☼\n" +
                 "☼m   & W☼\n" +
                 "☼ + ~~~ ☼\n" +
-                "☼Z3 S   ☼\n" +
+                "☼Z3 S  M☼\n" +
                 "☼ @@  X ☼\n" +
                 "☼☼☼☼☼☼☼☼☼\n" +
                 "\n" +
@@ -80,7 +80,7 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getElement() {
-        assertEquals("{ =[[1,1], [1,3], [1,5], [1,6], [1,7], [2,4], [3,2], [3,3], [3,4], [3,5], [3,6], [4,1], [4,4], [4,5], [5,1], [5,2], [6,2], [6,4], [6,5], [6,6], [6,7], [7,1], [7,2], [7,3]], \n" +
+        assertEquals("{ =[[1,1], [1,3], [1,5], [1,6], [1,7], [2,4], [3,2], [3,3], [3,4], [3,5], [3,6], [4,1], [4,4], [4,5], [5,1], [5,2], [6,2], [6,4], [6,5], [6,6], [6,7], [7,1], [7,3]], \n" +
                         "#=[[4,7], [5,7]], \n" +
                         "1=[[5,5]], \n" +
                         "2=[], \n" +
@@ -152,7 +152,8 @@ public class BoardTest {
                         "H=[[2,5], [2,6]], \n" +
                         "~=[[4,3], [5,3], [6,3]], \n" +
                         "W=[[7,4]], \n" +
-                        "m=[[1,4]]}",
+                        "m=[[1,4]], \n" +
+                        "M=[[7,2]]}",
                 Utils.elements(board, Element.values()));
     }
 
@@ -176,14 +177,14 @@ public class BoardTest {
 
     @Test
     public void shouldWork_getNear() {
-        assertEquals("[ , ~,  ,  , W, ☼, ☼, ☼]", board.getNear(7, 3).toString());
+        assertEquals("[ , ~,  , M, W, ☼, ☼, ☼]", board.getNear(7, 3).toString());
         assertEquals("[☼,  , ☼]", board.getNear(0, 8).toString());
         assertEquals("[ , p, #, 1, #,  ,  ,  ]", board.getNear(5, 6).toString());
     }
 
     @Test
     public void shouldWork_getNear_point() {
-        assertEquals("[ , ~,  ,  , W, ☼, ☼, ☼]", board.getNear(pt(7, 3)).toString());
+        assertEquals("[ , ~,  , M, W, ☼, ☼, ☼]", board.getNear(pt(7, 3)).toString());
         assertEquals("[☼,  , ☼]", board.getNear(pt(0, 8)).toString());
         assertEquals("[ , p, #, 1, #,  ,  ,  ]", board.getNear(pt(5, 6)).toString());
     }

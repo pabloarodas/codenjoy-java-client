@@ -341,7 +341,11 @@ public enum Element implements CharElement {
         // Disguise potion - endow the hero with additional abilities.
         // The hero goes into shadow mode.
 
-    MASK_POTION('m');
+    MASK_POTION('m'),
+
+        // Ammo clip - additional ammo for hero's gun.
+
+    AMMO_CLIP('M');
 
     private final char ch;
 
