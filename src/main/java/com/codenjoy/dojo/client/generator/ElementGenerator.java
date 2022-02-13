@@ -56,7 +56,8 @@ public class ElementGenerator {
             "namdreab", "vacuum");
 
     public static final List<String> WITH_PROPERTIES = Arrays.asList(
-            "a2048", "chess", "sample", "clifford", "mollymage", "rawelbbub",
+            "a2048", "chess", "clifford", "collapse",
+            "sample", "mollymage", "rawelbbub",
             "verland");
 
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();

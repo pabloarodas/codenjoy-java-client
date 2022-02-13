@@ -27,34 +27,55 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',    "Пустое место – место которое заполнится фишкой в следующий тик."),
+        // Пустое место – место которое заполнится фишкой в следующий
+        // тик.
 
-    BORDER('☼',  "Граница поля, в игре не участвует (не перемещается)."),
+    NONE(' '),
 
-    ONE('1',     "Перемещаемая фишка 1."),
+        // Граница поля, в игре не участвует (не перемещается).
 
-    TWO('2',     "Перемещаемая фишка 2."),
+    BORDER('☼'),
 
-    THREE('3',   "Перемещаемая фишка 3."),
+        // Перемещаемая фишка 1.
 
-    FOUR('4',    "Перемещаемая фишка 4."),
+    ONE('1'),
 
-    FIVE('5',    "Перемещаемая фишка 5."),
+        // Перемещаемая фишка 2.
 
-    SIX('6',     "Перемещаемая фишка 6."),
+    TWO('2'),
 
-    SEVEN('7',   "Перемещаемая фишка 7."),
+        // Перемещаемая фишка 3.
 
-    EIGHT('8',   "Перемещаемая фишка 8."),
+    THREE('3'),
 
-    NINE('9',    "Перемещаемая фишка 9.");
+        // Перемещаемая фишка 4.
+
+    FOUR('4'),
+
+        // Перемещаемая фишка 5.
+
+    FIVE('5'),
+
+        // Перемещаемая фишка 6.
+
+    SIX('6'),
+
+        // Перемещаемая фишка 7.
+
+    SEVEN('7'),
+
+        // Перемещаемая фишка 8.
+
+    EIGHT('8'),
+
+        // Перемещаемая фишка 9.
+
+    NINE('9');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
@@ -63,33 +84,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    public static Element[] numbers() {
-        return new Element[]{
-                ONE,
-                TWO,
-                THREE,
-                FOUR,
-                FIVE,
-                SIX,
-                SEVEN,
-                EIGHT,
-                NINE,
-        };
-    }
-
-    public int number() {
-        if (this == NONE || this == BORDER) {
-            return -1;
-        }
-        return Integer.parseInt("" + ch);
     }
 }
