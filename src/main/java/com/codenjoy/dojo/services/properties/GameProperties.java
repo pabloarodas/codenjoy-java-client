@@ -25,8 +25,10 @@ package com.codenjoy.dojo.services.properties;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.commons.lang3.StringUtils.capitalize;
 
 public class GameProperties {
@@ -68,7 +70,7 @@ public class GameProperties {
             if (stream == null) {
                 return false;
             }
-            properties.load(stream);
+            properties.load(new InputStreamReader(stream, UTF_8));
             return true;
         } catch (Exception e) {
             return false;
@@ -87,7 +89,7 @@ public class GameProperties {
             if (!file.exists()) {
                 return false;
             }
-            properties.load(new FileReader(file.getAbsolutePath()));
+            properties.load(new FileReader(file.getAbsolutePath(), UTF_8));
             return true;
         } catch (Exception e) {
             return false;
