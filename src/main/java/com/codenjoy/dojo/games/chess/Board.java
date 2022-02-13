@@ -72,7 +72,7 @@ public class Board extends AbstractBoard<Element> {
     }
 
     public Color getColor(int x, int y) {
-        return getAt(x, y).color();
+        return ElementUtils.color(getAt(x, y));
     }
 
     public Color getColor(Point position) {
@@ -82,11 +82,11 @@ public class Board extends AbstractBoard<Element> {
     public List<Point> getSquares() {
         List<Point> positions = new ArrayList<>();
         positions.addAll(get(Element.SQUARE));
-        positions.addAll(get(Element.pieces()));
+        positions.addAll(get(ElementUtils.pieces()));
         return positions;
     }
 
     public List<Point> getPieces(Color color) {
-        return get(Element.elements(color).toArray(Element[]::new));
+        return get(ElementUtils.elements(color).toArray(Element[]::new));
     }
 }
