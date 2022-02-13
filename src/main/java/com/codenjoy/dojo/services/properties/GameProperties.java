@@ -24,6 +24,7 @@ package com.codenjoy.dojo.services.properties;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.util.Properties;
 
 import static org.apache.commons.lang3.StringUtils.capitalize;
@@ -37,15 +38,55 @@ public class GameProperties {
 
     public static String get(String base, String game, String name) {
         GameProperties properties = new GameProperties();
-        properties.load(base, game);
+        if (!properties.load(base, game)) {
+            throw new RuntimeException("Cant load properties file for game: " + game);
+        }
         return properties.get(name);
     }
 
     public boolean load(String base, String game) {
+        properties = new Properties();
+        canonicalGame = game;
+        String filePath = replace(base + INFO_PROPERTIES, canonicalGame);
+
+        if (tryLoadFromClassPath(filePath)) {
+            return true;
+        }
+
+        return tryLoadFromSources(filePath);
+    }
+
+    /**
+     * Попытка загрузить properties файл в runtime из claaapath.
+     * @param filePath путь к properties файлу.
+     * @return true если успех.
+     */
+    private boolean tryLoadFromClassPath(String filePath) {
         try {
-            canonicalGame = game;
-            File file = new File(replace(base + INFO_PROPERTIES, canonicalGame));
-            properties = new Properties();
+            filePath = filePath.replace("./src/main/webapp", "");
+            InputStream stream = getClass().getResourceAsStream(filePath);
+            if (stream == null) {
+                return false;
+            }
+            properties.load(stream);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Попытка загрузить properties файл из сырцов, т.к. запуск идет из проекта, в чьих
+     * депенденсях нет jar и играми.
+     * @param filePath путь к properties файлу.
+     * @return true если успех.
+     */
+    private boolean tryLoadFromSources(String filePath) {
+        try {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                return false;
+            }
             properties.load(new FileReader(file.getAbsolutePath()));
             return true;
         } catch (Exception e) {
