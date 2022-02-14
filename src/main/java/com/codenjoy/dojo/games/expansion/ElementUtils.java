@@ -47,6 +47,10 @@ public class ElementUtils {
             SPACE,
     };
 
+    public static final Element[] holes = new Element[] {
+            HOLE,
+    };
+
     public static final Element[] layer1 = new Element[] {
             FLOOR,
             ANGLE_IN_LEFT,
