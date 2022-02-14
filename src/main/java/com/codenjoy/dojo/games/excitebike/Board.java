@@ -24,16 +24,12 @@ package com.codenjoy.dojo.games.excitebike;
 
 
 import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.annotations.PerformanceOptimized;
 import com.codenjoy.dojo.services.printer.CharElement;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,22 +42,20 @@ import java.util.stream.Collectors;
 public class Board extends AbstractBoard<CharElement> {
 
     private static final String OTHER_BIKE_PREFIX = "OTHER";
+    private static final String BIKE_PREFIX = "BIKE";
     private static final String FALLEN_BIKE_SUFFIX = "FALLEN";
 
     @PerformanceOptimized
-    public static final BikeElement[] BIKE_TYPES = Arrays.stream(BikeElement.values())
+    public static final Element[] BIKE_TYPES = Arrays.stream(Element.values())
+            .filter(v -> v.name().contains(BIKE_PREFIX))
             .filter(v -> !v.name().contains(OTHER_BIKE_PREFIX))
             .collect(Collectors.toList())
-            .toArray(new BikeElement[]{});
+            .toArray(new Element[]{});
 
     @Override
     @PerformanceOptimized
     public CharElement[] elements() {
-        return new LinkedList<>(){{
-            addAll(Arrays.asList(GameElement.values()));
-            addAll(Arrays.asList(SpringboardElement.values()));
-            addAll(Arrays.asList(BikeElement.values()));
-        }}.toArray(new CharElement[0]);
+        return Element.values();
     }
 
     public Point getHero() {
@@ -70,8 +64,9 @@ public class Board extends AbstractBoard<CharElement> {
 
     public boolean isGameOver() {
         Point me = getHero();
-        return me == null || Arrays.stream(BikeElement.values())
-                .filter(v -> !v.name().contains(OTHER_BIKE_PREFIX) && v.name().contains(FALLEN_BIKE_SUFFIX))
+        return me == null || Arrays.stream(Element.values())
+                .filter(v -> !v.name().contains(OTHER_BIKE_PREFIX)
+                        && v.name().contains(FALLEN_BIKE_SUFFIX))
                 .anyMatch(v -> isAt(me, v));
     }
 
@@ -112,7 +107,7 @@ public class Board extends AbstractBoard<CharElement> {
     @Override
     public String toString() {
         String superToString = super.toString();
-        int indexOfFirstFence = superToString.indexOf(GameElement.FENCE.ch());
+        int indexOfFirstFence = superToString.indexOf(Element.FENCE.ch());
         int nextLineStatementLength = 2;
         return superToString.substring(indexOfFirstFence >= nextLineStatementLength
                 ? indexOfFirstFence - nextLineStatementLength

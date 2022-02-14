@@ -22,9 +22,6 @@ package com.codenjoy.dojo.games.excitebike;
  * #L%
  */
 
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.printer.CharElement;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,9 +29,6 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -54,11 +48,7 @@ public class BoardParametrizedTest {
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection data() {
-        return Stream.of(
-                Arrays.stream(GameElement.values()),
-                Arrays.stream(SpringboardElement.values()),
-                Arrays.stream(BikeElement.values())
-        ).flatMap(Function.identity()).collect(Collectors.toList());
+        return Arrays.asList(Element.values());
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.excitebike.element;
+package com.codenjoy.dojo.games.excitebike;
 
 /*-
  * #%L
@@ -24,7 +24,24 @@ package com.codenjoy.dojo.games.excitebike.element;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-public enum BikeElement implements CharElement {
+public enum Element implements CharElement {
+
+    NONE(' '),
+    FENCE('■'),
+    ACCELERATOR('>'),
+    INHIBITOR('<'),
+    OBSTACLE('|'),
+    LINE_CHANGER_UP('▲'),
+    LINE_CHANGER_DOWN('▼'),
+
+    SPRINGBOARD_LEFT_UP('╔'),
+    SPRINGBOARD_LEFT('ˊ'),
+    SPRINGBOARD_LEFT_DOWN('╚'),
+    SPRINGBOARD_TOP('═'),
+    SPRINGBOARD_RIGHT_UP('╗'),
+    SPRINGBOARD_RIGHT('ˋ'),
+    SPRINGBOARD_RIGHT_DOWN('╝'),
+
     BIKE('B'),
     BIKE_AT_ACCELERATOR('A'),
     BIKE_AT_INHIBITOR('I'),
@@ -65,19 +82,10 @@ public enum BikeElement implements CharElement {
     OTHER_BIKE_FALLEN_AT_FENCE('ḟ'),
     OTHER_BIKE_FALLEN_AT_OBSTACLE('ō');
 
-    final char ch;
+    private final char ch;
 
-    BikeElement(char ch) {
+    Element(char ch) {
         this.ch = ch;
-    }
-
-    public static BikeElement valueOf(char ch) {
-        for (BikeElement el : BikeElement.values()) {
-            if (el.ch == ch) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("No such element for " + ch);
     }
 
     @Override

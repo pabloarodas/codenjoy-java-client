@@ -22,9 +22,6 @@ package com.codenjoy.dojo.games.excitebike;
  * #L%
  */
 
-import com.codenjoy.dojo.games.excitebike.element.BikeElement;
-import com.codenjoy.dojo.games.excitebike.element.GameElement;
-import com.codenjoy.dojo.games.excitebike.element.SpringboardElement;
 import com.codenjoy.dojo.services.Direction;
 import org.junit.Test;
 
@@ -107,7 +104,7 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals(true, board.checkNearMe(Direction.RIGHT, GameElement.ACCELERATOR));
+        assertEquals(true, board.checkNearMe(Direction.RIGHT, Element.ACCELERATOR));
     }
 
     @Test
@@ -119,7 +116,7 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals(false, board.checkNearMe(Direction.UP, BikeElement.OTHER_BIKE));
+        assertEquals(false, board.checkNearMe(Direction.UP, Element.OTHER_BIKE));
     }
 
     @Test
@@ -131,7 +128,7 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals(true, board.checkNearMe(Direction.LEFT, SpringboardElement.SPRINGBOARD_RIGHT_DOWN));
+        assertEquals(true, board.checkNearMe(Direction.LEFT, Element.SPRINGBOARD_RIGHT_DOWN));
     }
 
     @Test
@@ -143,7 +140,7 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals(false, board.checkNearMe(Direction.DOWN, GameElement.FENCE));
+        assertEquals(false, board.checkNearMe(Direction.DOWN, Element.FENCE));
     }
 
     @Test
@@ -155,7 +152,7 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals(true, board.checkNearMe(Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.UP), GameElement.ACCELERATOR));
+        assertEquals(true, board.checkNearMe(Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.UP), Element.ACCELERATOR));
     }
 
     @Test
@@ -167,7 +164,7 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals(true, board.checkAtMe(BikeElement.BIKE_AT_ACCELERATOR));
+        assertEquals(true, board.checkAtMe(Element.BIKE_AT_ACCELERATOR));
     }
 
     @Test
@@ -179,6 +176,6 @@ public class BoardTest {
                 "■■■■■");
 
         // when then
-        assertEquals(false, board.checkAtMe(BikeElement.BIKE_AT_ACCELERATOR));
+        assertEquals(false, board.checkAtMe(Element.BIKE_AT_ACCELERATOR));
     }
 }
