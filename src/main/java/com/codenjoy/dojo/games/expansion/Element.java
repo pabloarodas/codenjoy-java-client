@@ -25,110 +25,128 @@ package com.codenjoy.dojo.games.expansion;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.LAYER1;
-import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.LAYER2;
-
 public enum Element implements CharElement {
 
-/// Empty space where player can go
+        // Empty space (at layer 2) where player can go.
 
-    EMPTY(LAYER2, '-',                  ""),
+    EMPTY('-'),
 
-    FLOOR(LAYER1, '.',                  ""),
+        // Empty space (at layer 1) where player can go.
 
-// Walls
+    FLOOR('.'),
 
-    ANGLE_IN_LEFT(LAYER1, '╔',          ""),
+        // Wall.
 
-    WALL_FRONT(LAYER1, '═',             ""),
+    ANGLE_IN_LEFT('╔'),
 
-    ANGLE_IN_RIGHT(LAYER1, '┐',         ""),
+        // Wall.
 
-    WALL_RIGHT(LAYER1, '│',             ""),
+    WALL_FRONT('═'),
 
-    ANGLE_BACK_RIGHT(LAYER1, '┘',       ""),
+        // Wall.
 
-    WALL_BACK(LAYER1, '─',              ""),
+    ANGLE_IN_RIGHT('┐'),
 
-    ANGLE_BACK_LEFT(LAYER1, '└',        ""),
+        // Wall.
 
-    WALL_LEFT(LAYER1, '║',              ""),
+    WALL_RIGHT('│'),
 
-    WALL_BACK_ANGLE_LEFT(LAYER1, '┌',   ""),
+        // Wall.
 
-    WALL_BACK_ANGLE_RIGHT(LAYER1, '╗',  ""),
+    ANGLE_BACK_RIGHT('┘'),
 
-    ANGLE_OUT_RIGHT(LAYER1, '╝',        ""),
+        // Wall.
 
-    ANGLE_OUT_LEFT(LAYER1, '╚',         ""),
+    WALL_BACK('─'),
 
-    SPACE(LAYER1, ' ',                  ""),
+        // Wall.
 
-/// Forces stuff
+    ANGLE_BACK_LEFT('└'),
 
-    FORCE1(LAYER2, '♥', 0,              ""),
+        // Wall.
 
-    FORCE2(LAYER2, '♦', 1,              ""),
+    WALL_LEFT('║'),
 
-    FORCE3(LAYER2, '♣', 2,              ""),
+        // Wall.
 
-    FORCE4(LAYER2, '♠', 3,              ""),
+    WALL_BACK_ANGLE_LEFT('┌'),
 
-/// Other stuff
+        // Wall.
 
-    EXIT(LAYER1, 'E',                   ""),
+    WALL_BACK_ANGLE_RIGHT('╗'),
 
-    HOLE(LAYER1, 'O',                   ""),
+        // Wall.
 
-    BREAK(LAYER1, 'B',                  ""),
+    ANGLE_OUT_RIGHT('╝'),
 
-    GOLD(LAYER1, '$',                   ""),
+        // Wall.
 
-// Bases stuff
+    ANGLE_OUT_LEFT('╚'),
 
-    BASE1(LAYER1, '1', 0,               ""),
+        // Wall.
 
-    BASE2(LAYER1, '2', 1,               ""),
+    SPACE(' '),
 
-    BASE3(LAYER1, '3', 2,               ""),
+        // Forces of player 1.
 
-    BASE4(LAYER1, '4', 3,               ""),
+    FORCE1('♥'),
 
-/// System elements, don't touch it
+        // Forces of player 2.
 
-    FOG(LAYER1, 'F',                    ""),
+    FORCE2('♦'),
 
-    BACKGROUND(LAYER2, 'G',             "");
+        // Forces of player 3.
 
-    public int getIndex() {
-        return index;
-    }
+    FORCE3('♣'),
 
-    public static Element getForce(int index) {
-        switch (index) {
-            case 0: return FORCE1;
-            case 1: return FORCE2;
-            case 2: return FORCE3;
-            case 3: return FORCE4;
-            default: throw new IllegalArgumentException(
-                    "Force element bot found for index: " + index);
-        }
-    }
+        // Forces of player 4.
+
+    FORCE4('♠'),
+
+        // Exit.
+
+    EXIT('E'),
+
+        // Hole.
+
+    HOLE('O'),
+
+        // Unpassable break.
+
+    BREAK('B'),
+
+        // Gold.
+
+    GOLD('$'),
+
+        // Base of player 1.
+
+    BASE1('1'),
+
+        // Base of player 2.
+
+    BASE2('2'),
+
+        // Base of player 3.
+
+    BASE3('3'),
+
+        // Base of player 4.
+
+    BASE4('4'),
+
+        // Fog of war system layer.
+
+    FOG('F'),
+
+        // Background system layer.
+
+    BACKGROUND('G');
 
     private final char ch;
-    private final int layer;
-    private final int index;
-    private final String info;
 
-    Element(int layer, char ch, int index, String info) {
-        this.layer = layer;
+    Element(char ch) {
         this.ch = ch;
-        this.index = index;
-        this.info = info;
-    }
-
-    Element(int layer, char ch, String info) {
-        this(layer, ch, -1, info);
     }
 
     @Override
@@ -137,51 +155,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
     }
-
-    public int getLayer() {
-        return layer;
-    }
-
-    public boolean isWall() {
-        return is(
-                ANGLE_IN_LEFT,
-                WALL_FRONT,
-                ANGLE_IN_RIGHT,
-                WALL_RIGHT,
-                ANGLE_BACK_RIGHT,
-                WALL_BACK,
-                ANGLE_BACK_LEFT,
-                WALL_LEFT,
-                WALL_BACK_ANGLE_LEFT,
-                WALL_BACK_ANGLE_RIGHT,
-                ANGLE_OUT_RIGHT,
-                ANGLE_OUT_LEFT,
-                SPACE);
-    }
-
-    public static final Element[] barriers = new Element[] {
-            SPACE,
-            BREAK,
-            ANGLE_IN_LEFT,
-            WALL_FRONT,
-            ANGLE_IN_RIGHT,
-            WALL_RIGHT,
-            ANGLE_BACK_RIGHT,
-            WALL_BACK,
-            ANGLE_BACK_LEFT,
-            WALL_LEFT,
-            WALL_BACK_ANGLE_LEFT,
-            WALL_BACK_ANGLE_RIGHT,
-            ANGLE_OUT_RIGHT,
-            ANGLE_OUT_LEFT,
-    };
-
 }

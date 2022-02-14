@@ -35,6 +35,7 @@ import java.util.List;
 import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.LAYER1;
 import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.LAYER2;
 import static com.codenjoy.dojo.games.expansion.Element.*;
+import static com.codenjoy.dojo.games.expansion.ElementUtils.barriers;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
@@ -94,7 +95,7 @@ public class Board extends AbstractBoard<Element> {
      */
     public Element getMyForcesColor() {
         int color = source.getInt("myColor");
-        return Element.getForce(color);
+        return ElementUtils.force(color);
     }
 
     /**
@@ -295,7 +296,7 @@ public class Board extends AbstractBoard<Element> {
         StringBuilder result = new StringBuilder(source);
         for (int i = 0; i < result.length(); ++i) {
             Element el = valueOf(mask.charAt(i));
-            if (el.isWall()) {
+            if (ElementUtils.isWall(el)) {
                 result.setCharAt(i, el.ch());
             }
         }
