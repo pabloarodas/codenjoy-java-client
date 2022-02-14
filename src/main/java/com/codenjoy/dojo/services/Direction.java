@@ -39,6 +39,8 @@ public enum Direction {
     LEFT(0, -1, 0), RIGHT(1, 1, 0), UP(2, 0, 1), DOWN(3, 0, -1),
     ACT(4, 0, 0), STOP(5, 0, 0);
 
+    private static final List<Direction> values = Arrays.asList(LEFT, RIGHT, UP, DOWN);
+
     private final int value;
     private final int dx;
     private final int dy;
@@ -50,7 +52,7 @@ public enum Direction {
     }
 
     public static List<Direction> getValues() {
-        return Arrays.asList(LEFT, RIGHT, UP, DOWN);
+        return values;
     }
 
     public static Direction valueOf(int index) {

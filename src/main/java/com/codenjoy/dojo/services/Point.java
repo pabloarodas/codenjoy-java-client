@@ -90,7 +90,10 @@ public interface Point extends Comparable<Point> {
     boolean isOutOfExclude(int dw, int dh, int size);
 
     static boolean isOutOfExclude(int x, int y, int dw, int dh, int size) {
-        return x < dw || y < dh || y > size - 1 - dh || x > size - 1 - dw;
+        return x < dw
+                || y < dh
+                || y > size - 1 - dh
+                || x > size - 1 - dw;
     }
 
     static boolean isOutOf(int x, int y, int size) {
