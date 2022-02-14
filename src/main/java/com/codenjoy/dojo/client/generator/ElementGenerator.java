@@ -55,10 +55,13 @@ public class ElementGenerator {
             "a2048", "clifford", "kata", "knibert",
             "namdreab", "vacuum");
 
-    public static final List<String> WITH_PROPERTIES = Arrays.asList(
-            "a2048", "chess", "clifford", "collapse", "fifteen",
-            "sample", "mollymage", "rawelbbub",
-            "verland");
+    public static final List<String> WITHOUT_PROPERTIES = Arrays.asList(
+            "football", "expansion", "hex", "icancode", "japanese",
+            "kata", "knibert", "lemonade", "lunolet", "moebius",
+            "namdreab", "pong", "puzzlebox", "quadro", "quake2d",
+            "reversi", "rubicscube", "sampletext", "selfdefense",
+            "sokoban", "spacerace", "startandjump", "sudoku",
+            "tetris", "vacuum", "xonix");
 
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
     public static final GameProperties gameProperties = new GameProperties();
@@ -104,7 +107,7 @@ public class ElementGenerator {
         if (game.equals("icancode") && language.equals("js")) return;
 
         // TODO пока что перевел на properties не все игры
-        if (language.equals("java") && !WITH_PROPERTIES.contains(game)) return;
+        if (language.equals("java") && WITHOUT_PROPERTIES.contains(game)) return;
 
         String data = build(elements());
 
