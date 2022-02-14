@@ -25,51 +25,70 @@ package com.codenjoy.dojo.games.hex;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.*;
-
 public enum Element implements CharElement {
 
-/// Разное на поле
+        // Пустое поле на карте. Сюда можно перемещать свои войска.
 
-    NONE(' ',    "Пустое поле на карте. Сюда можно перемещать " +
-                 "свои войска."),
+    NONE(' '),
 
-    WALL('☼',    "Непроходимое препятствие. Обычно граница поля, " +
-                 "но может появиться в месте, куда два героя " +
-                 "одновременно отправят вои войска."),
+        // Непроходимое препятствие. Обычно граница поля, но может
+        // появиться в месте, куда два героя одновременно отправят вои
+        // войска.
 
-/// Войска игроков
+    WALL('☼'),
 
-    MY_HERO('☺', "Твои войска."),
+        // Твои войска.
 
-    HERO1('☻',   "Войска противника 1."),
+    MY_HERO('☺'),
 
-    HERO2('♥',   "Войска противника 2."),
+        // Войска противника 1.
 
-    HERO3('♦',   "Войска противника 3."),
+    HERO1('☻'),
 
-    HERO4('♣',   "Войска противника 4."),
+        // Войска противника 2.
 
-    HERO5('♠',   "Войска противника 5."),
+    HERO2('♥'),
 
-    HERO6('•',   "Войска противника 6."),
+        // Войска противника 3.
 
-    HERO7('◘',   "Войска противника 7."),
+    HERO3('♦'),
 
-    HERO8('○',   "Войска противника 8."),
+        // Войска противника 4.
 
-    HERO9('◙',   "Войска противника 9."),
+    HERO4('♣'),
 
-    HERO10('♂',  "Войска противника 10."),
+        // Войска противника 5.
 
-    HERO11('♀',  "Войска противника 11.");
+    HERO5('♠'),
+
+        // Войска противника 6.
+
+    HERO6('•'),
+
+        // Войска противника 7.
+
+    HERO7('◘'),
+
+        // Войска противника 8.
+
+    HERO8('○'),
+
+        // Войска противника 9.
+
+    HERO9('◙'),
+
+        // Войска противника 10.
+
+    HERO10('♂'),
+
+        // Войска противника 11.
+
+    HERO11('♀');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
@@ -78,20 +97,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    public static List<Element> heroes() {
-        return new LinkedList<>(Arrays.asList(Element.values())) {{
-            remove(Element.NONE);
-            remove(Element.WALL);
-            remove(Element.MY_HERO);
-        }};
     }
 }
