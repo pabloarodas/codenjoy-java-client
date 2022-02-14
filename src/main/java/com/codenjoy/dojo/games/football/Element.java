@@ -22,58 +22,84 @@ package com.codenjoy.dojo.games.football;
  * #L%
  */
 
+
 import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',                "Пустое место, куда можно перейти игроку."),
+        // Пустое место, куда можно перейти игроку.
 
-    WALL('☼',                "Внешняя разметка поля, через которую нельзя пройти."),
+    NONE(' '),
 
-    HERO('☺',                "Твой игроку."),
+        // Внешняя разметка поля, через которую нельзя пройти.
 
-    HERO_W_BALL('☻',         "Игрок с мячом."),
+    WALL('☼'),
 
-    BALL('*',                "Мяч в движении."),
+        // Твой игроку.
 
-    STOPPED_BALL('∙',        "Мяч остановился."),
+    HERO('☺'),
 
-    TOP_GOAL('┴',            "Верхние ворота."),
+        // Игрок с мячом.
 
-    BOTTOM_GOAL('┬',         "Нижние ворота."),
+    HERO_W_BALL('☻'),
 
-    MY_GOAL('=',             "Твои ворота."),
+        // Мяч в движении.
 
-    ENEMY_GOAL('⌂',          "Чужие ворота."),
+    BALL('*'),
 
-    HITED_GOAL('x',          "Гол в ворота."),
+        // Мяч остановился.
 
-    HITED_MY_GOAL('#',       "Гол в твои ворота."),
+    STOPPED_BALL('∙'),
 
-    TEAM_MEMBER('♦',         "Игрок твоей команды."),
+        // Верхние ворота.
 
-    TEAM_MEMBER_W_BALL('♥',  "Игрок твоей команды с мячем."),
+    TOP_GOAL('┴'),
 
-    ENEMY('♣',               "Игрок команды противников."),
+        // Нижние ворота.
 
-    ENEMY_W_BALL('♠',        "Игрок команды противников с мячем.");
+    BOTTOM_GOAL('┬'),
+
+        // Твои ворота.
+
+    MY_GOAL('='),
+
+        // Чужие ворота.
+
+    ENEMY_GOAL('⌂'),
+
+        // Гол в ворота.
+
+    HITED_GOAL('x'),
+
+        // Гол в твои ворота.
+
+    HITED_MY_GOAL('#'),
+
+        // Игрок твоей команды.
+
+    TEAM_MEMBER('♦'),
+
+        // Игрок твоей команды с мячем.
+
+    TEAM_MEMBER_W_BALL('♥'),
+
+        // Игрок команды противников.
+
+    ENEMY('♣'),
+
+        // Игрок команды противников с мячем.
+
+    ENEMY_W_BALL('♠');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
