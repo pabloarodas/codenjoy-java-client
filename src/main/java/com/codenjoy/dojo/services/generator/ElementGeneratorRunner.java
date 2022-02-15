@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.generator;
+package com.codenjoy.dojo.services.generator;
 
 /*-
  * #%L
@@ -32,7 +32,6 @@ import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Objects;
 
-import static com.codenjoy.dojo.client.generator.ElementGenerator.getCanonicalGame;
 import static com.codenjoy.dojo.utils.PrintUtils.Color.ERROR;
 import static com.codenjoy.dojo.utils.PrintUtils.Color.INFO;
 import static java.util.stream.Collectors.joining;
@@ -133,7 +132,7 @@ public class ElementGeneratorRunner {
                 .map(name -> StringUtils.substringBetween(name,
                         "com.codenjoy.dojo.games.", ".Element"))
                 .filter(Objects::nonNull)
-                .map(game -> getCanonicalGame(game))
+                .map(game -> ElementGenerator.getCanonicalGame(game))
                 .sorted()
                 .collect(toList());
     }

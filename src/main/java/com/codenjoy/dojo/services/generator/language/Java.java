@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.generator.language;
+package com.codenjoy.dojo.services.generator.language;
 
 /*-
  * #%L
@@ -22,15 +22,17 @@ package com.codenjoy.dojo.client.generator.language;
  * #L%
  */
 
-import com.codenjoy.dojo.client.generator.Template;
+import com.codenjoy.dojo.services.generator.Template;
 
 import java.util.List;
 
-public class Go implements Template {
+public class Java implements Template {
 
     @Override
     public String header(List<String> locales) {
-        return "/*-\n" +
+        return "package com.codenjoy.dojo.games.${game};\n" +
+                "\n" +
+                "/*-\n" +
                 " * ${tag}\n" +
                 " * Codenjoy - it's a dojo-like platform from developers to developers.\n" +
                 " * %%\n" +
@@ -40,26 +42,32 @@ public class Go implements Template {
                 " * it under the terms of the GNU General Public License as\n" +
                 " * published by the Free Software Foundation, either version 3 of the\n" +
                 " * License, or (at your option) any later version.\n" +
-                " *\n" +
+                " * \n" +
                 " * This program is distributed in the hope that it will be useful,\n" +
                 " * but WITHOUT ANY WARRANTY; without even the implied warranty of\n" +
                 " * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" +
                 " * GNU General Public License for more details.\n" +
-                " *\n" +
+                " * \n" +
                 " * You should have received a copy of the GNU General Public\n" +
                 " * License along with this program.  If not, see\n" +
                 " * <http://www.gnu.org/licenses/gpl-3.0.html>.\n" +
                 " * #L%\n" +
                 " */\n" +
                 "\n" +
-                "package ${game}\n" +
                 "\n" +
-                "var elements = map[string]rune{\n";
+                "import com.codenjoy.dojo.services.printer.CharElement;\n" +
+                "\n" +
+                "public enum Element implements CharElement {\n";
     }
 
     @Override
     public String line(boolean subrepo) {
-        return "    \"${element}\": '${char}',\n";
+        return "    ${element}('${char}'),\n";
+    }
+
+    @Override
+    public String lastDelimiter() {
+        return ";";
     }
 
     @Override
@@ -70,11 +78,27 @@ public class Go implements Template {
     @Override
     public String footer() {
         return "\n" +
+                "\n" +
+                "    private final char ch;\n" +
+                "\n" +
+                "    Element(char ch) {\n" +
+                "        this.ch = ch;\n" +
+                "    }\n" +
+                "\n" +
+                "    @Override\n" +
+                "    public char ch() {\n" +
+                "        return ch;\n" +
+                "    }\n" +
+                "\n" +
+                "    @Override\n" +
+                "    public String toString() {\n" +
+                "        return String.valueOf(ch);\n" +
+                "    }\n" +
                 "}\n";
     }
 
     @Override
     public String file() {
-        return "go/games/${game}/element.go";
+        return "java/src/main/java/com/codenjoy/dojo/games/${game}/Element.java";
     }
 }

@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.generator;
+package com.codenjoy.dojo.services.generator;
 
 /*-
  * #%L

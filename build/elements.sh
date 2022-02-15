@@ -53,7 +53,7 @@ eval_echo "CLIENTS=md,md_header,md_footer,cpp,go,js,php,python,csharp"
 # TODO excitebike(add info)
 # TODO icancode(js)
 
-eval_echo "$MVNW clean compile exec:java -Dfile.encoding=UTF-8 -Dexec.mainClass=com.codenjoy.dojo.client.generator.ElementGeneratorRunner -Dexec.args='$BASE $GAMES $CLIENTS'"
+eval_echo "$MVNW clean compile exec:java -Dfile.encoding=UTF-8 -Dexec.mainClass=com.codenjoy.dojo.services.generator.ElementGeneratorRunner -Dexec.args='$BASE $GAMES $CLIENTS'"
 
 echo
 color "Press Enter to continue"

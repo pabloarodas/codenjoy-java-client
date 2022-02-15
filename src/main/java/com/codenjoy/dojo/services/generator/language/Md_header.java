@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.generator.language;
+package com.codenjoy.dojo.services.generator.language;
 
 /*-
  * #%L
@@ -22,7 +22,7 @@ package com.codenjoy.dojo.client.generator.language;
  * #L%
  */
 
-import com.codenjoy.dojo.client.generator.Template;
+import com.codenjoy.dojo.services.generator.Template;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;

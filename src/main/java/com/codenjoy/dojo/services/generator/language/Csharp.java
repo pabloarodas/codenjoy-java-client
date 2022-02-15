@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.generator.language;
+package com.codenjoy.dojo.services.generator.language;
 
 /*-
  * #%L
@@ -22,17 +22,15 @@ package com.codenjoy.dojo.client.generator.language;
  * #L%
  */
 
-import com.codenjoy.dojo.client.generator.Template;
+import com.codenjoy.dojo.services.generator.Template;
 
 import java.util.List;
 
-public class Java implements Template {
+public class Csharp implements Template {
 
     @Override
     public String header(List<String> locales) {
-        return "package com.codenjoy.dojo.games.${game};\n" +
-                "\n" +
-                "/*-\n" +
+        return "/*-\n" +
                 " * ${tag}\n" +
                 " * Codenjoy - it's a dojo-like platform from developers to developers.\n" +
                 " * %%\n" +
@@ -53,52 +51,43 @@ public class Java implements Template {
                 " * <http://www.gnu.org/licenses/gpl-3.0.html>.\n" +
                 " * #L%\n" +
                 " */\n" +
+                " \n" +
+                "using System;\n" +
+                "using System.Collections.Generic;\n" +
+                "using System.Linq;\n" +
+                "using System.Text;\n" +
+                "using System.Threading.Tasks;\n" +
                 "\n" +
-                "\n" +
-                "import com.codenjoy.dojo.services.printer.CharElement;\n" +
-                "\n" +
-                "public enum Element implements CharElement {\n";
+                "namespace Dojo.Games.${game-capitalize}\n" +
+                "{\n" +
+                "    public enum ${game-capitalize}Element : short\n" +
+                "    {\n";
     }
 
     @Override
     public String line(boolean subrepo) {
-        return "    ${element}('${char}'),\n";
+        return "        ${element} = (short)'${char}',\n";
     }
 
     @Override
     public String lastDelimiter() {
-        return ";";
+        return "";
     }
 
     @Override
     public String comment() {
-        return "        // ";
+        return "            // ";
     }
 
     @Override
     public String footer() {
         return "\n" +
-                "\n" +
-                "    private final char ch;\n" +
-                "\n" +
-                "    Element(char ch) {\n" +
-                "        this.ch = ch;\n" +
                 "    }\n" +
-                "\n" +
-                "    @Override\n" +
-                "    public char ch() {\n" +
-                "        return ch;\n" +
-                "    }\n" +
-                "\n" +
-                "    @Override\n" +
-                "    public String toString() {\n" +
-                "        return String.valueOf(ch);\n" +
-                "    }\n" +
-                "}\n";
+                "}\n\n";
     }
 
     @Override
     public String file() {
-        return "java/src/main/java/com/codenjoy/dojo/games/${game}/Element.java";
+        return "csharp/Dojo/Games/${game-capitalize}/${game-capitalize}Element.cs";
     }
 }

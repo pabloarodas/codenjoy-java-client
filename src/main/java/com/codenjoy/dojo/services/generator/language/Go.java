@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.generator.language;
+package com.codenjoy.dojo.services.generator.language;
 
 /*-
  * #%L
@@ -22,11 +22,11 @@ package com.codenjoy.dojo.client.generator.language;
  * #L%
  */
 
-import com.codenjoy.dojo.client.generator.Template;
+import com.codenjoy.dojo.services.generator.Template;
 
 import java.util.List;
 
-public class Csharp implements Template {
+public class Go implements Template {
 
     @Override
     public String header(List<String> locales) {
@@ -40,54 +40,41 @@ public class Csharp implements Template {
                 " * it under the terms of the GNU General Public License as\n" +
                 " * published by the Free Software Foundation, either version 3 of the\n" +
                 " * License, or (at your option) any later version.\n" +
-                " * \n" +
+                " *\n" +
                 " * This program is distributed in the hope that it will be useful,\n" +
                 " * but WITHOUT ANY WARRANTY; without even the implied warranty of\n" +
                 " * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" +
                 " * GNU General Public License for more details.\n" +
-                " * \n" +
+                " *\n" +
                 " * You should have received a copy of the GNU General Public\n" +
                 " * License along with this program.  If not, see\n" +
                 " * <http://www.gnu.org/licenses/gpl-3.0.html>.\n" +
                 " * #L%\n" +
                 " */\n" +
-                " \n" +
-                "using System;\n" +
-                "using System.Collections.Generic;\n" +
-                "using System.Linq;\n" +
-                "using System.Text;\n" +
-                "using System.Threading.Tasks;\n" +
                 "\n" +
-                "namespace Dojo.Games.${game-capitalize}\n" +
-                "{\n" +
-                "    public enum ${game-capitalize}Element : short\n" +
-                "    {\n";
+                "package ${game}\n" +
+                "\n" +
+                "var elements = map[string]rune{\n";
     }
 
     @Override
     public String line(boolean subrepo) {
-        return "        ${element} = (short)'${char}',\n";
-    }
-
-    @Override
-    public String lastDelimiter() {
-        return "";
+        return "    \"${element}\": '${char}',\n";
     }
 
     @Override
     public String comment() {
-        return "            // ";
+        return "        // ";
     }
 
     @Override
     public String footer() {
         return "\n" +
-                "    }\n" +
-                "}\n\n";
+                "}\n";
     }
 
     @Override
     public String file() {
-        return "csharp/Dojo/Games/${game-capitalize}/${game-capitalize}Element.cs";
+        return "go/games/${game}/element.go";
     }
 }

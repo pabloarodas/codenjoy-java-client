@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.client.generator;
+package com.codenjoy.dojo.services.generator;
 
 /*-
  * #%L
@@ -22,8 +22,8 @@ package com.codenjoy.dojo.client.generator;
  * #L%
  */
 
-import com.codenjoy.dojo.client.generator.language.Go;
 import com.codenjoy.dojo.games.sample.Element;
+import com.codenjoy.dojo.services.generator.language.Go;
 import com.codenjoy.dojo.services.printer.CharElement;
 import com.codenjoy.dojo.services.properties.GameProperties;
 import com.codenjoy.dojo.utils.SmokeUtils;
