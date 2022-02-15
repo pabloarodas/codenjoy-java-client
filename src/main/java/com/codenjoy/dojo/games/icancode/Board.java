@@ -238,7 +238,7 @@ public class Board extends AbstractBoard<Element> {
         StringBuilder result = new StringBuilder(source);
         for (int i = 0; i < result.length(); ++i) {
             Element el = valueOf(mask.charAt(i));
-            if (Element.isWall(el)) {
+            if (ElementUtils.isWall(el)) {
                 result.setCharAt(i, el.ch());
             }
         }

@@ -25,147 +25,220 @@ package com.codenjoy.dojo.games.icancode;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static com.codenjoy.dojo.client.AbstractLayeredBoard.Layers.*;
-
 public enum Element implements CharElement {
 
-/// empty space where player can go
+        // Empty space (on layer 2) where player can go.
 
-    EMPTY(LAYER2, '-',                  ""),
+    EMPTY('-'),
 
-    FLOOR(LAYER1, '.',                  ""),
+        // Empty space (on layer 1) where player can go.
 
-/// walls
+    FLOOR('.'),
 
-    ANGLE_IN_LEFT(LAYER1, '╔',          ""),
+        // Wall (on layer 1).
 
-    WALL_FRONT(LAYER1, '═',             ""),
+    ANGLE_IN_LEFT('╔'),
 
-    ANGLE_IN_RIGHT(LAYER1, '┐',         ""),
+        // Wall (on layer 1).
 
-    WALL_RIGHT(LAYER1, '│',             ""),
+    WALL_FRONT('═'),
 
-    ANGLE_BACK_RIGHT(LAYER1, '┘',       ""),
+        // Wall (on layer 1).
 
-    WALL_BACK(LAYER1, '─',              ""),
+    ANGLE_IN_RIGHT('┐'),
 
-    ANGLE_BACK_LEFT(LAYER1, '└',        ""),
+        // Wall (on layer 1).
 
-    WALL_LEFT(LAYER1, '║',              ""),
+    WALL_RIGHT('│'),
 
-    WALL_BACK_ANGLE_LEFT(LAYER1, '┌',   ""),
+        // Wall (on layer 1).
 
-    WALL_BACK_ANGLE_RIGHT(LAYER1, '╗',  ""),
+    ANGLE_BACK_RIGHT('┘'),
 
-    ANGLE_OUT_RIGHT(LAYER1, '╝',        ""),
+        // Wall (on layer 1).
 
-    ANGLE_OUT_LEFT(LAYER1, '╚',         ""),
+    WALL_BACK('─'),
 
-    SPACE(LAYER1, ' ',                  ""),
+        // Wall (on layer 1).
 
-/// laser machine
+    ANGLE_BACK_LEFT('└'),
 
-    LASER_MACHINE_CHARGING_LEFT(LAYER1, '˂',  ""),
+        // Wall (on layer 1).
 
-    LASER_MACHINE_CHARGING_RIGHT(LAYER1, '˃', ""),
+    WALL_LEFT('║'),
 
-    LASER_MACHINE_CHARGING_UP(LAYER1, '˄',    ""),
+        // Wall (on layer 1).
 
-    LASER_MACHINE_CHARGING_DOWN(LAYER1, '˅',  ""),
+    WALL_BACK_ANGLE_LEFT('┌'),
 
-/// laser machine ready
+        // Wall (on layer 1).
 
-    LASER_MACHINE_READY_LEFT(LAYER1, '◄',     ""),
+    WALL_BACK_ANGLE_RIGHT('╗'),
 
-    LASER_MACHINE_READY_RIGHT(LAYER1, '►',    ""),
+        // Wall (on layer 1).
 
-    LASER_MACHINE_READY_UP(LAYER1, '▲',       ""),
+    ANGLE_OUT_RIGHT('╝'),
 
-    LASER_MACHINE_READY_DOWN(LAYER1, '▼',     ""),
+        // Wall (on layer 1).
 
-/// other stuff
+    ANGLE_OUT_LEFT('╚'),
 
-    START(LAYER1, 'S',                  ""),
+        // Wall (on layer 1).
 
-    EXIT(LAYER1, 'E',                   ""),
+    SPACE(' '),
 
-    HOLE(LAYER1, 'O',                   ""),
+        // Charging laser machine (on layer 1) pointing left.
 
-    BOX(LAYER2, 'B',                    ""),
+    LASER_MACHINE_CHARGING_LEFT('˂'),
 
-    ZOMBIE_START(LAYER1, 'Z',           ""),
+        // Charging laser machine (on layer 1) pointing right.
 
-    GOLD(LAYER1, '$',                   ""),
+    LASER_MACHINE_CHARGING_RIGHT('˃'),
 
-/// perks
+        // Charging laser machine (on layer 1) pointing up.
 
-    UNSTOPPABLE_LASER_PERK(LAYER1, 'l', ""),
+    LASER_MACHINE_CHARGING_UP('˄'),
 
-    DEATH_RAY_PERK(LAYER1, 'r',         ""),
+        // Charging laser machine (on layer 1) pointing down.
 
-    UNLIMITED_FIRE_PERK(LAYER1, 'f',    ""),
+    LASER_MACHINE_CHARGING_DOWN('˅'),
 
-    FIRE_PERK(LAYER1, 'a',              ""),
+        // Charged laser machine (on layer 1) pointing left.
 
-    JUMP_PERK(LAYER1, 'j',              ""),
+    LASER_MACHINE_READY_LEFT('◄'),
 
-    MOVE_BOXES_PERK(LAYER1, 'm',        ""),
+        // Charged laser machine (on layer 1) pointing right.
 
-/// your robot
+    LASER_MACHINE_READY_RIGHT('►'),
 
-    ROBO(LAYER2, '☺',                   ""),
+        // Charged laser machine (on layer 1) pointing up.
 
-    ROBO_FALLING(LAYER2, 'o',           ""),
+    LASER_MACHINE_READY_UP('▲'),
 
-    ROBO_FLYING(LAYER3, '*',            ""),
+        // Charged laser machine (on layer 1) pointing down.
 
-    ROBO_LASER(LAYER2, '☻',             ""),
+    LASER_MACHINE_READY_DOWN('▼'),
 
-/// other robot
+        // Level start spot (on layer 1).
 
-    ROBO_OTHER(LAYER2, 'X',             ""),
+    START('S'),
 
-    ROBO_OTHER_FALLING(LAYER2, 'x',     ""),
+        // Level exit spot (on layer 1).
 
-    ROBO_OTHER_FLYING(LAYER3, '^',      ""),
+    EXIT('E'),
 
-    ROBO_OTHER_LASER(LAYER2, '&',       ""),
+        // Hole (on layer 1).
 
-/// laser
+    HOLE('O'),
 
-    LASER_LEFT(LAYER2, '←',             ""),
+        // Box (on layer 2) that can be moved and jumped over.
 
-    LASER_RIGHT(LAYER2, '→',            ""),
+    BOX('B'),
 
-    LASER_UP(LAYER2, '↑',               ""),
+        // Zombie start spot (on layer 1).
 
-    LASER_DOWN(LAYER2, '↓',             ""),
+    ZOMBIE_START('Z'),
 
-/// zombie
+        // Gold (on layer 1).
 
-    FEMALE_ZOMBIE(LAYER2, '♀',          ""),
+    GOLD('$'),
 
-    MALE_ZOMBIE(LAYER2, '♂',            ""),
+        // Unstoppable laser perk (on layer 1).
 
-    ZOMBIE_DIE(LAYER2, '✝',             ""),
+    UNSTOPPABLE_LASER_PERK('l'),
 
-/// system elements, don't touch it
+        // Death ray perk (on layer 1).
 
-    FOG(LAYER1, 'F',                    ""),
+    DEATH_RAY_PERK('r'),
 
-    BACKGROUND(LAYER2, 'G',             "");
+        // Unlimited fire perk (on layer 1).
+
+    UNLIMITED_FIRE_PERK('f'),
+
+        // Fire perk (on layer 1).
+
+    FIRE_PERK('a'),
+
+        // Jump perk (on layer 1).
+
+    JUMP_PERK('j'),
+
+        // Move boxes perk (on layer 1).
+
+    MOVE_BOXES_PERK('m'),
+
+        // Your hero (on layer 2).
+
+    ROBO('☺'),
+
+        // Your hero (on layer 2) falls into a hole.
+
+    ROBO_FALLING('o'),
+
+        // Your hero (on layer 3) falling.
+
+    ROBO_FLYING('*'),
+
+        // Your hero (on layer 2) died from a laser.
+
+    ROBO_LASER('☻'),
+
+        // Other hero (on layer 2).
+
+    ROBO_OTHER('X'),
+
+        // Other hero (on layer 2) falls into a hole.
+
+    ROBO_OTHER_FALLING('x'),
+
+        // Other hero (on layer 3) falling.
+
+    ROBO_OTHER_FLYING('^'),
+
+        // Other hero (on layer 2) died from a laser.
+
+    ROBO_OTHER_LASER('&'),
+
+        // Laser (on layer 2) flies to the left.
+
+    LASER_LEFT('←'),
+
+        // Laser (on layer 2) flies to the right.
+
+    LASER_RIGHT('→'),
+
+        // Laser (on layer 2) flies to the up.
+
+    LASER_UP('↑'),
+
+        // Laser (on layer 2) flies to the down.
+
+    LASER_DOWN('↓'),
+
+        // Female zombie (on layer 2).
+
+    FEMALE_ZOMBIE('♀'),
+
+        // Male zombie (on layer 2).
+
+    MALE_ZOMBIE('♂'),
+
+        // Zombie dies (on layer 2).
+
+    ZOMBIE_DIE('✝'),
+
+        // Fog of war system layer (on layer 1).
+
+    FOG('F'),
+
+        // Background system layer (on layer 2).
+
+    BACKGROUND('G');
 
     private final char ch;
-    private final int layer;
-    private final String info;
 
-    Element(int layer, char ch, String info) {
-        this.layer = layer;
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
@@ -174,58 +247,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    public Element other() {
-        switch (this) {
-            case ROBO : return ROBO_OTHER;
-            case ROBO_FALLING : return ROBO_OTHER_FALLING;
-            case ROBO_FLYING : return ROBO_OTHER_FLYING;
-            case ROBO_LASER : return ROBO_OTHER_LASER;
-
-            case ROBO_OTHER : return ROBO;
-            case ROBO_OTHER_FALLING : return ROBO_FALLING;
-            case ROBO_OTHER_FLYING : return ROBO_FLYING;
-            case ROBO_OTHER_LASER : return ROBO_LASER;
-        }
-        throw new IllegalArgumentException("Bad hero state: " + this);
-    }
-
-    public static List<Element> perks() {
-        return Arrays.asList(
-                UNSTOPPABLE_LASER_PERK,
-                DEATH_RAY_PERK,
-                UNLIMITED_FIRE_PERK,
-                FIRE_PERK,
-                JUMP_PERK,
-                MOVE_BOXES_PERK);
-    }
-
-    public int getLayer() {
-        return layer;
-    }
-
-    // TODO duplicate logic with ElementsMapper but we cant add it to client because a lot of dependencies
-    public static boolean isWall(Element el) {
-        return Arrays.asList(ANGLE_IN_LEFT,
-                WALL_FRONT,
-                ANGLE_IN_RIGHT,
-                WALL_RIGHT,
-                ANGLE_BACK_RIGHT,
-                WALL_BACK,
-                ANGLE_BACK_LEFT,
-                WALL_LEFT,
-                WALL_BACK_ANGLE_LEFT,
-                WALL_BACK_ANGLE_RIGHT,
-                ANGLE_OUT_RIGHT,
-                ANGLE_OUT_LEFT,
-                SPACE).contains(el);
     }
 }
