@@ -32,7 +32,7 @@ import java.util.List;
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
 /**
- * Имплементит возможные направления движения чего либо
+ * Реализует возможные направления движения чего либо
  */
 public enum Direction {
 
