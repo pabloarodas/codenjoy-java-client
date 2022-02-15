@@ -27,24 +27,19 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ', "There are no elements for this game.");
+        // There are no elements for this game.
+
+    NONE(' ');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
