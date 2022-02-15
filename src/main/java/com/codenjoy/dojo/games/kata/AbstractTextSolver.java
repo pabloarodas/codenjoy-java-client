@@ -32,6 +32,9 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.codenjoy.dojo.games.kata.Command.SKIP_THIS_LEVEL;
+import static com.codenjoy.dojo.games.kata.Command.START_NEXT_LEVEL;
+
 public abstract class AbstractTextSolver<T> implements Solver<AbstractTextBoard> {
 
     private AbstractTextBoard board;
@@ -54,7 +57,7 @@ public abstract class AbstractTextSolver<T> implements Solver<AbstractTextBoard>
 
         if (answers.size() == 1) { // TODO подумать над этим
             String command = answers.iterator().next();
-            if (Arrays.asList(Element.START_NEXT_LEVEL, Element.SKIP_THIS_LEVEL).contains(command)) {
+            if (Arrays.asList(START_NEXT_LEVEL, SKIP_THIS_LEVEL).contains(command)) {
                 answersString = command;
             }
         }

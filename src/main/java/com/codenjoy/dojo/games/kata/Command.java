@@ -10,40 +10,20 @@ package com.codenjoy.dojo.games.kata;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
 
+public class Command {
 
-import com.codenjoy.dojo.services.printer.CharElement;
-
-public enum Element implements CharElement {
-
-        // There are no elements for this game.
-
-    NONE(' ');
-
-    private final char ch;
-
-    Element(char ch) {
-        this.ch = ch;
-    }
-
-    @Override
-    public char ch() {
-        return ch;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(ch);
-    }
+    public static final String START_NEXT_LEVEL = "StartNextLevel";
+    public static final String SKIP_THIS_LEVEL = "SkipThisLevel";
 }

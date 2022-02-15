@@ -25,6 +25,9 @@ package com.codenjoy.dojo.games.kata;
 
 import com.codenjoy.dojo.JavaRunner;
 
+import static com.codenjoy.dojo.games.kata.Command.SKIP_THIS_LEVEL;
+import static com.codenjoy.dojo.games.kata.Command.START_NEXT_LEVEL;
+
 /**
  * Author: your name
  *
@@ -70,14 +73,14 @@ public class YourSolver extends AbstractTextSolver {
     // Use this command to start next level
     public static class StartNextLevel {
         public static void main(String[] args) {
-            new JavaRunner().send("message('" + Element.START_NEXT_LEVEL + "')", new Board());
+            new JavaRunner().send("message('" + START_NEXT_LEVEL + "')", new Board());
         }
     }
 
     // Use this command to skip this level
     public static class SkipThisLevel extends YourSolver {
         public static void main(String[] args) {
-            new JavaRunner().send("message('" + Element.SKIP_THIS_LEVEL + "')", new Board());
+            new JavaRunner().send("message('" + SKIP_THIS_LEVEL + "')", new Board());
         }
     }
 }
