@@ -10,47 +10,53 @@ package com.codenjoy.dojo.games.japanese;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
 
-
-import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.services.Point;
-
+import java.util.Arrays;
 import java.util.List;
 
 import static com.codenjoy.dojo.games.japanese.Element.*;
+import static java.util.stream.Collectors.toList;
 
-/**
- * The class is a wrapper over the board string
- * coming from the server. Contains a number of
- * inherited methods {@link AbstractBoard},
- * but you can add any methods based on them here.
- */
-public class Board extends AbstractBoard<Element> {
+public class ElementUtils {
 
-    @Override
-    public Element[] elements() {
-        return Element.values();
+    public static Element forNumber(int number) {
+        return Element.valueOf("_" + number);
     }
 
-    public List<Point> getNumbers() {
-        return get(ElementUtils.numbers());
+    public static Element[] numbers() {
+        return valuesExcept(NAN, WHITE, BLACK, UNSET);
     }
 
-    public List<Point> getPixels() {
-        return get(BLACK,
-                WHITE,
-                UNSET);
+    public static Element[] valuesExcept(Element... excluded) {
+        List<Element> list = Arrays.asList(excluded);
+        return Arrays.stream(values())
+                .filter(el -> !list.contains(el))
+                .collect(toList())
+                .toArray(new Element[0]);
     }
 
+    public static int code(Element element) {
+        switch (element) {
+            case WHITE:
+                return 1;
+            case BLACK:
+                return 0;
+            case UNSET:
+            case NAN:
+                return -1;
+            default:
+                return Integer.parseInt(element.name().substring(1));
+        }
+    }
 }

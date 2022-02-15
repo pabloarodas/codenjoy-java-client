@@ -27,6 +27,8 @@ import com.codenjoy.dojo.client.Solver;
 import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 
+import static com.codenjoy.dojo.games.japanese.Element.BLACK;
+
 /**
  * Author: your name
  *
@@ -50,6 +52,6 @@ public class YourSolver implements Solver<Board> {
 
         // TODO your code here
 
-        return Direction.ACT(1, 1, Element.BLACK.code());
+        return Direction.ACT(1, 1, ElementUtils.code(BLACK));
     }
 }
