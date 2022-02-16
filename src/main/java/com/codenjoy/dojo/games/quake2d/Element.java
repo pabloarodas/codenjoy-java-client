@@ -22,48 +22,64 @@ package com.codenjoy.dojo.games.quake2d;
  * #L%
  */
 
+
 import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',              "Пустое место – по которому может двигаться герой."),
+        // Пустое место – по которому может двигаться герой.
 
-    WALL('☼',              "Стена, через которую нельзя пройти."),
+    NONE(' '),
 
-    HERO('☺',              "Твой герой"),
+        // Стена, через которую нельзя пройти.
 
-    OTHER_HERO('☻',        "Герои других игроков."),
+    WALL('☼'),
 
-    DEAD_HERO('X',         "Твой герой погиб."),
+        // Твой герой
 
-    SUPER_OTHER_HERO('Š',  "Герои других игроков под модификаторами."),
+    HERO('☺'),
 
-    BULLET('*',            "Пуля, ее надо стралять )."),
+        // Герои других игроков.
 
-    SUPER_DEFENCE('#',     "Модификатор. Дополнительная защита."),
+    OTHER_HERO('☻'),
 
-    HEALTH_PACKAGE('+',    "Модификатор. Дополнительная защита."),
+        // Твой герой погиб.
 
-    SUPER_WEAPON('~',      "Модификатор. Дополнительная атака."),
+    DEAD_HERO('X'),
 
-    ROBOT('!',             "Робот.");
+        // Герои других игроков под модификаторами.
+
+    SUPER_OTHER_HERO('Š'),
+
+        // Пуля, ее надо стралять ).
+
+    BULLET('*'),
+
+        // Модификатор. Дополнительная защита.
+
+    SUPER_DEFENCE('#'),
+
+        // Модификатор. Дополнительная защита.
+
+    HEALTH_PACKAGE('+'),
+
+        // Модификатор. Дополнительная атака.
+
+    SUPER_WEAPON('~'),
+
+        // Робот.
+
+    ROBOT('!');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
