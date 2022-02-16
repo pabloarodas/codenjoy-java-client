@@ -24,40 +24,46 @@ package com.codenjoy.dojo.games.moebius;
 
 
 import com.codenjoy.dojo.services.printer.CharElement;
-import com.codenjoy.dojo.services.Dice;
-import com.codenjoy.dojo.services.Point;
-
-import static com.codenjoy.dojo.services.PointImpl.pt;
 
 public enum Element implements CharElement {
 
-    LEFT_UP('╝', pt(-1, 0), pt(0, 1),     "Труба повернута слева вверх."),
+        // Труба повернута слева вверх.
 
-    UP_RIGHT('╚', pt(0, 1), pt(1, 0),     "Труба повернута сверху направо."),
+    LEFT_UP('╝'),
 
-    RIGHT_DOWN('╔', pt(1, 0), pt(0, -1),  "Труба повернута справа вниз."),
+        // Труба повернута сверху направо.
 
-    DOWN_LEFT('╗', pt(0, -1), pt(-1, 0),  "Труба повернута снизу влево."),
+    UP_RIGHT('╚'),
 
-    LEFT_RIGHT('═', pt(-1, 0),  pt(1, 0), "Прямая труба слева направо."),
+        // Труба повернута справа вниз.
 
-    UP_DOWN('║', pt(0, 1),  pt(0, -1),    "Прямая труба сверху вниз."),
+    RIGHT_DOWN('╔'),
 
-    CROSS('╬', null, null,                "Две пересеченные прямые трубы, " +
-                                          "одна сверху вниз, другая слева направо."),
+        // Труба повернута снизу влево.
 
-    EMPTY(' ', null, null,                "Пустое место на поле.");
+    DOWN_LEFT('╗'),
+
+        // Прямая труба слева направо.
+
+    LEFT_RIGHT('═'),
+
+        // Прямая труба сверху вниз.
+
+    UP_DOWN('║'),
+
+        // Две пересеченные прямые трубы, одна сверху вниз, другая
+        // слева направо.
+
+    CROSS('╬'),
+
+        // Пустое место на поле.
+
+    EMPTY(' ');
 
     private final char ch;
-    private final String info;
-    private final Point from;
-    private final Point to;
 
-    Element(char ch, Point from, Point to, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.from = from;
-        this.to = to;
-        this.info = info;
     }
 
     @Override
@@ -66,24 +72,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    public static Element random(Dice dice) {
-        return Element.values()[dice.next(Element.values().length - 1)];
-    }
-
-    public Point from() {
-        return from;
-    }
-
-    public Point to() {
-        return to;
     }
 }

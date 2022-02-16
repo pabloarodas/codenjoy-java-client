@@ -55,9 +55,6 @@ public class ElementGenerator {
             "a2048", "clifford", "kata", "knibert",
             "namdreab", "vacuum");
 
-    public static final List<String> WITHOUT_PROPERTIES = Arrays.asList(
-            "moebius");
-
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
     public static final GameProperties gameProperties = new GameProperties();
 
@@ -100,9 +97,6 @@ public class ElementGenerator {
         // TODO пока не закончу переносить полезные методы с icancode/elemtnt.js
         //      не удалять эту строчку
         if (game.equals("icancode") && language.equals("js")) return;
-
-        // TODO пока что перевел на properties не все игры
-        if (language.equals("java") && WITHOUT_PROPERTIES.contains(game)) return;
 
         String data = build(elements());
 
