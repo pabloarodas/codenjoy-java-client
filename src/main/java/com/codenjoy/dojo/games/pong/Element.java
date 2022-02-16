@@ -22,38 +22,44 @@ package com.codenjoy.dojo.games.pong;
  * #L%
  */
 
+
 import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',            "Пустое место на поле."),
+        // Пустое место на поле.
 
-    VERTICAL_WALL('|',   "Вертикальная граница поля."),
+    NONE(' '),
 
-    HORIZONTAL_WALL('-', "Горизонтальная граница поля."),
+        // Вертикальная граница поля.
 
-    BALL('o',            "Мяч."),
+    VERTICAL_WALL('|'),
 
-    PANEL('#',           "Игровая панель противника (доска отбивающая мяч)."),
+        // Горизонтальная граница поля.
 
-    HERO('H',            "Твоя игровая панель (доска отбивающая мяч).");
+    HORIZONTAL_WALL('-'),
+
+        // Мяч.
+
+    BALL('o'),
+
+        // Игровая панель противника (доска отбивающая мяч).
+
+    PANEL('#'),
+
+        // Твоя игровая панель (доска отбивающая мяч).
+
+    HERO('H');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
