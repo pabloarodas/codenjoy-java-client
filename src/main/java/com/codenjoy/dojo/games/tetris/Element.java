@@ -25,37 +25,44 @@ package com.codenjoy.dojo.games.tetris;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
-
 public enum Element implements CharElement {
 
-    BLUE('I', 2,   "I figure. Blue color."),
+        // I figure. Blue color.
 
-    CYAN('J', 3,   "J figure. Cyan color."),
+    BLUE('I'),
 
-    ORANGE('L', 4, "L figure. Orange color."),
+        // J figure. Cyan color.
 
-    YELLOW('O', 1, "O figure. Yellow color."),
+    CYAN('J'),
 
-    GREEN('S', 5,  "S figure. Green color."),
+        // L figure. Orange color.
 
-    PURPLE('T', 7, "T figure. Purple color."),
+    ORANGE('L'),
 
-    RED('Z', 6,    "Z figure. Red color."),
+        // O figure. Yellow color.
 
-    NONE('.', 0,   "Empty space.");
+    YELLOW('O'),
+
+        // S figure. Green color.
+
+    GREEN('S'),
+
+        // T figure. Purple color.
+
+    PURPLE('T'),
+
+        // Z figure. Red color.
+
+    RED('Z'),
+
+        // Empty space.
+
+    NONE('.');
 
     private final char ch;
-    private final int index;
-    private final String info;
 
-    Element(char ch, int index, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.index = index;
-        this.info = info;
     }
 
     @Override
@@ -64,24 +71,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    public int index() {
-        return index;
-    }
-
-    public static Element[] valuesExcept(Element... excluded) {
-        List<Element> list = Arrays.asList(excluded);
-        return Arrays.stream(values())
-                .filter(el -> !list.contains(el))
-                .collect(toList())
-                .toArray(new Element[0]);
     }
 }
