@@ -56,7 +56,7 @@ public class ElementGenerator {
             "namdreab", "vacuum");
 
     public static final List<String> WITHOUT_PROPERTIES = Arrays.asList(
-            "moebius", "namdreab", "vacuum", "xonix");
+            "moebius", "namdreab", "xonix");
 
     public static final List<String> DIFFERENT_NAME_GAMES = Arrays.asList();
     public static final GameProperties gameProperties = new GameProperties();
