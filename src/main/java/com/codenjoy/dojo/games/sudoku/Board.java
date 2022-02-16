@@ -24,10 +24,8 @@ package com.codenjoy.dojo.games.sudoku;
 
 
 import com.codenjoy.dojo.client.AbstractBoard;
-import com.codenjoy.dojo.services.Point;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,7 +47,7 @@ public class Board extends AbstractBoard<Element> {
         for (int x = 0; x < size; x++) {
             if (Arrays.asList(0, 4, 8, 12).contains(x)) continue;
 
-            result.add(getAt(x, toAbsolute(ty)).value());
+            result.add(ElementUtils.value(getAt(x, toAbsolute(ty))));
         }
 
         return result;
@@ -61,7 +59,7 @@ public class Board extends AbstractBoard<Element> {
         for (int y = 0; y < size; y++) {
             if (Arrays.asList(0, 4, 8, 12).contains(y)) continue;
 
-            result.add(getAt(toAbsolute(tx), y).value());
+            result.add(ElementUtils.value(getAt(toAbsolute(tx), y)));
         }
 
         return result;
@@ -79,7 +77,7 @@ public class Board extends AbstractBoard<Element> {
                 int x = 2 + 4 * (tx - 1) + dx;
                 int y = 2 + 4 * (ty - 1) + dy;
 
-                result.add(getAt(x, y).value());
+                result.add(ElementUtils.value(getAt(x, y)));
             }
         }
         return result;

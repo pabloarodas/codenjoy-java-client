@@ -25,43 +25,60 @@ package com.codenjoy.dojo.games.sudoku;
 
 import com.codenjoy.dojo.services.printer.CharElement;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
-
 public enum Element implements CharElement {
 
-    NONE(' ',   "Пустое место – циферку в котором предстоит отгадать."),
+        // Пустое место – циферку в котором предстоит отгадать.
 
-    BORDER('☼', "Граница, проигнорируй ее - она не учитывается в координатах."),
+    NONE(' '),
 
-    HIDDEN('*', "Если число не отображается на поле."),
+        // Граница, проигнорируй ее - она не учитывается в координатах.
 
-    ONE('1',    "Цифра 1."),
+    BORDER('☼'),
 
-    TWO('2',    "Цифра 2."),
+        // Если число не отображается на поле.
 
-    THREE('3',  "Цифра 3."),
+    HIDDEN('*'),
 
-    FOUR('4',   "Цифра 4."),
+        // Цифра 1.
 
-    FIVE('5',   "Цифра 5."),
+    ONE('1'),
 
-    SIX('6',    "Цифра 6."),
+        // Цифра 2.
 
-    SEVEN('7',  "Цифра 7."),
+    TWO('2'),
 
-    EIGHT('8',  "Цифра 8."),
+        // Цифра 3.
 
-    NINE('9',   "Цифра 9.");
+    THREE('3'),
+
+        // Цифра 4.
+
+    FOUR('4'),
+
+        // Цифра 5.
+
+    FIVE('5'),
+
+        // Цифра 6.
+
+    SIX('6'),
+
+        // Цифра 7.
+
+    SEVEN('7'),
+
+        // Цифра 8.
+
+    EIGHT('8'),
+
+        // Цифра 9.
+
+    NINE('9');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
@@ -70,39 +87,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    public static Element valueOf(int n) {
-        for (Element el : Element.values()) {
-            if (String.valueOf(n).equals("" + el.ch)) {
-                return el;
-            }
-        }
-        throw new IllegalArgumentException("Нет такого елемента: " + n);
-    }
-
-    public static Element[] valuesExcept(Element... excluded) {
-        List<Element> list = Arrays.asList(excluded);
-        return Arrays.stream(values())
-                .filter(el -> !list.contains(el))
-                .collect(toList())
-                .toArray(new Element[0]);
-    }
-
-    public Integer value() {
-        if (this == NONE) {
-            return 0;
-        }
-        if (this == BORDER || this == HIDDEN) {
-            return -1;
-        }
-        return Integer.valueOf("" + ch);
     }
 }

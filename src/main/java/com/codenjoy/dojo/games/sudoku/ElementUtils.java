@@ -22,6 +22,38 @@ package com.codenjoy.dojo.games.sudoku;
  * #L%
  */
 
+import java.util.Arrays;
+import java.util.List;
+
+import static com.codenjoy.dojo.games.sudoku.Element.*;
+import static java.util.stream.Collectors.toList;
+
 public class ElementUtils {
 
+    public static Element valueOf(int n) {
+        for (Element el : Element.values()) {
+            if (String.valueOf(n).equals("" + el.ch())) {
+                return el;
+            }
+        }
+        throw new IllegalArgumentException("Нет такого елемента: " + n);
+    }
+
+    public static Element[] valuesExcept(Element... excluded) {
+        List<Element> list = Arrays.asList(excluded);
+        return Arrays.stream(Element.values())
+                .filter(el -> !list.contains(el))
+                .collect(toList())
+                .toArray(new Element[0]);
+    }
+
+    public static Integer value(Element element) {
+        if (element == NONE) {
+            return 0;
+        }
+        if (element == BORDER || element == HIDDEN) {
+            return -1;
+        }
+        return Integer.valueOf("" + element.ch());
+    }
 }
