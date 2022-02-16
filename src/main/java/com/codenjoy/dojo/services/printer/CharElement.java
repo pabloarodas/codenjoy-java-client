@@ -22,8 +22,6 @@ package com.codenjoy.dojo.services.printer;
  * #L%
  */
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * Этот интерфейс расширяют все енумы, содержащие перечень символов кодирующих
  * живность на поле.
@@ -33,10 +31,6 @@ public interface CharElement {
     char ch();
     
     String name();
-
-    default String info() {
-        return StringUtils.EMPTY;
-    }
 
     default boolean is(CharElement... elements) {
         for (CharElement element : elements) {

@@ -183,18 +183,17 @@ public class ElementGenerator {
     }
 
     private Map<CharElement, String> loadInfo(CharElement[] elements) {
-        if (gameProperties.load(base + "../games/${game-canonical}", canonicalGame)) {
-            try {
-                return loadInfoFromElement(elements, element ->
-                        gameProperties.get(element.name()));
-            } catch (Exception e) {
-                // do nothing
-            }
+        if (!gameProperties.load(base, canonicalGame)) {
+            throw new RuntimeException(String.format(
+                    "Cant load properties file: [game=%s, language=%s]",
+                    game, language));
         }
-        return loadInfoFromElement(elements, CharElement::info);
+
+        return loadInfo(elements, element ->
+                gameProperties.get(element.name()));
     }
 
-    private Map<CharElement, String> loadInfoFromElement(CharElement[] elements, Function<CharElement, String> getInfo) {
+    private Map<CharElement, String> loadInfo(CharElement[] elements, Function<CharElement, String> getInfo) {
         return Arrays.stream(elements)
                 .map(element -> new AbstractMap.SimpleEntry<>(element, getInfo.apply(element)))
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue,
@@ -215,7 +214,7 @@ public class ElementGenerator {
                 .replace("${element-lower}", element.name().toLowerCase())
                 .replace("${element}", element.name())
                 .replace("${char}", String.valueOf(element.ch()))
-                .replace("${info}", (StringUtils.isEmpty(element.info()) ? infos.get(element) : element.info()));
+                .replace("${info}", infos.get(element));
     }
 
     private String replace(String template) {

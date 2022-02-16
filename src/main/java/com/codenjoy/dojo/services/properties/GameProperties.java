@@ -33,7 +33,7 @@ import static org.apache.commons.lang3.StringUtils.capitalize;
 
 public class GameProperties {
 
-    public static final String INFO_PROPERTIES = "/src/main/webapp/resources/${game}/help/info.properties";
+    public static final String INFO_PROPERTIES = "src/main/webapp/resources/${game}/help/info.properties";
 
     private Properties properties;
     private String canonicalGame;
@@ -49,13 +49,22 @@ public class GameProperties {
     public boolean load(String base, String game) {
         properties = new Properties();
         canonicalGame = game;
-        String filePath = replace(base + INFO_PROPERTIES, canonicalGame);
 
-        if (tryLoadFromClassPath(filePath)) {
+        String classPath = replace(base + INFO_PROPERTIES, canonicalGame)
+                            .replace("../src/main/webapp", "");
+        if (tryLoadFromClassPath(classPath)) {
             return true;
         }
 
-        return tryLoadFromSources(filePath);
+        String sourcesPath = replace(base + "${game-source}" + INFO_PROPERTIES, canonicalGame);
+        boolean success = tryLoadFromSources(sourcesPath);
+        if (!success) {
+            System.out.printf("Properties file not found in either: \n" +
+                    "\t\t'%s'\n" +
+                    "\t\t'%s'\n",
+                    classPath, sourcesPath);
+        }
+        return success;
     }
 
     /**
@@ -65,16 +74,15 @@ public class GameProperties {
      */
     private boolean tryLoadFromClassPath(String filePath) {
         try {
-            filePath = filePath.replace("./src/main/webapp", "");
             InputStream stream = getClass().getResourceAsStream(filePath);
-            if (stream == null) {
-                return false;
+            if (stream != null) {
+                properties.load(new InputStreamReader(stream, UTF_8));
+                return true;
             }
-            properties.load(new InputStreamReader(stream, UTF_8));
-            return true;
-        } catch (Exception e) {
-            return false;
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
+        return false;
     }
 
     /**
@@ -86,14 +94,15 @@ public class GameProperties {
     private boolean tryLoadFromSources(String filePath) {
         try {
             File file = new File(filePath);
-            if (!file.exists()) {
-                return false;
+            filePath = file.getAbsolutePath();
+            if (file.exists()) {
+                properties.load(new FileReader(filePath, UTF_8));
+                return true;
             }
-            properties.load(new FileReader(file.getAbsolutePath(), UTF_8));
-            return true;
-        } catch (Exception e) {
-            return false;
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
+        return false;
     }
 
     public static String getGame(String canonicalGame) {
@@ -103,14 +112,20 @@ public class GameProperties {
     public static String replace(String template, String canonicalGame) {
         return template
                 .replace("${game}", getGame(canonicalGame))
+                .replace("${game-source}", "../games/${game-canonical}/")
                 .replace("${game-canonical}", canonicalGame)
                 .replace("${game-capitalize}", capitalize(canonicalGame));
     }
 
     public String get(String name) {
-        String key = String.format("game.%s.element.%s", canonicalGame, name);
+        String key = String.format("game.%s.element.%s", getGame(canonicalGame), name);
         if (!properties.containsKey(key)) {
             key = key.replace(".element.", ".settings.");
+        }
+        if (!properties.containsKey(key)) {
+            throw new RuntimeException(String.format(
+                    "Key not found for either element or setting: [name=%s, game=%s]",
+                    name, getGame(canonicalGame)));
         }
         return properties.getProperty(key);
     }

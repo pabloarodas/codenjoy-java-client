@@ -27,31 +27,23 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',                                       "Short comment."),
-    WALL('☼',                                       "Long long long long long long long long long long long looooooooong " +
-                                                    "long long long long long long long long long long comment."),
-    HERO('☺',                                       "Another short comment."),
-    OTHER_HERO('☻',                                 "One more time."),
-    HERO_DEAD('X',                                  ""),
-    OTHER_HERO_DEAD_LONG_LONG_LONG_LONG_LONG('Y',   "Long name."),
-    G('$',                                          "Short name.");
+    NONE(' '),
+    WALL('☼'),
+    HERO('☺'),
+    OTHER_HERO('☻'),
+    HERO_DEAD('X'),
+    OTHER_HERO_DEAD_LONG_LONG_LONG_LONG_LONG('Y'),
+    G('$');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
