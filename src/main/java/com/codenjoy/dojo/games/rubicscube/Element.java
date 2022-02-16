@@ -27,26 +27,38 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',   "Пустое место на поле, не обращай на него внимания."),
+        // Пустое место на поле, не обращай на него внимания.
 
-    RED('R',    "Красная грань."),
+    NONE(' '),
 
-    GREEN('G',  "Зеленая грань."),
+        // Красная грань.
 
-    BLUE('B',   "Синяя грань."),
+    RED('R'),
 
-    WHITE('W',  "Белая грань."),
+        // Зеленая грань.
 
-    YELLOW('Y', "Желтая грань."),
+    GREEN('G'),
 
-    ORANGE('O', "Оранжевая грань.");
+        // Синяя грань.
+
+    BLUE('B'),
+
+        // Белая грань.
+
+    WHITE('W'),
+
+        // Желтая грань.
+
+    YELLOW('Y'),
+
+        // Оранжевая грань.
+
+    ORANGE('O');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
@@ -55,16 +67,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
-    }
-
-    public char value() {
-        return ch;
     }
 }
