@@ -27,28 +27,27 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' '   , "Пустое место на поле не занятое фишками."),
+        // Пустое место на поле не занятое фишками.
 
-    YELLOW('o',  "Желтая фишка первого игрока."),
+    NONE(' '),
 
-    RED('x',     "Красная фишка второго игрока.");
+        // Желтая фишка первого игрока.
+
+    YELLOW('o'),
+
+        // Красная фишка второго игрока.
+
+    RED('x');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
