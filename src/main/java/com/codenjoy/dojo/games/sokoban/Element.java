@@ -27,34 +27,39 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',            "Emty space."),
+        // Empty space.
 
-    WALL('☼',            "Wall."),
+    NONE(' '),
 
-    HERO('☺',            "Your hero."),
+        // Wall.
 
-    BOX('■',             "Box. You can drag it."),
+    WALL('☼'),
 
-    MARK_TO_WIN('X',     "Field where a hero should move boxes."),
+        // Your hero.
 
-    BOX_ON_THE_MARK('*', "Field includes box overlapped mark.");
+    HERO('☺'),
+
+        // Box. You can drag it.
+
+    BOX('■'),
+
+        // Field where a hero should move boxes.
+
+    MARK_TO_WIN('X'),
+
+        // Field includes box overlapped mark.
+
+    BOX_ON_THE_MARK('*');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
