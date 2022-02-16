@@ -27,32 +27,35 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',       "Пустое место – по которому может двигаться герой."),
+        // Пустое место – по которому может двигаться герой.
 
-    WALL('#',       "Стена через которую нельзя пройти."),
+    NONE(' '),
 
-    PLATFORM('=',   "Платформа на которую можно запрыгнуть."),
+        // Стена через которую нельзя пройти.
 
-    HERO('☺',       "Твой герой."),
+    WALL('#'),
 
-    BLACK_HERO('☻', "Твой погиб.");
+        // Платформа на которую можно запрыгнуть.
+
+    PLATFORM('='),
+
+        // Твой герой.
+
+    HERO('☺'),
+
+        // Твой погиб.
+
+    BLACK_HERO('☻');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
