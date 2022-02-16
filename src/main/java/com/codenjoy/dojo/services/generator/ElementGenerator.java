@@ -56,8 +56,7 @@ public class ElementGenerator {
             "namdreab", "vacuum");
 
     public static final List<String> WITHOUT_PROPERTIES = Arrays.asList(
-            "moebius", "namdreab",
-            "reversi", "rubicscube", "sampletext", "selfdefense",
+            "moebius", "namdreab", "rubicscube", "sampletext", "selfdefense",
             "sokoban", "spacerace", "startandjump", "sudoku",
             "tetris", "vacuum", "xonix");
 
