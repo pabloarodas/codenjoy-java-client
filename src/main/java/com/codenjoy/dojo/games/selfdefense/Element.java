@@ -27,54 +27,63 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-/// Всякое на поле
+        // Пустое место в космосе. Сюда может переместиться корабль.
 
-    NONE(' ',            "Пустое место в космосе. Сюда может переместиться корабль."),
+    NONE(' '),
 
-    ENEMY('X',           "Инопланетянин. Атакует всех."),
+        // Инопланетянин. Атакует всех.
 
-/// Твои войска
+    ENEMY('X'),
 
-    BASE('☺',            "Твоя база. Ее нужно защищать."),
+        // Твоя база. Ее нужно защищать.
 
-    SPACESHIP('.',       "Твой корабль."),
+    BASE('☺'),
 
-    PLATFORM('=',        "Твоя платформа."),
+        // Твой корабль.
 
-    GUARD('+',           "Защитники твоей базы. Выносят вначале их, потом саму базу."),
+    SPACESHIP('.'),
 
-/// Войска противника
+        // Твоя платформа.
 
-    OTHER_BASE('☻',      "Базы твоих противников."),
+    PLATFORM('='),
 
-    OTHER_SPACESHIP(',', "Корабли противников."),
+        // Защитники твоей базы. Выносят вначале их, потом саму базу.
 
-    OTHER_PLATFORM('-',  "Платформы противников."),
+    GUARD('+'),
 
-    OTHER_GUARD('*',     "Защитники баз противников."),
+        // Базы твоих противников.
 
-/// system elements, don't touch it
+    OTHER_BASE('☻'),
 
-    FOG('F',             "Туман войны."),
+        // Корабли противников.
 
-    BACKGROUND('G',      "Космос.");
+    OTHER_SPACESHIP(','),
+
+        // Платформы противников.
+
+    OTHER_PLATFORM('-'),
+
+        // Защитники баз противников.
+
+    OTHER_GUARD('*'),
+
+        // Туман войны.
+
+    FOG('F'),
+
+        // Космос.
+
+    BACKGROUND('G');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
