@@ -22,18 +22,19 @@ package com.codenjoy.dojo.games.sampletext;
  * #L%
  */
 
+
 import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ', "There are no elements for this game.");
+        // There are no elements for this game.
+
+    NONE(' ');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
@@ -42,13 +43,7 @@ public enum Element implements CharElement {
     }
 
     @Override
-    public String info() {
-        return info;
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(ch);
     }
-
 }
