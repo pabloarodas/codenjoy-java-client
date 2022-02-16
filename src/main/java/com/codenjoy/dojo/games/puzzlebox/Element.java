@@ -27,36 +27,43 @@ import com.codenjoy.dojo.services.printer.CharElement;
 
 public enum Element implements CharElement {
 
-    NONE(' ',      "Пустое место – по которому может двигаться герой."),
+        // Пустое место – по которому может двигаться герой.
 
-    WALL('☼',      "Стена через которую герою пройти нельзя."),
+    NONE(' '),
 
-    HERO('☺',      "Твой герой."),
+        // Стена через которую герою пройти нельзя.
 
-    BOX('#',       "Коробка, которую можно передвинуть."),
+    WALL('☼'),
 
-    CURBOX('1',    "Коробка, которую ты передвигаешь в данный момент."),
+        // Твой герой.
 
-    FILEDBOX('@',  "Место куда нужно доставить коробку."),
+    HERO('☺'),
 
-    TARGET('0',    "Место для коробки в котором уже находится оная.");
+        // Коробка, которую можно передвинуть.
+
+    BOX('#'),
+
+        // Коробка, которую ты передвигаешь в данный момент.
+
+    CURBOX('1'),
+
+        // Место куда нужно доставить коробку.
+
+    FILEDBOX('@'),
+
+        // Место для коробки в котором уже находится оная.
+
+    TARGET('0');
 
     private final char ch;
-    private final String info;
 
-    Element(char ch, String info) {
+    Element(char ch) {
         this.ch = ch;
-        this.info = info;
     }
 
     @Override
     public char ch() {
         return ch;
-    }
-
-    @Override
-    public String info() {
-        return info;
     }
 
     @Override
