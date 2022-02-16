@@ -49,11 +49,12 @@ eval_echo "MVNW=./mvnw"
 eval_echo "GAMES=all"
 # eval_echo "GAMES=a2048,excitebike,rawelbbub,chess,clifford,collapse,expansion,fifteen,football,hex,icancode,japanese,kata,lemonade,lunolet,moebius,mollymage,pong,puzzlebox,quadro,quake2d,reversi,rubicscube,sample,sampletext,selfdefense,knibert,namdreab,sokoban,spacerace,startandjump,sudoku,tetris,vacuum,verland,xonix"
 eval_echo "CLIENTS=md,md_header,md_footer,cpp,go,js,php,python,csharp"
+eval_echo "LOCALE=en"
 
 # TODO excitebike(add info)
 # TODO icancode(js)
 
-eval_echo "$MVNW clean compile exec:java -Dfile.encoding=UTF-8 -Dexec.mainClass=com.codenjoy.dojo.services.generator.ElementGeneratorRunner -Dexec.args='$BASE $GAMES $CLIENTS'"
+eval_echo "$MVNW clean compile exec:java -Dfile.encoding=UTF-8 -Dexec.mainClass=com.codenjoy.dojo.services.generator.ElementGeneratorRunner -Dexec.args='$BASE $GAMES $CLIENTS $LOCALE'"
 
 echo
 color "Press Enter to continue"

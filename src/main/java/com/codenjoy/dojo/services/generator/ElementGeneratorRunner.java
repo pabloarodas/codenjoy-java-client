@@ -30,6 +30,7 @@ import org.reflections.Reflections;
 import java.io.File;
 import java.lang.reflect.Modifier;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import static com.codenjoy.dojo.utils.PrintUtils.Color.ERROR;
@@ -45,6 +46,7 @@ public class ElementGeneratorRunner {
     private static String games;
     private static String clients;
     private static List<String> allGames;
+    private static Locale locale;
 
     public static void main(String[] args) {
         System.out.println("+-----------------------------+");
@@ -52,15 +54,17 @@ public class ElementGeneratorRunner {
         System.out.println("+-----------------------------+");
 
         allGames = games();
-        if (args != null && args.length == 3) {
+        if (args != null && args.length == 4) {
             base = args[0];
             games = args[1];
             clients = args[2];
+            locale = Locale.forLanguageTag(args[3]);
             printInfo("Environment");
         } else {
             base = "";
             games = ALL_GAMES;
             clients = "md,md_header,md_footer,java,cpp,go,js,php,python,csharp";
+            locale = Locale.ENGLISH;
             printInfo("Runner");
         }
         if (isAllGames()) {
@@ -89,7 +93,7 @@ public class ElementGeneratorRunner {
                 continue;
             }
             for (String language : clients.split(",")) {
-                new ElementGenerator(game, language, base).generateToFile();
+                new ElementGenerator(game, language, locale, base).generateToFile();
             }
         }
     }

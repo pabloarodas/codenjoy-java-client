@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Locale;
 import java.util.Properties;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -33,30 +34,32 @@ import static org.apache.commons.lang3.StringUtils.capitalize;
 
 public class GameProperties {
 
-    public static final String INFO_PROPERTIES = "src/main/webapp/resources/${game}/help/info.properties";
+    public static final String INFO_PROPERTIES = "src/main/webapp/resources/${game}/help/${locale}/info.properties";
 
+    private Locale locale;
     private Properties properties;
     private String canonicalGame;
 
-    public static String get(String base, String game, String name) {
+    public static String get(String base, Locale locale, String game, String name) {
         GameProperties properties = new GameProperties();
-        if (!properties.load(base, game)) {
+        if (!properties.load(base, locale, game)) {
             throw new RuntimeException("Cant load properties file for game: " + game);
         }
         return properties.get(name);
     }
 
-    public boolean load(String base, String game) {
+    public boolean load(String base, Locale locale, String game) {
+        this.locale = locale;
         properties = new Properties();
         canonicalGame = game;
 
-        String classPath = replace(base + INFO_PROPERTIES, canonicalGame)
-                            .replace("../src/main/webapp", "");
+        String classPath = replace(base + locale(INFO_PROPERTIES), canonicalGame)
+                            .replace("src/main/webapp", "");
         if (tryLoadFromClassPath(classPath)) {
             return true;
         }
 
-        String sourcesPath = replace(base + "${game-source}" + INFO_PROPERTIES, canonicalGame);
+        String sourcesPath = replace(base + "${game-source}" + locale(INFO_PROPERTIES), canonicalGame);
         boolean success = tryLoadFromSources(sourcesPath);
         if (!success) {
             System.out.printf("Properties file not found in either: \n" +
@@ -65,6 +68,11 @@ public class GameProperties {
                     classPath, sourcesPath);
         }
         return success;
+    }
+
+    private String locale(String template) {
+        return template
+                .replace("${locale}", locale.getLanguage());
     }
 
     /**

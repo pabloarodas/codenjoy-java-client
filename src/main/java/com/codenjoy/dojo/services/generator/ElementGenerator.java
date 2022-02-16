@@ -64,12 +64,14 @@ public class ElementGenerator {
     private final boolean subrepo;
     private final String language;
     private final Template template;
+    private final Locale locale;
     private String base;
 
-    public ElementGenerator(String game, String language, String inputBase) {
+    public ElementGenerator(String game, String language, Locale locale, String inputBase) {
         this.canonicalGame = game;
         this.game = getGame(game);
         base = getBase(inputBase);
+        this.locale = locale;
 
         this.language = language;
         this.template = template();
@@ -183,7 +185,7 @@ public class ElementGenerator {
     }
 
     private Map<CharElement, String> loadInfo(CharElement[] elements) {
-        if (!gameProperties.load(base, canonicalGame)) {
+        if (!gameProperties.load(base, locale, canonicalGame)) {
             throw new RuntimeException(String.format(
                     "Cant load properties file: [game=%s, language=%s]",
                     game, language));
