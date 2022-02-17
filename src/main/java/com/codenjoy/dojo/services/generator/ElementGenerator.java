@@ -42,6 +42,9 @@ public class ElementGenerator {
 
     public static final int COMMENT_MAX_LENGTH = 60;
 
+    // используется для тестирования, этим флагом отключаем реальное сохранение файлов
+    public static boolean READONLY = false;
+
     // TODO динамически получать эту инфу, проверяя наличие файла .git в корне проекта
     public static final List<String> SUBREPO_GAMES = Arrays.asList(
             "icancode", "kata", "lemonade", "lunolet",
@@ -78,6 +81,19 @@ public class ElementGenerator {
         subrepo = SUBREPO_GAMES.contains(game);
     }
 
+    private String getBase(String inputBase) {
+        if (!inputBase.contains("CodingDojo")) {
+            return inputBase;
+        }
+        File absolute = new File(inputBase).getAbsoluteFile();
+        while (absolute != null
+                && !absolute.getName().equals("CodingDojo"))
+        {
+            absolute = absolute.getParentFile();
+        }
+        return absolute.getAbsolutePath();
+    }
+
     public static String getCanonicalGame(String game) {
         for (String canonicalName : DIFFERENT_NAME_GAMES) {
             if (game.equals(getGame(canonicalName))) {
@@ -92,7 +108,7 @@ public class ElementGenerator {
     }
 
     public void generateToFile() {
-        File dest = new File(base + replace(template.file()));
+        File dest = new File(base + "/clients/" + replace(template.file()));
         System.out.printf("Store '%s-%s' in file: '%s'\n",
                 game, language, dest.getAbsolutePath());
 
@@ -102,15 +118,9 @@ public class ElementGenerator {
 
         String data = build(elements());
 
-        SmokeUtils.saveToFile(dest, data);
-    }
-
-    private String getBase(String inputBase) {
-        String preffix = "/";
-        if ("CodingDojo".equals(new File(inputBase).getAbsoluteFile().getName())) {
-            preffix = "/clients/";
+        if (!READONLY) {
+            SmokeUtils.saveToFile(dest, data);
         }
-        return inputBase + preffix;
     }
 
     private CharElement[] elements() {

@@ -27,6 +27,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 
+import java.io.File;
 import java.util.Arrays;
 
 import static java.util.Locale.ENGLISH;
@@ -38,117 +39,142 @@ public class ElementGeneratorTest {
 
     @Test
     public void shouldGenerate_testGame_goLanguage() {
-        assertEquals(new ElementGenerator("test", "go", ENGLISH, "").generate());
+        assertGenerate("test", "go");
     }
 
     @Test
     public void shouldGenerate_testGame_cppLanguage() {
-        assertEquals(new ElementGenerator("test", "cpp", ENGLISH, "").generate());
+        assertGenerate("test", "cpp");
     }
 
     @Test
     public void shouldGenerate_testGame_jsLanguage() {
-        assertEquals(new ElementGenerator("test", "js", ENGLISH, "").generate());
+        assertGenerate("test", "js");
     }
 
     @Test
     public void shouldGenerate_testGame_phpLanguage() {
-        assertEquals(new ElementGenerator("test", "php", ENGLISH, "").generate());
+        assertGenerate("test", "php");
     }
 
     @Test
     public void shouldGenerate_testGame_javaLanguage() {
-        assertEquals(new ElementGenerator("test", "java", ENGLISH, "").generate());
+        assertGenerate("test", "java");
     }
 
     @Test
     public void shouldGenerate_testGame_pythonLanguage() {
-        assertEquals(new ElementGenerator("test", "python", ENGLISH, "").generate());
+        assertGenerate("test", "python");
     }
 
     @Test
     public void shouldGenerate_testGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("test", "md", ENGLISH, "").generate());
+        assertGenerate("test", "md");
     }
 
     @Test
     public void shouldGenerate_testAnotherGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("test-another", "md", ENGLISH, "").generate());
+        assertGenerate("test-another", "md");
     }
 
     @Test
     public void shouldGenerate_testGame_markdownHeaderLanguage() {
-        assertEquals(new ElementGenerator("test", "md_header", ENGLISH, "").generate());
+        assertGenerate("test", "md_header");
     }
 
     @Test
     public void shouldGenerate_testGame_markdownFooterLanguage() {
-        assertEquals(new ElementGenerator("test", "md_footer", ENGLISH, "").generate());
+        assertGenerate("test", "md_footer");
     }
 
     @Test
     public void shouldGenerate_testGame_csharpLanguage() {
-        assertEquals(new ElementGenerator("test", "csharp", ENGLISH, "").generate());
+        assertGenerate("test", "csharp");
     }
 
     @Test
     public void shouldGenerate_sampleGame_goLanguage() {
-        assertEquals(new ElementGenerator("sample", "go", ENGLISH, "").generate());
+        assertGenerate("sample", "go");
     }
 
     @Test
     public void shouldGenerate_sampleGame_cppLanguage() {
-        assertEquals(new ElementGenerator("sample", "cpp", ENGLISH, "").generate());
+        assertGenerate("sample", "cpp");
     }
 
     @Test
     public void shouldGenerate_sampleGame_jsLanguage() {
-        assertEquals(new ElementGenerator("sample", "js", ENGLISH, "").generate());
+        assertGenerate("sample", "js");
     }
 
     @Test
     public void shouldGenerate_sampleGame_phpLanguage() {
-        assertEquals(new ElementGenerator("sample", "php", ENGLISH, "").generate());
+        assertGenerate("sample", "php");
     }
 
     @Test
     public void shouldGenerate_sampleGame_javaLanguage() {
-        assertEquals(new ElementGenerator("sample", "java", ENGLISH, "").generate());
+        assertGenerate("sample", "java");
     }
 
     @Test
     public void shouldGenerate_sampleGame_pythonLanguage() {
-        assertEquals(new ElementGenerator("sample", "python", ENGLISH, "").generate());
+        assertGenerate("sample", "python");
     }
 
     @Test
     public void shouldGenerate_sampleGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("sample", "md", ENGLISH, "").generate());
+        assertGenerate("sample", "md");
     }
 
     @Test
     public void shouldGenerate_mollymageGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("mollymage", "md", ENGLISH, "").generate());
+        assertGenerate("mollymage", "md");
     }
 
     @Test
     public void shouldGenerate_mollymageGame_javaLanguage() {
-        assertEquals(new ElementGenerator("mollymage", "java", ENGLISH, "").generate());
+        assertGenerate("mollymage", "java");
     }
 
     @Test
     public void shouldGenerate_cliffordGame_markdownLanguage() {
-        assertEquals(new ElementGenerator("clifford", "md", ENGLISH, "").generate());
+        assertGenerate("clifford", "md");
     }
 
     @Test
     public void shouldGenerate_cliffordGame_javaLanguage() {
-        assertEquals(new ElementGenerator("clifford", "java", ENGLISH, "").generate());
+        assertGenerate("clifford", "java");
     }
 
     private void assertEquals(String actual) {
-        SmokeUtils.assertSmokeFile(this.getClass().getSimpleName()
+        assertSmokeEquals(actual, getClass(), test);
+    }
+
+    public static void assertSmokeEquals(String actual, Class owner, TestName test) {
+        SmokeUtils.assertSmokeFile(owner.getSimpleName()
                 + "/" + test.getMethodName() +  ".data",
-                Arrays.asList(actual.split("\n")));
+                Arrays.asList(actual
+                        .replace("\r\n", "\n")
+                        .split("\n")));
+    }
+
+    private void assertGenerate(String game, String language) {
+        assertEquals(new ElementGenerator(game, language, ENGLISH, base(game)).generate());
+    }
+
+    // TODO если получится избавиться от этого чуда, будет здорово
+    //      надо еще помнить что в prod этот генератор запускают в
+    //      двух режимах: из запущенного приложения - тогда файлы properties
+    //      ищем в classpath и батником для генерации elements - там мы
+    //      ищем properties в сырцах.
+    private String base(String game) {
+        switch (game) {
+            case "test":
+            case "test-another":
+                return "";
+            default:
+                return new File(".").getAbsolutePath();
+        }
     }
 }

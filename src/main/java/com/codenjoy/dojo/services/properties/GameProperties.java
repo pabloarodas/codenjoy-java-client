@@ -63,9 +63,9 @@ public class GameProperties {
         boolean success = tryLoadFromSources(sourcesPath);
         if (!success) {
             System.out.printf("Properties file not found in either: \n" +
-                    "\t\t'%s'\n" +
-                    "\t\t'%s'\n",
-                    classPath, sourcesPath);
+                    "\t\t'classpath:%s'\n" +
+                    "\t\t'file:%s'\n",
+                    classPath, new File(sourcesPath).getAbsolutePath());
         }
         return success;
     }
@@ -120,7 +120,7 @@ public class GameProperties {
     public static String replace(String template, String canonicalGame) {
         return template
                 .replace("${game}", getGame(canonicalGame))
-                .replace("${game-source}", "../games/${game-canonical}/")
+                .replace("${game-source}", "/games/${game-canonical}/")
                 .replace("${game-canonical}", canonicalGame)
                 .replace("${game-capitalize}", capitalize(canonicalGame));
     }

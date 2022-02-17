@@ -132,11 +132,12 @@ public class ElementGeneratorRunner {
                 .filter(clazz -> !Modifier.isAbstract(clazz.getModifiers()))
                 .filter(clazz -> !Modifier.isInterface(clazz.getModifiers()))
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
+                .filter(clazz -> !clazz.toString().contains("test"))
                 .map(Class::getCanonicalName)
                 .map(name -> StringUtils.substringBetween(name,
                         "com.codenjoy.dojo.games.", ".Element"))
                 .filter(Objects::nonNull)
-                .map(game -> ElementGenerator.getCanonicalGame(game))
+                .map(ElementGenerator::getCanonicalGame)
                 .sorted()
                 .collect(toList());
     }
