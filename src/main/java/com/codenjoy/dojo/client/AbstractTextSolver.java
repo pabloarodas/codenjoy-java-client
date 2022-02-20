@@ -23,25 +23,42 @@ package com.codenjoy.dojo.client;
  */
 
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static com.codenjoy.dojo.client.Command.SKIP_THIS_LEVEL;
+import static com.codenjoy.dojo.client.Command.START_NEXT_LEVEL;
 
 public abstract class AbstractTextSolver<T> implements Solver<AbstractTextBoard> {
 
     private AbstractTextBoard board;
+    protected JSONObject data;
 
-    public abstract String getAnswer(String question);
+    public abstract Strings getAnswers(int level, Strings questions);
 
     @Override
     public String get(AbstractTextBoard board) {
         this.board = board;
         if (board.isGameOver()) return "";
 
-        JSONObject data = new JSONObject(board.getData());
-        String question = data.getString("nextQuestion");
+        data = new JSONObject(board.getData());
+        JSONArray array = data.getJSONArray("questions");
+        int level = data.getInt("level");
 
-        String answer = getAnswer(question);
+        List<String> questions = Utils.getStrings(array);
+        Strings answers = getAnswers(level, new Strings(questions));
+        String answersString = answers.toString();
 
-        return String.format("message('%s')", answer);
+        if (answers.size() == 1) { // TODO подумать над этим
+            String command = answers.iterator().next();
+            if (Arrays.asList(START_NEXT_LEVEL, SKIP_THIS_LEVEL).contains(command)) {
+                answersString = command;
+            }
+        }
+
+        return String.format("message('%s')", answersString);
     }
-
 }

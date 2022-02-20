@@ -23,6 +23,7 @@ package com.codenjoy.dojo.games.kata;
  */
 
 
+import com.codenjoy.dojo.client.Strings;
 import org.junit.Test;
 
 import java.util.Arrays;

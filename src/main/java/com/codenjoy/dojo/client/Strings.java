@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.games.kata;
+package com.codenjoy.dojo.client;
 
 /*-
  * #%L

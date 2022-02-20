@@ -52,9 +52,13 @@ public class YourSolverTest {
 
         // TODO these asserts are here for an example, delete it and write your own
 
-        asertAI("{'nextQuestion':'question1'}", "message('your answer')");
+        asertAI("{'questions':['question1']," +
+                "'nextQuestion':'question1'," +
+                "level:0}", "message('['your answer']')");
 
-        asertAI("{'nextQuestion':'question2'}", "message('your answer')");
+        asertAI("{'questions':['question1','question2']," +
+                "'nextQuestion':'question2'," +
+                "level:0}", "message('['your answer']')");
     }
 
     private void asertAI(String board, String expected) {

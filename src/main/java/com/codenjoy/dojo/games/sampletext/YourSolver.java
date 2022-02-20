@@ -24,6 +24,7 @@ package com.codenjoy.dojo.games.sampletext;
 
 
 import com.codenjoy.dojo.client.AbstractTextSolver;
+import com.codenjoy.dojo.client.Strings;
 import com.codenjoy.dojo.services.Dice;
 
 /**
@@ -43,10 +44,13 @@ public class YourSolver extends AbstractTextSolver {
     }
 
     @Override
-    public String getAnswer(String question) {
+    public Strings getAnswers(int level, Strings questions) {
+        Strings answers = new Strings();
 
         // TODO your code here
 
-        return "your answer";
+        answers.add("your answer");
+
+        return answers;
     }
 }

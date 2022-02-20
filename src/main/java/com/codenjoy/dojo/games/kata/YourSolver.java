@@ -24,9 +24,11 @@ package com.codenjoy.dojo.games.kata;
 
 
 import com.codenjoy.dojo.JavaRunner;
+import com.codenjoy.dojo.client.AbstractTextSolver;
+import com.codenjoy.dojo.client.Strings;
 
-import static com.codenjoy.dojo.games.kata.Command.SKIP_THIS_LEVEL;
-import static com.codenjoy.dojo.games.kata.Command.START_NEXT_LEVEL;
+import static com.codenjoy.dojo.client.Command.SKIP_THIS_LEVEL;
+import static com.codenjoy.dojo.client.Command.START_NEXT_LEVEL;
 
 /**
  * Author: your name
