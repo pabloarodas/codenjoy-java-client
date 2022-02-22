@@ -107,7 +107,7 @@ public class SmokeUtils {
         }
     }
 
-    private static String load(File file) {
+    public static String load(File file) {
         try {
             String data = Files.readString(file.toPath());
             data = fixOSEndLine(data);
