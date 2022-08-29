@@ -151,21 +151,29 @@ public class YourSolver implements Solver<Board> {
     }
 
     public static void main(String[] args) {
-        String b = "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
-                "☼         # # ☼" +
-                "☼ ☼ ☼ ☼#☼ ☼ ☼ ☼" +
-                "☼##           ☼" +
-                "☼ ☼ ☼#☼ ☼ ☼ ☼ ☼" +
-                "☼        # #  ☼" +
-                "☼☼☼☼☼☼☼#☼ ☼ ☼ ☼" +
-                "☼ ☼   ♥       ☼" +
-                "☼# #☼☼☼#☼☼ ☼☼#☼" +
-                "☼☼☼#   ☼      ☼" +
-                "☼ ☼☼☼ ☼☼ ☼☼☼☼#☼" +
-                "☼ ##      #   ☼" +
-                "☼☼☼☼☼☼☼♥☼☼#♥☼#☼" +
-                "☼ #    ☺      ☼" +
-                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼";
+        String b = "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
+                "☼&   #☼    #     ☼  #♥☼" +
+                "☼&    ☼  +       ☼#  #☼" +
+                "☼# #  ☼ # ☼♥   ☼☼☼# ##☼" +
+                "☼#    ☼   ☼4     ☼   #☼" +
+                "☼ #   ☼☼☼☼☼☼     ☼☼ # ☼" +
+                "☼       ☼         #   ☼" +
+                "☼☼☼     ☼   ☼         ☼" +
+                "☼    &  #1  ☼    ☼   #☼" +
+                "☼           ☼    ☼ ## ☼" +
+                "☼☼☼☼☼☼☼☼ ☺♥ ☼☼☼☼☼☼ ###☼" +
+                "☼  #  ☼  2  ☼    #  ##☼" +
+                "☼♥    ☼&    ☼    # ## ☼" +
+                "☼     ☼     ☼  #  ☼  #☼" +
+                "☼                 ☼ ##☼" +
+                "☼         ☼   #☼☼☼☼☼☼☼☼" +
+                "☼  #☼     ☼       ☼   ☼" +
+                "☼## ☼  #  ☼   #   ☼   ☼" +
+                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼        ☼" +
+                "☼ #   ☼  # #    &     ☼" +
+                "☼#####☼       ☼       ☼" +
+                "☼# #    #   # ☼       ☼" +
+                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼";
         YourSolver s = new YourSolver(new MockDice());
         s.get((Board) new Board().forString(b));
     }
@@ -650,23 +658,22 @@ public class YourSolver implements Solver<Board> {
 
     private boolean hasSideExit(Board board, Point point) {
         Direction dir = findDirectionToPoint(board, point);
+        List<Element> elementsToCheck = new ArrayList<>();
+        elementsToCheck.addAll(Arrays.asList(ElementUtils.perks));
+        elementsToCheck.addAll(Arrays.asList(Element.NONE, Element.BLAST));
 
         switch (dir) {
             case LEFT:
             case RIGHT:
-                if (isFreeAt(board, new PointImpl(point.getX(), point.getY() + 1))) {
-                    return true;
-                }
-                if (isFreeAt(board, new PointImpl(point.getX(), point.getY() - 1))) {
+                if (board.isAt(point.getX(), point.getY() + 1, elementsToCheck.toArray(Element[]::new))
+                        || board.isAt(point.getX(), point.getY() - 1, elementsToCheck.toArray(Element[]::new))) {
                     return true;
                 }
                 break;
             case UP:
             case DOWN:
-                if (isFreeAt(board, new PointImpl(point.getX() + 1, point.getY()))) {
-                    return true;
-                }
-                if (isFreeAt(board, new PointImpl(point.getX() - 1, point.getY()))) {
+                if (board.isAt(point.getX() + 1, point.getY(), elementsToCheck.toArray(Element[]::new))
+                        || board.isAt(point.getX() - 1, point.getY(), elementsToCheck.toArray(Element[]::new))) {
                     return true;
                 }
         }
