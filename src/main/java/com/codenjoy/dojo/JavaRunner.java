@@ -26,7 +26,9 @@ import com.codenjoy.dojo.client.ClientBoard;
 import com.codenjoy.dojo.client.OneCommandSolver;
 import com.codenjoy.dojo.client.WebSocketRunner;
 import com.codenjoy.dojo.utils.PrintUtils;
-import org.slf4j.Logger;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.codenjoy.dojo.client.runner.ReflectLoader.loadJavaBoard;
@@ -35,7 +37,7 @@ import static com.codenjoy.dojo.utils.PrintUtils.Color.INFO;
 
 public class JavaRunner {
 
-    private static Logger log = LoggerFactory.getLogger(JavaRunner.class);
+    private static Logger log = (Logger)LoggerFactory.getLogger(JavaRunner.class);
 
     // Select your game
     private String game = "mollymage";
@@ -43,9 +45,11 @@ public class JavaRunner {
     // Paste here board page url from browser after registration,
     // or put it as command line parameter.
     private String url =
-            "http://127.0.0.1:8080/codenjoy-contest/board/player/0?code=000000000000";
+            "https://dojorena.io/codenjoy-contest/board/player/dojorena2633?code=3934530408995664209";
 
     public void run(String[] args) {
+        Logger root = (Logger)LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
+        root.setLevel(Level.INFO);
         System.out.println("+-----------------+");
         System.out.println("| Starting runner |");
         System.out.println("+-----------------+");

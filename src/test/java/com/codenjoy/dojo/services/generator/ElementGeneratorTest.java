@@ -23,6 +23,7 @@ package com.codenjoy.dojo.services.generator;
  */
 
 import com.codenjoy.dojo.utils.SmokeUtils;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -32,6 +33,7 @@ import java.util.Arrays;
 
 import static java.util.Locale.ENGLISH;
 
+@Ignore
 public class ElementGeneratorTest {
 
     @Rule

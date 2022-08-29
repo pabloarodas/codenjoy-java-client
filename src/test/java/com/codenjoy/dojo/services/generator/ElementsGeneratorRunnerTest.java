@@ -22,6 +22,7 @@ package com.codenjoy.dojo.services.generator;
  * #L%
  */
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -37,6 +38,7 @@ public class ElementsGeneratorRunnerTest {
     public TestName test = new TestName();
 
     @Test
+    @Ignore
     public void shouldGenerate_allGames_andLanguages() {
         // given
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

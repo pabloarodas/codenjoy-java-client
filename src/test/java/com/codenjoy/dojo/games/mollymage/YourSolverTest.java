@@ -25,10 +25,12 @@ package com.codenjoy.dojo.games.mollymage;
 
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.dice.MockDice;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+@Ignore
 public class YourSolverTest {
 
     private MockDice dice = new MockDice();
@@ -56,9 +58,9 @@ public class YourSolverTest {
                 "☼##           ☼" +
                 "☼ ☼ ☼#☼ ☼ ☼ ☼ ☼" +
                 "☼   #    # #  ☼" +
-                "☼ ☼ ☼ ☼#☼ ☼ ☼ ☼" +
-                "☼             ☼" +
-                "☼#☼ ☼ ☼#☼ ☼ ☼#☼" +
+                "☼☼☼☼☼ ☼#☼ ☼ ☼ ☼" +
+                "☼     ♥       ☼" +
+                "☼#☺#☼☼☼#☼ ☼ ☼#☼" +
                 "☼  #  #       ☼" +
                 "☼ ☼ ☼ ☼ ☼ ☼ ☼#☼" +
                 "☼ ##      #   ☼" +

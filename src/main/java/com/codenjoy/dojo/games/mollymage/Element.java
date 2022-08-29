@@ -151,7 +151,8 @@ public enum Element implements CharElement {
         // Enemy hero corpse (it will disappear shortly, right on the
         // next move). If you've done it you'll get score points.
 
-    ENEMY_HERO_DEAD('ø');
+    ENEMY_HERO_DEAD('ø'),
+    VISITED('V');
 
     private final char ch;
 
