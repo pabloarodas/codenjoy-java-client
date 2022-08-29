@@ -100,12 +100,12 @@ public class YourSolver implements Solver<Board> {
         //System.out.println(board);
         log.info(">>>>> Current Potion is at: " + currentPotion);
         log.info(">>>>> Hero perks: " + perks);
-        Stack<Point> sr = findShortestRoute(board, null);
+        Stack<Point> sr = findShortestRoute(board, null, true);
         if (sr != null) {
             log.info("Shortest route found: " + sr);
         }
         if (sr != null && sr.size() == 1) {
-            sr = findShortestRoute(board, sr.peek());
+            sr = findShortestRoute(board, sr.peek(), false);
         }
         Direction d;
         if (sr == null || sr.isEmpty() || (sr.size() > 1 && !isFreeAt(board, sr.peek())) || isNear(sr.peek(), Element.GHOST, Element.GHOST_DEAD)) {
@@ -178,11 +178,11 @@ public class YourSolver implements Solver<Board> {
         s.get((Board) new Board().forString(b));
     }
 
-    private Stack<Point> findShortestRoute(Board board, Point exclude) {
+    private Stack<Point> findShortestRoute(Board board, Point exclude, boolean includeChests) {
         Stack<Point> sr = null;
         for (Point otherHero : board.getOtherHeroes()) {
             if (!isInBlastOf(board, otherHero, ElementUtils.potions) && (exclude == null || !otherHero.equals(exclude))) {
-                Stack<Point> route = findRoute(board, otherHero);
+                Stack<Point> route = findRoute(board, otherHero, includeChests);
                 //System.out.println(">>>>> Searching route for other hero " + otherHero + ", route: " + route);
                 if ((sr == null && !route.isEmpty()) || (!route.isEmpty() && sr.size() > route.size())) {
                     sr = route;
@@ -190,7 +190,7 @@ public class YourSolver implements Solver<Board> {
             }
         }
         for (Point perk : board.getPerks()) {
-            Stack<Point> route = findRoute(board, perk);
+            Stack<Point> route = findRoute(board, perk, includeChests);
             //System.out.println(">>>>> Searching route for perk " + perk + ", route: " + route);
             if ((sr == null && !route.isEmpty()) || (!route.isEmpty() && sr.size() > route.size())) {
                 sr = route;
@@ -318,7 +318,7 @@ public class YourSolver implements Solver<Board> {
         return false;
     }
 
-    public Stack<Point> findRoute(Board board, Point otherHero) {
+    public Stack<Point> findRoute(Board board, Point otherHero, boolean includeChests) {
         LinkedList<Coordinate> nextToVisit
                 = new LinkedList<>();
         char[][] field = Arrays.stream(board.field())
@@ -339,7 +339,8 @@ public class YourSolver implements Solver<Board> {
                 continue;
             }
 
-            if (!(new PointImpl(cur.point.getX(), cur.point.getY()).equals(otherHero)) && field[cur.point.getX()][cur.point.getY()] != ' ') {
+            if (!(new PointImpl(cur.point.getX(), cur.point.getY()).equals(otherHero)) && field[cur.point.getX()][cur.point.getY()] != ' '
+                    && (!includeChests || field[cur.point.getX()][cur.point.getY()] != '#')) {
                 field[cur.point.getX()][cur.point.getY()] = 'V';
                 continue;
             }
