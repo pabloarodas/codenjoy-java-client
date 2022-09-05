@@ -29,6 +29,7 @@ import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.services.dice.MockDice;
+import org.reflections.vfs.Vfs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -129,9 +130,11 @@ public class YourSolver implements Solver<Board> {
         Point p = new PointImpl(board.getHero().getX(), board.getHero().getY());
         p.move(d);
         Point freeSpot = findClosestFreeSpot(board, p);
-        if (d.equals(Direction.STOP) && (isInBlastOf(board, board.getHero(), ElementUtils.potions)
-                || isNear(p, Element.GHOST, Element.GHOST_DEAD))) {
-            d = findDirectionToPoint(board, freeSpot);
+        Point freeSpotForHero = findClosestFreeSpot(board, board.getHero());
+        if (d.equals(Direction.STOP) && (isInBlastOf(board, board.getHero(), ElementUtils.potions) != null
+                || isNear(p, Element.GHOST, Element.GHOST_DEAD))
+                || (isInBlastOf(board, p, ElementUtils.potions) == null && isDeadEnd(board, board.getHero(), d))) {
+            d = findDirectionToPoint(board, freeSpotForHero);
         }
         if (board.isPerkAt(p)) {
             perks.put(board.getAt(p.getX(), p.getY()), 30);
@@ -139,16 +142,30 @@ public class YourSolver implements Solver<Board> {
         log.info(">>>>> Target direction: " + d);
         heroesPrevPositions = new ArrayList<>();
         heroesPrevPositions.addAll(board.getOtherHeroes());
+
+        Direction blastDir = isInBlastOf(board, board.getHero(), Element.OTHER_HERO);
+
+        if (blastDir != null) {
+            Point otherHero = getOtherHeroInDirection(board, board.getHero(), blastDir);
+            Direction blastDirOtherHero = isInBlastOf(board, otherHero, ElementUtils.potions);
+            if(blastDir.equals(blastDirOtherHero) && isDeadEnd(board, otherHero, blastDir)
+                    && !isNear(board.getHero(), Element.GHOST, Element.GHOST_DEAD)
+                    && isInBlastOf(board, board.getHero(), true, ElementUtils.potions) == null) {
+                System.out.println(">>>>> Other hero is trapped, stopping");
+                return Command.MOVE.apply(Direction.STOP);
+            }
+        }
+
         if (isTrapped(board, board.getHero())) {
-            log.info(">>>>> Hero is trapped, dropping potion");
+            System.out.println(">>>>> Hero is trapped, dropping potion");
             return Command.DROP_POTION;
-        } else if (!isInBlastOf(board, board.getHero(), ElementUtils.potions)
+        } else if (isInBlastOf(board, board.getHero(), ElementUtils.potions) == null
                 && perks.getOrDefault(Element.POTION_EXPLODER, 0) > 0
                 && ((currentPotions != null && board.getPotions().size() > 1)
                 || (currentPotions == null && board.getPotions().size() > 0))) {
             perks.remove(Element.POTION_EXPLODER);
             return Command.EXPLODE_POTIONS_THEN_MOVE.apply(d);
-        } else if (!isInBlastOf(board, board.getHero(), ElementUtils.potions)
+        } else if (isInBlastOf(board, board.getHero(), ElementUtils.potions) == null
                 && sr != null && !sr.isEmpty() && board.isAt(sr.get(0), Element.OTHER_HERO)
                 && isPointInHeroPotionBlast(board, board.getHero(), false, sr.get(0))
                 && !currentPotions.isEmpty()) {
@@ -186,33 +203,64 @@ public class YourSolver implements Solver<Board> {
     }
 
     public static void main(String[] args) {
-        String b = "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
-                "☼     ☼          ☼    ☼" +
-                "☼  #  ☼#         ☼   #☼" +
-                "☼ #   ☼   ☼    ☼☼☼##  ☼" +
-                "☼     ☼   ☼      ☼    ☼" +
-                "☼     ☼☼☼☼☼☼     ☼☼ # ☼" +
-                "☼       ☼             ☼" +
-                "☼☼☼     ☼   ☼         ☼" +
-                "☼ ##        ☼    ☼    ☼" +
-                "☼ ##        ☼    ☼    ☼" +
-                "☼☼☼☼☼☼☼☼    ☼☼☼☼☼☼    ☼" +
-                "☼  #  ☼     ☼      #  ☼" +
-                "☼#### ☼#    ☼         ☼" +
-                "☼♥   #☼♥    ☼     ☼# #☼" +
-                "☼☺                ☼   ☼" +
-                "☼ ♥     # ☼    ☼☼☼☼☼☼☼☼" +
-                "☼ 1 ☼#    ☼       ☼   ☼" +
-                "☼###☼     ☼       ☼   ☼" +
-                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼        ☼" +
-                "☼### #☼ #          #  ☼" +
-                "☼#  # ☼###  ##☼#    # ☼" +
-                "☼  ##  ####   ☼# ## & ☼" +
-                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼";
+        String b =
+                "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
+                        "☼#♥  ♥# #  #  #   #♥##☼" +
+                        "☼#☼☼ ☼☼☼☼ ☼♥#☼☼ ☼☼##☼♥☼" +
+                        "☼#☼☼ #♥   ☼☼#☼☼♥☼☼#☼☼#☼" +
+                        "☼ &   ☼☼☼  ☼   ♥ ♥ #☼♥☼" +
+                        "☼ ☼☼☼   ☼  # ☼☼☼☼♥☼###☼" +
+                        "☼  ☼  ☼   ☼☼    ##☼☼☼♥☼" +
+                        "☼     ☼☼☼  ☼☼   ☼#♥♥♥♥☼" +
+                        "☼ ☼☼☼ #        ☼☼☼♥♥☼♥☼" +
+                        "☼  ☼  ☼☼☼☼ ☼☼☼## ♥#☼☼♥☼" +
+                        "☼       &   ☼   ☼#♥♥☼♥☼" +
+                        "☼ ☼☼☼☼ ☼☼ ☼   ☼☼☼#☼♥ #☼" +
+                        "☼      ☼☼ ☼☼☼   # ☼☼☼&☼" +
+                        "☼ ☼☼☼      ♥  ☼☼☼###  ☼" +
+                        "☼  ☼  ☼☼ ☼☼☼   ☼  ☼☼☼#☼" +
+                        "☼  ♥ ☼☼    ☼ ☼     #☼♥☼" +
+                        "☼ ☼      ☼&  ☼☼☼ ☼☼###☼" +
+                        "☼ ☼  ☼☼  ☼☼      ☼☼#☼ ☼" +
+                        "☼♥☼☼☼☼☼3 3☼☼☼☼☼     ☼♥☼" +
+                        "☼       ☺♥#      ☼☼#☼#☼" +
+                        "☼ ☼☼☼☼ ☼☼☼☼☼☼☼☼ ☼☼  ☼#☼" +
+                        "☼ ###  &  #  #     #  ☼" +
+                        "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼";
         YourSolver s = new YourSolver(new MockDice());
-        s.currentPotions.put(new PointImpl(1, 6), 2);
+        s.heroesPrevPositions = List.of(new PointImpl(1, 4));
+        s.currentPotions.put(new PointImpl(7, 4), 3);
+        Board board = (Board) new Board().forString(b);
+        s.get(board);
+    }
 
-        s.get((Board) new Board().forString(b));
+    private Point getOtherHeroInDirection(Board board, Point point, Direction dir) {
+        int radius = 3;
+        for (int i = 1; i <= radius; i++) {
+            switch (dir) {
+                case LEFT:
+                    if (board.isAt(point.getX() - i, point.getY(), Element.OTHER_HERO)) {
+                        return new PointImpl(point.getX() - i, point.getY());
+                    }
+                    break;
+                case RIGHT:
+                    if (board.isAt(point.getX() + i, point.getY(), Element.OTHER_HERO)) {
+                        return new PointImpl(point.getX() + i, point.getY());
+                    }
+                    break;
+                case UP:
+                    if (board.isAt(point.getX(), point.getY() + i, Element.OTHER_HERO)) {
+                        return new PointImpl(point.getX(), point.getY() + i);
+                    }
+                    break;
+                case DOWN:
+                    if (board.isAt(point.getX(), point.getY() - i, Element.OTHER_HERO)) {
+                        return new PointImpl(point.getX(), point.getY() - i);
+                    }
+                    break;
+            }
+        }
+        return null;
     }
 
     private Stack<Point> findShortestRoute(Board board, List<Point> exclude, boolean includeChests) {
@@ -226,8 +274,11 @@ public class YourSolver implements Solver<Board> {
                 heroesToCheck.add(oh);
             }
         }
+        if (heroesToCheck.isEmpty()) {
+            heroesToCheck = board.getOtherHeroes();
+        }
         for (Point otherHero : heroesToCheck) {
-            if (!isInBlastOf(board, otherHero, ElementUtils.potions) && !exclude.contains(otherHero)) {
+            if (isInBlastOf(board, otherHero, ElementUtils.potions) == null && !exclude.contains(otherHero)) {
                 Route route = findRoute(board, otherHero, includeChests);
                 //System.out.println(">>>>> Searching route for other hero " + otherHero + ", route: " + route);
                 if (!route.route.isEmpty()) {
@@ -271,7 +322,8 @@ public class YourSolver implements Solver<Board> {
                 break;
             }
             if (board.isAt(point.getX(), point.getY() + 1, elementsToCheck.toArray(Element[]::new))
-                    || board.isAt(point.getX(), point.getY() - 1, elementsToCheck.toArray(Element[]::new))) {
+                    || board.isAt(point.getX(), point.getY() - 1, elementsToCheck.toArray(Element[]::new))
+                    || (i == 3 && board.isAt(point.getX() + 1, point.getY(), elementsToCheck.toArray(Element[]::new)))) {
                 return false;
             }
             if (board.isAt(point, elementsToCheck.toArray(Element[]::new))) {
@@ -284,7 +336,8 @@ public class YourSolver implements Solver<Board> {
                 break;
             }
             if (board.isAt(point.getX(), point.getY() + 1, elementsToCheck.toArray(Element[]::new))
-                    || board.isAt(point.getX(), point.getY() - 1, elementsToCheck.toArray(Element[]::new))) {
+                    || board.isAt(point.getX(), point.getY() - 1, elementsToCheck.toArray(Element[]::new))
+                    || (i == 3 && board.isAt(point.getX() - 1, point.getY(), elementsToCheck.toArray(Element[]::new)))) {
                 return false;
             }
             if (board.isAt(point, elementsToCheck.toArray(Element[]::new))) {
@@ -297,7 +350,8 @@ public class YourSolver implements Solver<Board> {
                 break;
             }
             if (board.isAt(point.getX() + 1, point.getY(), elementsToCheck.toArray(Element[]::new))
-                    || board.isAt(point.getX() - 1, point.getY(), elementsToCheck.toArray(Element[]::new))) {
+                    || board.isAt(point.getX() - 1, point.getY(), elementsToCheck.toArray(Element[]::new))
+                    || (i == 3 && board.isAt(point.getX(), point.getY() + 1, elementsToCheck.toArray(Element[]::new)))) {
                 return false;
             }
             if (board.isAt(point, elementsToCheck.toArray(Element[]::new))) {
@@ -310,7 +364,8 @@ public class YourSolver implements Solver<Board> {
                 break;
             }
             if (board.isAt(point.getX() + 1, point.getY(), elementsToCheck.toArray(Element[]::new))
-                    || board.isAt(point.getX() - 1, point.getY(), elementsToCheck.toArray(Element[]::new))) {
+                    || board.isAt(point.getX() - 1, point.getY(), elementsToCheck.toArray(Element[]::new))
+                    || (i == 3 && board.isAt(point.getX(), point.getY() - 1, elementsToCheck.toArray(Element[]::new)))) {
                 return false;
             }
             if (board.isAt(point, elementsToCheck.toArray(Element[]::new))) {
@@ -399,7 +454,8 @@ public class YourSolver implements Solver<Board> {
             }
 
             if (!(new PointImpl(cur.point.getX(), cur.point.getY()).equals(otherHero)) && field[cur.point.getX()][cur.point.getY()] != ' '
-                    && (!includeChests || field[cur.point.getX()][cur.point.getY()] != '#')) {
+                    && (!includeChests || field[cur.point.getX()][cur.point.getY()] != '#')
+                    && field[cur.point.getX()][cur.point.getY()] != '҉') {
                 field[cur.point.getX()][cur.point.getY()] = 'V';
                 continue;
             }
@@ -622,44 +678,52 @@ public class YourSolver implements Solver<Board> {
         return false;
     }
 
-    private boolean isInBlastOf(Board board, Point p, Element... e) {
+    private Direction isInBlastOf(Board board, Point p, Element... e) {
+        return isInBlastOf(board, p, false, e);
+    }
+
+    private Direction isInBlastOf(Board board, Point p, boolean includeOtherHeroes, Element... e) {
         for (int i = 1; i <= 3; i++) {
             Point point = new PointImpl(p.getX() + i, p.getY());
-            if (board.isWallAt(point) || board.isTreasureBoxAt(point)) {
+            if (board.isWallAt(point) || board.isTreasureBoxAt(point)
+                    || (includeOtherHeroes && board.isAt(point, Element.OTHER_HERO))) {
                 break;
             }
             if (board.isAt(point, e)) {
-                return true;
+                return Direction.RIGHT;
             }
         }
         for (int i = 1; i <= 3; i++) {
             Point point = new PointImpl(p.getX() - i, p.getY());
-            if (board.isWallAt(point) || board.isTreasureBoxAt(point)) {
+            if (board.isWallAt(point) || board.isTreasureBoxAt(point)
+                    || (includeOtherHeroes && board.isAt(point, Element.OTHER_HERO))) {
                 break;
             }
             if (board.isAt(point, e)) {
-                return true;
+                return Direction.LEFT;
             }
         }
         for (int i = 1; i <= 3; i++) {
             Point point = new PointImpl(p.getX(), p.getY() + i);
-            if (board.isWallAt(point) || board.isTreasureBoxAt(point)) {
+            if (board.isWallAt(point) || board.isTreasureBoxAt(point)
+                    || (includeOtherHeroes && board.isAt(point, Element.OTHER_HERO))) {
                 break;
             }
             if (board.isAt(point, e)) {
-                return true;
+                return Direction.UP;
             }
         }
         for (int i = 1; i <= 3; i++) {
             Point point = new PointImpl(p.getX(), p.getY() - i);
-            if (board.isWallAt(point) || board.isTreasureBoxAt(point)) {
+            if (board.isWallAt(point) || board.isTreasureBoxAt(point)
+                    || (includeOtherHeroes && board.isAt(point, Element.OTHER_HERO))) {
                 break;
             }
             if (board.isAt(point, e)) {
-                return true;
+                return Direction.DOWN;
             }
         }
-        return false;
+        return null;
     }
 
     private boolean isNearCorners(Point p, Element e) {
@@ -717,19 +781,23 @@ public class YourSolver implements Solver<Board> {
         List<Point> points = new ArrayList<>();
         int currentX = point.getX(), currentY = point.getY();
         Point p1 = new PointImpl(currentX + 1, currentY);
-        if (isFreeAt(board, p1)) {
+        if (isFreeAt(board, p1)
+                && (isInBlastOf(board, p1, ElementUtils.potions) == null || !isDeadEnd(board, board.getHero(), findDirectionToPoint(board, p1)))) {
             points.add(p1);
         }
         Point p2 = new PointImpl(currentX, currentY + 1);
-        if (isFreeAt(board, p2)) {
+        if (isFreeAt(board, p2)
+                && (isInBlastOf(board, p2, ElementUtils.potions) == null || !isDeadEnd(board, board.getHero(), findDirectionToPoint(board, p2)))) {
             points.add(p2);
         }
         Point p3 = new PointImpl(currentX - 1, currentY);
-        if (isFreeAt(board, p3)) {
+        if (isFreeAt(board, p3)
+                && (isInBlastOf(board, p3, ElementUtils.potions) == null || !isDeadEnd(board, board.getHero(), findDirectionToPoint(board, p3)))) {
             points.add(p3);
         }
         Point p4 = new PointImpl(currentX, currentY - 1);
-        if (isFreeAt(board, p4)) {
+        if (isFreeAt(board, p4)
+                && (isInBlastOf(board, p4, ElementUtils.potions) == null || !isDeadEnd(board, board.getHero(), findDirectionToPoint(board, p4)))) {
             points.add(p4);
         }
         log.info(">>>>> Points to check: " + points);
@@ -767,10 +835,10 @@ public class YourSolver implements Solver<Board> {
     }
 
     private boolean isFreeAt(Board board, Point p) {
-        boolean free = !board.isWallAt(p) && !board.isEnemyHeroAt(p) && !board.isBarrierAt(p) && !board.isBlastAt(p)
+        boolean free = !board.isWallAt(p) && !board.isEnemyHeroAt(p) && !board.isBarrierAt(p)
                 && !board.isFutureBlastAt(p) && !board.isAt(p.getX(), p.getY(), Element.VISITED)
-                && !isInBlastOf(board, p, Element.OTHER_HERO_POTION)
-                && (!isInBlastOf(board, p, Element.POTION_TIMER_2) || hasSideExit(board, p))
+                && isInBlastOf(board, p, Element.OTHER_HERO_POTION) == null
+                && (isInBlastOf(board, p, Element.POTION_TIMER_2) == null || hasSideExit(board, p))
                 && !board.isPotionAt(p) && !board.isGhostAt(p) && !board.isTreasureBoxAt(p) && !board.isOtherHeroAt(p) && !board.isHeroAt(p);
 
         // log.info(">>>>> Is free at: " + p.getX() + " - " + p.getY() + " - " + free);
