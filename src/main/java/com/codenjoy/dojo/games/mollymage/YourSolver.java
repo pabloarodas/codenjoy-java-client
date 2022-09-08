@@ -92,9 +92,11 @@ public class YourSolver implements Solver<Board> {
         }
         if (!currentPotions.isEmpty()) {
             for (Point p : currentPotions.keySet()) {
-                currentPotions.put(p, currentPotions.getOrDefault(p, 0) - 1);
-                if (currentPotions.get(p) <= 0) {
-                    currentPotions.remove(p);
+                if (perks.getOrDefault(Element.POTION_REMOTE_CONTROL, 0) <= 0) {
+                    currentPotions.put(p, currentPotions.getOrDefault(p, 0) - 1);
+                    if (currentPotions.get(p) <= 0) {
+                        currentPotions.remove(p);
+                    }
                 }
             }
         }
@@ -102,12 +104,13 @@ public class YourSolver implements Solver<Board> {
         if (board.isGameOver()) {
             log.info(">>>>> My hero is dead!");
             perks = new HashMap<>();
+            currentPotions = new HashMap<>();
             return "";
         }
         //System.out.println(board);
         log.info(">>>>> Current Potion is at: " + currentPotions);
         log.info(">>>>> Hero perks: " + perks);
-        Stack<Point> sr = findShortestRoute(board, new ArrayList<>(), true);
+        Stack<Point> sr = findShortestRoute(board, new ArrayList<>());
         if (sr != null) {
             log.info("Shortest route found: " + sr);
         }
@@ -117,27 +120,57 @@ public class YourSolver implements Solver<Board> {
                 && isPointInHeroPotionBlast(board, board.getHero(), true, sr.get(0))))
                 && !board.isAt(sr.peek().getX(), sr.peek().getY(), ElementUtils.perks)) {
             exclude.add(sr.get(0));
-            sr = findShortestRoute(board, exclude, false);
+            sr = findShortestRoute(board, exclude);
+        }
+        if (sr == null) {
+            exclude = new ArrayList<>();
+            sr = findShortestRouteToChest(board, exclude);
+            while (currentPotions.isEmpty() && sr != null && (sr.size() <= 2
+                    || (isPointInHeroPotionBlast(board, board.getHero(), true, sr.get(0))))) {
+                exclude.add(sr.get(0));
+                sr = findShortestRouteToChest(board, exclude);
+            }
         }
         Direction d;
-        if (sr == null || sr.isEmpty() || (sr.size() > 1 && !isFreeAt(board, sr.peek())) || isNear(sr.peek(), Element.GHOST, Element.GHOST_DEAD)) {
+        Integer currentPotionTimer = 5;
+        Point currentPotion = null;
+        if (!currentPotions.isEmpty()) {
+            currentPotion = currentPotions.keySet().stream().findFirst().get();
+            currentPotionTimer = currentPotions.get(currentPotion);
+        }
+        if (sr == null || sr.isEmpty() || (sr.size() > 1 && (!isFreeAt(board, sr.peek()))
+                || (currentPotionTimer == 1 && isInHeroPotionBlast(board, currentPotion, false, Element.HERO)))
+                || isNear(sr.peek(), Element.GHOST, Element.GHOST_DEAD)
+                || (sr.size() < 3 && board.isOtherHeroAt(sr.get(0)) && !heroesPrevPositions.contains(sr.get(0)))
+                || (sr.size() == 1 && board.isPerkAt(sr.peek())
+                && ((currentPotionTimer == 1
+                && perks.getOrDefault(Element.POTION_IMMUNE, 0) <= 0
+                && !board.isAt(sr.peek(), Element.POTION_IMMUNE)
+                && isPointInHeroPotionBlast(board, currentPotion, false, sr.peek()))
+                || (isInBlastOf(board, sr.get(0), Element.POTION_TIMER_1) != null))
+        )) {
             d = findDirection(board);
         } else if (sr.size() > 1 || board.isPerkAt(sr.get(0))) {
-            d = findDirectionToPoint(board, sr.pop());
+            d = findDirectionFromToPoint(board, board.getHero(), sr.pop());
         } else {
             d = Direction.STOP;
         }
-        Point p = new PointImpl(board.getHero().getX(), board.getHero().getY());
-        p.move(d);
-        Point freeSpot = findClosestFreeSpot(board, p);
+        Point targetPoint = new PointImpl(board.getHero().getX(), board.getHero().getY());
+        targetPoint.move(d);
+        Point freeSpot = findClosestFreeSpot(board, targetPoint);
         Point freeSpotForHero = findClosestFreeSpot(board, board.getHero());
         if (d.equals(Direction.STOP) && (isInBlastOf(board, board.getHero(), ElementUtils.potions) != null
-                || isNear(p, Element.GHOST, Element.GHOST_DEAD))
-                || (isInBlastOf(board, p, ElementUtils.potions) == null && isDeadEnd(board, board.getHero(), d))) {
-            d = findDirectionToPoint(board, freeSpotForHero);
+                || isNear(targetPoint, Element.GHOST, Element.GHOST_DEAD)
+                || isInBlastOf(board, targetPoint, Element.POTION_TIMER_1, Element.HERO_POTION) != null)
+                /*|| (isInBlastOf(board, targetPoint, ElementUtils.potions) == null
+                && isDeadEnd(board, board.getHero(), d)
+                && !board.isPerkAt(targetPoint))*/) {
+            targetPoint = new PointImpl(board.getHero().getX(), board.getHero().getY());
+            d = findDirectionFromToPoint(board, board.getHero(), freeSpotForHero);
+            targetPoint.move(d);
         }
-        if (board.isPerkAt(p)) {
-            perks.put(board.getAt(p.getX(), p.getY()), 30);
+        if (board.isPerkAt(targetPoint)) {
+            perks.put(board.getAt(targetPoint.getX(), targetPoint.getY()), 30);
         }
         log.info(">>>>> Target direction: " + d);
         heroesPrevPositions = new ArrayList<>();
@@ -147,12 +180,16 @@ public class YourSolver implements Solver<Board> {
 
         if (blastDir != null) {
             Point otherHero = getOtherHeroInDirection(board, board.getHero(), blastDir);
-            Direction blastDirOtherHero = isInBlastOf(board, otherHero, ElementUtils.potions);
-            if(blastDir.equals(blastDirOtherHero) && isDeadEnd(board, otherHero, blastDir)
-                    && !isNear(board.getHero(), Element.GHOST, Element.GHOST_DEAD)
-                    && isInBlastOf(board, board.getHero(), true, ElementUtils.potions) == null) {
-                System.out.println(">>>>> Other hero is trapped, stopping");
-                return Command.MOVE.apply(Direction.STOP);
+            if (otherHero != null) {
+                Direction blastDirOtherHero = isInBlastOf(board, otherHero, ElementUtils.potions);
+                List<Direction> dirsToCheck = List.of(blastDir, findInverseDirection(blastDir), Direction.STOP);
+                if (blastDir.equals(blastDirOtherHero) && isDeadEnd(board, otherHero, blastDir)
+                        && dirsToCheck.contains(findDirectionFromToPoint(board, otherHero, findClosestFreeSpot(board, otherHero)))
+                        && !isNear(board.getHero(), Element.GHOST, Element.GHOST_DEAD)
+                        && isInBlastOf(board, board.getHero(), true, ElementUtils.potions) == null) {
+                    System.out.println(">>>>> Other hero is trapped, stopping");
+                    return Command.MOVE.apply(Direction.STOP);
+                }
             }
         }
 
@@ -165,17 +202,30 @@ public class YourSolver implements Solver<Board> {
                 || (currentPotions == null && board.getPotions().size() > 0))) {
             perks.remove(Element.POTION_EXPLODER);
             return Command.EXPLODE_POTIONS_THEN_MOVE.apply(d);
-        } else if (isInBlastOf(board, board.getHero(), ElementUtils.potions) == null
+        } /*else if (isInBlastOf(board, board.getHero(), ElementUtils.potions) == null
                 && sr != null && !sr.isEmpty() && board.isAt(sr.get(0), Element.OTHER_HERO)
                 && isPointInHeroPotionBlast(board, board.getHero(), false, sr.get(0))
                 && !currentPotions.isEmpty()) {
             System.out.println("Hero is close to the other hero, STOP");
             return Command.MOVE.apply(Direction.STOP);
+        }*/ else if (!currentPotions.isEmpty() && !isPointInHeroPotionBlast(board, currentPotions.keySet().stream().findFirst().get(), false, targetPoint)
+                && perks.getOrDefault(Element.POTION_REMOTE_CONTROL, 0) > 0
+                && isInHeroPotionBlast(board, currentPotions.keySet().stream().findFirst().get(), false, Element.OTHER_HERO, Element.GHOST, Element.GHOST_DEAD)) {
+            System.out.println("MOVE 3: " + d);
+            return Command.DROP_POTION_THEN_MOVE.apply(d);
+        } else if (!currentPotions.isEmpty() && perks.getOrDefault(Element.POTION_REMOTE_CONTROL, 0) > 0
+                && isPointInHeroPotionBlast(board, currentPotions.keySet().stream().findFirst().get(), false, targetPoint)) {
+            System.out.println("MOVE 3: " + d);
+            return Command.MOVE.apply(d);
+        } else if (!currentPotions.isEmpty() && isInHeroPotionBlast(board, currentPotions.keySet().stream().findFirst().get(), false, Element.HERO)
+                && perks.getOrDefault(Element.POTION_REMOTE_CONTROL, 0) > 0) {
+            System.out.println("MOVE 3: " + d);
+            return Command.MOVE.apply(d);
         } else if (isInHeroPotionBlast(board, board.getHero(), true, ElementUtils.perks)
                 || isDeadEnd(board, board.getHero(), d)
                 || board.isAt(board.getHero().getX(), board.getHero().getY(), Element.HERO_POTION)
                 || (!currentPotions.isEmpty() && isInHeroPotionBlast(board, currentPotions.keySet().stream().findFirst().get(), false, Element.HERO))
-                || freeSpot.equals(p) || !isInHeroPotionBlast(board, board.getHero(), false, Element.OTHER_HERO, Element.OTHER_HERO_POTION, Element.GHOST, Element.GHOST_DEAD, Element.TREASURE_BOX)
+                || freeSpot.equals(targetPoint) || !isInHeroPotionBlast(board, board.getHero(), false, Element.OTHER_HERO, Element.OTHER_HERO_POTION, Element.GHOST, Element.GHOST_DEAD, Element.TREASURE_BOX)
                 || (sr != null && !sr.isEmpty() && sr.size() <= 4 && !isTreasureBoxInRoute(board, sr)
                 && !isInHeroPotionBlast(board, board.getHero(), false, Element.OTHER_HERO))) {
             System.out.println("MOVE 1: " + d);
@@ -183,17 +233,15 @@ public class YourSolver implements Solver<Board> {
         } else if (!currentPotions.isEmpty() && perks.getOrDefault(Element.POTION_COUNT_INCREASE, 0) > 0) {
             System.out.println("MOVE 2: " + d);
             return Command.MOVE.apply(d);
-        } else if (!currentPotions.isEmpty() && perks.getOrDefault(Element.POTION_REMOTE_CONTROL, 0) > 0
-                && isPointInHeroPotionBlast(board, currentPotions.keySet().stream().findFirst().get(), false, p)) {
-            System.out.println("MOVE 3: " + d);
-            return Command.MOVE.apply(d);
-        } else if (!currentPotions.isEmpty() && isInHeroPotionBlast(board, currentPotions.keySet().stream().findFirst().get(), false, Element.HERO)
-                && perks.getOrDefault(Element.POTION_REMOTE_CONTROL, 0) > 0) {
-            System.out.println("MOVE 3: " + d);
-            return Command.MOVE.apply(d);
-        } else if (perks.getOrDefault(Element.POISON_THROWER, 0) > 0 && isInHeroPotionBlast(board, board.getHero(), false, Element.OTHER_HERO, Element.GHOST, Element.GHOST_DEAD)) {
+        } else if (perks.getOrDefault(Element.POISON_THROWER, 0) > 0
+                && isInBlastOf(board, board.getHero(), Element.POTION_TIMER_1, Element.POTION_TIMER_2, Element.HERO_POTION) == null
+                && isInHeroPotionBlast(board, board.getHero(), false, Element.OTHER_HERO)) {
             return Command.THROW_POTION_AT.apply(findDirection(board, board.getHero(), Element.OTHER_HERO));
-        } else {
+        } /*else if (perks.getOrDefault(Element.POISON_THROWER, 0) > 0
+                && isInBlastOf(board, board.getHero(), Element.POTION_TIMER_1, Element.POTION_TIMER_2, Element.HERO_POTION) == null
+                && isInHeroPotionBlast(board, board.getHero(), false, Element.TREASURE_BOX)) {
+            return Command.THROW_POTION_AT.apply(findDirection(board, board.getHero(), Element.TREASURE_BOX));
+        }*/ else {
             if (currentPotions.isEmpty()) {
                 currentPotions.put(board.getHero(), 5);
             }
@@ -205,33 +253,45 @@ public class YourSolver implements Solver<Board> {
     public static void main(String[] args) {
         String b =
                 "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
-                        "☼#♥  ♥# #  #  #   #♥##☼" +
-                        "☼#☼☼ ☼☼☼☼ ☼♥#☼☼ ☼☼##☼♥☼" +
-                        "☼#☼☼ #♥   ☼☼#☼☼♥☼☼#☼☼#☼" +
-                        "☼ &   ☼☼☼  ☼   ♥ ♥ #☼♥☼" +
-                        "☼ ☼☼☼   ☼  # ☼☼☼☼♥☼###☼" +
-                        "☼  ☼  ☼   ☼☼    ##☼☼☼♥☼" +
-                        "☼     ☼☼☼  ☼☼   ☼#♥♥♥♥☼" +
-                        "☼ ☼☼☼ #        ☼☼☼♥♥☼♥☼" +
-                        "☼  ☼  ☼☼☼☼ ☼☼☼## ♥#☼☼♥☼" +
-                        "☼       &   ☼   ☼#♥♥☼♥☼" +
-                        "☼ ☼☼☼☼ ☼☼ ☼   ☼☼☼#☼♥ #☼" +
-                        "☼      ☼☼ ☼☼☼   # ☼☼☼&☼" +
-                        "☼ ☼☼☼      ♥  ☼☼☼###  ☼" +
-                        "☼  ☼  ☼☼ ☼☼☼   ☼  ☼☼☼#☼" +
-                        "☼  ♥ ☼☼    ☼ ☼     #☼♥☼" +
-                        "☼ ☼      ☼&  ☼☼☼ ☼☼###☼" +
-                        "☼ ☼  ☼☼  ☼☼      ☼☼#☼ ☼" +
-                        "☼♥☼☼☼☼☼3 3☼☼☼☼☼     ☼♥☼" +
-                        "☼       ☺♥#      ☼☼#☼#☼" +
-                        "☼ ☼☼☼☼ ☼☼☼☼☼☼☼☼ ☼☼  ☼#☼" +
-                        "☼ ###  &  #  #     #  ☼" +
+                        "☼#     #    #  &      ☼" +
+                        "☼   &   #             ☼" +
+                        "☼   #        #  ##    ☼" +
+                        "☼      T        & ♥   ☼" +
+                        "☼ &  ##  #         #  ☼" +
+                        "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
+                        "☼ #   ♥              ♥☼" +
+                        "☼      ☼☼☼☼☼          ☼" +
+                        "☼    &      ☼☼☼☼☼☼☼ ##☼" +
+                        "☼☼☼☼☼☼☼☼☼☼☺           ☼" +
+                        "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼" +
+                        "☼          2     #    ☼" +
+                        "☼                 # # ☼" +
+                        "☼               ##    ☼" +
+                        "☼ ##            &     ☼" +
+                        "☼   #   #             ☼" +
+                        "☼ ##  #          ### #☼" +
+                        "☼                 #   ☼" +
+                        "☼ # #    # #          ☼" +
+                        "☼     #          #    ☼" +
+                        "☼              #      ☼" +
                         "☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼☼";
         YourSolver s = new YourSolver(new MockDice());
-        s.heroesPrevPositions = List.of(new PointImpl(1, 4));
-        s.currentPotions.put(new PointImpl(7, 4), 3);
         Board board = (Board) new Board().forString(b);
         s.get(board);
+    }
+
+    private Direction findInverseDirection(Direction dir) {
+        switch (dir) {
+            case UP:
+                return Direction.DOWN;
+            case DOWN:
+                return Direction.UP;
+            case LEFT:
+                return Direction.RIGHT;
+            case RIGHT:
+                return Direction.LEFT;
+        }
+        return dir;
     }
 
     private Point getOtherHeroInDirection(Board board, Point point, Direction dir) {
@@ -263,39 +323,54 @@ public class YourSolver implements Solver<Board> {
         return null;
     }
 
-    private Stack<Point> findShortestRoute(Board board, List<Point> exclude, boolean includeChests) {
+    private Stack<Point> findShortestRoute(Board board, List<Point> exclude) {
         List<Route> srs = new ArrayList<>();
         if (heroesPrevPositions.isEmpty()) {
             heroesPrevPositions.addAll(board.getOtherHeroes());
         }
         List<Point> heroesToCheck = new ArrayList<>();
         for (Point oh : board.getOtherHeroes()) {
-            if (heroesPrevPositions.contains(oh)) {
+            if (heroesPrevPositions.contains(oh) || perks.getOrDefault(Element.POISON_THROWER, 0) >= 5) {
                 heroesToCheck.add(oh);
             }
         }
-        if (heroesToCheck.isEmpty()) {
-            heroesToCheck = board.getOtherHeroes();
-        }
         for (Point otherHero : heroesToCheck) {
-            if (isInBlastOf(board, otherHero, ElementUtils.potions) == null && !exclude.contains(otherHero)) {
-                Route route = findRoute(board, otherHero, includeChests);
-                //System.out.println(">>>>> Searching route for other hero " + otherHero + ", route: " + route);
-                if (!route.route.isEmpty()) {
-                    if (srs.isEmpty() || srs.get(0).distance == route.distance) {
-                        srs.add(route);
-                    } else if (srs.get(0).distance > route.distance) {
-                        srs = new ArrayList<>();
-                        srs.add(route);
-                    }
-                }
+            if (!exclude.contains(otherHero)
+                    && (!heroesPrevPositions.contains(otherHero) || isInBlastOf(board, otherHero, ElementUtils.potions) == null)) {
+                srs = addNewRouteForPoint(srs, otherHero, true);
+                srs = addNewRouteForPoint(srs, otherHero, false);
             }
         }
         for (Point perk : board.getPerks()) {
             if (!board.isAt(perk, Element.POTION_REMOTE_CONTROL)) {
-                Route route = findRoute(board, perk, includeChests);
-                //System.out.println(">>>>> Searching route for perk " + perk + ", route: " + route);
-                if (!route.route.isEmpty()) {
+                srs = addNewRouteForPoint(srs, perk, true);
+                srs = addNewRouteForPoint(srs, perk, false);
+            }
+        }
+        return srs.isEmpty() ? null : srs.get(0).route;
+    }
+
+    private List<Route> addNewRouteForPoint(List<Route> srs, Point point, boolean includeChests) {
+        if (!board.isAt(point, Element.POTION_REMOTE_CONTROL)) {
+            Route route = findRoute(board, point, includeChests);
+            if (!route.route.isEmpty()) {
+                if (srs.isEmpty() || srs.get(0).distance == route.distance) {
+                    srs.add(route);
+                } else if (srs.get(0).distance > route.distance) {
+                    srs = new ArrayList<>();
+                    srs.add(route);
+                }
+            }
+        }
+        return srs;
+    }
+
+    private Stack<Point> findShortestRouteToChest(Board board, List<Point> exclude) {
+        List<Route> srs = new ArrayList<>();
+        for (Point chest : board.getTreasureBoxes()) {
+            if (!exclude.contains(chest)) {
+                Route route = findRoute(board, chest, false);
+                if (isInBlastOf(board, chest, ElementUtils.potions) == null && !route.route.isEmpty()) {
                     if (srs.isEmpty() || srs.get(0).distance == route.distance) {
                         srs.add(route);
                     } else if (srs.get(0).distance > route.distance) {
@@ -305,7 +380,6 @@ public class YourSolver implements Solver<Board> {
                 }
             }
         }
-        Collections.shuffle(srs);
         return srs.isEmpty() ? null : srs.get(0).route;
     }
 
@@ -503,10 +577,17 @@ public class YourSolver implements Solver<Board> {
             if (iter.parent != null) {
                 int weight = 1;
                 if (board.isTreasureBoxAt(iter.point)) {
-                    weight += 2;
+                    weight += 3;
+                }
+                if (isNear(iter.point, Element.GHOST) || isNearCorners(iter.point, Element.GHOST)) {
+                    weight += 5;
                 }
                 route.distance += weight;
                 path.add(iter.point);
+            } else {
+                if (board.isAt(iter.point, ElementUtils.perks)) {
+                    route.distance += 2;
+                }
             }
             iter = iter.parent;
         }
@@ -767,12 +848,15 @@ public class YourSolver implements Solver<Board> {
         log.info(">>>>> My hero is at: " + board.getHero().getX() + " - " + board.getHero().getY());
         Point freeSpot = findClosestFreeSpot(board, board.getHero());
         int cont = 0;
-        while (!freeSpot.equals(board.getHero()) && findClosestFreeSpot(board, freeSpot).equals(freeSpot) && !board.isFutureBlastAt(board.getHero()) && cont < 4) {
+        while (!freeSpot.equals(board.getHero())
+                && findClosestFreeSpot(board, freeSpot).equals(freeSpot)
+                && !board.isFutureBlastAt(board.getHero()) && cont < 4
+        ) {
             freeSpot = findClosestFreeSpot(board, board.getHero());
             cont++;
         }
         log.info(">>>>> Closest free spot at: " + freeSpot.getX() + " - " + freeSpot.getY());
-        Direction d = findDirectionToPoint(board, freeSpot);
+        Direction d = findDirectionFromToPoint(board, board.getHero(), freeSpot);
         return d;
     }
 
@@ -781,53 +865,63 @@ public class YourSolver implements Solver<Board> {
         List<Point> points = new ArrayList<>();
         int currentX = point.getX(), currentY = point.getY();
         Point p1 = new PointImpl(currentX + 1, currentY);
-        if (isFreeAt(board, p1)
-                && (isInBlastOf(board, p1, ElementUtils.potions) == null || !isDeadEnd(board, board.getHero(), findDirectionToPoint(board, p1)))) {
+        if (isFreePointSafe(p1)) {
             points.add(p1);
         }
         Point p2 = new PointImpl(currentX, currentY + 1);
-        if (isFreeAt(board, p2)
-                && (isInBlastOf(board, p2, ElementUtils.potions) == null || !isDeadEnd(board, board.getHero(), findDirectionToPoint(board, p2)))) {
+        if (isFreePointSafe(p2)) {
             points.add(p2);
         }
         Point p3 = new PointImpl(currentX - 1, currentY);
-        if (isFreeAt(board, p3)
-                && (isInBlastOf(board, p3, ElementUtils.potions) == null || !isDeadEnd(board, board.getHero(), findDirectionToPoint(board, p3)))) {
+        if (isFreePointSafe(p3)) {
             points.add(p3);
         }
         Point p4 = new PointImpl(currentX, currentY - 1);
-        if (isFreeAt(board, p4)
-                && (isInBlastOf(board, p4, ElementUtils.potions) == null || !isDeadEnd(board, board.getHero(), findDirectionToPoint(board, p4)))) {
+        if (isFreePointSafe(p4)) {
             points.add(p4);
         }
         log.info(">>>>> Points to check: " + points);
         points = points.stream().filter(p -> !isNear(p, Element.GHOST, Element.GHOST_DEAD)).collect(Collectors.toList());
+        List<Point> pointsNotInPotionWay = points.stream().filter(p -> isInBlastOf(board, p, ElementUtils.potions) == null).collect(Collectors.toList());
         log.info(">>>>> Points filtered without ghosts near: " + points);
-        if (points.size() == 1) {
-            return points.get(0);
-        }
         if (points.isEmpty()) {
             log.info(">>>>> closest free spot is the same point: " + point);
             return point;
+        } else if (!pointsNotInPotionWay.isEmpty()) {
+            Collections.shuffle(pointsNotInPotionWay);
+            return pointsNotInPotionWay.get(0);
         } else {
             Collections.shuffle(points);
             return points.get(0);
         }
     }
 
-    private Direction findDirectionToPoint(Board board, Point point) {
-        int currentX = board.getHero().getX(), currentY = board.getHero().getY();
+    private boolean isFreePointSafe(Point p) {
+        Integer currentPotionTimer = 5;
+        Point currentPotion = null;
+        if (!currentPotions.isEmpty()) {
+            currentPotion = currentPotions.keySet().stream().findFirst().get();
+            currentPotionTimer = currentPotions.get(currentPotion);
+        }
+        return isFreeAt(board, p)
+                && (currentPotionTimer > 1 || !isPointInHeroPotionBlast(board, currentPotion, false, p))
+                && (isInBlastOf(board, p, ElementUtils.potions) == null
+                || (!isDeadEnd(board, board.getHero(), findDirectionFromToPoint(board, board.getHero(), p)) && isInBlastOf(board, p, Element.POTION_TIMER_1) == null));
+    }
 
-        if (point.getY() > currentY) {
+    private Direction findDirectionFromToPoint(Board board, Point from, Point to) {
+        int currentX = from.getX(), currentY = from.getY();
+
+        if (to.getY() > currentY) {
             return Direction.UP;
         }
-        if (point.getX() > currentX) {
+        if (to.getX() > currentX) {
             return Direction.RIGHT;
         }
-        if (point.getY() < currentY) {
+        if (to.getY() < currentY) {
             return Direction.DOWN;
         }
-        if (point.getX() < currentX) {
+        if (to.getX() < currentX) {
             return Direction.LEFT;
         }
 
@@ -846,7 +940,7 @@ public class YourSolver implements Solver<Board> {
     }
 
     private boolean hasSideExit(Board board, Point point) {
-        Direction dir = findDirectionToPoint(board, point);
+        Direction dir = findDirectionFromToPoint(board, board.getHero(), point);
         List<Element> elementsToCheck = new ArrayList<>();
         elementsToCheck.addAll(Arrays.asList(ElementUtils.perks));
         elementsToCheck.addAll(Arrays.asList(Element.NONE, Element.BLAST));
