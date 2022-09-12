@@ -220,7 +220,7 @@ public class YourSolver implements Solver<Board> {
                 && !isNear(board.getHero(), Element.GHOST, Element.GHOST_DEAD) && !isNearCorners(board.getHero(), Element.GHOST, Element.GHOST_DEAD)
                 && isInBlastOf(board, board.getHero(), Element.POTION_TIMER_1, Element.POTION_TIMER_2, Element.POTION_TIMER_3, Element.POTION_TIMER_5, Element.HERO_POTION) == null
                 && isInHeroPotionBlast(board, board.getHero(), false, Element.OTHER_HERO)) {
-            return Command.THROW_POTION_AT.apply(findDirectionToClosestFreeSpot(board, board.getHero(), Element.OTHER_HERO));
+            return Command.THROW_POTION_AT.apply(findDirectionToElement(board, board.getHero(), Element.OTHER_HERO));
         } /*else if (perks.getOrDefault(Element.POISON_THROWER, 0) > 0
                 && isInBlastOf(board, board.getHero(), Element.POTION_TIMER_1, Element.POTION_TIMER_2, Element.HERO_POTION) == null
                 && isInHeroPotionBlast(board, board.getHero(), false, Element.TREASURE_BOX)) {
@@ -451,7 +451,7 @@ public class YourSolver implements Solver<Board> {
         return false;
     }
 
-    private Direction findDirectionToClosestFreeSpot(Board board, Point p, Element e) {
+    private Direction findDirectionToElement(Board board, Point p, Element e) {
         int radius = 3;
         if (perks.getOrDefault(Element.POTION_BLAST_RADIUS_INCREASE, 0) > 0) {
             radius += 2;
